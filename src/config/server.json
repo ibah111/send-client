@@ -1,0 +1,6 @@
+{
+  "protocol": "http",
+  "server": "alex.usb.ru",
+  "port": "3001",
+  "ws": "3002"
+}
