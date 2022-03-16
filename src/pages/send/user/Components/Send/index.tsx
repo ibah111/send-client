@@ -1,8 +1,8 @@
 import { Grid } from "@mui/material";
-import Search from "./Components/Search";
-import Send from "./Components/Send";
+import Section1 from "./Section1";
+import Section2 from "./Section2";
 
-export default function Form() {
+export default function Send() {
   return (
     <>
       <Grid
@@ -13,8 +13,8 @@ export default function Form() {
         justifyContent="center"
         alignItems="center"
       >
-        <Search />
-        <Send />
+        <Section1 />
+        <Section2 />
       </Grid>
     </>
   );

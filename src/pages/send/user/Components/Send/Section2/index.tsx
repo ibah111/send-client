@@ -1,20 +1,20 @@
 import { Grid } from "@mui/material";
-import Search from "./Components/Search";
-import Send from "./Components/Send";
+import CourtDocNum from "./CourtDocNum";
+import ExecutiveTyp from "./ExecutiveTyp";
 
-export default function Form() {
+export default function Section2() {
   return (
     <>
       <Grid
         container
         item
         spacing={1}
-        direction="column"
+        direction="row"
         justifyContent="center"
         alignItems="center"
       >
-        <Search />
-        <Send />
+        <ExecutiveTyp />
+        <CourtDocNum />
       </Grid>
     </>
   );

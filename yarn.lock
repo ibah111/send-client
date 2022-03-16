@@ -4503,6 +4503,7 @@ __metadata:
     moment: ^2.29.1
     react: ^17.0.2
     react-dom: ^17.0.2
+    react-imask: ^6.4.2
     react-redux: ^7.2.6
     react-router-dom: ^6.2.2
     react-scripts: ^5.0.0
@@ -7097,6 +7098,13 @@ __metadata:
   version: 5.2.0
   resolution: "ignore@npm:5.2.0"
   checksum: 6b1f926792d614f64c6c83da3a1f9c83f6196c2839aa41e1e32dd7b8d174cef2e329d75caabb62cb61ce9dc432f75e67d07d122a037312db7caa73166a1bdb77
+  languageName: node
+  linkType: hard
+
+"imask@npm:^6.4.2":
+  version: 6.4.2
+  resolution: "imask@npm:6.4.2"
+  checksum: a713aec87f23b1b095aa3a515311222346211dc544bfcae25d4a0aa3bca9a8c13a3269985d8b913cd9af013b733cdae7f81278988d04a9a34b173744b081c0e9
   languageName: node
   linkType: hard
 
@@ -10483,6 +10491,18 @@ __metadata:
   version: 6.0.10
   resolution: "react-error-overlay@npm:6.0.10"
   checksum: e7384f086a0162eecac8e081fe3c79b32f4ac8690c56bde35ab6b6380d10e6c8375bbb689a450902b6615261fcf6c95ea016fc0b200934667089ca83536bc4a7
+  languageName: node
+  linkType: hard
+
+"react-imask@npm:^6.4.2":
+  version: 6.4.2
+  resolution: "react-imask@npm:6.4.2"
+  dependencies:
+    imask: ^6.4.2
+    prop-types: ^15.7.2
+  peerDependencies:
+    react: ">=0.14.0"
+  checksum: be31fca7780ca5592b59b44ca3789124ebd2c35903711eb85c1668f069e3d1c9bc2f332dd69e2a2d97513f63a75e4565c4c6310dcb1005d9c7585ae60b9f44a3
   languageName: node
   linkType: hard
 
