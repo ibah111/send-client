@@ -1,4 +1,3 @@
-import User from "./providers/User";
 import React from "react";
 import Router from "./router";
 import moment from "moment";
@@ -8,6 +7,8 @@ import AdapterMoment from "@mui/lab/AdapterMoment";
 import { BrowserRouter } from "react-router-dom";
 import Login from "./components/Login";
 import Connect from "./components/Connect";
+import { Provider } from "react-redux";
+import store from "./Reducer";
 export default function Document() {
   const [token, setToken] = React.useState("");
   const [depart, setDepart] = React.useState(0);
@@ -18,7 +19,7 @@ export default function Document() {
   }, []);
   return (
     <LocalizationProvider locale="ru" dateAdapter={AdapterMoment}>
-      <User.Provider value={context}>
+      <Provider store={store}>
         <Connect>
           <Login>
             <BrowserRouter>
@@ -26,7 +27,7 @@ export default function Document() {
             </BrowserRouter>
           </Login>
         </Connect>
-      </User.Provider>
+      </Provider>
     </LocalizationProvider>
   );
 }

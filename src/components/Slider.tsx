@@ -1,7 +1,6 @@
-import { Box, Grid, Slide } from "@mui/material";
+import { Grid, Slide } from "@mui/material";
 import React from "react";
-import { useLocation } from "react-router-dom";
-import SliderData from "../providers/SliderData";
+import { useAppSelector } from "../Reducer";
 
 export default function Slider({
   stop = false,
@@ -10,7 +9,8 @@ export default function Slider({
   position = "up",
 }: any) {
   const [open, setOpen] = React.useState(false);
-  const { minApp, timeout } = React.useContext(SliderData);
+  const minApp = useAppSelector((state) => state.App.minApp),
+    timeout = useAppSelector((state) => state.App.timeout);
   React.useEffect(() => {
     setOpen(stop ? false : always ? true : minApp);
   }, [minApp]);

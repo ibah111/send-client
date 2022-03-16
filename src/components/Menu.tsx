@@ -28,7 +28,7 @@ export default function AccountMenu({ stop, always }: any) {
             >
               <Grid xs="auto" item>
                 <Typography sx={{ fontWeight: 600 }} variant="h5">
-                  МОТИВАЦИЯ
+                  ОТПРАВКА
                 </Typography>
               </Grid>
               {pages.map(

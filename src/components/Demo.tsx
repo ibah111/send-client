@@ -1,9 +1,11 @@
 import { TextField } from "@mui/material";
 import React from "react";
-import User from "../providers/User";
+import { useAppDispatch, useAppSelector } from "../Reducer";
+import { setToken } from "../Reducer/User";
 import version from "../utils/version";
 export default function Demo() {
-  const { token, setToken } = React.useContext(User);
+  const token = useAppSelector((state) => state.User.token);
+  const dispatch = useAppDispatch();
   return (
     <>
       {version.demo && (
@@ -12,7 +14,7 @@ export default function Demo() {
           InputLabelProps={{ shrink: true }}
           label="Пользователь"
           onChange={(event: any) => {
-            setToken(event.target.value);
+            dispatch(setToken(event.target.value));
           }}
           value={token}
           type="Number"
