@@ -2,10 +2,12 @@ import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import User from "./User";
 import App from "./App";
+import Search from "./Search";
 const store = configureStore({
   reducer: {
     User,
     App,
+    Search,
   },
 });
 export type RootState = ReturnType<typeof store.getState>;
