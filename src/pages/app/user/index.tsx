@@ -1,4 +1,3 @@
-//@ts-nocheck
 import {
   Typography as T,
   Container,
@@ -6,6 +5,7 @@ import {
   Button,
   Collapse,
 } from "@mui/material";
+import { t } from "i18next";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import Slider from "../../../components/Slider";
@@ -29,7 +29,7 @@ export default function Home() {
             >
               <Grid item>
                 <T sx={{ fontWeight: 600 }} variant="h1">
-                  Отправка
+                  {t(version.title)}
                 </T>
               </Grid>
               {pages.map(
@@ -44,7 +44,7 @@ export default function Home() {
                     >
                       <Grid item>
                         <Button component={Link} to={page.path} variant="text">
-                          {page.name}
+                          {t(page.name)}
                         </Button>
                       </Grid>
                     </Collapse>

@@ -1,5 +1,5 @@
 [
-  { "name": "Главная", "path": "/", "root": "pages/app" },
-  { "name": "Отправить", "path": "/send", "root": "pages/send" },
-  { "name": "Ошибка", "path": "/notfound", "demo": true }
+  { "name": "menu.main", "path": "/", "root": "pages/app" },
+  { "name": "menu.send", "path": "/send", "root": "pages/send" },
+  { "name": "menu.notfound", "path": "/notfound", "demo": true }
 ]

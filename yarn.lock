@@ -1440,6 +1440,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:7.14.0":
+  version: 7.14.0
+  resolution: "@babel/runtime@npm:7.14.0"
+  dependencies:
+    regenerator-runtime: ^0.13.4
+  checksum: 257dc2594355dd8798455f25b6f2f9a00f162b427391265752933e0e3337b3b14661d09283187d5039ae3764f723890ffe767e995c73d662f1d515bdf48e5ade
+  languageName: node
+  linkType: hard
+
 "@babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.11.2, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.13.10, @babel/runtime@npm:^7.15.4, @babel/runtime@npm:^7.16.3, @babel/runtime@npm:^7.17.2, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.7.2, @babel/runtime@npm:^7.7.6, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.8.7, @babel/runtime@npm:^7.9.2":
   version: 7.17.7
   resolution: "@babel/runtime@npm:7.17.7"
@@ -4489,6 +4498,8 @@ __metadata:
     "@types/react-dom": ^17.0.13
     axios: ^0.26.1
     cross-env: ^7.0.3
+    i18next: ^21.6.14
+    i18next-resources-to-backend: ^1.0.0
     moment: ^2.29.1
     react: ^17.0.2
     react-dom: ^17.0.2
@@ -7018,6 +7029,24 @@ __metadata:
   dependencies:
     ms: ^2.0.0
   checksum: 9c7a74a2827f9294c009266c82031030eae811ca87b0da3dceb8d6071b9bde22c9f3daef0469c3c533cc67a97d8a167cd9fc0389350e5f415f61a79b171ded16
+  languageName: node
+  linkType: hard
+
+"i18next-resources-to-backend@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "i18next-resources-to-backend@npm:1.0.0"
+  dependencies:
+    "@babel/runtime": 7.14.0
+  checksum: 4fe9e94930c2fe8e4620aafc6602c58d7a2a012fa3a40d61f146fdc7c071f82e76512af1a33e24337c07f9e2e44b6db67f2a39356ad46953fd38d5dfb0f34104
+  languageName: node
+  linkType: hard
+
+"i18next@npm:^21.6.14":
+  version: 21.6.14
+  resolution: "i18next@npm:21.6.14"
+  dependencies:
+    "@babel/runtime": ^7.17.2
+  checksum: bc6e117874d9b69a39d6ad322851d25f75908c7fa977c8771b98ba7b0273aceba96e82326ed0855b8db098b1490c5a0decbe62b4f61dac84fdc677c2fdc52bb8
   languageName: node
   linkType: hard
 

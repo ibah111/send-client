@@ -6,6 +6,7 @@ import pages from "../utils/pages";
 import { Link } from "react-router-dom";
 import Demo from "./Demo";
 import version from "../utils/version";
+import { t } from "i18next";
 
 export default function AccountMenu({ stop, always }: any) {
   return (
@@ -28,13 +29,12 @@ export default function AccountMenu({ stop, always }: any) {
             >
               <Grid xs="auto" item>
                 <Typography sx={{ fontWeight: 600 }} variant="h5">
-                  ОТПРАВКА
+                  {t(version.title)}
                 </Typography>
               </Grid>
               {pages.map(
                 (page, index) =>
-                  (!page?.demo ||
-                  version?.demo) && (
+                  (!page?.demo || version?.demo) && (
                     <Collapse
                       key={index}
                       unmountOnExit
@@ -44,7 +44,7 @@ export default function AccountMenu({ stop, always }: any) {
                     >
                       <Grid xs="auto" item>
                         <Button component={Link} to={page.path} variant="text">
-                          {page.name}
+                          {t(page.name)}
                         </Button>
                       </Grid>
                     </Collapse>
@@ -73,7 +73,7 @@ export default function AccountMenu({ stop, always }: any) {
                       in={page.path === location.pathname}
                     >
                       <Grid xs="auto" item>
-                        <Typography>{page.name}</Typography>
+                        <Typography>{t(page.name)}</Typography>
                       </Grid>
                     </Collapse>
                   )
