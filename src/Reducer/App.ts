@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-const initialState = "/";
 export const location = createSlice({
   name: "App",
   initialState: { location: "/", minApp: false, timeout: 0 },
