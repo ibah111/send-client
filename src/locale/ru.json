@@ -1,0 +1,10 @@
+{
+  "form": {
+    "search": {
+      "submit": "Поиск",
+      "name": "ФИО",
+      "contract": "Договор",
+      "create_exec": "Создать ИП"
+    }
+  }
+}

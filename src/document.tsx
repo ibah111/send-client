@@ -1,3 +1,5 @@
+
+import "./locale";
 import React from "react";
 import Router from "./router";
 import moment from "moment";
