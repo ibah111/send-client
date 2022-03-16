@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from "../../../../../../Reducer";
 import { setCourtDocNum } from "../../../../../../Reducer/Send";
 const types = (value: Number) => {
   switch (value) {
-    case 1:
+    case 4:
       return {
         mask: "0-0000/{1\\0}23",
         definitions: {
@@ -41,7 +41,7 @@ export default function CourtDocNum() {
   const dispatch = useAppDispatch();
   return (
     <>
-      <Grid sx={{ width: 600 }} item>
+      <Grid sx={{ width: 220 }} item>
         <TextField
           error={!court_doc_num}
           fullWidth

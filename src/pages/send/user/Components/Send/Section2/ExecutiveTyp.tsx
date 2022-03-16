@@ -8,13 +8,13 @@ import { setExecutiveTyp } from "../../../../../../Reducer/Send";
 export default function ExecutiveTyp() {
   const executive_typ = useAppSelector((state) => state.Send.executive_typ);
   const dispatch = useAppDispatch();
-  const [types, setTypes] = React.useState([]);
+  const [types, setTypes] = React.useState<any[]>([]);
   React.useEffect(() => {
     getDict(124).then((dict) => setTypes(dict));
   }, []);
   return (
     <>
-      <Grid sx={{ width: 150 }} item>
+      <Grid sx={{ width: 600 }} item>
         <FormControl fullWidth>
           <InputLabel id="executive_typ">
             {t("form.send.executive_typ")}
@@ -30,7 +30,12 @@ export default function ExecutiveTyp() {
             }}
             label={t("form.send.executive_typ")}
           >
-            <MenuItem value={""}>None</MenuItem>
+            <MenuItem value={""}>{t("system.none")}</MenuItem>
+            {types.map((type, index) => (
+              <MenuItem key={index} value={type.code}>
+                {type.name}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
       </Grid>
