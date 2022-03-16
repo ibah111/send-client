@@ -1,11 +1,17 @@
 import { FormControl, Grid, InputLabel, MenuItem, Select } from "@mui/material";
 import { t } from "i18next";
+import React from "react";
+import getDict from "../../../../../../api/getDict";
 import { useAppDispatch, useAppSelector } from "../../../../../../Reducer";
 import { setExecutiveTyp } from "../../../../../../Reducer/Send";
 
 export default function ExecutiveTyp() {
   const executive_typ = useAppSelector((state) => state.Send.executive_typ);
   const dispatch = useAppDispatch();
+  const [types, setTypes] = React.useState([]);
+  React.useEffect(() => {
+    getDict(124).then((dict) => setTypes(dict));
+  }, []);
   return (
     <>
       <Grid sx={{ width: 150 }} item>
