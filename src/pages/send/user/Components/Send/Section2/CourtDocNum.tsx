@@ -1,6 +1,5 @@
 import { Grid, TextField } from "@mui/material";
 import { t } from "i18next";
-import PropTypes from "prop-types";
 import React from "react";
 import { IMaskInput } from "react-imask";
 import { useAppDispatch, useAppSelector } from "../../../../../../Reducer";
@@ -9,7 +8,7 @@ const types = (value: Number) => {
   switch (value) {
     case 4:
       return {
-        mask: "0-0000/{1\\0}23",
+        mask: "0-0000/{1\\0}23-000",
         definitions: {
           "1": "2",
           "2": /[1-2]/,
