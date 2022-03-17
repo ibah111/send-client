@@ -1,8 +1,8 @@
 import { DatePicker } from "@mui/lab";
 import { Grid, TextField } from "@mui/material";
 import { t } from "i18next";
-import { useAppDispatch, useAppSelector } from "../../../../../../Reducer";
-import { setCourtDate } from "../../../../../../Reducer/Send";
+import { useAppDispatch, useAppSelector } from "../../../../../../../Reducer";
+import { setCourtDate } from "../../../../../../../Reducer/Send";
 
 export default function CourtDate() {
   const dispatch = useAppDispatch();

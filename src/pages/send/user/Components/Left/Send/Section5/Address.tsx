@@ -1,8 +1,8 @@
 import { Grid, TextField } from "@mui/material";
 import { t } from "i18next";
 import React from "react";
-import getCourt from "../../../../../../api/getCourt";
-import { useAppDispatch, useAppSelector } from "../../../../../../Reducer";
+import getCourt from "../../../../../../../api/getCourt";
+import { useAppDispatch, useAppSelector } from "../../../../../../../Reducer";
 
 export default function Address() {
   const dispatch = useAppDispatch();

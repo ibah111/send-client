@@ -2,8 +2,8 @@ import { Grid, TextField } from "@mui/material";
 import { t } from "i18next";
 import React from "react";
 import { IMaskInput } from "react-imask";
-import { useAppDispatch, useAppSelector } from "../../../../../../Reducer";
-import { setCourtDocNum } from "../../../../../../Reducer/Send";
+import { useAppDispatch, useAppSelector } from "../../../../../../../Reducer";
+import { setCourtDocNum } from "../../../../../../../Reducer/Send";
 const types = (value: Number) => {
   switch (value) {
     case 4:

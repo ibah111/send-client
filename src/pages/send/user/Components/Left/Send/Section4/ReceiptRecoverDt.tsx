@@ -1,8 +1,8 @@
 import { DatePicker } from "@mui/lab";
 import { Grid, TextField } from "@mui/material";
 import { t } from "i18next";
-import { useAppDispatch, useAppSelector } from "../../../../../../Reducer";
-import { setReceiptRecoverDt } from "../../../../../../Reducer/Send";
+import { useAppDispatch, useAppSelector } from "../../../../../../../Reducer";
+import { setReceiptRecoverDt } from "../../../../../../../Reducer/Send";
 
 export default function ReceiptRecoverDt() {
   const dispatch = useAppDispatch();

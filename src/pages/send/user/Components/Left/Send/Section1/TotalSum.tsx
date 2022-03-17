@@ -1,7 +1,7 @@
 import { Grid, TextField } from "@mui/material";
 import { t } from "i18next";
-import { useAppDispatch, useAppSelector } from "../../../../../../Reducer";
-import { setTotalSum } from "../../../../../../Reducer/Send";
+import { useAppDispatch, useAppSelector } from "../../../../../../../Reducer";
+import { setTotalSum } from "../../../../../../../Reducer/Send";
 import NumberFormat from "react-number-format";
 import React from "react";
 const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(

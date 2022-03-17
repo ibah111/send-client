@@ -1,20 +1,20 @@
 import { Grid } from "@mui/material";
-import Left from "./Components/Left";
-import Right from "./Components/Right";
+import Search from "./Search";
+import Send from "./Send";
 
-export default function Form() {
+export default function Left() {
   return (
     <>
       <Grid
         container
         item
         spacing={1}
-        direction="row"
+        direction="column"
         justifyContent="center"
         alignItems="center"
       >
-        <Left />
-        <Right />
+        <Search />
+        <Send />
       </Grid>
     </>
   );

@@ -1,7 +1,7 @@
 import { Grid, TextField } from "@mui/material";
 import { t } from "i18next";
-import { useAppDispatch, useAppSelector } from "../../../../../Reducer";
-import { setName } from "../../../../../Reducer/Search";
+import { useAppDispatch, useAppSelector } from "../../../../../../Reducer";
+import { setName } from "../../../../../../Reducer/Search";
 
 export default function Name() {
   const dispatch = useAppDispatch();

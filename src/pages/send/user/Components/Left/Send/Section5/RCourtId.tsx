@@ -1,9 +1,9 @@
 import { Autocomplete, Grid, TextField } from "@mui/material";
 import { t } from "i18next";
 import React from "react";
-import getCourt from "../../../../../../api/getCourt";
-import { useAppDispatch, useAppSelector } from "../../../../../../Reducer";
-import { setRCourtId } from "../../../../../../Reducer/Send";
+import getCourt from "../../../../../../../api/getCourt";
+import { useAppDispatch, useAppSelector } from "../../../../../../../Reducer";
+import { setRCourtId } from "../../../../../../../Reducer/Send";
 
 export default function RCourtId() {
   const r_court_id = useAppSelector((state) => state.Send.r_court_id);

@@ -1,21 +1,16 @@
 import { Grid } from "@mui/material";
-import Left from "./Components/Left";
-import Right from "./Components/Right";
 
-export default function Form() {
+export default function Right() {
   return (
     <>
       <Grid
         container
         item
         spacing={1}
-        direction="row"
+        direction="column"
         justifyContent="center"
         alignItems="center"
-      >
-        <Left />
-        <Right />
-      </Grid>
+      ></Grid>
     </>
   );
 }

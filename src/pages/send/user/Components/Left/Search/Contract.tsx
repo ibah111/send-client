@@ -1,7 +1,7 @@
 import { Grid, TextField } from "@mui/material";
 import { t } from "i18next";
-import { useAppDispatch, useAppSelector } from "../../../../../Reducer";
-import { setContract } from "../../../../../Reducer/Search";
+import { useAppDispatch, useAppSelector } from "../../../../../../Reducer";
+import { setContract } from "../../../../../../Reducer/Search";
 
 export default function Contract() {
   const dispatch = useAppDispatch();
