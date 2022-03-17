@@ -22,6 +22,27 @@
       "r_court_id": "Наименование ФССП",
       "dsc": "Коментарий",
       "law_court": { "address": "Адрес ФССП" }
+    },
+    "results": {
+      "person": { "id": "ID должника", "fio": "ФИО" },
+      "debt": {
+        "id": "ID долга",
+        "debt_sum": "Остаток долга",
+        "contract": "Договор",
+        "status": "Статус долга"
+      },
+      "portfolio": { "name": "Портфель" },
+      "law_act": {
+        "id": "ID юр. дела",
+        "typ": "Тип юр.дела",
+        "status": "Статус юр. дела"
+      },
+      "law_exec": {
+        "id": "ID ИД",
+        "court_doc_num": "№ ИД",
+        "executive_typ": "Тип ИД",
+        "court_date": "Дата вынесения"
+      }
     }
   },
   "menu": {

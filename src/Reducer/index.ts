@@ -4,12 +4,14 @@ import User from "./User";
 import App from "./App";
 import Search from "./Search";
 import Send from "./Send";
+import Results from "./Results";
 const store = configureStore({
   reducer: {
     User,
     App,
     Search,
     Send,
+    Results,
   },
 });
 export type RootState = ReturnType<typeof store.getState>;

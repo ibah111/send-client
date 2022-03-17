@@ -1,4 +1,5 @@
 import { Grid } from "@mui/material";
+import Results from "./Results";
 
 export default function Right() {
   return (
@@ -10,7 +11,9 @@ export default function Right() {
         direction="column"
         justifyContent="center"
         alignItems="center"
-      ></Grid>
+      >
+        <Results />
+      </Grid>
     </>
   );
 }
