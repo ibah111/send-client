@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import moment from "moment";
 export const send = createSlice({
   name: "send",
   initialState: {
+    id: 0,
     total_sum: "",
     load_dt: "",
     court_doc_num: "",
@@ -16,6 +16,7 @@ export const send = createSlice({
     dsc: "",
   },
   reducers: {
+    setId: () => {},
     setTotalSum: (state, action) => {
       state.total_sum = action.payload;
     },

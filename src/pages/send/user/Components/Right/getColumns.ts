@@ -3,27 +3,69 @@ import { t } from "i18next";
 
 export default function getColumns(): GridColDef[] {
   return [
-    { field: "person.id", headerName: t("form.results.person.id") },
-    { field: "debt.id", headerName: t("form.results.debt.id") },
-    { field: "law_act.id", headerName: t("form.results.law_act.id") },
-    { field: "law_exec.id", headerName: t("form.results.law_exec.id") },
-    { field: "person.fio", headerName: t("form.results.person.fio") },
-    { field: "debt.contract", headerName: t("form.results.debt.contract") },
-    { field: "debt.debt_sum", headerName: t("form.results.debt.debt_sum") },
-    { field: "portfolio.name", headerName: t("form.results.portfolio.name") },
-    { field: "debt.status", headerName: t("form.results.debt.status") },
-    { field: "law_act.typ", headerName: t("form.results.law_act.typ") },
-    { field: "law_act.status", headerName: t("form.results.law_act.status") },
+    { field: "Person.id", headerName: t("form.results.person.id") },
+    { field: "Debt.id", headerName: t("form.results.debt.id") },
+    { field: "LawAct.id", headerName: t("form.results.law_act.id") },
+    { field: "id", headerName: t("form.results.law_exec.id") },
     {
-      field: "law_exec.court_doc_num",
+      field: "Person.fio",
+      headerName: t("form.results.person.fio"),
+      width: 200,
+    },
+    { field: "Debt.contract", headerName: t("form.results.debt.contract") },
+    { field: "Debt.debt_sum", headerName: t("form.results.debt.debt_sum") },
+    { field: "Portfolio.name", headerName: t("form.results.portfolio.name") },
+    { field: "Debt.Status.name", headerName: t("form.results.debt.status") },
+    {
+      field: "LawAct.typ",
+      headerName: t("form.results.law_act.typ"),
+      valueGetter: (params) => {
+        switch (params.value) {
+          case 0:
+            return "Не определено";
+          case 1:
+            return "Приказ";
+          case 2:
+            return "Иск";
+          case 3:
+            return "Правопреемство";
+          case 4:
+            return "Банкротство";
+          default:
+            return "Не определено";
+        }
+      },
+    },
+    {
+      field: "LawAct.Status",
+      headerName: t("form.results.law_act.status"),
+      valueGetter: (params) => {
+        switch (params.row["LawAct.typ"]) {
+          case 0:
+            return params.row["LawAct.ActStatus.name"];
+          case 1:
+            return params.row["LawAct.Status.name"];
+          case 2:
+            return params.row["LawAct.ActStatus.name"];
+          case 3:
+            return params.row["LawAct.ActStatus.name"];
+          case 4:
+            return params.row["LawAct.ActStatus.name"];
+          default:
+            return params.row["LawAct.ActStatus.name"];
+        }
+      },
+    },
+    {
+      field: "court_doc_num",
       headerName: t("form.results.law_exec.court_doc_num"),
     },
     {
-      field: "law_exec.executive_typ",
+      field: "Typ.name",
       headerName: t("form.results.law_exec.executive_typ"),
     },
     {
-      field: "law_exec.court_date",
+      field: "court_date",
       headerName: t("form.results.law_exec.court_date"),
     },
   ];
