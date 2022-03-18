@@ -48,7 +48,7 @@ export default function CourtDocNum() {
           onChange={(event) => dispatch(setCourtDocNum(event))}
           label={t("form.send.court_doc_num")}
           InputProps={{
-            inputComponent: TextMaskCustom,
+            //inputComponent: TextMaskCustom,
           }}
         />
       </Grid>

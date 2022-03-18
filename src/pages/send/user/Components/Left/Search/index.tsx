@@ -1,10 +1,21 @@
 import { Grid } from "@mui/material";
+import React from "react";
+import getLawExec from "../../../../../../api/getLawExec";
+import { useAppDispatch, useAppSelector } from "../../../../../../Reducer";
+import { setSend } from "../../../../../../Reducer/Send";
 import Contract from "./Contract";
 import CreateExec from "./CreateExec";
 import Name from "./Name";
 import Submit from "./Submit";
 
 export default function Search() {
+  const dispatch = useAppDispatch();
+  const id = useAppSelector((state) => state.Send.id);
+  React.useEffect(() => {
+    getLawExec(id).then((res) => {
+      if (res !== null) dispatch(setSend(res));
+    });
+  }, [id]);
   return (
     <>
       <Grid

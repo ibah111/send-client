@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import getLawExec from "../api/getLawExec";
 export const send = createSlice({
   name: "send",
   initialState: {
@@ -16,7 +17,23 @@ export const send = createSlice({
     dsc: "",
   },
   reducers: {
-    setId: () => {},
+    setId: (state, action) => {
+      state.id = action.payload;
+    },
+    setSend: (state, action) => {
+      const data = action.payload;
+      state.total_sum = data.total_sum;
+      state.load_dt = data.load_dt;
+      state.court_doc_num = data.court_doc_num;
+      state.executive_typ = data.executive_typ;
+      state.court_date = data.court_date;
+      state.delivery_typ = data.DELIVERY_TYP;
+      state.entry_force_dt = data.entry_force_dt;
+      state.receipt_recover_dt = data.receipt_recover_dt;
+      state.fssp_date = data.fssp_date;
+      state.r_court_id = data.r_court_id;
+      state.dsc = data.dsc;
+    },
     setTotalSum: (state, action) => {
       state.total_sum = action.payload;
     },
@@ -64,5 +81,7 @@ export const {
   setFsspDate,
   setRCourtId,
   setDsc,
+  setId,
+  setSend,
 } = send.actions;
 export default send.reducer;

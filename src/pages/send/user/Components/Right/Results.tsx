@@ -2,6 +2,7 @@ import { Grid } from "@mui/material";
 import { DataGridPro } from "@mui/x-data-grid-pro";
 import { useAppDispatch, useAppSelector } from "../../../../../Reducer";
 import { setResults } from "../../../../../Reducer/Results";
+import { setId } from "../../../../../Reducer/Send";
 import getColumns from "./getColumns";
 
 export default function Results() {
@@ -17,7 +18,7 @@ export default function Results() {
           disableSelectionOnClick
           disableColumnSelector
           onCellDoubleClick={(params) => {
-            
+            dispatch(setId(params.row.id));
             dispatch(setResults([]));
           }}
         />

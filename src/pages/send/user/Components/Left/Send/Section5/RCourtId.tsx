@@ -8,18 +8,26 @@ import { setRCourtId } from "../../../../../../../Reducer/Send";
 export default function RCourtId() {
   const r_court_id = useAppSelector((state) => state.Send.r_court_id);
   const dispatch = useAppDispatch();
-  const [types, setTypes] = React.useState<any[]>([]);
+  const [types, setTypes] = React.useState<any[]>([""]);
+  const [type, setType] = React.useState<any>("");
   const [name, setName] = React.useState("");
   React.useEffect(() => {
-    getCourt({ name }).then((court) => {
-      setTypes(court);
-    });
+    if (name[0] !== "(") {
+      getCourt({ name }).then((court) => {
+        setTypes(["", ...court]);
+      });
+    }
   }, [name]);
   React.useEffect(() => {
-    if (r_court_id > 0)
+    if (r_court_id > 0) {
       getCourt({ id: r_court_id }).then((court) => {
-        setTypes(court);
+        setTypes(["", ...court]);
+        setType(court[0]);
       });
+    } else {
+      setTypes([""]);
+      setType("");
+    }
   }, [r_court_id]);
   return (
     <>
@@ -28,7 +36,10 @@ export default function RCourtId() {
           disablePortal
           id="r_court_id"
           options={types}
-          getOptionLabel={(option) => `(${option.id}) ${option.name}`}
+          value={type}
+          getOptionLabel={(option) =>
+            option !== "" ? `(${option.id}) ${option.name}` : "Не выбрано"
+          }
           inputValue={name}
           onChange={(event, value) => {
             if (value) {
@@ -38,7 +49,7 @@ export default function RCourtId() {
             }
           }}
           isOptionEqualToValue={(option: any, value: any) =>
-            option.id === value.id
+            option === "" && value === "" ? true : option?.id === value?.id
           }
           onInputChange={(event, newInputValue) => {
             setName(newInputValue);
