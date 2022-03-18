@@ -1,4 +1,5 @@
 import { Grid } from "@mui/material";
+import Info from "./Info";
 import LoadDt from "./LoadDt";
 import TotalSum from "./TotalSum";
 
@@ -13,6 +14,7 @@ export default function Section1() {
         justifyContent="center"
         alignItems="center"
       >
+        <Info />
         <TotalSum />
         <LoadDt />
       </Grid>
