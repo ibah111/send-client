@@ -1,4 +1,3 @@
-
 import "./locale";
 import React from "react";
 import Router from "./router";
@@ -12,10 +11,6 @@ import Connect from "./components/Connect";
 import { Provider } from "react-redux";
 import store from "./Reducer";
 export default function Document() {
-  const [token, setToken] = React.useState("");
-  const [depart, setDepart] = React.useState(0);
-  const [month, setMonth] = React.useState(moment().format("MM.YYYY"));
-  const context = { token, setToken, depart, setDepart, month, setMonth };
   React.useEffect(() => {
     moment.locale("ru");
   }, []);
