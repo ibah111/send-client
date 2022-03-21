@@ -37,7 +37,7 @@ export default function Submit() {
   const { enqueueSnackbar } = useSnackbar();
   const Send = useAppSelector((state) => state.Send);
   const AddAlert = (value: String, variant: VariantType = "success") => {
-    enqueueSnackbar(value, { variant });
+    enqueueSnackbar(value, { variant, autoHideDuration: 3000 });
   };
   const Click = () => {
     if (check(Send, AddAlert)) {
