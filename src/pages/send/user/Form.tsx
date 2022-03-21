@@ -1,6 +1,7 @@
 import { Box, Grid } from "@mui/material";
 import Left from "./Components/Left";
 import Right from "./Components/Right";
+import { SnackbarProvider } from "notistack";
 
 export default function Form() {
   return (
@@ -14,8 +15,10 @@ export default function Form() {
           justifyContent="center"
           alignItems="center"
         >
-          <Left />
-          <Right />
+          <SnackbarProvider maxSnack={11}>
+            <Left />
+            <Right />
+          </SnackbarProvider>
         </Grid>
       </Box>
     </>
