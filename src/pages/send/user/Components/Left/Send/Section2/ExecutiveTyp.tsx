@@ -14,7 +14,7 @@ export default function ExecutiveTyp() {
   }, []);
   return (
     <>
-      <Grid sx={{ width: 600 }} item>
+      <Grid sx={{ width: 555 }} item>
         <FormControl fullWidth>
           <InputLabel id="executive_typ">
             {t("form.send.executive_typ")}
