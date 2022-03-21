@@ -10,7 +10,7 @@ export default function ExecutiveTyp() {
   const dispatch = useAppDispatch();
   const [types, setTypes] = React.useState<any[]>([]);
   React.useEffect(() => {
-    getDict(333).then((dict) => setTypes(dict));
+    getDict(16).then((dict) => setTypes(dict));
   }, []);
   return (
     <>
