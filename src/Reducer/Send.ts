@@ -1,25 +1,26 @@
+import { idID } from "@mui/material/locale";
 import { createSlice } from "@reduxjs/toolkit";
 import getName from "../utils/getName";
 const g = (value: any, type?: string) =>
   null === value ? (type === "number" ? 0 : "") : value;
+const initState = {
+  fio: "",
+  contract: "",
+  total_sum: "",
+  load_dt: "",
+  court_doc_num: "",
+  executive_typ: 0,
+  court_date: "",
+  DELIVERY_TYP: 0,
+  entry_force_dt: "",
+  receipt_recover_dt: "",
+  fssp_date: "",
+  r_court_id: 0,
+  dsc: "",
+};
 export const send = createSlice({
   name: "send",
-  initialState: {
-    id: 0,
-    fio: "",
-    contract: "",
-    total_sum: "",
-    load_dt: "",
-    court_doc_num: "",
-    executive_typ: 0,
-    court_date: "",
-    DELIVERY_TYP: 0,
-    entry_force_dt: "",
-    receipt_recover_dt: "",
-    fssp_date: "",
-    r_court_id: 0,
-    dsc: "",
-  },
+  initialState: { id: 0, ...initState },
   reducers: {
     setId: (state, action) => {
       state.id = action.payload;
@@ -42,6 +43,9 @@ export const send = createSlice({
     },
     setTotalSum: (state, action) => {
       state.total_sum = action.payload;
+    },
+    reset: (state) => {
+      return { id: state.id, ...initState };
     },
     setLoadDt: (state, action) => {
       state.load_dt = action.payload;
@@ -89,5 +93,6 @@ export const {
   setDsc,
   setId,
   setSend,
+  reset,
 } = send.actions;
 export default send.reducer;
