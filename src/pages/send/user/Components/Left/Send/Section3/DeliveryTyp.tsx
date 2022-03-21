@@ -17,7 +17,7 @@ export default function ExecutiveTyp() {
       <Grid sx={{ width: 220 }} item>
         <FormControl fullWidth>
           <InputLabel id="delivery_typ">
-            {t("form.send.delivery_typ")}
+            {t("form.send.DELIVERY_TYP")}
           </InputLabel>
           <Select
             required
@@ -28,7 +28,7 @@ export default function ExecutiveTyp() {
                 setDeliveryTyp(event.target.value ? event.target.value : 0)
               );
             }}
-            label={t("form.send.delivery_typ")}
+            label={t("form.send.DELIVERY_TYP")}
           >
             <MenuItem value={""}>{t("system.none")}</MenuItem>
             {types.map((type, index) => (
