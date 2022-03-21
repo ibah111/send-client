@@ -7,6 +7,7 @@ import Contract from "./Contract";
 import CreateExec from "./CreateExec";
 import Name from "./Name";
 import Find from "./Find";
+import Submit from "./Submit";
 
 export default function Search() {
   const dispatch = useAppDispatch();
@@ -31,6 +32,7 @@ export default function Search() {
         <Contract />
         <Find />
         <CreateExec />
+        <Submit />
       </Grid>
     </>
   );
