@@ -15,13 +15,12 @@ export default function ExecutiveTyp() {
   return (
     <>
       <Grid sx={{ width: 220 }} item>
-        <FormControl fullWidth>
+        <FormControl error={executive_typ === null} fullWidth>
           <InputLabel id="delivery_typ">
             {t("form.send.DELIVERY_TYP")}
           </InputLabel>
           <Select
             required
-            error={executive_typ === null}
             value={executive_typ === null ? "" : executive_typ}
             onChange={(event) => {
               dispatch(
