@@ -15,9 +15,16 @@ export default function LoadDt() {
           value={load_dt}
           mask="__.__.____"
           onChange={(newValue: any) =>
-            dispatch(setLoadDt(newValue ? newValue.toISOString() : ""))
+            dispatch(setLoadDt(newValue ? newValue.toISOString() : null))
           }
-          renderInput={(params) => <TextField required fullWidth {...params} />}
+          renderInput={(params) => (
+            <TextField
+              required
+              fullWidth
+              {...params}
+              error={load_dt === null}
+            />
+          )}
         />
       </Grid>
     </>

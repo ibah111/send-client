@@ -21,8 +21,8 @@ export default function ExecutiveTyp() {
           </InputLabel>
           <Select
             required
-            error={executive_typ === 0}
-            value={executive_typ > 0 ? executive_typ : ""}
+            error={executive_typ === null}
+            value={executive_typ === null ? "" : executive_typ}
             onChange={(event) => {
               dispatch(
                 setDeliveryTyp(event.target.value ? event.target.value : 0)

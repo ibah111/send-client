@@ -17,7 +17,14 @@ export default function CourtDate() {
           onChange={(newValue: any) =>
             dispatch(setCourtDate(newValue ? newValue.toISOString() : ""))
           }
-          renderInput={(params) => <TextField required fullWidth {...params} />}
+          renderInput={(params) => (
+            <TextField
+              required
+              fullWidth
+              {...params}
+              error={court_date === null}
+            />
+          )}
         />
       </Grid>
     </>

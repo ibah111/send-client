@@ -7,7 +7,7 @@ export default function Id() {
   return (
     <>
       <Grid item>
-        <TextField label={t("form.send.id")} value={id} disabled />
+        <TextField label={t("form.send.id")} value={id===null?"":id} disabled />
       </Grid>
     </>
   );

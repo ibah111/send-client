@@ -15,9 +15,16 @@ export default function EntryForceDt() {
           value={entry_force_dt}
           mask="__.__.____"
           onChange={(newValue: any) =>
-            dispatch(setEntryForceDt(newValue ? newValue.toISOString() : ""))
+            dispatch(setEntryForceDt(newValue ? newValue.toISOString() : null))
           }
-          renderInput={(params) => <TextField required fullWidth {...params} />}
+          renderInput={(params) => (
+            <TextField
+              required
+              fullWidth
+              {...params}
+              error={entry_force_dt === null}
+            />
+          )}
         />
       </Grid>
     </>

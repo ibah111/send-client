@@ -4,7 +4,7 @@ import React from "react";
 import { IMaskInput } from "react-imask";
 import { useAppDispatch, useAppSelector } from "../../../../../../../Reducer";
 import { setCourtDocNum } from "../../../../../../../Reducer/Send";
-const types = (value: Number) => {
+const types = (value: Number | null) => {
   switch (value) {
     case 4:
       return {
@@ -42,14 +42,16 @@ export default function CourtDocNum() {
     <>
       <Grid sx={{ width: 220 }} item>
         <TextField
-          error={!court_doc_num}
+          error={court_doc_num === null}
           fullWidth
-          value={court_doc_num}
+          value={court_doc_num === null ? "" : court_doc_num}
           onChange={(event) => dispatch(setCourtDocNum(event))}
           label={t("form.send.court_doc_num")}
-          InputProps={{
-            //inputComponent: TextMaskCustom,
-          }}
+          InputProps={
+            {
+              //inputComponent: TextMaskCustom,
+            }
+          }
         />
       </Grid>
     </>

@@ -18,10 +18,17 @@ export default function ReceiptRecoverDt() {
           mask="__.__.____"
           onChange={(newValue: any) =>
             dispatch(
-              setReceiptRecoverDt(newValue ? newValue.toISOString() : "")
+              setReceiptRecoverDt(newValue ? newValue.toISOString() : null)
             )
           }
-          renderInput={(params) => <TextField required fullWidth {...params} />}
+          renderInput={(params) => (
+            <TextField
+              required
+              fullWidth
+              {...params}
+              error={receipt_recover_dt === null}
+            />
+          )}
         />
       </Grid>
     </>

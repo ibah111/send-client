@@ -19,7 +19,7 @@ export default function RCourtId() {
     }
   }, [name]);
   React.useEffect(() => {
-    if (r_court_id > 0) {
+    if (r_court_id !== null) {
       getCourt({ id: r_court_id }).then((court) => {
         setTypes(["", ...court]);
         setType(court[0]);
@@ -45,7 +45,7 @@ export default function RCourtId() {
             if (value) {
               dispatch(setRCourtId(value.id));
             } else {
-              dispatch(setRCourtId(0));
+              dispatch(setRCourtId(null));
             }
           }}
           isOptionEqualToValue={(option: any, value: any) =>
@@ -58,7 +58,7 @@ export default function RCourtId() {
           renderInput={(params) => (
             <TextField
               {...params}
-              error={r_court_id === 0}
+              error={r_court_id === null}
               required
               label={t("form.send.r_court_id")}
             />

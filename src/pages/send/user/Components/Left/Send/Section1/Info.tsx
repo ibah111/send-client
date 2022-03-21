@@ -8,12 +8,16 @@ export default function Info() {
   return (
     <>
       <Grid item>
-        <TextField label={t("form.search.name")} value={name} disabled />
+        <TextField
+          label={t("form.search.name")}
+          value={name === null ? "" : name}
+          disabled
+        />
       </Grid>
       <Grid item>
         <TextField
           label={t("form.search.contract")}
-          value={contract}
+          value={contract === null ? "" : contract}
           disabled
         />
       </Grid>

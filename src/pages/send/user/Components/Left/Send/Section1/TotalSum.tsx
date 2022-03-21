@@ -37,14 +37,18 @@ export default function TotalSum() {
     <>
       <Grid item>
         <TextField
-          error={!total_sum}
+          error={total_sum === null}
           label={t("form.send.total_sum")}
-          value={total_sum}
+          value={total_sum === null ? "" : total_sum}
           required
           InputProps={{
             inputComponent: NumberFormatCustom,
           }}
-          onChange={(event) => dispatch(setTotalSum(Number(event.target.value)))}
+          onChange={(event) =>
+            dispatch(
+              setTotalSum(event.target.value ? event.target.value : null)
+            )
+          }
         />
       </Grid>
     </>

@@ -15,9 +15,16 @@ export default function FsspDate() {
           value={fssp_date}
           mask="__.__.____"
           onChange={(newValue: any) =>
-            dispatch(setFsspDate(newValue ? newValue.toISOString() : ""))
+            dispatch(setFsspDate(newValue ? newValue.toISOString() : null))
           }
-          renderInput={(params) => <TextField required fullWidth {...params} />}
+          renderInput={(params) => (
+            <TextField
+              required
+              fullWidth
+              {...params}
+              error={fssp_date === null}
+            />
+          )}
         />
       </Grid>
     </>

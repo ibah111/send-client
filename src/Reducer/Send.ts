@@ -1,22 +1,34 @@
 import { idID } from "@mui/material/locale";
 import { createSlice } from "@reduxjs/toolkit";
 import getName from "../utils/getName";
-const g = (value: any, type?: string) =>
-  null === value ? (type === "number" ? 0 : "") : value;
-const initState = {
-  fio: "",
-  contract: "",
-  total_sum: "",
-  load_dt: "",
-  court_doc_num: "",
-  executive_typ: 0,
-  court_date: "",
-  DELIVERY_TYP: 0,
-  entry_force_dt: "",
-  receipt_recover_dt: "",
-  fssp_date: "",
-  r_court_id: 0,
-  dsc: "",
+const initState: {
+  fio: null | String;
+  contract: null | String;
+  total_sum: null | Number;
+  load_dt: null | String;
+  court_doc_num: null | String;
+  executive_typ: null | Number;
+  court_date: null | String;
+  DELIVERY_TYP: null | Number;
+  entry_force_dt: null | String;
+  receipt_recover_dt: null | String;
+  fssp_date: null | String;
+  r_court_id: null | Number;
+  dsc: null | String;
+} = {
+  fio: null,
+  contract: null,
+  total_sum: null,
+  load_dt: null,
+  court_doc_num: null,
+  executive_typ: null,
+  court_date: null,
+  DELIVERY_TYP: null,
+  entry_force_dt: null,
+  receipt_recover_dt: null,
+  fssp_date: null,
+  r_court_id: null,
+  dsc: null,
 };
 export const send = createSlice({
   name: "send",
@@ -29,17 +41,17 @@ export const send = createSlice({
       const data = action.payload;
       state.fio = getName([data.Person.f, data.Person.i, data.Person.o]);
       state.contract = data.Debt.contract;
-      state.total_sum = g(data.total_sum);
-      state.load_dt = g(data.load_dt);
-      state.court_doc_num = g(data.court_doc_num);
-      state.executive_typ = g(data.executive_typ);
-      state.court_date = g(data.court_date);
-      state.DELIVERY_TYP = g(data.DELIVERY_TYP);
-      state.entry_force_dt = g(data.entry_force_dt);
-      state.receipt_recover_dt = g(data.receipt_recover_dt);
-      state.fssp_date = g(data.fssp_date);
-      state.r_court_id = g(data.r_court_id);
-      state.dsc = g(data.dsc);
+      state.total_sum = data.total_sum;
+      state.load_dt = data.load_dt;
+      state.court_doc_num = data.court_doc_num;
+      state.executive_typ = data.executive_typ;
+      state.court_date = data.court_date;
+      state.DELIVERY_TYP = data.DELIVERY_TYP;
+      state.entry_force_dt = data.entry_force_dt;
+      state.receipt_recover_dt = data.receipt_recover_dt;
+      state.fssp_date = data.fssp_date;
+      state.r_court_id = data.r_court_id;
+      state.dsc = data.dsc;
     },
     setTotalSum: (state, action) => {
       state.total_sum = action.payload;
