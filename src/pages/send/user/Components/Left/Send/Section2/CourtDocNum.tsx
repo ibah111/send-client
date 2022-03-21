@@ -45,13 +45,8 @@ export default function CourtDocNum() {
           error={court_doc_num === null}
           fullWidth
           value={court_doc_num === null ? "" : court_doc_num}
-          onChange={(event) => dispatch(setCourtDocNum(event))}
+          onChange={(event) => dispatch(setCourtDocNum(event.target.value))}
           label={t("form.send.court_doc_num")}
-          InputProps={
-            {
-              //inputComponent: TextMaskCustom,
-            }
-          }
         />
       </Grid>
     </>

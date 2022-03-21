@@ -16,7 +16,6 @@ const data = [
   "receipt_recover_dt",
   "fssp_date",
   "r_court_id",
-  "dsc",
 ];
 const check = (res: any, error: (value: String, type: VariantType) => void) => {
   let errors = 0;
