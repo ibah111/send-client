@@ -4,7 +4,7 @@ import search from "../../../../../../api/search";
 import { useAppDispatch } from "../../../../../../Reducer";
 import { setResults } from "../../../../../../Reducer/Results";
 
-export default function Submit() {
+export default function Find() {
   const dispatch = useAppDispatch();
   const Click = () => {
     search().then((res) => {
@@ -14,7 +14,7 @@ export default function Submit() {
   return (
     <>
       <Grid item>
-        <Button onClick={Click}>{t("form.search.submit")}</Button>
+        <Button onClick={Click}>{t("form.search.find")}</Button>
       </Grid>
     </>
   );

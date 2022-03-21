@@ -4,7 +4,8 @@
   },
   "form": {
     "search": {
-      "submit": "Поиск",
+      "submit": "Отправить",
+      "find": "Поиск",
       "name": "ФИО",
       "contract": "Договор",
       "create_exec": "Создать ИП"

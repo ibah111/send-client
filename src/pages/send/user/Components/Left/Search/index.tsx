@@ -6,7 +6,7 @@ import { setSend } from "../../../../../../Reducer/Send";
 import Contract from "./Contract";
 import CreateExec from "./CreateExec";
 import Name from "./Name";
-import Submit from "./Submit";
+import Find from "./Find";
 
 export default function Search() {
   const dispatch = useAppDispatch();
@@ -28,7 +28,7 @@ export default function Search() {
       >
         <Name />
         <Contract />
-        <Submit />
+        <Find />
         <CreateExec />
       </Grid>
     </>
