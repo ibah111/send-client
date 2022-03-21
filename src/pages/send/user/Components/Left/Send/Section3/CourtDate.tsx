@@ -15,7 +15,7 @@ export default function CourtDate() {
           value={court_date}
           mask="__.__.____"
           onChange={(newValue: any) =>
-            dispatch(setCourtDate(newValue?.toISOString()))
+            dispatch(setCourtDate(newValue ? newValue.toISOString() : ""))
           }
           renderInput={(params) => <TextField required fullWidth {...params} />}
         />

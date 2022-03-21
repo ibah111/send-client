@@ -6,7 +6,9 @@ import { setReceiptRecoverDt } from "../../../../../../../Reducer/Send";
 
 export default function ReceiptRecoverDt() {
   const dispatch = useAppDispatch();
-  const receipt_recover_dt = useAppSelector((state) => state.Send.receipt_recover_dt);
+  const receipt_recover_dt = useAppSelector(
+    (state) => state.Send.receipt_recover_dt
+  );
   return (
     <>
       <Grid sx={{ width: 410 }} item>
@@ -15,7 +17,9 @@ export default function ReceiptRecoverDt() {
           value={receipt_recover_dt}
           mask="__.__.____"
           onChange={(newValue: any) =>
-            dispatch(setReceiptRecoverDt(newValue?.toISOString()))
+            dispatch(
+              setReceiptRecoverDt(newValue ? newValue.toISOString() : "")
+            )
           }
           renderInput={(params) => <TextField required fullWidth {...params} />}
         />

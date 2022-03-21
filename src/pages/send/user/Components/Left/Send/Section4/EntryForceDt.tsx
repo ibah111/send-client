@@ -15,7 +15,7 @@ export default function EntryForceDt() {
           value={entry_force_dt}
           mask="__.__.____"
           onChange={(newValue: any) =>
-            dispatch(setEntryForceDt(newValue?.toISOString()))
+            dispatch(setEntryForceDt(newValue ? newValue.toISOString() : ""))
           }
           renderInput={(params) => <TextField required fullWidth {...params} />}
         />
