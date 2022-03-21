@@ -13,7 +13,7 @@ export const send = createSlice({
     court_doc_num: "",
     executive_typ: 0,
     court_date: "",
-    delivery_typ: 0,
+    DELIVERY_TYP: 0,
     entry_force_dt: "",
     receipt_recover_dt: "",
     fssp_date: "",
@@ -33,7 +33,7 @@ export const send = createSlice({
       state.court_doc_num = g(data.court_doc_num);
       state.executive_typ = g(data.executive_typ);
       state.court_date = g(data.court_date);
-      state.delivery_typ = g(data.DELIVERY_TYP);
+      state.DELIVERY_TYP = g(data.DELIVERY_TYP);
       state.entry_force_dt = g(data.entry_force_dt);
       state.receipt_recover_dt = g(data.receipt_recover_dt);
       state.fssp_date = g(data.fssp_date);
@@ -56,7 +56,7 @@ export const send = createSlice({
       state.court_date = action.payload;
     },
     setDeliveryTyp: (state, action) => {
-      state.delivery_typ = action.payload;
+      state.DELIVERY_TYP = action.payload;
     },
     setEntryForceDt: (state, action) => {
       state.entry_force_dt = action.payload;

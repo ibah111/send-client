@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from "../../../../../../../Reducer";
 import { setDeliveryTyp } from "../../../../../../../Reducer/Send";
 
 export default function ExecutiveTyp() {
-  const executive_typ = useAppSelector((state) => state.Send.delivery_typ);
+  const executive_typ = useAppSelector((state) => state.Send.DELIVERY_TYP);
   const dispatch = useAppDispatch();
   const [types, setTypes] = React.useState<any[]>([]);
   React.useEffect(() => {
