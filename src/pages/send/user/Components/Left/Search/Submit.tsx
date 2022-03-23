@@ -30,7 +30,7 @@ const check = (res: any, error: (value: String, type: VariantType) => void) => {
   for (const value of data) {
     if (res[value] === null) {
       errors += 1;
-      error(`Не заполнено поле '${t(`form.send.${value}`)}'`, "error");
+      error(t("form.errors.not_text", { value }), "error");
     }
   }
   if (errors === 0) {
