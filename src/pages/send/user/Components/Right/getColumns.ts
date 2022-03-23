@@ -73,6 +73,11 @@ export default function getColumns(): GridColDef[] {
     },
     {
       width: 300,
+      field: "fssp_doc_num",
+      headerName: t("form.results.law_exec.fssp_doc_num"),
+    },
+    {
+      width: 300,
       field: "Typ.name",
       headerName: t("form.results.law_exec.executive_typ"),
     },
