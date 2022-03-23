@@ -4,7 +4,16 @@ import { useSnackbar, VariantType } from "notistack";
 import React from "react";
 import updateExec from "../../../../../../api/updateExec";
 import { useAppDispatch, useAppSelector } from "../../../../../../Reducer";
+import { saveAs } from "file-saver";
 import { reset, setId } from "../../../../../../Reducer/Send";
+function toArrayBuffer(buf: number[]) {
+  const ab = new ArrayBuffer(buf.length);
+  const view = new Uint8Array(ab);
+  for (let i = 0; i < buf.length; ++i) {
+    view[i] = buf[i];
+  }
+  return ab;
+}
 const data = [
   "total_sum",
   "load_dt",
@@ -42,6 +51,10 @@ export default function Submit() {
     if (check(Send, AddAlert)) {
       updateExec().then((res) => {
         if (res) {
+          const file = new Blob([toArrayBuffer(res.file.data)], {
+            type: "application/pdf",
+          });
+          saveAs(file, res.name);
           dispatch(setId(0));
           dispatch(reset());
         }
