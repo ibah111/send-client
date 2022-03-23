@@ -23,25 +23,31 @@ export default function YesOrNo({
 }) {
   const dispatch = useAppDispatch();
   const Create = () => {
-    createExec(row["LawAct.id"], { court_doc_num: row.court_doc_num }).then(
-      (res) => {
-        if (res) {
-          dispatch(setId(res));
-          onClose();
-        }
+    createExec(row["LawAct.id"], {
+      court_doc_num: row.court_doc_num,
+      executive_typ: row.executive_typ,
+      court_date: row.court_date,
+      entry_force_dt: row.entry_force_dt,
+    }).then((res) => {
+      if (res) {
+        dispatch(setId(res));
+        onClose();
       }
-    );
+    });
   };
   const CreateWithDelete = () => {
-    createExec(row["LawAct.id"], { court_doc_num: row.court_doc_num }).then(
-      (res) => {
-        if (res) {
-          deleteExec(row.id);
-          dispatch(setId(res));
-          onClose();
-        }
+    createExec(row["LawAct.id"], {
+      court_doc_num: row.court_doc_num,
+      executive_typ: row.executive_typ,
+      court_date: row.court_date,
+      entry_force_dt: row.entry_force_dt,
+    }).then((res) => {
+      if (res) {
+        deleteExec(row.id);
+        dispatch(setId(res));
+        onClose();
       }
-    );
+    });
   };
   const Update = () => {
     dispatch(setId(row.id));
@@ -49,17 +55,10 @@ export default function YesOrNo({
   };
   return (
     <>
-      <Dialog
-        open={open}
-        onClose={onClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          {t("form.yes_or_no.title")}
-        </DialogTitle>
+      <Dialog open={open} onClose={onClose}>
+        <DialogTitle>{t("form.yes_or_no.title")}</DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
+          <DialogContentText>
             {t("form.yes_or_no.description", { value: row.fssp_doc_num })}
           </DialogContentText>
         </DialogContent>
