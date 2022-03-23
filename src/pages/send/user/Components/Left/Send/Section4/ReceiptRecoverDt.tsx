@@ -23,10 +23,8 @@ export default function ReceiptRecoverDt() {
           }
           renderInput={(params) => (
             <TextField
-              required
               fullWidth
               {...params}
-              error={receipt_recover_dt === null}
             />
           )}
         />
