@@ -22,7 +22,6 @@ const data = [
   "court_date",
   "DELIVERY_TYP",
   "entry_force_dt",
-  "receipt_recover_dt",
   "fssp_date",
   "r_court_id",
 ];

@@ -8,10 +8,17 @@ import CreateExec from "./CreateExec";
 import Name from "./Name";
 import Find from "./Find";
 import Submit from "./Submit";
+import search from "../../../../../../api/search";
+import { setResults } from "../../../../../../Reducer/Results";
 
 export default function Search() {
   const dispatch = useAppDispatch();
   const id = useAppSelector((state) => state.Send.id);
+  const Click = () => {
+    search().then((res) => {
+      dispatch(setResults(res));
+    });
+  };
   React.useEffect(() => {
     dispatch(reset());
     getLawExec(id).then((res) => {
@@ -28,9 +35,9 @@ export default function Search() {
         justifyContent="center"
         alignItems="center"
       >
-        <Name />
-        <Contract />
-        <Find />
+        <Name onEnter={Click} />
+        <Contract onEnter={Click} />
+        <Find onClick={Click} />
         <CreateExec />
         <Submit />
       </Grid>
