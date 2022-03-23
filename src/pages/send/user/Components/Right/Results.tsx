@@ -11,7 +11,7 @@ export default function Results() {
   const rows = useAppSelector((state) => state.Results);
   return (
     <>
-      <Grid sx={{ width: 1200, height: 400 }} item>
+      <Grid sx={{ width: "100%", height: 400 }} item>
         <DataGridPro
           columns={columns}
           rows={rows}

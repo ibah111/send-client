@@ -3,16 +3,24 @@ import { t } from "i18next";
 
 export default function getColumns(): GridColDef[] {
   return [
-    { field: "Person.id", headerName: t("form.results.person.id") },
-    { field: "Debt.id", headerName: t("form.results.debt.id") },
-    { field: "LawAct.id", headerName: t("form.results.law_act.id") },
-    { field: "id", headerName: t("form.results.law_exec.id") },
+    { field: "Person.id", headerName: t("form.results.person.id"), width: 70 },
+    { field: "Debt.id", headerName: t("form.results.debt.id"), width: 70 },
+    {
+      field: "LawAct.id",
+      headerName: t("form.results.law_act.id"),
+      width: 100,
+    },
+    { field: "id", headerName: t("form.results.law_exec.id"), width: 70 },
     {
       field: "Person.fio",
       headerName: t("form.results.person.fio"),
       width: 200,
     },
-    { field: "Debt.contract", headerName: t("form.results.debt.contract") },
+    {
+      field: "Debt.contract",
+      width: 300,
+      headerName: t("form.results.debt.contract"),
+    },
     { field: "Debt.debt_sum", headerName: t("form.results.debt.debt_sum") },
     { field: "Portfolio.name", headerName: t("form.results.portfolio.name") },
     { field: "Debt.Status.name", headerName: t("form.results.debt.status") },
@@ -39,6 +47,7 @@ export default function getColumns(): GridColDef[] {
     {
       field: "LawAct.Status",
       headerName: t("form.results.law_act.status"),
+      width: 300,
       valueGetter: (params) => {
         switch (params.row["LawAct.typ"]) {
           case 0:
@@ -57,10 +66,12 @@ export default function getColumns(): GridColDef[] {
       },
     },
     {
+      width: 300,
       field: "court_doc_num",
       headerName: t("form.results.law_exec.court_doc_num"),
     },
     {
+      width: 300,
       field: "Typ.name",
       headerName: t("form.results.law_exec.executive_typ"),
     },

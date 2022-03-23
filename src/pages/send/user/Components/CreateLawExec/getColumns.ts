@@ -3,17 +3,25 @@ import { t } from "i18next";
 
 export default function getColumns(): GridColDef[] {
   return [
-    { field: "Person.id", headerName: t("form.results.person.id") },
-    { field: "Debt.id", headerName: t("form.results.debt.id") },
-    { field: "id", headerName: t("form.results.law_act.id") },
+    { field: "Person.id", headerName: t("form.results.person.id"), width: 70 },
+    { field: "Debt.id", headerName: t("form.results.debt.id"), width: 70 },
+    { field: "id", headerName: t("form.results.law_act.id"), width: 70 },
     {
       field: "Person.fio",
       headerName: t("form.results.person.fio"),
       width: 200,
     },
-    { field: "Debt.contract", headerName: t("form.results.debt.contract") },
+    {
+      field: "Debt.contract",
+      headerName: t("form.results.debt.contract"),
+      width: 300,
+    },
     { field: "Debt.debt_sum", headerName: t("form.results.debt.debt_sum") },
-    { field: "Portfolio.name", headerName: t("form.results.portfolio.name") },
+    {
+      field: "Portfolio.name",
+      headerName: t("form.results.portfolio.name"),
+      width: 300,
+    },
     { field: "Debt.Status.name", headerName: t("form.results.debt.status") },
     {
       field: "typ",
@@ -37,6 +45,7 @@ export default function getColumns(): GridColDef[] {
     },
     {
       field: "Status",
+      width: 300,
       headerName: t("form.results.law_act.status"),
       valueGetter: (params) => {
         switch (params.row["typ"]) {

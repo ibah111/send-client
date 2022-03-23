@@ -22,9 +22,9 @@ export default function CreateLawExec({
           <Box
             sx={{
               display: "flex",
+              width: "100%",
               flexDirection: "column",
               m: "auto",
-              width: "fit-content",
             }}
           >
             <DialogContentText>

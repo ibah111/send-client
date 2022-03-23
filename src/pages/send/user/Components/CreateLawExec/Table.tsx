@@ -19,7 +19,7 @@ export default function Table({ handleClose }: { handleClose: () => void }) {
   }, [search]);
   return (
     <>
-      <Grid sx={{ width: 1200, height: 400 }} item>
+      <Grid sx={{ width: "100%", height: 400 }} item>
         <DataGridPro
           columns={columns}
           rows={rows}
