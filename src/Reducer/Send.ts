@@ -1,4 +1,4 @@
-import { idID } from "@mui/material/locale";
+import moment from "moment";
 import { createSlice } from "@reduxjs/toolkit";
 import getName from "../utils/getName";
 const initState: {
@@ -41,15 +41,14 @@ export const send = createSlice({
       const data = action.payload;
       state.fio = getName([data.Person.f, data.Person.i, data.Person.o]);
       state.contract = data.Debt.contract;
-      state.total_sum = data.total_sum;
-      state.load_dt = data.load_dt;
+      state.load_dt = moment().toISOString();
       state.court_doc_num = data.court_doc_num;
       state.executive_typ = data.executive_typ;
       state.court_date = data.court_date;
-      state.DELIVERY_TYP = data.DELIVERY_TYP;
+      state.DELIVERY_TYP = 1;
       state.entry_force_dt = data.entry_force_dt;
       state.receipt_recover_dt = data.receipt_recover_dt;
-      state.fssp_date = data.fssp_date;
+      state.fssp_date = moment().toISOString();
       state.r_court_id = data.r_court_id;
       state.dsc = data.dsc;
     },
