@@ -48,7 +48,7 @@ export const initState: DataTypes = {
 };
 export const send = createSlice({
   name: "send",
-  initialState: { id: 0, ...initState },
+  initialState: { id: null, ...initState },
   reducers: {
     setSend: (state, action) => {
       const data = action.payload;
