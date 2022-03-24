@@ -3,12 +3,13 @@ import Box from "@mui/material/Box";
 import Slider from "./Slider";
 import { Button, Collapse, Grid, Typography } from "@mui/material";
 import pages from "../utils/pages";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Demo from "./Demo";
 import version from "../utils/version";
 import { t } from "i18next";
 
 export default function AccountMenu({ stop, always }: any) {
+  const location = useLocation();
   return (
     <React.Fragment>
       <Slider stop={stop} always={always} position="down">
