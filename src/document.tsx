@@ -10,6 +10,7 @@ import Login from "./components/Login";
 import Connect from "./components/Connect";
 import { Provider } from "react-redux";
 import store from "./Reducer";
+import version from "./utils/version";
 export default function Document() {
   React.useEffect(() => {
     moment.locale("ru");
@@ -19,7 +20,7 @@ export default function Document() {
       <Provider store={store}>
         <Connect>
           <Login>
-            <BrowserRouter>
+            <BrowserRouter basename={version.root}>
               <Router />
             </BrowserRouter>
           </Login>
