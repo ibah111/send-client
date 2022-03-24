@@ -18,7 +18,8 @@ export default function Results() {
       <Grid sx={{ width: "100%", height: 400 }} item>
         <DataGridPro
           columns={columns}
-          rows={rows}
+          rows={rows.data}
+          loading={rows.loading}
           disableSelectionOnClick
           disableColumnSelector
           onCellDoubleClick={(params) => {

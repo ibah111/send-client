@@ -1,4 +1,4 @@
-import { Button, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import { t } from "i18next";
 import { useSnackbar, VariantType } from "notistack";
 import React from "react";
@@ -6,6 +6,7 @@ import updateExec from "../../../../../../api/updateExec";
 import { useAppDispatch, useAppSelector } from "../../../../../../Reducer";
 import { saveAs } from "file-saver";
 import { DataTypes, reset, setId } from "../../../../../../Reducer/Send";
+import LoadingButton from "@mui/lab/LoadingButton";
 function toArrayBuffer(buf: number[]) {
   const ab = new ArrayBuffer(buf.length);
   const view = new Uint8Array(ab);
@@ -35,6 +36,7 @@ const check = (
 export default function Submit() {
   const dispatch = useAppDispatch();
   const { enqueueSnackbar } = useSnackbar();
+  const [loading, setLoading] = React.useState(false);
   const Send = useAppSelector((state) => state.Send);
   const Error = useAppSelector((state) => state.Error);
   const AddAlert = (value: String, variant: VariantType = "success") => {
@@ -42,6 +44,7 @@ export default function Submit() {
   };
   const Click = () => {
     if (check(Error, Send, AddAlert)) {
+      setLoading(true);
       updateExec().then((res) => {
         if (res) {
           const file = new Blob([toArrayBuffer(res.file.data)], {
@@ -50,6 +53,7 @@ export default function Submit() {
           saveAs(file, res.name);
           dispatch(setId(0));
           dispatch(reset());
+          setLoading(false);
         }
       });
     }
@@ -57,7 +61,9 @@ export default function Submit() {
   return (
     <>
       <Grid item>
-        <Button onClick={Click}>{t("form.search.submit")}</Button>
+        <LoadingButton loading={loading} onClick={Click}>
+          {t("form.search.submit")}
+        </LoadingButton>
       </Grid>
     </>
   );

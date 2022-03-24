@@ -11,10 +11,13 @@ export default function Table({ handleClose }: { handleClose: () => void }) {
   const columns = getColumns();
   const dispatch = useAppDispatch();
   const [rows, setRows] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
   const search = useAppSelector((state) => state.Search);
   React.useEffect(() => {
+    setLoading(true);
     getLawAct().then((res) => {
       setRows(res);
+      setLoading(false);
     });
   }, [search]);
   return (
@@ -23,6 +26,7 @@ export default function Table({ handleClose }: { handleClose: () => void }) {
         <DataGridPro
           columns={columns}
           rows={rows}
+          loading={loading}
           disableSelectionOnClick
           disableColumnSelector
           onCellDoubleClick={(params) => {

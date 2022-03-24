@@ -9,14 +9,17 @@ import Name from "./Name";
 import Find from "./Find";
 import Submit from "./Submit";
 import search from "../../../../../../api/search";
-import { setResults } from "../../../../../../Reducer/Results";
+import { setLoadingResults, setResults } from "../../../../../../Reducer/Results";
 
 export default function Search() {
   const dispatch = useAppDispatch();
   const id = useAppSelector((state) => state.Send.id);
+  const loading = useAppSelector((state) => state.Results.loading)
   const Click = () => {
+    dispatch(setLoadingResults(true));
     search().then((res) => {
       dispatch(setResults(res));
+      dispatch(setLoadingResults(false));
     });
   };
   React.useEffect(() => {
@@ -37,7 +40,7 @@ export default function Search() {
       >
         <Name onEnter={Click} />
         <Contract onEnter={Click} />
-        <Find onClick={Click} />
+        <Find onClick={Click} loading={loading} />
         <CreateExec />
         <Submit />
       </Grid>

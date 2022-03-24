@@ -1,11 +1,21 @@
-import { Button, Grid } from "@mui/material";
+import { LoadingButton } from "@mui/lab";
+import { Grid } from "@mui/material";
 import { t } from "i18next";
+import React from "react";
 
-export default function Find({ onClick }: { onClick: () => void }) {
+export default function Find({
+  onClick,
+  loading,
+}: {
+  onClick: () => void;
+  loading: boolean;
+}) {
   return (
     <>
       <Grid item>
-        <Button onClick={onClick}>{t("form.search.find")}</Button>
+        <LoadingButton loading={loading} onClick={onClick}>
+          {t("form.search.find")}
+        </LoadingButton>
       </Grid>
     </>
   );
