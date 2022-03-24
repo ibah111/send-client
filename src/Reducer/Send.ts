@@ -2,19 +2,19 @@ import moment from "moment";
 import { createSlice } from "@reduxjs/toolkit";
 import getName from "../utils/getName";
 const initState: {
-  fio: null | String;
-  contract: null | String;
-  total_sum: null | Number;
-  load_dt: null | String;
-  court_doc_num: null | String;
-  executive_typ: null | Number;
-  court_date: null | String;
-  DELIVERY_TYP: null | Number;
-  entry_force_dt: null | String;
-  receipt_recover_dt: null | String;
-  fssp_date: null | String;
-  r_court_id: null | Number;
-  dsc: null | String;
+  fio: null | string;
+  contract: null | string;
+  total_sum: null | number;
+  load_dt: null | string;
+  court_doc_num: null | string;
+  executive_typ: null | number;
+  court_date: null | string;
+  DELIVERY_TYP: null | number;
+  entry_force_dt: null | string;
+  receipt_recover_dt: null | string;
+  fssp_date: null | string;
+  r_court_id: null | number;
+  dsc: null | string;
 } = {
   fio: null,
   contract: null,
