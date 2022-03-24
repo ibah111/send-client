@@ -39,6 +39,11 @@ $token = base64_encode(cryptoJsAesEncrypt($hash, $json));
   <meta name="token" content="<?= $token ?>">
   <meta name="description" content="Подача" />
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <style>
+    body {
+      overflow: hidden;
+    }
+  </style>
   <title>Подача</title>
 </head>
 
