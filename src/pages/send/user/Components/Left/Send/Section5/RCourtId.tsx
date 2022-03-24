@@ -11,9 +11,11 @@ export default function RCourtId() {
   const data = getData("r_court_id", "null");
   React.useEffect(() => {
     if (name[0] !== "(") {
-      getCourt({ name }).then((court) => {
-        setTypes(["", ...court]);
-      });
+      getCourt({ name: name === t("system.none") ? "" : name }).then(
+        (court) => {
+          setTypes(["", ...court]);
+        }
+      );
     }
   }, [name]);
   React.useEffect(() => {
@@ -36,7 +38,7 @@ export default function RCourtId() {
           options={types}
           value={type}
           getOptionLabel={(option) =>
-            option !== "" ? `(${option.id}) ${option.name}` : ""
+            option !== "" ? `(${option.id}) ${option.name}` : t("system.none")
           }
           inputValue={name}
           onChange={(event, value) => {
@@ -53,9 +55,16 @@ export default function RCourtId() {
             setName(newInputValue);
           }}
           fullWidth
-          renderInput={(params) => (
+          renderInput={(params: any) => (
             <TextField
               {...params}
+              inputProps={{
+                ...params.inputProps,
+                value:
+                  params.inputProps.value === t("system.none")
+                    ? ""
+                    : params.inputProps.value,
+              }}
               error={data.isInvalid}
               required
               label={t("form.send.r_court_id")}
