@@ -1,9 +1,8 @@
 import { Grid, TextField } from "@mui/material";
 import { t } from "i18next";
-import { useAppDispatch, useAppSelector } from "../../../../../../../Reducer";
-import { setTotalSum } from "../../../../../../../Reducer/Send";
 import NumberFormat from "react-number-format";
 import React from "react";
+import getData from "../../../../../../../utils/getData";
 const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(
   props: any,
   ref
@@ -31,24 +30,19 @@ const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(
   );
 });
 export default function TotalSum() {
-  const dispatch = useAppDispatch();
-  const total_sum = useAppSelector((state) => state.Send.total_sum);
+  const data = getData("total_sum", "string");
   return (
     <>
       <Grid item>
         <TextField
-          error={total_sum === null}
+          error={data.isInvalid}
           label={t("form.send.total_sum")}
-          value={total_sum === null ? "" : total_sum}
+          value={data.value}
           required
           InputProps={{
             inputComponent: NumberFormatCustom,
           }}
-          onChange={(event) =>
-            dispatch(
-              setTotalSum(event.target.value ? event.target.value : null)
-            )
-          }
+          onChange={(event) => data.setValue(event.target.value)}
         />
       </Grid>
     </>

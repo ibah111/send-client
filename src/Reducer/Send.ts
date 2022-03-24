@@ -1,21 +1,37 @@
 import moment from "moment";
 import { createSlice } from "@reduxjs/toolkit";
 import getName from "../utils/getName";
-const initState: {
-  fio: null | string;
-  contract: null | string;
-  total_sum: null | number;
-  load_dt: null | string;
-  court_doc_num: null | string;
-  executive_typ: null | number;
-  court_date: null | string;
-  DELIVERY_TYP: null | number;
-  entry_force_dt: null | string;
-  receipt_recover_dt: null | string;
-  fssp_date: null | string;
-  r_court_id: null | number;
-  dsc: null | string;
-} = {
+export type Types = null | number | string;
+export type Names =
+  | "fio"
+  | "contract"
+  | "total_sum"
+  | "load_dt"
+  | "court_doc_num"
+  | "executive_typ"
+  | "court_date"
+  | "DELIVERY_TYP"
+  | "entry_force_dt"
+  | "receipt_recover_dt"
+  | "fssp_date"
+  | "r_court_id"
+  | "dsc";
+export type DataTypes = {
+  fio: Types;
+  contract: Types;
+  total_sum: Types;
+  load_dt: Types;
+  court_doc_num: Types;
+  executive_typ: Types;
+  court_date: Types;
+  DELIVERY_TYP: Types;
+  entry_force_dt: Types;
+  receipt_recover_dt: Types;
+  fssp_date: Types;
+  r_court_id: Types;
+  dsc: Types;
+};
+export const initState: DataTypes = {
   fio: null,
   contract: null,
   total_sum: null,
@@ -34,9 +50,6 @@ export const send = createSlice({
   name: "send",
   initialState: { id: 0, ...initState },
   reducers: {
-    setId: (state, action) => {
-      state.id = action.payload;
-    },
     setSend: (state, action) => {
       const data = action.payload;
       state.fio = getName([data.Person.f, data.Person.i, data.Person.o]);
@@ -52,58 +65,16 @@ export const send = createSlice({
       state.r_court_id = data.r_court_id;
       state.dsc = data.dsc;
     },
-    setTotalSum: (state, action) => {
-      state.total_sum = action.payload;
+    setData: (state, action: { payload: [Names, Types] }) => {
+      state[action.payload[0]] = action.payload[1];
+    },
+    setId: (state, action) => {
+      state.id = action.payload;
     },
     reset: (state) => {
       return { id: state.id, ...initState };
     },
-    setLoadDt: (state, action) => {
-      state.load_dt = action.payload;
-    },
-    setCourtDocNum: (state, action) => {
-      state.court_doc_num = action.payload;
-    },
-    setExecutiveTyp: (state, action) => {
-      state.executive_typ = action.payload;
-    },
-    setCourtDate: (state, action) => {
-      state.court_date = action.payload;
-    },
-    setDeliveryTyp: (state, action) => {
-      state.DELIVERY_TYP = action.payload;
-    },
-    setEntryForceDt: (state, action) => {
-      state.entry_force_dt = action.payload;
-    },
-    setReceiptRecoverDt: (state, action) => {
-      state.receipt_recover_dt = action.payload;
-    },
-    setFsspDate: (state, action) => {
-      state.fssp_date = action.payload;
-    },
-    setRCourtId: (state, action) => {
-      state.r_court_id = action.payload;
-    },
-    setDsc: (state, action) => {
-      state.dsc = action.payload;
-    },
   },
 });
-export const {
-  setTotalSum,
-  setLoadDt,
-  setCourtDocNum,
-  setExecutiveTyp,
-  setDeliveryTyp,
-  setCourtDate,
-  setEntryForceDt,
-  setReceiptRecoverDt,
-  setFsspDate,
-  setRCourtId,
-  setDsc,
-  setId,
-  setSend,
-  reset,
-} = send.actions;
+export const { setData, setSend, reset, setId } = send.actions;
 export default send.reducer;

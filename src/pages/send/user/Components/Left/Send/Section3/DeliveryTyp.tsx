@@ -2,30 +2,26 @@ import { FormControl, Grid, InputLabel, MenuItem, Select } from "@mui/material";
 import { t } from "i18next";
 import React from "react";
 import getDict from "../../../../../../../api/getDict";
-import { useAppDispatch, useAppSelector } from "../../../../../../../Reducer";
-import { setDeliveryTyp } from "../../../../../../../Reducer/Send";
+import getData from "../../../../../../../utils/getData";
 
 export default function ExecutiveTyp() {
-  const executive_typ = useAppSelector((state) => state.Send.DELIVERY_TYP);
-  const dispatch = useAppDispatch();
   const [types, setTypes] = React.useState<any[]>([]);
+  const data = getData("DELIVERY_TYP", "string");
   React.useEffect(() => {
     getDict(16).then((dict) => setTypes(dict));
   }, []);
   return (
     <>
       <Grid sx={{ width: 220 }} item>
-        <FormControl error={executive_typ === null} fullWidth>
+        <FormControl error={data.isInvalid} fullWidth>
           <InputLabel id="delivery_typ">
             {t("form.send.DELIVERY_TYP")}
           </InputLabel>
           <Select
             required
-            value={executive_typ === null ? "" : executive_typ}
+            value={data.value}
             onChange={(event) => {
-              dispatch(
-                setDeliveryTyp(event.target.value ? event.target.value : 0)
-              );
+              data.setValue(event.target.value);
             }}
             label={t("form.send.DELIVERY_TYP")}
           >

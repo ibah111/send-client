@@ -11,7 +11,7 @@
       "create_exec": "Создать ИП"
     },
     "errors": {
-      "not_text": "Не заполнено поле \"$t(form.send.{{value}})\""
+      "empty": "Не заполнено поле \"$t(form.send.{{value}})\""
     },
     "send": {
       "id": "ID дела ИД",

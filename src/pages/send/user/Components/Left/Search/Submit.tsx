@@ -5,7 +5,7 @@ import React from "react";
 import updateExec from "../../../../../../api/updateExec";
 import { useAppDispatch, useAppSelector } from "../../../../../../Reducer";
 import { saveAs } from "file-saver";
-import { reset, setId } from "../../../../../../Reducer/Send";
+import { DataTypes, reset, setId } from "../../../../../../Reducer/Send";
 function toArrayBuffer(buf: number[]) {
   const ab = new ArrayBuffer(buf.length);
   const view = new Uint8Array(ab);
@@ -14,23 +14,16 @@ function toArrayBuffer(buf: number[]) {
   }
   return ab;
 }
-const data = [
-  "total_sum",
-  "load_dt",
-  "court_doc_num",
-  "executive_typ",
-  "court_date",
-  "DELIVERY_TYP",
-  "entry_force_dt",
-  "fssp_date",
-  "r_court_id",
-];
-const check = (res: any, error: (value: String, type: VariantType) => void) => {
+const check = (
+  Error: DataTypes,
+  res: any,
+  error: (value: String, type: VariantType) => void
+) => {
   let errors = 0;
-  for (const value of data) {
-    if (res[value] === null) {
+  for (const value of Object.entries(Error)) {
+    if (value[1] !== null) {
       errors += 1;
-      error(t("form.errors.not_text", { value }), "error");
+      error(t(`form.errors.${value[1]}`, { value: value[0] }), "error");
     }
   }
   if (errors === 0) {
@@ -43,11 +36,12 @@ export default function Submit() {
   const dispatch = useAppDispatch();
   const { enqueueSnackbar } = useSnackbar();
   const Send = useAppSelector((state) => state.Send);
+  const Error = useAppSelector((state) => state.Error);
   const AddAlert = (value: String, variant: VariantType = "success") => {
     enqueueSnackbar(value, { variant, autoHideDuration: 3000 });
   };
   const Click = () => {
-    if (check(Send, AddAlert)) {
+    if (check(Error, Send, AddAlert)) {
       updateExec().then((res) => {
         if (res) {
           const file = new Blob([toArrayBuffer(res.file.data)], {

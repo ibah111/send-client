@@ -1,31 +1,21 @@
 import { DatePicker } from "@mui/lab";
 import { Grid, TextField } from "@mui/material";
 import { t } from "i18next";
-import { useAppDispatch, useAppSelector } from "../../../../../../../Reducer";
-import { setReceiptRecoverDt } from "../../../../../../../Reducer/Send";
+import React from "react";
+import getData from "../../../../../../../utils/getData";
 
 export default function ReceiptRecoverDt() {
-  const dispatch = useAppDispatch();
-  const receipt_recover_dt = useAppSelector(
-    (state) => state.Send.receipt_recover_dt
-  );
+  const data = getData("receipt_recover_dt", "date", true);
   return (
     <>
       <Grid sx={{ width: 410 }} item>
         <DatePicker
           label={t("form.send.receipt_recover_dt")}
-          value={receipt_recover_dt}
+          value={data.value}
           mask="__.__.____"
-          onChange={(newValue: any) =>
-            dispatch(
-              setReceiptRecoverDt(newValue ? newValue.toISOString() : null)
-            )
-          }
+          onChange={(newValue: any) => data.setValue(newValue)}
           renderInput={(params) => (
-            <TextField
-              fullWidth
-              {...params}
-            />
+            <TextField fullWidth {...params} error={data.isInvalid} />
           )}
         />
       </Grid>

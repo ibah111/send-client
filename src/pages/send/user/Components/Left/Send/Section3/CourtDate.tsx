@@ -1,29 +1,21 @@
 import { DatePicker } from "@mui/lab";
 import { Grid, TextField } from "@mui/material";
 import { t } from "i18next";
-import { useAppDispatch, useAppSelector } from "../../../../../../../Reducer";
-import { setCourtDate } from "../../../../../../../Reducer/Send";
+import React from "react";
+import getData from "../../../../../../../utils/getData";
 
 export default function CourtDate() {
-  const dispatch = useAppDispatch();
-  const court_date = useAppSelector((state) => state.Send.court_date);
+  const data = getData("court_date", "date");
   return (
     <>
       <Grid sx={{ width: 600 }} item>
         <DatePicker
           label={t("form.send.court_date")}
-          value={court_date}
+          value={data.value}
           mask="__.__.____"
-          onChange={(newValue: any) =>
-            dispatch(setCourtDate(newValue ? newValue.toISOString() : ""))
-          }
+          onChange={(newValue: any) => data.setValue(newValue)}
           renderInput={(params) => (
-            <TextField
-              required
-              fullWidth
-              {...params}
-              error={court_date === null}
-            />
+            <TextField required fullWidth {...params} error={data.isInvalid} />
           )}
         />
       </Grid>

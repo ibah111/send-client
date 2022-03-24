@@ -2,15 +2,13 @@ import { Autocomplete, Grid, TextField } from "@mui/material";
 import { t } from "i18next";
 import React from "react";
 import getCourt from "../../../../../../../api/getCourt";
-import { useAppDispatch, useAppSelector } from "../../../../../../../Reducer";
-import { setRCourtId } from "../../../../../../../Reducer/Send";
+import getData from "../../../../../../../utils/getData";
 
 export default function RCourtId() {
-  const r_court_id = useAppSelector((state) => state.Send.r_court_id);
-  const dispatch = useAppDispatch();
   const [types, setTypes] = React.useState<any[]>([""]);
   const [type, setType] = React.useState<any>("");
   const [name, setName] = React.useState("");
+  const data = getData("r_court_id", "null");
   React.useEffect(() => {
     if (name[0] !== "(") {
       getCourt({ name }).then((court) => {
@@ -19,8 +17,8 @@ export default function RCourtId() {
     }
   }, [name]);
   React.useEffect(() => {
-    if (r_court_id !== null) {
-      getCourt({ id: r_court_id }).then((court) => {
+    if (data.value !== null) {
+      getCourt({ id: data.value }).then((court) => {
         setTypes(["", ...court]);
         setType(court[0]);
       });
@@ -28,7 +26,7 @@ export default function RCourtId() {
       setTypes([""]);
       setType("");
     }
-  }, [r_court_id]);
+  }, [data.value]);
   return (
     <>
       <Grid sx={{ width: 410 }} item>
@@ -38,14 +36,14 @@ export default function RCourtId() {
           options={types}
           value={type}
           getOptionLabel={(option) =>
-            option !== "" ? `(${option.id}) ${option.name}` : "Не выбрано"
+            option !== "" ? `(${option.id}) ${option.name}` : ""
           }
           inputValue={name}
           onChange={(event, value) => {
             if (value) {
-              dispatch(setRCourtId(value.id));
+              data.setValue(value.id);
             } else {
-              dispatch(setRCourtId(null));
+              data.setValue(null);
             }
           }}
           isOptionEqualToValue={(option: any, value: any) =>
@@ -58,7 +56,7 @@ export default function RCourtId() {
           renderInput={(params) => (
             <TextField
               {...params}
-              error={r_court_id === null}
+              error={data.isInvalid}
               required
               label={t("form.send.r_court_id")}
             />

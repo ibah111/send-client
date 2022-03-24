@@ -5,6 +5,7 @@ import App from "./App";
 import Search from "./Search";
 import Send from "./Send";
 import Results from "./Results";
+import Error from "./Error";
 const store = configureStore({
   reducer: {
     User,
@@ -12,6 +13,7 @@ const store = configureStore({
     Search,
     Send,
     Results,
+    Error,
   },
 });
 export type RootState = ReturnType<typeof store.getState>;

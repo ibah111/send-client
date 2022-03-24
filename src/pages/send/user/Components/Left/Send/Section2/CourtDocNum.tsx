@@ -2,9 +2,9 @@ import { Grid, TextField } from "@mui/material";
 import { t } from "i18next";
 import React from "react";
 import { IMaskInput } from "react-imask";
-import { useAppDispatch, useAppSelector } from "../../../../../../../Reducer";
-import { setCourtDocNum } from "../../../../../../../Reducer/Send";
-const types = (value: Number | null) => {
+import { Types } from "../../../../../../../Reducer/Send";
+import getData from "../../../../../../../utils/getData";
+const types = (value: Types) => {
   switch (value) {
     case 4:
       return {
@@ -23,12 +23,12 @@ const TextMaskCustom = React.forwardRef(function TextMaskCustom(
   props: any,
   ref
 ) {
-  const executive_typ = useAppSelector((state) => state.Send.executive_typ);
+  const data = getData("court_doc_num", "string");
   const { onChange, ...other } = props;
   return (
     <IMaskInput
       {...other}
-      {...types(executive_typ)}
+      {...types(data.value)}
       inputRef={ref}
       onAccept={(value) => onChange(value)}
       overwrite
@@ -36,16 +36,15 @@ const TextMaskCustom = React.forwardRef(function TextMaskCustom(
   );
 });
 export default function CourtDocNum() {
-  const court_doc_num = useAppSelector((state) => state.Send.court_doc_num);
-  const dispatch = useAppDispatch();
+  const data = getData("court_doc_num", "string");
   return (
     <>
       <Grid sx={{ width: 220 }} item>
         <TextField
-          error={court_doc_num === null}
+          error={data.isInvalid}
           fullWidth
-          value={court_doc_num === null ? "" : court_doc_num}
-          onChange={(event) => dispatch(setCourtDocNum(event.target.value))}
+          value={data.value}
+          onChange={(event) => data.setValue(event.target.value)}
           label={t("form.send.court_doc_num")}
         />
       </Grid>

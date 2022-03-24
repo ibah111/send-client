@@ -2,7 +2,7 @@ import store from "../Reducer";
 import axios from "axios";
 import server from "../utils/server";
 export default async function getCourt(
-  data: { name: String } | { id: Number | null }
+  data: { name: String } | { id: number | string | null }
 ) {
   const token = store.getState().User.token;
   const response = await axios({
