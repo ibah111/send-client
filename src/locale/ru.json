@@ -10,9 +10,13 @@
       "contract": "Договор",
       "create_exec": "Создать ИП"
     },
-    "errors": {
+    "errors_popup": {
       "empty": "Не заполнено поле \"$t(form.send.{{value}})\"",
       "invalid_date": "Неправильно введена дата в поле \"$t(form.send.{{value}})\""
+    },
+    "errors": {
+      "empty": "Не заполнено поле",
+      "invalid_date": "Неправильно введена дата"
     },
     "send": {
       "id": "ID дела ИД",

@@ -23,7 +23,7 @@ const check = (
   for (const value of Object.entries(Error)) {
     if (value[1] !== null) {
       errors += 1;
-      error(t(`form.errors.${value[1]}`, { value: value[0] }), "error");
+      error(t(`form.errors_popup.${value[1]}`, { value: value[0] }), "error");
     }
   }
   if (errors === 0) {
