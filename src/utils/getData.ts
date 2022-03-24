@@ -1,3 +1,4 @@
+import { t } from "i18next";
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../Reducer";
 import { Names, setData } from "../Reducer/Send";
@@ -54,6 +55,7 @@ export default function getError(
   return {
     setValue,
     value,
+    error_text: ErrorValue && t(`form.errors.${ErrorValue}`),
     isInvalid: Boolean(ErrorValue),
     isValid: !Boolean(ErrorValue),
   };
