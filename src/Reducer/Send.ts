@@ -55,6 +55,7 @@ export const send = createSlice({
       state.fio = getName([data.Person.f, data.Person.i, data.Person.o]);
       state.contract = data.Debt.contract;
       state.load_dt = moment().toISOString();
+      state.total_sum = data.total_sum;
       state.court_doc_num = data.court_doc_num;
       state.executive_typ = data.executive_typ;
       state.court_date = data.court_date;
