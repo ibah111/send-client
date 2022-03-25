@@ -8,5 +8,4 @@ const validLicense = generateLicence({
     orderNumber: 'MUI-45675676',
   });
   LicenseInfo.setLicenseKey(validLicense);
-  LicenseInfo.setReleaseInfo(RELEASE_INFO);
 }
