@@ -2,6 +2,7 @@ import { Box, Grid } from "@mui/material";
 import Left from "./Components/Left";
 import Right from "./Components/Right";
 import { SnackbarProvider } from "notistack";
+import React from "react";
 
 export default function Form() {
   return (

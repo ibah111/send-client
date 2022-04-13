@@ -1,4 +1,5 @@
 import { Grid } from "@mui/material";
+import React from "react";
 import EntryForceDt from "./EntryForceDt";
 import ReceiptRecoverDt from "./ReceiptRecoverDt";
 

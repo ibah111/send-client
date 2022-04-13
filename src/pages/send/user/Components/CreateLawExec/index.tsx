@@ -5,6 +5,7 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@mui/material";
+import React from "react";
 import Table from "./Table";
 
 export default function CreateLawExec({
