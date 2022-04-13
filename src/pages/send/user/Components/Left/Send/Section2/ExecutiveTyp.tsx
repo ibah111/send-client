@@ -1,10 +1,10 @@
 import { FormControl, Grid, InputLabel, MenuItem, Select } from "@mui/material";
-import { t } from "i18next";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import getDict from "../../../../../../../api/getDict";
 import getData from "../../../../../../../utils/getData";
-
 export default function ExecutiveTyp() {
+  const { t } = useTranslation();
   const [types, setTypes] = React.useState<any[]>([]);
   const data = getData("executive_typ", "string");
   React.useEffect(() => {

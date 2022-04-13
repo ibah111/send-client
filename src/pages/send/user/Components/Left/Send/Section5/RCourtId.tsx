@@ -1,10 +1,11 @@
 import { Autocomplete, Grid, TextField } from "@mui/material";
-import { t } from "i18next";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import getCourt from "../../../../../../../api/getCourt";
 import getData from "../../../../../../../utils/getData";
 
 export default function RCourtId() {
+  const { t } = useTranslation();
   const [types, setTypes] = React.useState<any[]>([""]);
   const [type, setType] = React.useState<any>("");
   const [name, setName] = React.useState("");

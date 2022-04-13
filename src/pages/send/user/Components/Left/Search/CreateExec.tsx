@@ -1,9 +1,10 @@
 import { Button, Grid } from "@mui/material";
-import { t } from "i18next";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import CreateLawExec from "../../CreateLawExec";
 
 export default function CreateExec() {
+  const { t } = useTranslation();
   const [open, setOpen] = React.useState(false);
   return (
     <>

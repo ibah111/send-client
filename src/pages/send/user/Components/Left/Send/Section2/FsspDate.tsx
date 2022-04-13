@@ -1,10 +1,11 @@
 import { DatePicker } from "@mui/lab";
 import { Grid, TextField } from "@mui/material";
-import { t } from "i18next";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import getData from "../../../../../../../utils/getData";
 
 export default function FsspDate() {
+  const { t } = useTranslation();
   const data = getData("fssp_date", "date");
   return (
     <>

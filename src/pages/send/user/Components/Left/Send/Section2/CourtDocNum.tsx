@@ -1,6 +1,6 @@
 import { Grid, TextField } from "@mui/material";
-import { t } from "i18next";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { IMaskInput } from "react-imask";
 import { Types } from "../../../../../../../Reducer/Send";
 import getData from "../../../../../../../utils/getData";
@@ -36,6 +36,7 @@ const TextMaskCustom = React.forwardRef(function TextMaskCustom(
   );
 });
 export default function CourtDocNum() {
+  const { t } = useTranslation();
   const data = getData("court_doc_num", "string");
   return (
     <>

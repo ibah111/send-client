@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "../../../../../../Reducer";
 import { saveAs } from "file-saver";
 import { DataTypes, reset, setId } from "../../../../../../Reducer/Send";
 import LoadingButton from "@mui/lab/LoadingButton";
+import { useTranslation } from "react-i18next";
 function toArrayBuffer(buf: number[]) {
   const ab = new ArrayBuffer(buf.length);
   const view = new Uint8Array(ab);
@@ -34,6 +35,7 @@ const check = (
   }
 };
 export default function Submit() {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { enqueueSnackbar } = useSnackbar();
   const [loading, setLoading] = React.useState(false);

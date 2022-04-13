@@ -1,10 +1,11 @@
 import { Grid, TextField } from "@mui/material";
-import { t } from "i18next";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useAppDispatch, useAppSelector } from "../../../../../../Reducer";
 import { setName } from "../../../../../../Reducer/Search";
 
 export default function Name({ onEnter }: { onEnter: () => void }) {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const name = useAppSelector((state) => state.Search.name);
   const onPress = (event: React.KeyboardEvent) => {

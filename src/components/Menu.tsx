@@ -6,9 +6,10 @@ import pages from "../utils/pages";
 import { Link, useLocation } from "react-router-dom";
 import Demo from "./Demo";
 import version from "../utils/version";
-import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 
 export default function AccountMenu({ stop, always }: any) {
+  const { t } = useTranslation();
   const location = useLocation();
   return (
     <React.Fragment>

@@ -1,9 +1,10 @@
 import { Grid, TextField } from "@mui/material";
-import { t } from "i18next";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useAppSelector } from "../../../../../../../Reducer";
 
 export default function Id() {
+  const { t } = useTranslation();
   const id = useAppSelector((state) => state.Send.id);
   return (
     <>

@@ -1,7 +1,7 @@
 import { LoadingButton } from "@mui/lab";
 import { Grid } from "@mui/material";
-import { t } from "i18next";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 export default function Find({
   onClick,
@@ -10,6 +10,7 @@ export default function Find({
   onClick: () => void;
   loading: boolean;
 }) {
+  const { t } = useTranslation();
   return (
     <>
       <Grid item>

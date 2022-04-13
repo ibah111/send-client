@@ -1,11 +1,11 @@
 import { Grid, TextField } from "@mui/material";
-import { t } from "i18next";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import getCourt from "../../../../../../../api/getCourt";
 import { useAppDispatch, useAppSelector } from "../../../../../../../Reducer";
 
 export default function Address() {
-  const dispatch = useAppDispatch();
+  const { t } = useTranslation();
   const [address, setAddress] = React.useState("");
   const r_court_id = useAppSelector((state) => state.Send.r_court_id);
   React.useEffect(() => {

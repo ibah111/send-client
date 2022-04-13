@@ -6,8 +6,8 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@mui/material";
-import { t } from "i18next";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import createExec from "../../../../../api/createExec";
 import deleteExec from "../../../../../api/deleteExec";
 import { useAppDispatch } from "../../../../../Reducer";
@@ -22,6 +22,7 @@ export default function YesOrNo({
   onClose: () => void;
   row: any;
 }) {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const Create = () => {
     createExec(row["LawAct.id"], {

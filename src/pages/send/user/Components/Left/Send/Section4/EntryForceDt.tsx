@@ -1,10 +1,11 @@
 import { DatePicker } from "@mui/lab";
 import { Grid, TextField } from "@mui/material";
-import { t } from "i18next";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import getData from "../../../../../../../utils/getData";
 
 export default function EntryForceDt() {
+  const { t } = useTranslation();
   const data = getData("entry_force_dt", "date");
   return (
     <>
