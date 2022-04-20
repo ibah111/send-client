@@ -16,6 +16,15 @@ export default function getColumns(): GridColDef[] {
       headerName: t("form.results.debt.contract"),
       width: 300,
     },
+    {
+      field: "Address",
+      headerName: t("form.results.address"),
+      width: 200,
+      valueGetter: (params) =>
+        params.row.Address?.[0].full_adr
+          ? params.row.Address?.[0].full_adr
+          : "",
+    },
     { field: "Debt.debt_sum", headerName: t("form.results.debt.debt_sum") },
     {
       field: "Portfolio.name",

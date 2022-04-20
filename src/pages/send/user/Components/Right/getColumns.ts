@@ -22,6 +22,12 @@ export default function getColumns(): GridColDef[] {
       width: 300,
       headerName: t("form.results.debt.contract"),
     },
+    {
+      field: "Address",
+      width: 200,
+      headerName: t("form.results.address"),
+      valueGetter: (params)=>params.row.Address?.[0].full_adr?params.row.Address?.[0].full_adr:""
+    },
     { field: "Debt.debt_sum", headerName: t("form.results.debt.debt_sum") },
     { field: "Portfolio.name", headerName: t("form.results.portfolio.name") },
     { field: "Debt.Status.name", headerName: t("form.results.debt.status") },
@@ -65,6 +71,11 @@ export default function getColumns(): GridColDef[] {
             return params.row["LawAct.ActStatus.name"];
         }
       },
+    },
+    {
+      field: "State.name",
+      headerName: t("form.results.law_exec.state"),
+      width: 300,
     },
     {
       width: 300,
