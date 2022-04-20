@@ -1,7 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+const initialState: { loading: boolean; data: any[] } = {
+  loading: false,
+  data: [],
+};
 export const results = createSlice({
   name: "Results",
-  initialState: { loading: false, data: [] },
+  initialState: initialState,
   reducers: {
     setResults: (state, action) => {
       state.data = action.payload;

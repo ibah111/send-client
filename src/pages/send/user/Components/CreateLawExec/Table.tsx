@@ -5,6 +5,7 @@ import createExec from "../../../../../api/createExec";
 import getLawAct from "../../../../../api/getLawAct";
 import { useAppDispatch, useAppSelector } from "../../../../../Reducer";
 import { setId } from "../../../../../Reducer/Send";
+import PopoverHook from "../PopoverHook";
 import getColumns from "./getColumns";
 
 export default function Table({ handleClose }: { handleClose: () => void }) {
@@ -13,6 +14,9 @@ export default function Table({ handleClose }: { handleClose: () => void }) {
   const [rows, setRows] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
   const search = useAppSelector((state) => state.Search);
+  const { handlePopoverOpen, handlePopoverClose, ElementPopover } =
+    PopoverHook(rows);
+
   React.useEffect(() => {
     setLoading(true);
     getLawAct().then((res) => {
@@ -27,6 +31,12 @@ export default function Table({ handleClose }: { handleClose: () => void }) {
           columns={columns}
           rows={rows}
           loading={loading}
+          componentsProps={{
+            cell: {
+              onMouseEnter: handlePopoverOpen,
+              onMouseLeave: handlePopoverClose,
+            },
+          }}
           disableSelectionOnClick
           disableColumnSelector
           onCellDoubleClick={(params) => {
@@ -38,6 +48,7 @@ export default function Table({ handleClose }: { handleClose: () => void }) {
             });
           }}
         />
+        <ElementPopover />
       </Grid>
     </>
   );
