@@ -12,6 +12,7 @@ export type Names =
   | "court_date"
   | "DELIVERY_TYP"
   | "entry_force_dt"
+  | "template_typ"
   | "receipt_recover_dt"
   | "fssp_date"
   | "r_court_id"
@@ -26,6 +27,7 @@ export type DataTypes = {
   court_date: Types;
   DELIVERY_TYP: Types;
   entry_force_dt: Types;
+  template_typ: Types;
   receipt_recover_dt: Types;
   fssp_date: Types;
   r_court_id: Types;
@@ -42,6 +44,7 @@ export const initState: DataTypes = {
   DELIVERY_TYP: null,
   entry_force_dt: null,
   receipt_recover_dt: null,
+  template_typ: null,
   fssp_date: null,
   r_court_id: null,
   dsc: null,
@@ -60,6 +63,7 @@ export const send = createSlice({
       state.executive_typ = data.executive_typ;
       state.court_date = data.court_date;
       state.DELIVERY_TYP = 1;
+      state.template_typ = 16;
       state.entry_force_dt = data.entry_force_dt;
       state.receipt_recover_dt = data.receipt_recover_dt;
       state.fssp_date = moment().toISOString();
