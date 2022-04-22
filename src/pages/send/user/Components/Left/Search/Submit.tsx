@@ -8,6 +8,7 @@ import { saveAs } from "file-saver";
 import { DataTypes, reset, setId } from "../../../../../../Reducer/Send";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { useTranslation } from "react-i18next";
+import { ResetComment } from "../../../../../../Reducer/Comment";
 function toArrayBuffer(buf: number[]) {
   const ab = new ArrayBuffer(buf.length);
   const view = new Uint8Array(ab);
@@ -55,6 +56,7 @@ export default function Submit() {
           saveAs(file, res.name);
           dispatch(setId(0));
           dispatch(reset());
+          dispatch(ResetComment());
           setLoading(false);
         }
       });

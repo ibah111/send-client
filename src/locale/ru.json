@@ -8,7 +8,14 @@
       "find": "Поиск",
       "name": "ФИО",
       "contract": "Договор",
-      "create_exec": "Создать ИП"
+      "create_exec": "Создать ИП",
+      "comments": "Коментарии"
+    },
+    "comments": {
+      "title": "Коментарии",
+      "law_act": "Судебное дело",
+      "law_exec": "Исполнительное производство",
+      "close": "Закрыть"
     },
     "errors_popup": {
       "empty": "Не заполнено поле \"$t(form.send.{{value}})\"",

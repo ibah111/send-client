@@ -10,6 +10,7 @@ import Find from "./Find";
 import Submit from "./Submit";
 import search from "../../../../../../api/search";
 import { setLoadingResults, setResults } from "../../../../../../Reducer/Results";
+import Comments from "./Comments";
 
 export default function Search() {
   const dispatch = useAppDispatch();
@@ -43,6 +44,7 @@ export default function Search() {
         <Find onClick={Click} loading={loading} />
         <CreateExec />
         <Submit />
+        <Comments />
       </Grid>
     </>
   );

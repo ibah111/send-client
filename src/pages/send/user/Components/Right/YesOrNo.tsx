@@ -10,7 +10,9 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import createExec from "../../../../../api/createExec";
 import deleteExec from "../../../../../api/deleteExec";
+import getComment from "../../../../../api/getComment";
 import { useAppDispatch } from "../../../../../Reducer";
+import { setLawActComment, setLawExecComment } from "../../../../../Reducer/Comment";
 import { setId } from "../../../../../Reducer/Send";
 
 export default function YesOrNo({
@@ -33,6 +35,10 @@ export default function YesOrNo({
     }).then((res) => {
       if (res) {
         dispatch(setId(res));
+        getComment({ type: "law_exec", id: row.id }).then((res) => {
+          dispatch(setLawActComment(res.LawAct.dsc));
+          dispatch(setLawExecComment(res.dsc));
+        });
         onClose();
       }
     });
@@ -45,6 +51,10 @@ export default function YesOrNo({
       entry_force_dt: row.entry_force_dt,
     }).then((res) => {
       if (res) {
+        getComment({ type: "law_exec", id: row.id }).then((res) => {
+          dispatch(setLawActComment(res.LawAct.dsc));
+          dispatch(setLawExecComment(res.dsc));
+        });
         deleteExec(row.id);
         dispatch(setId(res));
         onClose();
@@ -52,6 +62,11 @@ export default function YesOrNo({
     });
   };
   const Update = () => {
+    getComment({ type: "law_exec", id: row.id }).then((res) => {
+      dispatch(setLawActComment(res.LawAct.dsc));
+      dispatch(setLawExecComment(res.dsc));
+      onClose();
+    });
     dispatch(setId(row.id));
     onClose();
   };
