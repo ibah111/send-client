@@ -1,10 +1,12 @@
 import {
   Button,
+  Checkbox,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
+  FormControlLabel,
   TextField,
 } from "@mui/material";
 import React from "react";
@@ -21,6 +23,8 @@ export default function ButtonComment({
   const { t } = useTranslation();
   const [comment, setComment] = React.useState("");
   const [open, setOpen] = React.useState(false);
+  const [checkedLawAct, setCheckedLawAct] = React.useState(true);
+  const [checkedLawExec, setCheckedLawExec] = React.useState(true);
   const handleClose = () => {
     setOpen(false);
     onClick();
@@ -29,7 +33,7 @@ export default function ButtonComment({
     setOpen(true);
   };
   const handleSubmit = () => {
-    addComment(id, comment).then((res) => {
+    addComment(id, comment, checkedLawAct, checkedLawExec).then((res) => {
       handleClose();
     });
   };
@@ -48,6 +52,24 @@ export default function ButtonComment({
           <DialogContentText>
             {t("form.set_comment.instruction")}
           </DialogContentText>
+          <FormControlLabel
+            label={t("form.set_comment.checkbox_law_act")}
+            control={
+              <Checkbox
+                checked={checkedLawAct}
+                onChange={(event) => setCheckedLawAct(event.target.checked)}
+              />
+            }
+          />
+          <FormControlLabel
+            label={t("form.set_comment.checkbox_law_exec")}
+            control={
+              <Checkbox
+                checked={checkedLawExec}
+                onChange={(event) => setCheckedLawExec(event.target.checked)}
+              />
+            }
+          />
           <TextField
             label={t("form.set_comment.text")}
             value={comment}
