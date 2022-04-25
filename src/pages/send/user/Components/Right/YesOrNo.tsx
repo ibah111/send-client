@@ -12,8 +12,12 @@ import createExec from "../../../../../api/createExec";
 import deleteExec from "../../../../../api/deleteExec";
 import getComment from "../../../../../api/getComment";
 import { useAppDispatch } from "../../../../../Reducer";
-import { setLawActComment, setLawExecComment } from "../../../../../Reducer/Comment";
+import {
+  setLawActComment,
+  setLawExecComment,
+} from "../../../../../Reducer/Comment";
 import { setId } from "../../../../../Reducer/Send";
+import ButtonComment from "./ButtonComment";
 
 export default function YesOrNo({
   open,
@@ -26,6 +30,7 @@ export default function YesOrNo({
 }) {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const new_row = Boolean(row.fssp_doc_num);
   const Create = () => {
     createExec(row["LawAct.id"], {
       court_doc_num: row.court_doc_num,
@@ -76,16 +81,28 @@ export default function YesOrNo({
         <DialogTitle>{t("form.yes_or_no.title")}</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            {t("form.yes_or_no.description", { value: row.fssp_doc_num })}
+            {t(
+              new_row
+                ? "form.yes_or_no.description_old"
+                : "form.yes_or_no.description",
+              { value: row.fssp_doc_num }
+            )}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={Create}>{t("form.yes_or_no.create")}</Button>
-          <Button onClick={CreateWithDelete} autoFocus>
-            {t("form.yes_or_no.create_with_delete")}
-          </Button>
+          {new_row && (
+            <Button onClick={Create}>{t("form.yes_or_no.create")}</Button>
+          )}
+          {new_row && (
+            <Button onClick={CreateWithDelete} autoFocus>
+              {t("form.yes_or_no.create_with_delete")}
+            </Button>
+          )}
           <Button onClick={onClose}>{t("form.yes_or_no.cancel")}</Button>
-          <Button onClick={Update}>{t("form.yes_or_no.update")}</Button>
+          <Button onClick={Update}>
+            {t(new_row ? "form.yes_or_no.update_old" : "form.yes_or_no.update")}
+          </Button>
+          <ButtonComment id={row.id} onClick={onClose} />
         </DialogActions>
       </Dialog>
     </>

@@ -33,13 +33,8 @@ export default function Results() {
           disableSelectionOnClick
           disableColumnSelector
           onCellDoubleClick={(params) => {
-            if (!params.row.fssp_doc_num) {
-              dispatch(setId(params.row.id));
-              dispatch(setResults([]));
-            } else {
-              setRow(params.row);
-              setDialog(true);
-            }
+            setRow(params.row);
+            setDialog(true);
           }}
         />
       </Grid>
