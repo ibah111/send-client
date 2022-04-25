@@ -48,7 +48,7 @@ export default function Comments() {
               <Typography variant="h6">
                 {t("form.comments.law_exec")}
               </Typography>
-              <TextField fullWidth multiline value={LawActComment} />
+              <TextField fullWidth multiline value={LawExecComment} />
             </Grid>
           </Grid>
         </DialogContent>
