@@ -25,7 +25,7 @@ export default function getError(
     switch (type) {
       case "date":
         const value: Moment = newValue;
-        value.startOf("day");
+        value?.startOf("day");
         dispatch(
           setData([
             name,
