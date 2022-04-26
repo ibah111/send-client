@@ -21,7 +21,7 @@ export default function RCourtId() {
   }, [name]);
   React.useEffect(() => {
     if (data.value !== null) {
-      getCourt({ id: data.value }).then((court) => {
+      getCourt({ id: data.value as number }).then((court) => {
         setTypes(["", ...court]);
         setType(court[0]);
       });

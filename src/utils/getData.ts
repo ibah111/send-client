@@ -1,4 +1,5 @@
 import { t } from "i18next";
+import { Moment } from "moment";
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../Reducer";
 import { Names, setData } from "../Reducer/Send";
@@ -23,13 +24,15 @@ export default function getError(
   const setValue = (newValue: any) => {
     switch (type) {
       case "date":
+        const value: Moment = newValue;
+        value.startOf("day");
         dispatch(
           setData([
             name,
-            newValue
-              ? newValue.toISOString()
-                ? newValue.toISOString()
-                : newValue.creationData().input
+            value
+              ? value.toISOString()
+                ? value.toISOString()
+                : value.creationData().input
               : null,
           ])
         );

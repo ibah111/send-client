@@ -1,7 +1,7 @@
-import moment from "moment";
+import moment, { MomentInput } from "moment";
 import { createSlice } from "@reduxjs/toolkit";
 import getName from "../utils/getName";
-export type Types = null | number | string;
+export type Types = null | number | string | undefined | MomentInput;
 export type Names =
   | "fio"
   | "contract"

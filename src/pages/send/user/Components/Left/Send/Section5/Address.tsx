@@ -10,7 +10,7 @@ export default function Address() {
   const r_court_id = useAppSelector((state) => state.Send.r_court_id);
   React.useEffect(() => {
     if (r_court_id !== null) {
-      getCourt({ id: r_court_id }).then((court) => {
+      getCourt({ id: r_court_id as number }).then((court) => {
         setAddress(court[0].address);
       });
     } else {
