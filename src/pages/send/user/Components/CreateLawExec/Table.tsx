@@ -1,5 +1,10 @@
 import { Grid } from "@mui/material";
-import { DataGridPro } from "@mui/x-data-grid-pro";
+import {
+  DataGridPro,
+  gridColumnDefinitionsSelector,
+  useGridApiRef,
+  useGridSelector,
+} from "@mui/x-data-grid-pro";
 import React from "react";
 import createExec from "../../../../../api/createExec";
 import getComment from "../../../../../api/getComment";
@@ -7,15 +12,18 @@ import getLawAct from "../../../../../api/getLawAct";
 import { useAppDispatch, useAppSelector } from "../../../../../Reducer";
 import { setLawActComment } from "../../../../../Reducer/Comment";
 import { setId } from "../../../../../Reducer/Send";
+import { setCreateState } from "../../../../../Reducer/StateResults";
 import PopoverHook from "../PopoverHook";
 import getColumns from "./getColumns";
 
 export default function Table({ handleClose }: { handleClose: () => void }) {
-  const columns = getColumns();
+  const [columns] = React.useState(getColumns());
   const dispatch = useAppDispatch();
   const [rows, setRows] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
   const search = useAppSelector((state) => state.Search);
+  const apiRef = useGridApiRef();
+  const stateGrid = useAppSelector((state) => state.StateResults.create);
   const { handlePopoverOpen, handlePopoverClose, ElementPopover } =
     PopoverHook(rows);
 
@@ -26,6 +34,9 @@ export default function Table({ handleClose }: { handleClose: () => void }) {
       setLoading(false);
     });
   }, [search]);
+  React.useEffect(() => {
+    apiRef.current.restoreState(stateGrid);
+  }, []);
   return (
     <>
       <Grid sx={{ width: "100%", height: 400 }} item>
@@ -33,11 +44,15 @@ export default function Table({ handleClose }: { handleClose: () => void }) {
           columns={columns}
           rows={rows}
           loading={loading}
+          apiRef={apiRef}
           componentsProps={{
             cell: {
               onMouseEnter: handlePopoverOpen,
               onMouseLeave: handlePopoverClose,
             },
+          }}
+          onStateChange={() => {
+            dispatch(setCreateState(apiRef.current.exportState()));
           }}
           disableSelectionOnClick
           disableColumnSelector

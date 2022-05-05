@@ -7,6 +7,7 @@ import Send from "./Send";
 import Results from "./Results";
 import Error from "./Error";
 import Comment from "./Comment";
+import StateResults from "./StateResults";
 const store = configureStore({
   reducer: {
     User,
@@ -16,6 +17,7 @@ const store = configureStore({
     Results,
     Error,
     Comment,
+    StateResults,
   },
 });
 export type RootState = ReturnType<typeof store.getState>;
