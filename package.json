@@ -4,7 +4,7 @@
   "homepage": "/apps/send",
   "scripts": {
     "start": "cross-env react-app-rewired start",
-    "build": "cross-env react-app-rewired build",
+    "build": "cross-env GENERATE_SOURCEMAP=false react-app-rewired build",
     "test": "cross-env react-app-rewired test",
     "eject": "cross-env react-scripts eject"
   },
