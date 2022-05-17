@@ -1,10 +1,5 @@
 import { Grid } from "@mui/material";
-import {
-  DataGridPro,
-  gridColumnDefinitionsSelector,
-  useGridApiRef,
-  useGridSelector,
-} from "@mui/x-data-grid-pro";
+import { DataGridPremium, useGridApiRef } from "@mui/x-data-grid-premium";
 import React from "react";
 import createExec from "../../../../../api/createExec";
 import getComment from "../../../../../api/getComment";
@@ -40,7 +35,7 @@ export default function Table({ handleClose }: { handleClose: () => void }) {
   return (
     <>
       <Grid sx={{ width: "100%", height: 400 }} item>
-        <DataGridPro
+        <DataGridPremium
           columns={columns}
           rows={rows}
           loading={loading}

@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material";
-import { DataGridPro, useGridApiRef } from "@mui/x-data-grid-pro";
+import { DataGridPremium, useGridApiRef } from "@mui/x-data-grid-premium";
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../../../../../Reducer";
 import { setPageState } from "../../../../../Reducer/StateResults";
@@ -24,7 +24,7 @@ export default function Results() {
   return (
     <>
       <Grid sx={{ width: "100%", height: 400 }} item>
-        <DataGridPro
+        <DataGridPremium
           columns={columns}
           rows={rows.data}
           apiRef={apiRef}
