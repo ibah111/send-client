@@ -27,13 +27,13 @@ export default function getColumns(): GridColDef[] {
       width: 200,
       headerName: t("form.results.address"),
       valueGetter: (params) =>
-        params.row.Address?.[0]?.full_adr
-          ? params.row.Address?.[0]?.full_adr
+        params.row["Person.Addresses"]?.[0]?.full_adr
+          ? params.row["Person.Addresses"]?.[0]?.full_adr
           : `АДРЕС НЕ ЗАПОЛЕН. НАДО НАЙТИ ДОЛГ ПО ID = ${params.row["Debt.id"]}`,
     },
     { field: "Debt.debt_sum", headerName: t("form.results.debt.debt_sum") },
     { field: "Portfolio.name", headerName: t("form.results.portfolio.name") },
-    { field: "Debt.Status.name", headerName: t("form.results.debt.status") },
+    { field: "Debt.StatusDict.name", headerName: t("form.results.debt.status") },
     {
       field: "LawAct.typ",
       headerName: t("form.results.law_act.typ"),
@@ -61,22 +61,22 @@ export default function getColumns(): GridColDef[] {
       valueGetter: (params) => {
         switch (params.row["LawAct.typ"]) {
           case 0:
-            return params.row["LawAct.ActStatus.name"];
+            return params.row["LawAct.ActStatusDict.name"];
           case 1:
-            return params.row["LawAct.Status.name"];
+            return params.row["LawAct.StatusDict.name"];
           case 2:
-            return params.row["LawAct.ActStatus.name"];
+            return params.row["LawAct.ActStatusDict.name"];
           case 3:
-            return params.row["LawAct.ActStatus.name"];
+            return params.row["LawAct.ActStatusDict.name"];
           case 4:
-            return params.row["LawAct.ActStatus.name"];
+            return params.row["LawAct.ActStatusDict.name"];
           default:
-            return params.row["LawAct.ActStatus.name"];
+            return params.row["LawAct.ActStatusDict.name"];
         }
       },
     },
     {
-      field: "State.name",
+      field: "StateDict.name",
       headerName: t("form.results.law_exec.state"),
       width: 300,
     },
@@ -92,7 +92,7 @@ export default function getColumns(): GridColDef[] {
     },
     {
       width: 300,
-      field: "Typ.name",
+      field: "ExecutiveTyp.name",
       headerName: t("form.results.law_exec.executive_typ"),
     },
     {

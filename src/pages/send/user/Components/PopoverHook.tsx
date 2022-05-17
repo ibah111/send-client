@@ -11,8 +11,8 @@ export default function PopoverHook(rows: any[]) {
       const id = event.currentTarget.parentElement!.dataset.id!;
       const row = rows.find((r) => r.id === Number(id))!;
       setValue(
-        row.Address?.[0]?.full_adr
-          ? row.Address?.[0]?.full_adr
+        row["Person.Addresses"]?.[0]?.full_adr
+          ? row["Person.Addresses"]?.[0]?.full_adr
           : `АДРЕС НЕ ЗАПОЛЕН. НАДО НАЙТИ ДОЛГ ПО ID = ${row["Debt.id"]}`
       );
 

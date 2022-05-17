@@ -21,8 +21,8 @@ export default function getColumns(): GridColDef[] {
       headerName: t("form.results.address"),
       width: 200,
       valueGetter: (params) =>
-        params.row.Address?.[0]?.full_adr
-          ? params.row.Address?.[0]?.full_adr
+        params.row["Person.Addresses"]?.[0]?.full_adr
+          ? params.row["Person.Addresses"]?.[0]?.full_adr
           : `АДРЕС НЕ ЗАПОЛЕН. НАДО НАЙТИ ДОЛГ ПО ID = ${params.row["Debt.id"]}`,
     },
     { field: "Debt.debt_sum", headerName: t("form.results.debt.debt_sum") },
@@ -31,7 +31,7 @@ export default function getColumns(): GridColDef[] {
       headerName: t("form.results.portfolio.name"),
       width: 300,
     },
-    { field: "Debt.Status.name", headerName: t("form.results.debt.status") },
+    { field: "Debt.StatusDict.name", headerName: t("form.results.debt.status") },
     {
       field: "typ",
       headerName: t("form.results.law_act.typ"),
@@ -59,17 +59,17 @@ export default function getColumns(): GridColDef[] {
       valueGetter: (params) => {
         switch (params.row["typ"]) {
           case 0:
-            return params.row["ActStatus.name"];
+            return params.row["ActStatusDict.name"];
           case 1:
-            return params.row["Status.name"];
+            return params.row["StatusDict.name"];
           case 2:
-            return params.row["ActStatus.name"];
+            return params.row["ActStatusDict.name"];
           case 3:
-            return params.row["ActStatus.name"];
+            return params.row["ActStatusDict.name"];
           case 4:
-            return params.row["ActStatus.name"];
+            return params.row["ActStatusDict.name"];
           default:
-            return params.row["ActStatus.name"];
+            return params.row["ActStatusDict.name"];
         }
       },
     },
