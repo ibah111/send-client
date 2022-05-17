@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Typography as T } from "@mui/material";
 const style = { textAlign: "center" };
-export default function NotConnected() {
+export default function NotConnected({ message }: { message?: string }) {
   return (
     <>
       <Grid
@@ -13,7 +13,10 @@ export default function NotConnected() {
         alignItems="center"
       >
         <Grid sx={style} item>
-          <T variant="h2">Вход выполнен неправильно или у вас нет прав</T>
+          <T variant="h2">Вход выполнен неправильно или у вас нет прав.</T>
+        </Grid>
+        <Grid sx={style} item>
+          <T variant="h3">{message}</T>
         </Grid>
       </Grid>
     </>
