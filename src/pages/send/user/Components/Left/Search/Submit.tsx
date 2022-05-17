@@ -6,7 +6,7 @@ import updateExec from "../../../../../../api/updateExec";
 import { useAppDispatch, useAppSelector } from "../../../../../../Reducer";
 import { saveAs } from "file-saver";
 import { DataTypes, reset, setId } from "../../../../../../Reducer/Send";
-import LoadingButton from "@mui/lab/LoadingButton";
+import { LoadingButton } from "@mui/lab";
 import { useTranslation } from "react-i18next";
 import { ResetComment } from "../../../../../../Reducer/Comment";
 function toArrayBuffer(buf: number[]) {
