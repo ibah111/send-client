@@ -9,6 +9,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
 import Slider from "../../../components/Slider";
+import Version from "../../../components/Version";
 import pages from "../../../utils/pages";
 import version from "../../../utils/version";
 
@@ -51,6 +52,9 @@ export default function Home() {
                     </Collapse>
                   )
               )}
+              <Grid item>
+                <Version />
+              </Grid>
             </Grid>
           </Container>
         </main>

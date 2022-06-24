@@ -7,6 +7,7 @@ import { Link, useLocation } from "react-router-dom";
 import Demo from "./Demo";
 import version from "../utils/version";
 import { useTranslation } from "react-i18next";
+import Version from "./Version";
 
 export default function AccountMenu({ stop, always }: any) {
   const { t } = useTranslation();
@@ -82,6 +83,10 @@ export default function AccountMenu({ stop, always }: any) {
               )}
             </Grid>
           </Grid>
+          
+          <Grid item>
+              <Version minimize />
+            </Grid>
         </Box>
       </Slider>
     </React.Fragment>

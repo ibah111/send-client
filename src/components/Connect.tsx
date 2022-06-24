@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import { io } from "socket.io-client";
 import server from "../utils/server";
 import getVersion from "../utils/getVersion";
+import Version from "./Version";
+import { Grid } from "@mui/material";
 const connect = (callback: (value: boolean) => void) => {
   const socket = io(server("ws"));
   socket.on("connect", () => {
@@ -22,7 +24,27 @@ export default function Connect({ children }: any) {
   React.useEffect(() => {
     connect(setConnected);
   }, []);
-  return <>{connected ? children : <NotConnected />}</>;
+  return (
+    <>
+      {connected ? (
+        children
+      ) : (
+        <Grid
+          container
+          direction="column"
+          justifyContent="space-between"
+          alignItems="center"
+        >
+          <Grid item>
+            <NotConnected />
+          </Grid>
+          <Grid item>
+            <Version />
+          </Grid>
+        </Grid>
+      )}
+    </>
+  );
 }
 Connect.propTypes = {
   children: PropTypes.node,
