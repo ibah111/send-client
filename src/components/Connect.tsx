@@ -3,11 +3,11 @@ import NotConnected from "./NotConnected";
 import PropTypes from "prop-types";
 import { io } from "socket.io-client";
 import server from "../utils/server";
-import version from "../utils/version";
+import getVersion from "../utils/getVersion";
 const connect = (callback: (value: boolean) => void) => {
   const socket = io(server("ws"));
   socket.on("connect", () => {
-    socket.emit("version", version.version);
+    socket.emit("version", getVersion());
     callback(true);
   });
   socket.on("new_version", () => {

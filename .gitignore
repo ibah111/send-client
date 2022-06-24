@@ -1,4 +1,5 @@
-.yarnrc.yml
-.yarn
-build
-node_modules
+/.yarnrc.yml
+/.yarn
+/build
+/node_modules
+/src/utils/.version.js
