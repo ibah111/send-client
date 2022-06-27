@@ -26,16 +26,7 @@ export default function getError(
       case "date":
         const value: Moment = newValue;
         value?.startOf("day");
-        dispatch(
-          setData([
-            name,
-            value
-              ? value.toISOString()
-                ? value.toISOString()
-                : value.creationData().input
-              : null,
-          ])
-        );
+        dispatch(setData([name, value]));
         break;
       default:
         dispatch(setData([name, newValue]));
