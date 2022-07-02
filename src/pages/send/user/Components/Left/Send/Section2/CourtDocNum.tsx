@@ -2,9 +2,9 @@ import { Grid, TextField } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { IMaskInput } from "react-imask";
-import { Types } from "../../../../../../../Reducer/Send";
+import { TypesData } from "../../../../../../../Reducer/Send";
 import getData from "../../../../../../../utils/getData";
-const types = (value: Types) => {
+const types = (value: TypesData) => {
   switch (value) {
     case 4:
       return {

@@ -2,13 +2,13 @@ import { t } from "i18next";
 import { Moment } from "moment";
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../Reducer";
-import { Names, setData } from "../Reducer/Send";
+import { DataNames, setData } from "../Reducer/Send";
 import checkDate from "./checkDate";
 import checkNull from "./checkNull";
 import checkString from "./checkString";
 type Typed = "string" | "date" | "null" | null;
-export default function getError(
-  name: Names,
+export default function getError<K extends DataNames>(
+  name: K,
   type: Typed = null,
   availableEmpty: boolean = false
 ) {
@@ -18,6 +18,7 @@ export default function getError(
   let value = SendValue;
   switch (type) {
     case "string":
+      //@ts-ignore
       value = SendValue === null ? "" : SendValue;
       break;
   }

@@ -1,10 +1,47 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { initState, Names } from "./Send";
+import { createSlice, Draft } from "@reduxjs/toolkit";
+export type ErrorTypes = {
+  fio: null | string;
+  contract: null | string;
+  total_sum: null | string;
+  load_dt: null | string;
+  court_doc_num: null | string;
+  executive_typ: null | string;
+  court_date: null | string;
+  DELIVERY_TYP: null | string;
+  entry_force_dt: null | string;
+  template_typ: null | string;
+  receipt_recover_dt: null | string;
+  fssp_date: null | string;
+  r_court_id: null | string;
+  dsc: null | string;
+};
+type ValueOf<T> = T[keyof T];
+export type TypesError = ValueOf<ErrorTypes>;
+export type ErrorNames = keyof ErrorTypes;
+export const initState: ErrorTypes = {
+  fio: null,
+  contract: null,
+  total_sum: null,
+  load_dt: null,
+  court_doc_num: null,
+  executive_typ: null,
+  court_date: null,
+  DELIVERY_TYP: null,
+  entry_force_dt: null,
+  receipt_recover_dt: null,
+  template_typ: null,
+  fssp_date: null,
+  r_court_id: null,
+  dsc: null,
+};
 export const error = createSlice({
   name: "error",
   initialState: initState,
   reducers: {
-    setError: (state, action: { payload: [Names, string | null] }) => {
+    setError<K extends ErrorNames>(
+      state: Draft<ErrorTypes>,
+      action: { payload: [K, ErrorTypes[K]] }
+    ) {
       state[action.payload[0]] = action.payload[1];
     },
     reset: (state) => {

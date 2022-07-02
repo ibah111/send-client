@@ -1,10 +1,10 @@
 import moment from "moment";
 import Reducer from "../Reducer";
-import { Names } from "../Reducer/Send";
+import { DataNames } from "../Reducer/Send";
 import callError from "./callError";
 
-export default function checkDate(
-  name: Names,
+export default function checkDate<K extends DataNames>(
+  name: K,
   availableEmpty: boolean = false
 ) {
   const value = Reducer.getState().Send[name];

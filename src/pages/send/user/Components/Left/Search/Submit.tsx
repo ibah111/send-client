@@ -5,10 +5,11 @@ import React from "react";
 import updateExec from "../../../../../../api/updateExec";
 import { useAppDispatch, useAppSelector } from "../../../../../../Reducer";
 import { saveAs } from "file-saver";
-import { DataTypes, reset, setId } from "../../../../../../Reducer/Send";
+import { reset, setId } from "../../../../../../Reducer/Send";
 import { LoadingButton } from "@mui/lab";
 import { useTranslation } from "react-i18next";
 import { ResetComment } from "../../../../../../Reducer/Comment";
+import { ErrorTypes } from "../../../../../../Reducer/Error";
 function toArrayBuffer(buf: number[]) {
   const ab = new ArrayBuffer(buf.length);
   const view = new Uint8Array(ab);
@@ -18,7 +19,7 @@ function toArrayBuffer(buf: number[]) {
   return ab;
 }
 const check = (
-  Error: DataTypes,
+  Error: ErrorTypes,
   res: any,
   error: (value: String, type: VariantType) => void
 ) => {

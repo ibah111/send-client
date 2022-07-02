@@ -1,38 +1,25 @@
 import moment, { MomentInput } from "moment";
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, Draft } from "@reduxjs/toolkit";
 import getName from "../utils/getName";
-export type Types = null | number | string | undefined | MomentInput;
-export type Names =
-  | "fio"
-  | "contract"
-  | "total_sum"
-  | "load_dt"
-  | "court_doc_num"
-  | "executive_typ"
-  | "court_date"
-  | "DELIVERY_TYP"
-  | "entry_force_dt"
-  | "template_typ"
-  | "receipt_recover_dt"
-  | "fssp_date"
-  | "r_court_id"
-  | "dsc";
 export type DataTypes = {
-  fio: Types;
-  contract: Types;
-  total_sum: Types;
-  load_dt: Types;
-  court_doc_num: Types;
-  executive_typ: Types;
-  court_date: Types;
-  DELIVERY_TYP: Types;
-  entry_force_dt: Types;
-  template_typ: Types;
-  receipt_recover_dt: Types;
-  fssp_date: Types;
-  r_court_id: Types;
-  dsc: Types;
+  fio: null | string;
+  contract: null | string;
+  total_sum: null | number;
+  load_dt: null | MomentInput;
+  court_doc_num: null | string;
+  executive_typ: null | number;
+  court_date: null | MomentInput;
+  DELIVERY_TYP: null | number;
+  entry_force_dt: null | MomentInput;
+  template_typ: null | number;
+  receipt_recover_dt: null | MomentInput;
+  fssp_date: null | MomentInput;
+  r_court_id: null | number;
+  dsc: null | string;
 };
+type ValueOf<T> = T[keyof T];
+export type TypesData = ValueOf<DataTypes>;
+export type DataNames = keyof DataTypes;
 export const initState: DataTypes = {
   fio: null,
   contract: null,
@@ -70,7 +57,10 @@ export const send = createSlice({
       state.r_court_id = data.r_court_id;
       state.dsc = data.dsc;
     },
-    setData: (state, action: { payload: [Names, Types] }) => {
+    setData<K extends DataNames>(
+      state: Draft<DataTypes>,
+      action: { payload: [K, DataTypes[K]] }
+    ) {
       state[action.payload[0]] = action.payload[1];
     },
     setId: (state, action) => {

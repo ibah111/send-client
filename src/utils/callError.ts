@@ -1,8 +1,11 @@
 import { setError } from "../Reducer/Error";
 import Reducer from "../Reducer";
-import { Names } from "../Reducer/Send";
+import { DataNames } from "../Reducer/Send";
 
-export default function callError(name: Names, error: string | null = null) {
+export default function callError(
+  name: DataNames,
+  error: string | null = null
+) {
   if (error) {
     Reducer.dispatch(setError([name, error]));
   } else {

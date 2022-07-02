@@ -1,8 +1,8 @@
 import Reducer from "../Reducer";
-import { Names } from "../Reducer/Send";
+import { DataNames } from "../Reducer/Send";
 import callError from "./callError";
 
-export default function checkString(name: Names) {
+export default function checkString<K extends DataNames>(name: K) {
   const value = Reducer.getState().Send[name];
   if (!value) {
     callError(name, "empty");

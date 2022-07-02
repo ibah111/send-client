@@ -19,7 +19,7 @@ export default function Document() {
     moment.locale("ru");
   }, []);
   return (
-    <LocalizationProvider locale="ru" dateAdapter={AdapterMoment}>
+    <LocalizationProvider adapterLocale="ru" dateAdapter={AdapterMoment}>
       <Provider store={store}>
         <Connect>
           <Login>

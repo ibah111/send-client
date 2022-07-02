@@ -9,13 +9,16 @@ import Name from "./Name";
 import Find from "./Find";
 import Submit from "./Submit";
 import search from "../../../../../../api/search";
-import { setLoadingResults, setResults } from "../../../../../../Reducer/Results";
+import {
+  setLoadingResults,
+  setResults,
+} from "../../../../../../Reducer/Results";
 import Comments from "./Comments";
 
 export default function Search() {
   const dispatch = useAppDispatch();
   const id = useAppSelector((state) => state.Send.id);
-  const loading = useAppSelector((state) => state.Results.loading)
+  const loading = useAppSelector((state) => state.Results.loading);
   const Click = () => {
     dispatch(setLoadingResults(true));
     search().then((res) => {
@@ -25,9 +28,10 @@ export default function Search() {
   };
   React.useEffect(() => {
     dispatch(reset());
-    getLawExec(id).then((res) => {
-      if (res !== null) dispatch(setSend(res));
-    });
+    if (id)
+      getLawExec(id).then((res) => {
+        if (res !== null) dispatch(setSend(res));
+      });
   }, [id]);
   return (
     <>
