@@ -42,7 +42,7 @@ export default function TotalSum() {
           InputProps={{
             inputComponent: NumberFormatCustom,
           }}
-          onChange={(event) => data.setValue(event.target.value)}
+          onChange={(event) => data.setValue(Number(event.target.value))}
         />
       </Grid>
     </>
