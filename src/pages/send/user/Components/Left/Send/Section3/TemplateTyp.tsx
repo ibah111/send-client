@@ -1,4 +1,11 @@
-import { FormControl, Grid, InputLabel, MenuItem, Select } from "@mui/material";
+import {
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import getData from "../../../../../../../utils/getData";
@@ -8,7 +15,7 @@ const types = [
 ];
 export default function TemplateTyp() {
   const { t } = useTranslation();
-  const data = getData("template_typ", "string");
+  const data = getData("template_typ", "number");
   return (
     <>
       <Grid sx={{ width: 200 }} item>

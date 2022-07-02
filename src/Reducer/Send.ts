@@ -7,14 +7,14 @@ export type DataTypes = {
   total_sum: null | number;
   load_dt: null | MomentInput;
   court_doc_num: null | string;
-  executive_typ: null | number;
+  executive_typ: string | number;
   court_date: null | MomentInput;
-  DELIVERY_TYP: null | number;
+  DELIVERY_TYP: string | number;
   entry_force_dt: null | MomentInput;
-  template_typ: null | number;
+  template_typ: string | number;
   receipt_recover_dt: null | MomentInput;
   fssp_date: null | MomentInput;
-  r_court_id: null | number;
+  r_court_id: string | number;
   dsc: null | string;
 };
 type ValueOf<T> = T[keyof T];
@@ -26,14 +26,14 @@ export const initState: DataTypes = {
   total_sum: null,
   load_dt: null,
   court_doc_num: null,
-  executive_typ: null,
+  executive_typ: "",
   court_date: null,
-  DELIVERY_TYP: null,
+  DELIVERY_TYP: "",
   entry_force_dt: null,
   receipt_recover_dt: null,
-  template_typ: null,
+  template_typ: "",
   fssp_date: null,
-  r_court_id: null,
+  r_court_id: "",
   dsc: null,
 };
 export const send = createSlice({

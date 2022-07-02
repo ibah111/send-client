@@ -1,4 +1,11 @@
-import { FormControl, Grid, InputLabel, MenuItem, Select } from "@mui/material";
+import {
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import getDict from "../../../../../../../api/getDict";

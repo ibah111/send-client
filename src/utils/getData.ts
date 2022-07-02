@@ -1,12 +1,13 @@
 import { t } from "i18next";
+import moment from "moment";
 import { Moment } from "moment";
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../Reducer";
-import { DataNames, setData } from "../Reducer/Send";
+import { DataNames, DataTypes, setData } from "../Reducer/Send";
 import checkDate from "./checkDate";
 import checkNull from "./checkNull";
 import checkString from "./checkString";
-type Typed = "string" | "date" | "null" | null;
+type Typed = "string" | "date" | "null" | "number" | null;
 export default function getError<K extends DataNames>(
   name: K,
   type: Typed = null,
@@ -22,10 +23,10 @@ export default function getError<K extends DataNames>(
       value = SendValue === null ? "" : SendValue;
       break;
   }
-  const setValue = (newValue: any) => {
+  const setValue = (newValue: DataTypes[K]) => {
     switch (type) {
       case "date":
-        const value: Moment = newValue;
+        const value: Moment = moment(newValue);
         value?.startOf("day");
         dispatch(setData([name, value]));
         break;

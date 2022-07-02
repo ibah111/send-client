@@ -30,7 +30,7 @@ const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(
 });
 export default function TotalSum() {
   const { t } = useTranslation();
-  const data = getData("total_sum", "string");
+  const data = getData("total_sum", "number");
   return (
     <>
       <Grid item>

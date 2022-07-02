@@ -20,7 +20,7 @@ export default function RCourtId() {
     }
   }, [name]);
   React.useEffect(() => {
-    if (data.value !== null) {
+    if (data.value !== "") {
       getCourt({ id: data.value as number }).then((court) => {
         setTypes(["", ...court]);
         setType(court[0]);
@@ -46,7 +46,7 @@ export default function RCourtId() {
             if (value) {
               data.setValue(value.id);
             } else {
-              data.setValue(null);
+              data.setValue("");
             }
           }}
           isOptionEqualToValue={(option: any, value: any) =>
