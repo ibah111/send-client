@@ -1511,6 +1511,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@contact/models@npm:^0.0.19":
+  version: 0.0.19
+  resolution: "@contact/models@npm:0.0.19::__archiveUrl=https%3A%2F%2Fgit.usb.ru%2Fapi%2Fv4%2Fprojects%2F69%2Fpackages%2Fnpm%2F%40contact%2Fmodels%2F-%2F%40contact%2Fmodels-0.0.19.tgz"
+  peerDependencies:
+    "@contact/sequelize": ^6.19.1
+    "@contact/sequelize-typescript": ^2.1.4
+  checksum: 5ca809723f20c4f87d75881182c566480a381e79bc0b911b795a4e0bcaec9760d24ae64cb694c5450b2feaa3b25d3db30e3b71ea4215404aa5a582086c425c55
+  languageName: node
+  linkType: hard
+
 "@csstools/normalize.css@npm:*":
   version: 12.0.0
   resolution: "@csstools/normalize.css@npm:12.0.0"
@@ -5003,6 +5013,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "client@workspace:."
   dependencies:
+    "@contact/models": ^0.0.19
     "@emotion/react": ^11.9.3
     "@emotion/styled": ^11.9.3
     "@fontsource/roboto": ^4.5.7

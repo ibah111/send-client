@@ -8,10 +8,12 @@ export default async function addComment(
   law_exec: boolean
 ) {
   const token = store.getState().User.token;
-  const response = await axios({
-    method: "POST",
-    url: server() + "/add_comment",
-    data: { token, id, value, law_act, law_exec },
+  const response = await axios.post<boolean>(server() + "/add_comment", {
+    token,
+    id,
+    value,
+    law_act,
+    law_exec,
   });
   return response.data;
 }
