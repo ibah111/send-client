@@ -1,5 +1,5 @@
 import config from "../config/server.json";
-export default (type = "default") => {
+export default () => {
   let prot;
   switch (config.protocol) {
     case "http":
@@ -12,7 +12,5 @@ export default (type = "default") => {
       prot = "http";
       break;
   }
-  return `${prot}://${config.server}:${
-    type === "ws" ? config.ws : config.port
-  }`;
+  return `${prot}://${config.server}:${config.port}`;
 };

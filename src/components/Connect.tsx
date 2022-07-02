@@ -7,7 +7,7 @@ import getVersion from "../utils/getVersion";
 import Version from "./Version";
 import { Grid } from "@mui/material";
 const connect = (callback: (value: boolean) => void) => {
-  const socket = io(server("ws"));
+  const socket = io(server());
   socket.on("connect", () => {
     socket.emit("version", getVersion());
     callback(true);

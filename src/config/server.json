@@ -1,6 +1,5 @@
 {
   "protocol": "ssl",
   "server": "apps.usb.ru",
-  "port": "3006",
-  "ws": "3007"
+  "port": "3006"
 }
