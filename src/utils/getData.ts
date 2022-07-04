@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "../Reducer";
 import { DataNames, DataTypes, setData } from "../Reducer/Send";
 import checkDate from "./checkDate";
 import checkNull from "./checkNull";
+import checkNumber from "./checkNumber";
 import checkString from "./checkString";
 type Typed = "string" | "date" | "null" | "number" | null;
 export default function getError<K extends DataNames>(
@@ -42,6 +43,9 @@ export default function getError<K extends DataNames>(
         break;
       case "date":
         checkDate(name, availableEmpty);
+        break;
+      case "number":
+        checkNumber(name);
         break;
       case "null":
         checkNull(name);

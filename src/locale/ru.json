@@ -19,10 +19,12 @@
     },
     "errors_popup": {
       "empty": "Не заполнено поле \"$t(form.send.{{value}})\"",
-      "invalid_date": "Неправильно введена дата в поле \"$t(form.send.{{value}})\""
+      "invalid_date": "Неправильно введена дата в поле \"$t(form.send.{{value}})\"",
+      "number_0": "\"$t(form.send.{{value}})\" не может быть равна 0"
     },
     "errors": {
       "empty": "Не заполнено поле",
+      "number_0": "Не может быть равна 0",
       "invalid_date": "Неправильно введена дата"
     },
     "send": {
