@@ -1,6 +1,6 @@
 import { Box, Grid } from "@mui/material";
-import Left from "./Components/Left";
-import Right from "./Components/Right";
+import Up from "./Components/Up";
+import Down from "./Components/Down";
 import { SnackbarProvider } from "notistack";
 import React from "react";
 
@@ -17,8 +17,8 @@ export default function Form() {
           alignItems="center"
         >
           <SnackbarProvider maxSnack={11}>
-            <Left />
-            <Right />
+            <Up />
+            <Down />
           </SnackbarProvider>
         </Grid>
       </Box>

@@ -2,7 +2,7 @@ import { Grid } from "@mui/material";
 import React from "react";
 import Results from "./Results";
 
-export default function Right() {
+export default function Down() {
   return (
     <>
       <Grid

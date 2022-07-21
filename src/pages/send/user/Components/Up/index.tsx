@@ -3,7 +3,7 @@ import React from "react";
 import Search from "./Search";
 import Send from "./Send";
 
-export default function Left() {
+export default function Up() {
   return (
     <>
       <Grid
