@@ -10,6 +10,7 @@ import Find from "./Find";
 import Submit from "./Submit";
 import search from "../../../../../../api/search";
 import {
+  setReloadResults,
   setLoadingResults,
   setResults,
 } from "../../../../../../Reducer/Results";
@@ -19,6 +20,7 @@ export default function Search() {
   const dispatch = useAppDispatch();
   const id = useAppSelector((state) => state.Send.id);
   const loading = useAppSelector((state) => state.Results.loading);
+  const reload = useAppSelector((state) => state.Results.reload);
   const Click = () => {
     dispatch(setLoadingResults(true));
     search().then((res) => {
@@ -33,6 +35,12 @@ export default function Search() {
         if (res !== null) dispatch(setSend(res));
       });
   }, [id]);
+  React.useEffect(() => {
+    if (reload) {
+      Click();
+      dispatch(setReloadResults(false));
+    }
+  }, [reload]);
   return (
     <>
       <Grid

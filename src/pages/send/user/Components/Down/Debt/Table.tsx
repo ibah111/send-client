@@ -4,6 +4,7 @@ import React from "react";
 import getDebt from "../../../../../../api/getDebt";
 import updateDebt from "../../../../../../api/updateDebt";
 import { useAppDispatch, useAppSelector } from "../../../../../../Reducer";
+import { ReloadResults } from "../../../../../../Reducer/Results";
 import { setDebtState } from "../../../../../../Reducer/StateResults";
 import getColumns from "./getColumns";
 
@@ -47,6 +48,7 @@ export default function Table({
           disableColumnSelector
           onCellDoubleClick={(params) => {
             updateDebt(row.id, params.row.id).then((res) => {
+              dispatch(ReloadResults());
               handleClose();
             });
           }}
