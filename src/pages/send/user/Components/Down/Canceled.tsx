@@ -9,6 +9,7 @@ import {
 import React from "react";
 import { useTranslation } from "react-i18next";
 import ButtonComment from "./ButtonComment";
+import Debt from "./Debt";
 import YesOrNo from "./YesOrNo";
 
 export default function Canceled({
@@ -23,6 +24,12 @@ export default function Canceled({
   next: () => void;
 }) {
   const { t } = useTranslation();
+  const [openDebt, setOpenDebt] = React.useState(false);
+  React.useEffect(() => {
+    if (!open) {
+      setOpenDebt(false);
+    }
+  }, [open]);
   return (
     <>
       <Dialog open={open} onClose={onClose}>
@@ -33,10 +40,19 @@ export default function Canceled({
           </DialogContentText>
         </DialogContent>
         <DialogActions>
+          <Button onClick={() => setOpenDebt(true)}>
+            {t("form.canceled.debt")}
+          </Button>
           <Button onClick={next}>{t("form.canceled.skip")}</Button>
           <Button onClick={onClose}>{t("form.canceled.cancel")}</Button>
         </DialogActions>
       </Dialog>
+      <Debt
+        row={row}
+        open={openDebt}
+        handleClose={() => setOpenDebt(false)}
+        handleNext={next}
+      />
     </>
   );
 }
