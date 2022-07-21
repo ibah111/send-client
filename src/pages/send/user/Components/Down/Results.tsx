@@ -4,8 +4,8 @@ import React from "react";
 import { useAppDispatch, useAppSelector } from "../../../../../Reducer";
 import { setPageState } from "../../../../../Reducer/StateResults";
 import PopoverHook from "../PopoverHook";
+import Dialogs from "./Dialogs";
 import getColumns from "./getColumns";
-import YesOrNo from "./YesOrNo";
 
 export default function Results() {
   const [columns] = React.useState(getColumns());
@@ -47,7 +47,7 @@ export default function Results() {
         />
       </Grid>
       <ElementPopover />
-      <YesOrNo open={dialog} onClose={() => setDialog(false)} row={row} />
+      <Dialogs open={dialog} onClose={() => setDialog(false)} row={row} />
     </>
   );
 }
