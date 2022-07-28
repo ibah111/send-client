@@ -4,7 +4,7 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import { createTheme } from "@mui/material";
 import { ruRU } from "@mui/x-data-grid-premium";
-import { ruRU as ruRUgrid } from "@mui/x-data-grid-pro";
+import { ruRU as ruRUgrid } from "@mui/x-data-grid-premium";
 const theme = createTheme(
   {
     typography: {
