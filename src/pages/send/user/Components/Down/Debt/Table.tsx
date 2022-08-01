@@ -47,7 +47,7 @@ export default function Table({
           disableSelectionOnClick
           disableColumnSelector
           onCellDoubleClick={(params) => {
-            updateDebt(row.id, params.row.id).then((res) => {
+            updateDebt(row.id, params.row.id).then(() => {
               dispatch(ReloadResults());
               handleClose();
             });

@@ -33,7 +33,7 @@ export default function ButtonComment({
     setOpen(true);
   };
   const handleSubmit = () => {
-    addComment(id, comment, checkedLawAct, checkedLawExec).then((res) => {
+    addComment(id, comment, checkedLawAct, checkedLawExec).then(() => {
       handleClose();
     });
   };

@@ -25,11 +25,12 @@ export default function getError<K extends DataNames>(
   }
   const setValue = (newValue: DataTypes[K]) => {
     switch (type) {
-      case 'date':
-        const value: Moment = moment(newValue);
-        value?.startOf('day');
-        dispatch(setData([name, value]));
+      case 'date': {
+        const data: Moment = moment(newValue);
+        data?.startOf('day');
+        dispatch(setData([name, data]));
         break;
+      }
       default:
         dispatch(setData([name, newValue]));
         break;

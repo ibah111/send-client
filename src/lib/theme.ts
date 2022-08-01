@@ -3,6 +3,7 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { createTheme } from '@mui/material';
+import '@mui/x-data-grid-pro/themeAugmentation';
 import { ruRU } from '@mui/x-data-grid-premium';
 import { ruRU as ruRUgrid } from '@mui/x-data-grid-premium';
 const theme = createTheme(
@@ -22,7 +23,6 @@ const theme = createTheme(
       MuiFormControl: {
         defaultProps: { size: 'small' },
       },
-      //@ts-ignore
       MuiDataGrid: {
         defaultProps: { density: 'compact' },
       },

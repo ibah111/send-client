@@ -8,9 +8,7 @@ import {
 } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import ButtonComment from './ButtonComment';
 import Debt from './Debt';
-import YesOrNo from './YesOrNo';
 
 export default function Canceled({
   open,

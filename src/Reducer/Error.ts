@@ -44,7 +44,7 @@ export const error = createSlice({
     ) {
       state[action.payload[0]] = action.payload[1];
     },
-    reset: (state) => {
+    reset: () => {
       return initState;
     },
   },
