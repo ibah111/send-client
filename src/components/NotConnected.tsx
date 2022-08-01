@@ -1,11 +1,11 @@
-import React from "react";
-import { Grid, Typography as T } from "@mui/material";
-const style = { textAlign: "center" };
+import React from 'react';
+import { Grid, Typography as T } from '@mui/material';
+const style = { textAlign: 'center' };
 export default function NotConnected() {
   return (
     <>
       <Grid
-        sx={{ height: "98vh" }}
+        sx={{ height: '98vh' }}
         container
         spacing={2}
         direction="column"

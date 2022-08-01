@@ -5,16 +5,16 @@ import {
   MenuItem,
   Select,
   SelectChangeEvent,
-} from "@mui/material";
-import React from "react";
-import { useTranslation } from "react-i18next";
-import getDict from "../../../../../../../api/getDict";
-import getData from "../../../../../../../utils/getData";
+} from '@mui/material';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import getDict from '../../../../../../../api/getDict';
+import getData from '../../../../../../../utils/getData';
 
 export default function ExecutiveTyp() {
   const { t } = useTranslation();
   const [types, setTypes] = React.useState<any[]>([]);
-  const data = getData("DELIVERY_TYP", "string");
+  const data = getData('DELIVERY_TYP', 'string');
   React.useEffect(() => {
     getDict(16).then((dict) => setTypes(dict));
   }, []);
@@ -23,7 +23,7 @@ export default function ExecutiveTyp() {
       <Grid sx={{ width: 220 }} item>
         <FormControl error={data.isInvalid} fullWidth>
           <InputLabel id="delivery_typ">
-            {t("form.send.DELIVERY_TYP")}
+            {t('form.send.DELIVERY_TYP')}
           </InputLabel>
           <Select
             required
@@ -31,9 +31,9 @@ export default function ExecutiveTyp() {
             onChange={(event) => {
               data.setValue(event.target.value);
             }}
-            label={t("form.send.DELIVERY_TYP")}
+            label={t('form.send.DELIVERY_TYP')}
           >
-            <MenuItem value={""}>{t("system.none")}</MenuItem>
+            <MenuItem value={''}>{t('system.none')}</MenuItem>
             {types.map((type, index) => (
               <MenuItem key={index} value={type.code}>
                 {type.name}

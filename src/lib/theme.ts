@@ -1,34 +1,34 @@
-import "@fontsource/roboto/300.css";
-import "@fontsource/roboto/400.css";
-import "@fontsource/roboto/500.css";
-import "@fontsource/roboto/700.css";
-import { createTheme } from "@mui/material";
-import { ruRU } from "@mui/x-data-grid-premium";
-import { ruRU as ruRUgrid } from "@mui/x-data-grid-premium";
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+import { createTheme } from '@mui/material';
+import { ruRU } from '@mui/x-data-grid-premium';
+import { ruRU as ruRUgrid } from '@mui/x-data-grid-premium';
 const theme = createTheme(
   {
     typography: {
-      fontFamily: "roboto",
+      fontFamily: 'roboto',
       fontSize: 13,
     },
     components: {
       // Name of the component
       MuiTextField: {
-        defaultProps: { size: "small" },
+        defaultProps: { size: 'small' },
       },
       MuiAutocomplete: {
-        defaultProps: { size: "small" },
+        defaultProps: { size: 'small' },
       },
       MuiFormControl: {
-        defaultProps: { size: "small" },
+        defaultProps: { size: 'small' },
       },
       //@ts-ignore
       MuiDataGrid: {
-        defaultProps: { density: "compact" },
+        defaultProps: { density: 'compact' },
       },
     },
   },
   ruRU,
-  ruRUgrid
+  ruRUgrid,
 );
 export default theme;

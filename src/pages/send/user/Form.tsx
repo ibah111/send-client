@@ -1,8 +1,8 @@
-import { Box, Grid } from "@mui/material";
-import Up from "./Components/Up";
-import Down from "./Components/Down";
-import { SnackbarProvider } from "notistack";
-import React from "react";
+import { Box, Grid } from '@mui/material';
+import Up from './Components/Up';
+import Down from './Components/Down';
+import { SnackbarProvider } from 'notistack';
+import React from 'react';
 
 export default function Form() {
   return (

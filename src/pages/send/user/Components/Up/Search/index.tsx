@@ -1,20 +1,20 @@
-import { Grid } from "@mui/material";
-import React from "react";
-import getLawExec from "../../../../../../api/getLawExec";
-import { useAppDispatch, useAppSelector } from "../../../../../../Reducer";
-import { reset, setSend } from "../../../../../../Reducer/Send";
-import Contract from "./Contract";
-import CreateExec from "./CreateExec";
-import Name from "./Name";
-import Find from "./Find";
-import Submit from "./Submit";
-import search from "../../../../../../api/search";
+import { Grid } from '@mui/material';
+import React from 'react';
+import getLawExec from '../../../../../../api/getLawExec';
+import { useAppDispatch, useAppSelector } from '../../../../../../Reducer';
+import { reset, setSend } from '../../../../../../Reducer/Send';
+import Contract from './Contract';
+import CreateExec from './CreateExec';
+import Name from './Name';
+import Find from './Find';
+import Submit from './Submit';
+import search from '../../../../../../api/search';
 import {
   setReloadResults,
   setLoadingResults,
   setResults,
-} from "../../../../../../Reducer/Results";
-import Comments from "./Comments";
+} from '../../../../../../Reducer/Results';
+import Comments from './Comments';
 
 export default function Search() {
   const dispatch = useAppDispatch();

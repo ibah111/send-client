@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 export const location = createSlice({
-  name: "App",
-  initialState: { location: "/", minApp: false, timeout: 0 },
+  name: 'App',
+  initialState: { location: '/', minApp: false, timeout: 0 },
   reducers: {
     setLocation: (state, action) => {
       state.location = action.payload;

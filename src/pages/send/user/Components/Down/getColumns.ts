@@ -1,104 +1,107 @@
-import { GridColDef } from "@mui/x-data-grid-pro";
-import { t } from "i18next";
-import moment from "moment";
+import { GridColDef } from '@mui/x-data-grid-pro';
+import { t } from 'i18next';
+import moment from 'moment';
 
 export default function getColumns(): GridColDef[] {
   return [
-    { field: "Person.id", headerName: t("form.results.person.id"), width: 70 },
-    { field: "Debt.id", headerName: t("form.results.debt.id"), width: 70 },
+    { field: 'Person.id', headerName: t('form.results.person.id'), width: 70 },
+    { field: 'Debt.id', headerName: t('form.results.debt.id'), width: 70 },
     {
-      field: "LawAct.id",
-      headerName: t("form.results.law_act.id"),
+      field: 'LawAct.id',
+      headerName: t('form.results.law_act.id'),
       width: 100,
     },
-    { field: "id", headerName: t("form.results.law_exec.id"), width: 70 },
+    { field: 'id', headerName: t('form.results.law_exec.id'), width: 70 },
     {
-      field: "Person.fio",
-      headerName: t("form.results.person.fio"),
+      field: 'Person.fio',
+      headerName: t('form.results.person.fio'),
       width: 200,
     },
     {
-      field: "Debt.contract",
+      field: 'Debt.contract',
       width: 300,
-      headerName: t("form.results.debt.contract"),
+      headerName: t('form.results.debt.contract'),
     },
     {
-      field: "Address",
+      field: 'Address',
       width: 200,
-      headerName: t("form.results.address"),
+      headerName: t('form.results.address'),
       valueGetter: (params) =>
-        params.row["Person.Addresses"]?.[0]?.full_adr
-          ? params.row["Person.Addresses"]?.[0]?.full_adr
-          : `АДРЕС НЕ ЗАПОЛЕН. НАДО НАЙТИ ДОЛГ ПО ID = ${params.row["Debt.id"]}`,
+        params.row['Person.Addresses']?.[0]?.full_adr
+          ? params.row['Person.Addresses']?.[0]?.full_adr
+          : `АДРЕС НЕ ЗАПОЛЕН. НАДО НАЙТИ ДОЛГ ПО ID = ${params.row['Debt.id']}`,
     },
-    { field: "Debt.debt_sum", headerName: t("form.results.debt.debt_sum") },
-    { field: "Portfolio.name", headerName: t("form.results.portfolio.name") },
-    { field: "Debt.StatusDict.name", headerName: t("form.results.debt.status") },
+    { field: 'Debt.debt_sum', headerName: t('form.results.debt.debt_sum') },
+    { field: 'Portfolio.name', headerName: t('form.results.portfolio.name') },
     {
-      field: "LawAct.typ",
-      headerName: t("form.results.law_act.typ"),
+      field: 'Debt.StatusDict.name',
+      headerName: t('form.results.debt.status'),
+    },
+    {
+      field: 'LawAct.typ',
+      headerName: t('form.results.law_act.typ'),
       valueGetter: (params) => {
         switch (params.value) {
           case 0:
-            return "Не определено";
+            return 'Не определено';
           case 1:
-            return "Приказ";
+            return 'Приказ';
           case 2:
-            return "Иск";
+            return 'Иск';
           case 3:
-            return "Правопреемство";
+            return 'Правопреемство';
           case 4:
-            return "Банкротство";
+            return 'Банкротство';
           default:
-            return "Не определено";
+            return 'Не определено';
         }
       },
     },
     {
-      field: "LawAct.Status",
-      headerName: t("form.results.law_act.status"),
+      field: 'LawAct.Status',
+      headerName: t('form.results.law_act.status'),
       width: 300,
       valueGetter: (params) => {
-        switch (params.row["LawAct.typ"]) {
+        switch (params.row['LawAct.typ']) {
           case 0:
-            return params.row["LawAct.ActStatusDict.name"];
+            return params.row['LawAct.ActStatusDict.name'];
           case 1:
-            return params.row["LawAct.StatusDict.name"];
+            return params.row['LawAct.StatusDict.name'];
           case 2:
-            return params.row["LawAct.ActStatusDict.name"];
+            return params.row['LawAct.ActStatusDict.name'];
           case 3:
-            return params.row["LawAct.ActStatusDict.name"];
+            return params.row['LawAct.ActStatusDict.name'];
           case 4:
-            return params.row["LawAct.ActStatusDict.name"];
+            return params.row['LawAct.ActStatusDict.name'];
           default:
-            return params.row["LawAct.ActStatusDict.name"];
+            return params.row['LawAct.ActStatusDict.name'];
         }
       },
     },
     {
-      field: "StateDict.name",
-      headerName: t("form.results.law_exec.state"),
+      field: 'StateDict.name',
+      headerName: t('form.results.law_exec.state'),
       width: 300,
     },
     {
       width: 300,
-      field: "court_doc_num",
-      headerName: t("form.results.law_exec.court_doc_num"),
+      field: 'court_doc_num',
+      headerName: t('form.results.law_exec.court_doc_num'),
     },
     {
       width: 300,
-      field: "fssp_doc_num",
-      headerName: t("form.results.law_exec.fssp_doc_num"),
+      field: 'fssp_doc_num',
+      headerName: t('form.results.law_exec.fssp_doc_num'),
     },
     {
       width: 300,
-      field: "ExecutiveTyp.name",
-      headerName: t("form.results.law_exec.executive_typ"),
+      field: 'ExecutiveTyp.name',
+      headerName: t('form.results.law_exec.executive_typ'),
     },
     {
-      field: "court_date",
-      headerName: t("form.results.law_exec.court_date"),
-      type: "date",
+      field: 'court_date',
+      headerName: t('form.results.law_exec.court_date'),
+      type: 'date',
       valueGetter: (params) => moment(params.value).toDate(),
     },
   ];

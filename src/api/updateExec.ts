@@ -1,6 +1,6 @@
-import store from "../Reducer";
-import axios from "axios";
-import server from "../utils/server";
+import store from '../Reducer';
+import axios from 'axios';
+import server from '../utils/server';
 export default async function updateExec() {
   const token = store.getState().User.token;
   const data = store.getState().Send;
@@ -10,6 +10,6 @@ export default async function updateExec() {
         file: { data: number[] };
         name: string;
       }
-  >(server() + "/update_exec", { token, ...data });
+  >(server() + '/update_exec', { token, ...data });
   return response.data;
 }

@@ -1,11 +1,11 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 const initialState: { reload: boolean; loading: boolean; data: any[] } = {
   loading: false,
   data: [],
   reload: false,
 };
 export const results = createSlice({
-  name: "Results",
+  name: 'Results',
   initialState: initialState,
   reducers: {
     setResults: (state, action: PayloadAction<any[]>) => {

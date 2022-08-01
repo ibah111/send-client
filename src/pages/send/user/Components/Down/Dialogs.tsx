@@ -1,6 +1,6 @@
-import React from "react";
-import Canceled from "./Canceled";
-import YesOrNo from "./YesOrNo";
+import React from 'react';
+import Canceled from './Canceled';
+import YesOrNo from './YesOrNo';
 
 export default function Dialogs({
   open,
@@ -15,7 +15,7 @@ export default function Dialogs({
   const [openCanceled, setOpenCanceled] = React.useState(false);
   React.useEffect(() => {
     if (open) {
-      if (row["Debt.status"] === 7) {
+      if (row['Debt.status'] === 7) {
         setOpenCanceled(true);
       } else {
         setOpenYesOrNo(true);

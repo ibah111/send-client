@@ -1,5 +1,5 @@
-import { GridInitialStatePremium } from "@mui/x-data-grid-premium/models/gridStatePremium";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { GridInitialStatePremium } from '@mui/x-data-grid-premium/models/gridStatePremium';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 const initialState: {
   page: GridInitialStatePremium;
   create: GridInitialStatePremium;
@@ -10,7 +10,7 @@ const initialState: {
   debt: {},
 };
 export const StateResults = createSlice({
-  name: "StateResults",
+  name: 'StateResults',
   initialState,
   reducers: {
     setPageState: (state, action: PayloadAction<GridInitialStatePremium>) => {

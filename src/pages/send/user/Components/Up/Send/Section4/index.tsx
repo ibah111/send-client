@@ -1,7 +1,7 @@
-import { Grid } from "@mui/material";
-import React from "react";
-import EntryForceDt from "./EntryForceDt";
-import ReceiptRecoverDt from "./ReceiptRecoverDt";
+import { Grid } from '@mui/material';
+import React from 'react';
+import EntryForceDt from './EntryForceDt';
+import ReceiptRecoverDt from './ReceiptRecoverDt';
 
 export default function Section4() {
   return (

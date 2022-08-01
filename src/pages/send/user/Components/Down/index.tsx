@@ -1,6 +1,6 @@
-import { Grid } from "@mui/material";
-import React from "react";
-import Results from "./Results";
+import { Grid } from '@mui/material';
+import React from 'react';
+import Results from './Results';
 
 export default function Down() {
   return (

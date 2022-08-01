@@ -1,12 +1,12 @@
-import { Grid } from "@mui/material";
-import { DataGridPremium, useGridApiRef } from "@mui/x-data-grid-premium";
-import React from "react";
-import getDebt from "../../../../../../api/getDebt";
-import updateDebt from "../../../../../../api/updateDebt";
-import { useAppDispatch, useAppSelector } from "../../../../../../Reducer";
-import { ReloadResults } from "../../../../../../Reducer/Results";
-import { setDebtState } from "../../../../../../Reducer/StateResults";
-import getColumns from "./getColumns";
+import { Grid } from '@mui/material';
+import { DataGridPremium, useGridApiRef } from '@mui/x-data-grid-premium';
+import React from 'react';
+import getDebt from '../../../../../../api/getDebt';
+import updateDebt from '../../../../../../api/updateDebt';
+import { useAppDispatch, useAppSelector } from '../../../../../../Reducer';
+import { ReloadResults } from '../../../../../../Reducer/Results';
+import { setDebtState } from '../../../../../../Reducer/StateResults';
+import getColumns from './getColumns';
 
 export default function Table({
   row,
@@ -35,7 +35,7 @@ export default function Table({
   }, []);
   return (
     <>
-      <Grid sx={{ width: "100%", height: 400 }} item>
+      <Grid sx={{ width: '100%', height: 400 }} item>
         <DataGridPremium
           columns={columns}
           rows={rows}

@@ -1,10 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 const initialState: { LawAct: string; LawExec: string } = {
-  LawAct: "",
-  LawExec: "",
+  LawAct: '',
+  LawExec: '',
 };
 export const comment = createSlice({
-  name: "Comment",
+  name: 'Comment',
   initialState,
   reducers: {
     setLawActComment: (state, action) => {

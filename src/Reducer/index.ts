@@ -1,13 +1,13 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import User from "./User";
-import App from "./App";
-import Search from "./Search";
-import Send from "./Send";
-import Results from "./Results";
-import Error from "./Error";
-import Comment from "./Comment";
-import StateResults from "./StateResults";
+import { configureStore } from '@reduxjs/toolkit';
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import User from './User';
+import App from './App';
+import Search from './Search';
+import Send from './Send';
+import Results from './Results';
+import Error from './Error';
+import Comment from './Comment';
+import StateResults from './StateResults';
 const store = configureStore({
   reducer: {
     User,

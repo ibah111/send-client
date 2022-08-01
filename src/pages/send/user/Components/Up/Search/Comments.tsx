@@ -7,10 +7,10 @@ import {
   Grid,
   TextField,
   Typography,
-} from "@mui/material";
-import React from "react";
-import { useTranslation } from "react-i18next";
-import { useAppSelector } from "../../../../../../Reducer";
+} from '@mui/material';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { useAppSelector } from '../../../../../../Reducer';
 
 export default function Comments() {
   const { t } = useTranslation();
@@ -26,11 +26,11 @@ export default function Comments() {
   return (
     <>
       <Grid item>
-        <Button onClick={handleOpen}>{t("form.search.comments")}</Button>
+        <Button onClick={handleOpen}>{t('form.search.comments')}</Button>
       </Grid>
-      <Dialog open={open} fullWidth maxWidth={"xl"} onClose={handleClose}>
-        <DialogTitle sx={{ textAlign: "center" }}>
-          <Typography variant="h4">{t("form.comments.title")}</Typography>
+      <Dialog open={open} fullWidth maxWidth={'xl'} onClose={handleClose}>
+        <DialogTitle sx={{ textAlign: 'center' }}>
+          <Typography variant="h4">{t('form.comments.title')}</Typography>
         </DialogTitle>
         <DialogContent>
           <Grid
@@ -41,19 +41,19 @@ export default function Comments() {
             alignItems="flex-start"
           >
             <Grid xs={6} item>
-              <Typography variant="h6">{t("form.comments.law_act")}</Typography>
+              <Typography variant="h6">{t('form.comments.law_act')}</Typography>
               <TextField fullWidth multiline value={LawActComment} />
             </Grid>
             <Grid xs={6} item>
               <Typography variant="h6">
-                {t("form.comments.law_exec")}
+                {t('form.comments.law_exec')}
               </Typography>
               <TextField fullWidth multiline value={LawExecComment} />
             </Grid>
           </Grid>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>{t("form.comments.close")}</Button>
+          <Button onClick={handleClose}>{t('form.comments.close')}</Button>
         </DialogActions>
       </Dialog>
     </>

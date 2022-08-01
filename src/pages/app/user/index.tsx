@@ -4,14 +4,14 @@ import {
   Grid,
   Button,
   Collapse,
-} from "@mui/material";
-import React from "react";
-import { useTranslation } from "react-i18next";
-import { Link, useLocation } from "react-router-dom";
-import Slider from "../../../components/Slider";
-import Version from "../../../components/Version";
-import pages from "../../../utils/pages";
-import version from "../../../utils/version";
+} from '@mui/material';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Link, useLocation } from 'react-router-dom';
+import Slider from '../../../components/Slider';
+import Version from '../../../components/Version';
+import pages from '../../../utils/pages';
+import version from '../../../utils/version';
 
 export default function Home() {
   const { t } = useTranslation();
@@ -22,7 +22,7 @@ export default function Home() {
         <main>
           <Container maxWidth="sm">
             <Grid
-              sx={{ height: "98vh" }}
+              sx={{ height: '98vh' }}
               container
               spacing={2}
               direction="column"
@@ -50,7 +50,7 @@ export default function Home() {
                         </Button>
                       </Grid>
                     </Collapse>
-                  )
+                  ),
               )}
               <Grid item>
                 <Version />

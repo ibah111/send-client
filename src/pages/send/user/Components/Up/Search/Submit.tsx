@@ -1,15 +1,15 @@
-import { Grid } from "@mui/material";
-import { t } from "i18next";
-import { useSnackbar, VariantType } from "notistack";
-import React from "react";
-import updateExec from "../../../../../../api/updateExec";
-import { useAppDispatch, useAppSelector } from "../../../../../../Reducer";
-import { saveAs } from "file-saver";
-import { reset, setId } from "../../../../../../Reducer/Send";
-import { LoadingButton } from "@mui/lab";
-import { useTranslation } from "react-i18next";
-import { ResetComment } from "../../../../../../Reducer/Comment";
-import { ErrorTypes } from "../../../../../../Reducer/Error";
+import { Grid } from '@mui/material';
+import { t } from 'i18next';
+import { useSnackbar, VariantType } from 'notistack';
+import React from 'react';
+import updateExec from '../../../../../../api/updateExec';
+import { useAppDispatch, useAppSelector } from '../../../../../../Reducer';
+import { saveAs } from 'file-saver';
+import { reset, setId } from '../../../../../../Reducer/Send';
+import { LoadingButton } from '@mui/lab';
+import { useTranslation } from 'react-i18next';
+import { ResetComment } from '../../../../../../Reducer/Comment';
+import { ErrorTypes } from '../../../../../../Reducer/Error';
 function toArrayBuffer(buf: number[]) {
   const ab = new ArrayBuffer(buf.length);
   const view = new Uint8Array(ab);
@@ -21,13 +21,13 @@ function toArrayBuffer(buf: number[]) {
 const check = (
   Error: ErrorTypes,
   res: any,
-  error: (value: String, type: VariantType) => void
+  error: (value: string, type: VariantType) => void,
 ) => {
   let errors = 0;
   for (const value of Object.entries(Error)) {
     if (value[1] !== null) {
       errors += 1;
-      error(t(`form.errors_popup.${value[1]}`, { value: value[0] }), "error");
+      error(t(`form.errors_popup.${value[1]}`, { value: value[0] }), 'error');
     }
   }
   if (errors === 0) {
@@ -43,7 +43,7 @@ export default function Submit() {
   const [loading, setLoading] = React.useState(false);
   const Send = useAppSelector((state) => state.Send);
   const Error = useAppSelector((state) => state.Error);
-  const AddAlert = (value: String, variant: VariantType = "success") => {
+  const AddAlert = (value: string, variant: VariantType = 'success') => {
     enqueueSnackbar(value, { variant, autoHideDuration: 3000 });
   };
   const Click = () => {
@@ -52,7 +52,7 @@ export default function Submit() {
       updateExec().then((res) => {
         if (res) {
           const file = new Blob([toArrayBuffer(res.file.data)], {
-            type: "application/pdf",
+            type: 'application/pdf',
           });
           saveAs(file, res.name);
           dispatch(setId(0));
@@ -67,7 +67,7 @@ export default function Submit() {
     <>
       <Grid item>
         <LoadingButton loading={loading} onClick={Click}>
-          {t("form.search.submit")}
+          {t('form.search.submit')}
         </LoadingButton>
       </Grid>
     </>

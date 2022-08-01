@@ -1,8 +1,8 @@
-import { Grid } from "@mui/material";
-import React from "react";
-import Info from "./Info";
-import LoadDt from "./LoadDt";
-import TotalSum from "./TotalSum";
+import { Grid } from '@mui/material';
+import React from 'react';
+import Info from './Info';
+import LoadDt from './LoadDt';
+import TotalSum from './TotalSum';
 
 export default function Section1() {
   return (

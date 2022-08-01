@@ -1,9 +1,9 @@
-import { Grid } from "@mui/material";
-import React from "react";
-import CourtDocNum from "./CourtDocNum";
-import ExecutiveTyp from "./ExecutiveTyp";
-import FsspDate from "./FsspDate";
-import Id from "./Id";
+import { Grid } from '@mui/material';
+import React from 'react';
+import CourtDocNum from './CourtDocNum';
+import ExecutiveTyp from './ExecutiveTyp';
+import FsspDate from './FsspDate';
+import Id from './Id';
 
 export default function Section2() {
   return (

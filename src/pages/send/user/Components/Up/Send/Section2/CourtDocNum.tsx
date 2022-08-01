@@ -1,18 +1,18 @@
-import { Grid, TextField } from "@mui/material";
-import React from "react";
-import { useTranslation } from "react-i18next";
-import { IMaskInput } from "react-imask";
-import { TypesData } from "../../../../../../../Reducer/Send";
-import getData from "../../../../../../../utils/getData";
+import { Grid, TextField } from '@mui/material';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { IMaskInput } from 'react-imask';
+import { TypesData } from '../../../../../../../Reducer/Send';
+import getData from '../../../../../../../utils/getData';
 const types = (value: TypesData) => {
   switch (value) {
     case 4:
       return {
-        mask: "0-0000/{1\\0}23-000",
+        mask: '0-0000/{1\\0}23-000',
         definitions: {
-          "1": "2",
-          "2": /[1-2]/,
-          "3": /[1-9]/,
+          '1': '2',
+          '2': /[1-2]/,
+          '3': /[1-9]/,
         },
       };
     default:
@@ -21,9 +21,9 @@ const types = (value: TypesData) => {
 };
 const TextMaskCustom = React.forwardRef(function TextMaskCustom(
   props: any,
-  ref
+  ref,
 ) {
-  const data = getData("court_doc_num", "string");
+  const data = getData('court_doc_num', 'string');
   const { onChange, ...other } = props;
   return (
     <IMaskInput
@@ -37,7 +37,7 @@ const TextMaskCustom = React.forwardRef(function TextMaskCustom(
 });
 export default function CourtDocNum() {
   const { t } = useTranslation();
-  const data = getData("court_doc_num", "string");
+  const data = getData('court_doc_num', 'string');
   return (
     <>
       <Grid sx={{ width: 220 }} item>
@@ -46,7 +46,7 @@ export default function CourtDocNum() {
           fullWidth
           value={data.value}
           onChange={(event) => data.setValue(event.target.value)}
-          label={t("form.send.court_doc_num")}
+          label={t('form.send.court_doc_num')}
         />
       </Grid>
     </>

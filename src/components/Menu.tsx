@@ -1,13 +1,13 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import Slider from "./Slider";
-import { Button, Collapse, Grid, Typography } from "@mui/material";
-import pages from "../utils/pages";
-import { Link, useLocation } from "react-router-dom";
-import Demo from "./Demo";
-import version from "../utils/version";
-import { useTranslation } from "react-i18next";
-import Version from "./Version";
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Slider from './Slider';
+import { Button, Collapse, Grid, Typography } from '@mui/material';
+import pages from '../utils/pages';
+import { Link, useLocation } from 'react-router-dom';
+import Demo from './Demo';
+import version from '../utils/version';
+import { useTranslation } from 'react-i18next';
+import Version from './Version';
 
 export default function AccountMenu({ stop, always }: any) {
   const { t } = useTranslation();
@@ -51,7 +51,7 @@ export default function AccountMenu({ stop, always }: any) {
                         </Button>
                       </Grid>
                     </Collapse>
-                  )
+                  ),
               )}
             </Grid>
             <Grid
@@ -79,14 +79,14 @@ export default function AccountMenu({ stop, always }: any) {
                         <Typography>{t(page.name)}</Typography>
                       </Grid>
                     </Collapse>
-                  )
+                  ),
               )}
             </Grid>
           </Grid>
-          
+
           <Grid item>
-              <Version minimize />
-            </Grid>
+            <Version minimize />
+          </Grid>
         </Box>
       </Slider>
     </React.Fragment>

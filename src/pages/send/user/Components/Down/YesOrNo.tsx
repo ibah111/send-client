@@ -5,19 +5,19 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-} from "@mui/material";
-import React from "react";
-import { useTranslation } from "react-i18next";
-import createExec from "../../../../../api/createExec";
-import deleteExec from "../../../../../api/deleteExec";
-import getComment from "../../../../../api/getComment";
-import { useAppDispatch } from "../../../../../Reducer";
+} from '@mui/material';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import createExec from '../../../../../api/createExec';
+import deleteExec from '../../../../../api/deleteExec';
+import getComment from '../../../../../api/getComment';
+import { useAppDispatch } from '../../../../../Reducer';
 import {
   setLawActComment,
   setLawExecComment,
-} from "../../../../../Reducer/Comment";
-import { setId } from "../../../../../Reducer/Send";
-import ButtonComment from "./ButtonComment";
+} from '../../../../../Reducer/Comment';
+import { setId } from '../../../../../Reducer/Send';
+import ButtonComment from './ButtonComment';
 
 export default function YesOrNo({
   open,
@@ -32,7 +32,7 @@ export default function YesOrNo({
   const dispatch = useAppDispatch();
   const new_row = Boolean(row.fssp_doc_num);
   const Create = () => {
-    createExec(row["LawAct.id"], {
+    createExec(row['LawAct.id'], {
       court_doc_num: row.court_doc_num,
       executive_typ: row.executive_typ,
       court_date: row.court_date,
@@ -40,7 +40,7 @@ export default function YesOrNo({
     }).then((res) => {
       if (res) {
         dispatch(setId(res));
-        getComment({ type: "law_exec", id: row.id }).then((res) => {
+        getComment({ type: 'law_exec', id: row.id }).then((res) => {
           dispatch(setLawActComment(res.LawAct.dsc));
           dispatch(setLawExecComment(res.dsc));
         });
@@ -49,14 +49,14 @@ export default function YesOrNo({
     });
   };
   const CreateWithDelete = () => {
-    createExec(row["LawAct.id"], {
+    createExec(row['LawAct.id'], {
       court_doc_num: row.court_doc_num,
       executive_typ: row.executive_typ,
       court_date: row.court_date,
       entry_force_dt: row.entry_force_dt,
     }).then((res) => {
       if (res) {
-        getComment({ type: "law_exec", id: row.id }).then((res) => {
+        getComment({ type: 'law_exec', id: row.id }).then((res) => {
           dispatch(setLawActComment(res.LawAct.dsc));
           dispatch(setLawExecComment(res.dsc));
         });
@@ -67,7 +67,7 @@ export default function YesOrNo({
     });
   };
   const Update = () => {
-    getComment({ type: "law_exec", id: row.id }).then((res) => {
+    getComment({ type: 'law_exec', id: row.id }).then((res) => {
       dispatch(setLawActComment(res.LawAct.dsc));
       dispatch(setLawExecComment(res.dsc));
       onClose();
@@ -78,29 +78,29 @@ export default function YesOrNo({
   return (
     <>
       <Dialog open={open} onClose={onClose}>
-        <DialogTitle>{t("form.yes_or_no.title")}</DialogTitle>
+        <DialogTitle>{t('form.yes_or_no.title')}</DialogTitle>
         <DialogContent>
           <DialogContentText>
             {t(
               new_row
-                ? "form.yes_or_no.description_old"
-                : "form.yes_or_no.description",
-              { value: row.fssp_doc_num }
+                ? 'form.yes_or_no.description_old'
+                : 'form.yes_or_no.description',
+              { value: row.fssp_doc_num },
             )}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           {new_row && (
-            <Button onClick={Create}>{t("form.yes_or_no.create")}</Button>
+            <Button onClick={Create}>{t('form.yes_or_no.create')}</Button>
           )}
           {new_row && (
             <Button onClick={CreateWithDelete} autoFocus>
-              {t("form.yes_or_no.create_with_delete")}
+              {t('form.yes_or_no.create_with_delete')}
             </Button>
           )}
-          <Button onClick={onClose}>{t("form.yes_or_no.cancel")}</Button>
+          <Button onClick={onClose}>{t('form.yes_or_no.cancel')}</Button>
           <Button onClick={Update}>
-            {t(new_row ? "form.yes_or_no.update_old" : "form.yes_or_no.update")}
+            {t(new_row ? 'form.yes_or_no.update_old' : 'form.yes_or_no.update')}
           </Button>
           <ButtonComment id={row.id} onClick={onClose} />
         </DialogActions>

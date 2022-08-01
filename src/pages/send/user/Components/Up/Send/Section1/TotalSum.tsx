@@ -1,11 +1,11 @@
-import { Grid, TextField } from "@mui/material";
-import NumberFormat from "react-number-format";
-import React from "react";
-import getData from "../../../../../../../utils/getData";
-import { useTranslation } from "react-i18next";
+import { Grid, TextField } from '@mui/material';
+import NumberFormat from 'react-number-format';
+import React from 'react';
+import getData from '../../../../../../../utils/getData';
+import { useTranslation } from 'react-i18next';
 const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(
   props: any,
-  ref
+  ref,
 ) {
   const { onChange, ...other } = props;
   return (
@@ -30,13 +30,13 @@ const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(
 });
 export default function TotalSum() {
   const { t } = useTranslation();
-  const data = getData("total_sum", "number");
+  const data = getData('total_sum', 'number');
   return (
     <>
       <Grid item>
         <TextField
           error={data.isInvalid}
-          label={t("form.send.total_sum")}
+          label={t('form.send.total_sum')}
           value={data.value}
           required
           InputProps={{

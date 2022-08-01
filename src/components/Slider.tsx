@@ -1,12 +1,12 @@
-import { Grid, Slide } from "@mui/material";
-import React from "react";
-import { useAppSelector } from "../Reducer";
+import { Grid, Slide } from '@mui/material';
+import React from 'react';
+import { useAppSelector } from '../Reducer';
 
 export default function Slider({
   stop = false,
   always = false,
   children,
-  position = "up",
+  position = 'up',
 }: any) {
   const [open, setOpen] = React.useState(false);
   const minApp = useAppSelector((state) => state.App.minApp),

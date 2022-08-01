@@ -1,21 +1,21 @@
-import React from "react";
-import NotConnected from "./NotConnected";
-import PropTypes from "prop-types";
-import { io } from "socket.io-client";
-import server from "../utils/server";
-import getVersion from "../utils/getVersion";
-import Version from "./Version";
-import { Grid } from "@mui/material";
+import React from 'react';
+import NotConnected from './NotConnected';
+import PropTypes from 'prop-types';
+import { io } from 'socket.io-client';
+import server from '../utils/server';
+import getVersion from '../utils/getVersion';
+import Version from './Version';
+import { Grid } from '@mui/material';
 const connect = (callback: (value: boolean) => void) => {
   const socket = io(server());
-  socket.on("connect", () => {
-    socket.emit("version", getVersion());
+  socket.on('connect', () => {
+    socket.emit('version', getVersion());
     callback(true);
   });
-  socket.on("new_version", () => {
+  socket.on('new_version', () => {
     document.location.reload();
   });
-  socket.on("disconnect", () => {
+  socket.on('disconnect', () => {
     callback(false);
   });
 };

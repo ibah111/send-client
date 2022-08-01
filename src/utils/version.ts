@@ -1,2 +1,2 @@
-import config from "../config/version.json";
+import config from '../config/version.json';
 export default config;

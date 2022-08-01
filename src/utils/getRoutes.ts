@@ -1,5 +1,5 @@
-import React from "react";
-import pages from "./pages";
+import React from 'react';
+import pages from './pages';
 
 export default function getRoutes() {
   const routes: any[] = [];
@@ -10,7 +10,7 @@ export default function getRoutes() {
         path: page.path,
         childrens: [
           {
-            path: "admin",
+            path: 'admin',
             Element: React.lazy(() => import(`../${page.root}/admin`)),
           },
         ],

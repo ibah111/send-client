@@ -4,9 +4,9 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-} from "@mui/material";
-import React from "react";
-import Table from "./Table";
+} from '@mui/material';
+import React from 'react';
+import Table from './Table';
 
 export default function CreateLawExec({
   open,
@@ -22,10 +22,10 @@ export default function CreateLawExec({
         <DialogContent>
           <Box
             sx={{
-              display: "flex",
-              width: "100%",
-              flexDirection: "column",
-              m: "auto",
+              display: 'flex',
+              width: '100%',
+              flexDirection: 'column',
+              m: 'auto',
             }}
           >
             <DialogContentText>

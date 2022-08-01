@@ -1,7 +1,7 @@
-import { Grid, TextField } from "@mui/material";
-import React from "react";
-import { useTranslation } from "react-i18next";
-import { useAppSelector } from "../../../../../../../Reducer";
+import { Grid, TextField } from '@mui/material';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { useAppSelector } from '../../../../../../../Reducer';
 
 export default function Info() {
   const { t } = useTranslation();
@@ -11,15 +11,15 @@ export default function Info() {
     <>
       <Grid item>
         <TextField
-          label={t("form.search.name")}
-          value={name === null ? "" : name}
+          label={t('form.search.name')}
+          value={name === null ? '' : name}
           disabled
         />
       </Grid>
       <Grid item>
         <TextField
-          label={t("form.search.contract")}
-          value={contract === null ? "" : contract}
+          label={t('form.search.contract')}
+          value={contract === null ? '' : contract}
           disabled
         />
       </Grid>

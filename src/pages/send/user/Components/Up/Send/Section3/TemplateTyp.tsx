@@ -5,30 +5,30 @@ import {
   MenuItem,
   Select,
   SelectChangeEvent,
-} from "@mui/material";
-import React from "react";
-import { useTranslation } from "react-i18next";
-import getData from "../../../../../../../utils/getData";
+} from '@mui/material';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import getData from '../../../../../../../utils/getData';
 const types = [
-  { id: 16, name: "ст.46 п.3" },
-  { id: 17, name: "ст.46 п.4" },
+  { id: 16, name: 'ст.46 п.3' },
+  { id: 17, name: 'ст.46 п.4' },
 ];
 export default function TemplateTyp() {
   const { t } = useTranslation();
-  const data = getData("template_typ", "number");
+  const data = getData('template_typ', 'number');
   return (
     <>
       <Grid sx={{ width: 200 }} item>
         <FormControl fullWidth>
-          <InputLabel>{t("form.send.template_typ")}</InputLabel>
+          <InputLabel>{t('form.send.template_typ')}</InputLabel>
           <Select
             value={data.value}
             onChange={(event) => {
               data.setValue(event.target.value);
             }}
-            label={t("form.send.template_typ")}
+            label={t('form.send.template_typ')}
           >
-            <MenuItem value={""}>{t("system.none")}</MenuItem>
+            <MenuItem value={''}>{t('system.none')}</MenuItem>
             {types.map((type, index) => (
               <MenuItem key={index} value={type.id}>
                 {type.name}

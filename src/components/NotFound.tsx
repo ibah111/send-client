@@ -1,13 +1,13 @@
-import { Grid, Typography } from "@mui/material";
-import React from "react";
-import Slider from "./Slider";
+import { Grid, Typography } from '@mui/material';
+import React from 'react';
+import Slider from './Slider';
 
 export default function NotFound() {
   return (
     <>
       <Slider>
         <Grid
-          height={"98vh"}
+          height={'98vh'}
           container
           item
           direction="column"

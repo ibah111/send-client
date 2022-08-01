@@ -1,6 +1,6 @@
-import moment, { MomentInput } from "moment";
-import { createSlice, Draft } from "@reduxjs/toolkit";
-import getName from "../utils/getName";
+import moment, { MomentInput } from 'moment';
+import { createSlice, Draft } from '@reduxjs/toolkit';
+import getName from '../utils/getName';
 export type DataTypes = {
   fio: null | string;
   contract: null | string;
@@ -26,18 +26,18 @@ export const initState: DataTypes = {
   total_sum: null,
   load_dt: null,
   court_doc_num: null,
-  executive_typ: "",
+  executive_typ: '',
   court_date: null,
-  DELIVERY_TYP: "",
+  DELIVERY_TYP: '',
   entry_force_dt: null,
   receipt_recover_dt: null,
-  template_typ: "",
+  template_typ: '',
   fssp_date: null,
-  r_court_id: "",
+  r_court_id: '',
   dsc: null,
 };
 export const send = createSlice({
-  name: "send",
+  name: 'send',
   initialState: { id: null, ...initState },
   reducers: {
     setSend: (state, action) => {
@@ -59,7 +59,7 @@ export const send = createSlice({
     },
     setData<K extends DataNames>(
       state: Draft<DataTypes>,
-      action: { payload: [K, DataTypes[K]] }
+      action: { payload: [K, DataTypes[K]] },
     ) {
       state[action.payload[0]] = action.payload[1];
     },

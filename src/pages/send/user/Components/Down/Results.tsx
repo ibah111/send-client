@@ -1,11 +1,11 @@
-import { Grid } from "@mui/material";
-import { DataGridPremium, useGridApiRef } from "@mui/x-data-grid-premium";
-import React from "react";
-import { useAppDispatch, useAppSelector } from "../../../../../Reducer";
-import { setPageState } from "../../../../../Reducer/StateResults";
-import PopoverHook from "../PopoverHook";
-import Dialogs from "./Dialogs";
-import getColumns from "./getColumns";
+import { Grid } from '@mui/material';
+import { DataGridPremium, useGridApiRef } from '@mui/x-data-grid-premium';
+import React from 'react';
+import { useAppDispatch, useAppSelector } from '../../../../../Reducer';
+import { setPageState } from '../../../../../Reducer/StateResults';
+import PopoverHook from '../PopoverHook';
+import Dialogs from './Dialogs';
+import getColumns from './getColumns';
 
 export default function Results() {
   const [columns] = React.useState(getColumns());
@@ -16,14 +16,14 @@ export default function Results() {
   const rows = useAppSelector((state) => state.Results);
   const stateGrid = useAppSelector((state) => state.StateResults.create);
   const { handlePopoverOpen, handlePopoverClose, ElementPopover } = PopoverHook(
-    rows.data
+    rows.data,
   );
   React.useEffect(() => {
     apiRef.current.restoreState(stateGrid);
   }, []);
   return (
     <>
-      <Grid sx={{ width: "100%", height: 400 }} item>
+      <Grid sx={{ width: '100%', height: 400 }} item>
         <DataGridPremium
           columns={columns}
           rows={rows.data}

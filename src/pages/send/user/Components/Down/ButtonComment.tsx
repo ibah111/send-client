@@ -8,10 +8,10 @@ import {
   DialogTitle,
   FormControlLabel,
   TextField,
-} from "@mui/material";
-import React from "react";
-import { useTranslation } from "react-i18next";
-import addComment from "../../../../../api/addComment";
+} from '@mui/material';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import addComment from '../../../../../api/addComment';
 
 export default function ButtonComment({
   id,
@@ -21,7 +21,7 @@ export default function ButtonComment({
   onClick: () => void;
 }) {
   const { t } = useTranslation();
-  const [comment, setComment] = React.useState("");
+  const [comment, setComment] = React.useState('');
   const [open, setOpen] = React.useState(false);
   const [checkedLawAct, setCheckedLawAct] = React.useState(true);
   const [checkedLawExec, setCheckedLawExec] = React.useState(true);
@@ -44,16 +44,16 @@ export default function ButtonComment({
           handleOpen();
         }}
       >
-        {t("form.yes_or_no.comment")}
+        {t('form.yes_or_no.comment')}
       </Button>
       <Dialog open={open} fullWidth onClose={handleClose}>
-        <DialogTitle>{t("form.set_comment.title")}</DialogTitle>
+        <DialogTitle>{t('form.set_comment.title')}</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            {t("form.set_comment.instruction")}
+            {t('form.set_comment.instruction')}
           </DialogContentText>
           <FormControlLabel
-            label={t("form.set_comment.checkbox_law_act")}
+            label={t('form.set_comment.checkbox_law_act')}
             control={
               <Checkbox
                 checked={checkedLawAct}
@@ -62,7 +62,7 @@ export default function ButtonComment({
             }
           />
           <FormControlLabel
-            label={t("form.set_comment.checkbox_law_exec")}
+            label={t('form.set_comment.checkbox_law_exec')}
             control={
               <Checkbox
                 checked={checkedLawExec}
@@ -71,7 +71,7 @@ export default function ButtonComment({
             }
           />
           <TextField
-            label={t("form.set_comment.text")}
+            label={t('form.set_comment.text')}
             value={comment}
             fullWidth
             multiline
@@ -80,8 +80,8 @@ export default function ButtonComment({
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>{t("form.set_comment.cancel")}</Button>
-          <Button onClick={handleSubmit}>{t("form.set_comment.submit")}</Button>
+          <Button onClick={handleClose}>{t('form.set_comment.cancel')}</Button>
+          <Button onClick={handleSubmit}>{t('form.set_comment.submit')}</Button>
         </DialogActions>
       </Dialog>
     </>

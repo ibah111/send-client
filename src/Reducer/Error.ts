@@ -1,4 +1,4 @@
-import { createSlice, Draft } from "@reduxjs/toolkit";
+import { createSlice, Draft } from '@reduxjs/toolkit';
 export type ErrorTypes = {
   fio: null | string;
   contract: null | string;
@@ -35,12 +35,12 @@ export const initState: ErrorTypes = {
   dsc: null,
 };
 export const error = createSlice({
-  name: "error",
+  name: 'error',
   initialState: initState,
   reducers: {
     setError<K extends ErrorNames>(
       state: Draft<ErrorTypes>,
-      action: { payload: [K, ErrorTypes[K]] }
+      action: { payload: [K, ErrorTypes[K]] },
     ) {
       state[action.payload[0]] = action.payload[1];
     },

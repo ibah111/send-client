@@ -1,7 +1,7 @@
-import { LoadingButton } from "@mui/lab";
-import { Grid } from "@mui/material";
-import React from "react";
-import { useTranslation } from "react-i18next";
+import { LoadingButton } from '@mui/lab';
+import { Grid } from '@mui/material';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 export default function Find({
   onClick,
@@ -15,7 +15,7 @@ export default function Find({
     <>
       <Grid item>
         <LoadingButton loading={loading} onClick={onClick}>
-          {t("form.search.find")}
+          {t('form.search.find')}
         </LoadingButton>
       </Grid>
     </>

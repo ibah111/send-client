@@ -4,10 +4,10 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-} from "@mui/material";
-import React from "react";
-import { useTranslation } from "react-i18next";
-import Table from "./Table";
+} from '@mui/material';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import Table from './Table';
 
 export default function Debt({
   row,
@@ -24,17 +24,17 @@ export default function Debt({
   return (
     <>
       <Dialog fullWidth maxWidth={false} open={open} onClose={handleClose}>
-        <DialogTitle>{t("form.debt.title")}</DialogTitle>
+        <DialogTitle>{t('form.debt.title')}</DialogTitle>
         <DialogContent>
           <Box
             sx={{
-              display: "flex",
-              width: "100%",
-              flexDirection: "column",
-              m: "auto",
+              display: 'flex',
+              width: '100%',
+              flexDirection: 'column',
+              m: 'auto',
             }}
           >
-            <DialogContentText>{t("form.debt.description")}</DialogContentText>
+            <DialogContentText>{t('form.debt.description')}</DialogContentText>
             <Table row={row} handleClose={handleNext} />
           </Box>
         </DialogContent>
