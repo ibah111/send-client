@@ -1,7 +1,7 @@
 import moment, { MomentInput } from 'moment';
 import { createSlice, Draft } from '@reduxjs/toolkit';
 import getName from '../utils/getName';
-export type DataTypes = {
+export interface DataTypes {
   fio: null | string;
   contract: null | string;
   total_sum: null | number;
@@ -16,7 +16,7 @@ export type DataTypes = {
   fssp_date: null | MomentInput;
   r_court_id: string | number;
   dsc: null | string;
-};
+}
 type ValueOf<T> = T[keyof T];
 export type TypesData = ValueOf<DataTypes>;
 export type DataNames = keyof DataTypes;

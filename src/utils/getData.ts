@@ -17,11 +17,10 @@ export default function getError<K extends DataNames>(
   const dispatch = useAppDispatch();
   const ErrorValue = useAppSelector((state) => state.Error[name]);
   const SendValue = useAppSelector((state) => state.Send[name]);
-  let value = SendValue;
+  let value: DataTypes[K] = SendValue;
   switch (type) {
     case 'string':
-      //@ts-ignore
-      value = SendValue === null ? '' : SendValue;
+      value = (SendValue === null ? '' : SendValue) as DataTypes[K];
       break;
   }
   const setValue = (newValue: DataTypes[K]) => {

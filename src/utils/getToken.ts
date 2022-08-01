@@ -1,7 +1,7 @@
 export const getToken = () => {
   const result = {
-    //@ts-ignore
-    token: document?.querySelector('meta[name="token"]')?.content,
+    token: (document?.querySelector('meta[name="token"]') as HTMLMetaElement)
+      .content,
   };
   return result;
 };
