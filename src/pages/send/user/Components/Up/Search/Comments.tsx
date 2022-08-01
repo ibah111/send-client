@@ -15,6 +15,7 @@ import { useAppSelector } from '../../../../../../Reducer';
 export default function Comments() {
   const { t } = useTranslation();
   const [open, setOpen] = React.useState(false);
+  const id = useAppSelector((state) => state.Send.id);
   const LawActComment = useAppSelector((state) => state.Comment.LawAct);
   const LawExecComment = useAppSelector((state) => state.Comment.LawExec);
   const handleClose = () => {
@@ -26,7 +27,9 @@ export default function Comments() {
   return (
     <>
       <Grid item>
-        <Button onClick={handleOpen}>{t('form.search.comments')}</Button>
+        <Button disabled={Boolean(!id)} onClick={handleOpen}>
+          {t('form.search.comments')}
+        </Button>
       </Grid>
       <Dialog open={open} fullWidth maxWidth={'xl'} onClose={handleClose}>
         <DialogTitle sx={{ textAlign: 'center' }}>

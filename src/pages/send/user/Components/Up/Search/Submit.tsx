@@ -66,7 +66,11 @@ export default function Submit() {
   return (
     <>
       <Grid item>
-        <LoadingButton loading={loading} onClick={Click}>
+        <LoadingButton
+          disabled={Boolean(!Send.id)}
+          loading={loading}
+          onClick={Click}
+        >
           {t('form.search.submit')}
         </LoadingButton>
       </Grid>
