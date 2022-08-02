@@ -8,10 +8,11 @@ import {
 } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useAppSelector } from '../../../../../../../Reducer';
 import DocumentsTable from './DocumentsTable';
-export default function Documents() {
-  const id = useAppSelector((state) => state.Send.id);
+interface DocumentsProps {
+  id: number;
+}
+export default function Documents({ id }: DocumentsProps) {
   const [open, setOpen] = React.useState(false);
   const { t } = useTranslation();
   const handleClose = () => {
@@ -32,7 +33,7 @@ export default function Documents() {
           {t('form.documents.title')}
         </DialogTitle>
         <DialogContent>
-          <DocumentsTable />
+          <DocumentsTable id={id} />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>{t('form.documents.close')}</Button>

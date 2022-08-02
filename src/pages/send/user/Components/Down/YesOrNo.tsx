@@ -17,6 +17,8 @@ import {
   setLawExecComment,
 } from '../../../../../Reducer/Comment';
 import { setId } from '../../../../../Reducer/Send';
+import DebtCalc from '../Up/Search/DebtCalc';
+import Documents from '../Up/Search/Documents';
 import ButtonComment from './ButtonComment';
 
 export default function YesOrNo({
@@ -77,7 +79,7 @@ export default function YesOrNo({
   };
   return (
     <>
-      <Dialog open={open} onClose={onClose}>
+      <Dialog open={open} maxWidth="md" onClose={onClose}>
         <DialogTitle>{t('form.yes_or_no.title')}</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -90,6 +92,8 @@ export default function YesOrNo({
           </DialogContentText>
         </DialogContent>
         <DialogActions>
+          <DebtCalc id={Number(row.id)} />
+          <Documents id={Number(row.id)} />
           {new_row && (
             <Button onClick={Create}>{t('form.yes_or_no.create')}</Button>
           )}

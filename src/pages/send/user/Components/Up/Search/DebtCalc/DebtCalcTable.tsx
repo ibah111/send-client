@@ -36,14 +36,17 @@ const getColumns = () => {
   ];
   return columns;
 };
-export default function DebtCalcTable() {
+interface DebtCalcTableProps {
+  id: number;
+}
+export default function DebtCalcTable({ id }: DebtCalcTableProps) {
   const [columns] = React.useState(getColumns());
   const stateGrid = useAppSelector((state) => state.StateResults.debt_calc);
   const apiRef = useGridApiRef();
   const dispatch = useAppDispatch();
   const [rows, setRows] = React.useState<DebtCalc[]>([]);
   React.useEffect(() => {
-    getDebtCalc().then(setRows);
+    getDebtCalc(id).then(setRows);
     apiRef.current.restoreState(stateGrid);
   }, []);
   return (

@@ -8,6 +8,8 @@ import {
 } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import DebtCalc from '../Up/Search/DebtCalc';
+import Documents from '../Up/Search/Documents';
 import Debt from './Debt';
 
 export default function Canceled({
@@ -30,7 +32,7 @@ export default function Canceled({
   }, [open]);
   return (
     <>
-      <Dialog open={open} onClose={onClose}>
+      <Dialog open={open} maxWidth="md" fullWidth onClose={onClose}>
         <DialogTitle>{t('form.canceled.title')}</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -38,6 +40,8 @@ export default function Canceled({
           </DialogContentText>
         </DialogContent>
         <DialogActions>
+          <DebtCalc id={Number(row.id)} />
+          <Documents id={Number(row.id)} />
           <Button onClick={() => setOpenDebt(true)}>
             {t('form.canceled.debt')}
           </Button>

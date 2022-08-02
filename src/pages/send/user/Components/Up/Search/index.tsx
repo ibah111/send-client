@@ -59,8 +59,8 @@ export default function Search() {
         <CreateExec />
         <Submit />
         <Comments />
-        <DebtCalc />
-        <Documents />
+        <DebtCalc id={Number(id)} />
+        <Documents id={Number(id)} />
       </Grid>
     </>
   );

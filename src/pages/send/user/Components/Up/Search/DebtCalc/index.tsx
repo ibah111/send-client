@@ -10,8 +10,10 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppSelector } from '../../../../../../../Reducer';
 import DebtCalcTable from './DebtCalcTable';
-export default function DebtCalc() {
-  const id = useAppSelector((state) => state.Send.id);
+interface DebtCalcProps {
+  id: number;
+}
+export default function DebtCalc({ id }: DebtCalcProps) {
   const [open, setOpen] = React.useState(false);
   const { t } = useTranslation();
   const handleClose = () => {
@@ -32,7 +34,7 @@ export default function DebtCalc() {
           {t('form.debt_calc.title')}
         </DialogTitle>
         <DialogContent>
-          <DebtCalcTable />
+          <DebtCalcTable id={id} />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>{t('form.debt_calc.close')}</Button>

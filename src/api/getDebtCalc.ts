@@ -3,9 +3,8 @@ import axios from 'axios';
 import store from '../Reducer';
 import server from '../utils/server';
 
-export default async function getDebtCalc() {
+export default async function getDebtCalc(id: number) {
   const token = store.getState().User.token;
-  const id = store.getState().Send.id;
   const response = await axios.post<DebtCalc[]>(server() + '/debt_calc', {
     token,
     id,

@@ -37,7 +37,10 @@ const getColumns = () => {
   ];
   return columns;
 };
-export default function DocumentsTable() {
+interface DocumentsTableProps {
+  id: number;
+}
+export default function DocumentsTable({ id }: DocumentsTableProps) {
   const [columns] = React.useState(getColumns());
   const [open, setOpen] = React.useState(false);
   const [file, setFile] = React.useState<Blob | null>(null);
@@ -46,7 +49,7 @@ export default function DocumentsTable() {
   const dispatch = useAppDispatch();
   const [rows, setRows] = React.useState<DocAttach[]>([]);
   React.useEffect(() => {
-    getDocuments().then((res) => {
+    getDocuments(id, 'law_exec').then((res) => {
       setRows(res);
     });
     apiRef.current.restoreState(stateGrid);
@@ -69,7 +72,7 @@ export default function DocumentsTable() {
           }}
           columns={columns}
           onCellDoubleClick={(params: GridCellParams<any, DocAttach>) => {
-            getDocuments(Number(params.id)).then((res) => {
+            getDocuments(Number(params.id), 'doc').then((res) => {
               setFile(
                 new Blob([res], { type: String(lookup(params.row.name)) }),
               );
