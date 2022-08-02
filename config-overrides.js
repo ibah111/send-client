@@ -1,40 +1,43 @@
-const path = require("path");
-const fs = require("fs").promises;
-const s = require("semver");
-const gitSemverTags = require("git-semver-tags");
+const path = require('path');
+const fs = require('fs').promises;
+const s = require('semver');
+const gitSemverTags = require('git-semver-tags');
 const gitGet = () =>
   new Promise((resolve) => {
-    gitSemverTags({ tagPrefix: "v" }, (err, result) => {
+    gitSemverTags({ tagPrefix: 'v' }, (err, result) => {
       const tags = result.map((value) => s.clean(value));
       resolve(tags[0]);
     });
   });
 const prepare = async () => {
   const tag = await gitGet();
-  await fs.writeFile("./src/utils/.version.js", `module.exports = "${tag}";`);
+  await fs.writeFile('./src/utils/.version.js', `module.exports = "${tag}";`);
 };
 prepare();
 module.exports = {
   webpack: function (config, env) {
-    if (env === "production") {
+    if (env === 'production') {
       config.plugins.find((value) => value.userOptions).userOptions.filename =
-        "index.php";
+        'index.php';
       config.module.rules
         .find((value) => value.oneOf)
-        .oneOf.find((value) => value.type === "asset/resource")
+        .oneOf.find((value) => value.type === 'asset/resource')
         .exclude.push(/\.php$/);
     }
+    const fallback = config.resolve.fallback || {};
+    Object.assign(fallback, { path: require.resolve('path-browserify') });
+    config.resolve.fallback = fallback;
     return config;
   },
   paths: (paths, env) => {
     switch (env) {
-      case "production":
-        paths.appPublic = path.resolve(__dirname, "public/prod");
-        paths.appHtml = path.resolve(__dirname, "public/prod/index.php");
+      case 'production':
+        paths.appPublic = path.resolve(__dirname, 'public/prod');
+        paths.appHtml = path.resolve(__dirname, 'public/prod/index.php');
         break;
-      case "development":
-        paths.appPublic = path.resolve(__dirname, "public/dev");
-        paths.appHtml = path.resolve(__dirname, "public/dev/index.html");
+      case 'development':
+        paths.appPublic = path.resolve(__dirname, 'public/dev');
+        paths.appHtml = path.resolve(__dirname, 'public/dev/index.html');
         break;
     }
     return paths;

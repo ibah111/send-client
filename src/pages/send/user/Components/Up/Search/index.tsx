@@ -16,6 +16,7 @@ import {
 } from '../../../../../../Reducer/Results';
 import Comments from './Comments';
 import DebtCalc from './DebtCalc';
+import Documents from './Documents';
 
 export default function Search() {
   const dispatch = useAppDispatch();
@@ -59,6 +60,7 @@ export default function Search() {
         <Submit />
         <Comments />
         <DebtCalc />
+        <Documents />
       </Grid>
     </>
   );

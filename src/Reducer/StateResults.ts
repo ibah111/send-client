@@ -5,11 +5,13 @@ const initialState: {
   create: GridInitialStatePremium;
   debt: GridInitialStatePremium;
   debt_calc: GridInitialStatePremium;
+  documents: GridInitialStatePremium;
 } = {
   page: {},
   create: {},
   debt: {},
   debt_calc: {},
+  documents: {},
 };
 export const StateResults = createSlice({
   name: 'StateResults',
@@ -30,8 +32,19 @@ export const StateResults = createSlice({
     ) => {
       state.debt_calc = action.payload;
     },
+    setDocumentsState: (
+      state,
+      action: PayloadAction<GridInitialStatePremium>,
+    ) => {
+      state.documents = action.payload;
+    },
   },
 });
-export const { setPageState, setCreateState, setDebtState, setDebtCalcState } =
-  StateResults.actions;
+export const {
+  setPageState,
+  setCreateState,
+  setDebtState,
+  setDebtCalcState,
+  setDocumentsState,
+} = StateResults.actions;
 export default StateResults.reducer;
