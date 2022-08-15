@@ -8,7 +8,6 @@ import {
 } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useAppSelector } from '../../../../../../../Reducer';
 import DebtCalcTable from './DebtCalcTable';
 interface DebtCalcProps {
   id: number;

@@ -23,6 +23,9 @@ const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(
       thousandSeparator=" "
       decimalSeparator=","
       decimalScale={2}
+      isAllowed={({ floatValue }) =>
+        floatValue && 0 <= floatValue && floatValue <= 10000000
+      }
       isNumericString
       suffix="р"
     />
