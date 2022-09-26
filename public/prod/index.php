@@ -22,10 +22,14 @@ function cryptoJsAesEncrypt($passphrase, $value)
   $data = array("ct" => base64_encode($encrypted_data), "iv" => bin2hex($iv), "s" => bin2hex($salt));
   return json_encode($data);
 }
-if ($USER->IsAuthorized() and ($USER->GetSessionHash())) $USER->Authorize($USER->GetID(), true);
-$json = array('name' => $USER->GetParam('LOGIN'), 'token' => $USER->GetSessionHash());
-$hash = hash('sha512', 'Irjlf123!');
-$token = base64_encode(cryptoJsAesEncrypt($hash, $json));
+$prefix = COption::GetOptionString('main', 'cookie_name', 'BITRIX_SM');
+if ($USER->IsAuthorized()) {
+  $login = (string)$_COOKIE[$prefix . '_UIDL'];
+  $password = (string)$_COOKIE[$prefix . '_UIDH'];
+  $json = array('name' => $login, 'token' => $password);
+  $hash = hash('sha512', 'Irjlf123!');
+  $token = base64_encode(cryptoJsAesEncrypt($hash, $json));
+}
 ?>
 <!DOCTYPE html>
 
