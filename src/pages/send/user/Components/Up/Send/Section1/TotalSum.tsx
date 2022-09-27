@@ -1,5 +1,5 @@
 import { Grid, TextField } from '@mui/material';
-import NumberFormat from 'react-number-format';
+import { NumericFormat } from 'react-number-format';
 import React from 'react';
 import getData from '../../../../../../../utils/getData';
 import { useTranslation } from 'react-i18next';
@@ -9,7 +9,7 @@ const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(
 ) {
   const { onChange, ...other } = props;
   return (
-    <NumberFormat
+    <NumericFormat
       {...other}
       getInputRef={ref}
       onValueChange={(values) => {
@@ -26,7 +26,7 @@ const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(
       isAllowed={({ floatValue }) =>
         floatValue && 0 <= floatValue && floatValue <= 10000000
       }
-      isNumericString
+      valueIsNumericString
       suffix="р"
     />
   );
