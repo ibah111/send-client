@@ -39,7 +39,9 @@ export default function RCourtId() {
           options={types}
           value={type}
           getOptionLabel={(option) =>
-            option !== '' ? `(${option.id}) ${option.name}` : t('system.none')
+            option !== ''
+              ? `(${option.id}) ${option.name} (${option.district})`
+              : t('system.none')
           }
           inputValue={name}
           onChange={(event, value) => {
