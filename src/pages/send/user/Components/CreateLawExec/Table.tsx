@@ -9,13 +9,16 @@ import { setLawActComment } from '../../../../../Reducer/Comment';
 import { setId } from '../../../../../Reducer/Send';
 import { setCreateState } from '../../../../../Reducer/StateResults';
 import PopoverHook from '../PopoverHook';
+import Canceled from './Canceled';
 import getColumns from './getColumns';
 
 export default function Table({ handleClose }: { handleClose: () => void }) {
   const [columns] = React.useState(getColumns());
   const dispatch = useAppDispatch();
   const [rows, setRows] = React.useState([]);
+  const [row, setRow] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
+  const [openCanceled, setOpenCanceled] = React.useState(false);
   const search = useAppSelector((state) => state.Search);
   const apiRef = useGridApiRef();
   const stateGrid = useAppSelector((state) => state.StateResults.create);
@@ -52,20 +55,36 @@ export default function Table({ handleClose }: { handleClose: () => void }) {
           disableSelectionOnClick
           disableColumnSelector
           onCellDoubleClick={(params) => {
-            createExec(params.row.id).then((res) => {
-              if (res) {
-                getComment({ type: 'law_act', id: params.row.id }).then(
-                  (res) => {
-                    dispatch(setLawActComment(res.dsc));
-                  },
-                );
-                dispatch(setId(res));
-                handleClose();
+            if (params.row['Debt.status'])
+              if (params.row['Debt.status'] !== 7) {
+                createExec(params.row.id).then((res) => {
+                  if (res) {
+                    getComment({ type: 'law_act', id: params.row.id }).then(
+                      (res) => {
+                        dispatch(setLawActComment(res.dsc));
+                      },
+                    );
+                    dispatch(setId(res));
+                    handleClose();
+                  }
+                });
+              } else {
+                setRow(params.row);
+                setOpenCanceled(true);
               }
-            });
           }}
         />
         <ElementPopover />
+        {openCanceled && (
+          <Canceled
+            onClose={() => setOpenCanceled(false)}
+            open={openCanceled}
+            row={row}
+            next={() => {
+              handleClose();
+            }}
+          />
+        )}
       </Grid>
     </>
   );
