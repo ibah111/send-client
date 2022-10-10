@@ -13,6 +13,7 @@ import deleteExec from '../../../../../api/deleteExec';
 import getComment from '../../../../../api/getComment';
 import { useAppDispatch } from '../../../../../Reducer';
 import {
+  ResetComment,
   setLawActComment,
   setLawExecComment,
 } from '../../../../../Reducer/Comment';
@@ -41,6 +42,7 @@ export default function YesOrNo({
       entry_force_dt: row.entry_force_dt,
     }).then((res) => {
       if (res) {
+        dispatch(ResetComment());
         dispatch(setId(res));
         getComment({ type: 'law_exec', id: row.id }).then((res) => {
           dispatch(setLawActComment(res.LawAct.dsc));
@@ -58,6 +60,7 @@ export default function YesOrNo({
       entry_force_dt: row.entry_force_dt,
     }).then((res) => {
       if (res) {
+        dispatch(ResetComment());
         getComment({ type: 'law_exec', id: row.id }).then((res) => {
           dispatch(setLawActComment(res.LawAct.dsc));
           dispatch(setLawExecComment(res.dsc));
@@ -69,6 +72,7 @@ export default function YesOrNo({
     });
   };
   const Update = () => {
+    dispatch(ResetComment());
     getComment({ type: 'law_exec', id: row.id }).then((res) => {
       dispatch(setLawActComment(res.LawAct.dsc));
       dispatch(setLawExecComment(res.dsc));

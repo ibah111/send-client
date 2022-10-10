@@ -5,7 +5,7 @@ import createExec from '../../../../../api/createExec';
 import getComment from '../../../../../api/getComment';
 import getLawAct from '../../../../../api/getLawAct';
 import { useAppDispatch, useAppSelector } from '../../../../../Reducer';
-import { setLawActComment } from '../../../../../Reducer/Comment';
+import { ResetComment, setLawActComment } from '../../../../../Reducer/Comment';
 import { setId } from '../../../../../Reducer/Send';
 import { setCreateState } from '../../../../../Reducer/StateResults';
 import PopoverHook from '../PopoverHook';
@@ -59,6 +59,7 @@ export default function Table({ handleClose }: { handleClose: () => void }) {
               if (params.row['Debt.status'] !== 7) {
                 createExec(params.row.id).then((res) => {
                   if (res) {
+                    dispatch(ResetComment());
                     getComment({ type: 'law_act', id: params.row.id }).then(
                       (res) => {
                         dispatch(setLawActComment(res.dsc));
