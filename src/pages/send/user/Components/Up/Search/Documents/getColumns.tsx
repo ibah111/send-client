@@ -1,10 +1,14 @@
 import { DocAttach, User } from '@contact/models';
-import { GridColumns, GridValueGetterParams } from '@mui/x-data-grid-premium';
+import {
+  GridColumns,
+  GridRowParams,
+  GridValueGetterParams,
+} from '@mui/x-data-grid-premium';
 import { t } from 'i18next';
 import { generateName } from '../../../../../../../utils/generateName';
 import Actions from './Actions';
 
-export default function getColumns() {
+export default function getColumns(refresh: () => void) {
   const columns: GridColumns<DocAttach> = [
     { field: 'id', headerName: 'ID' },
     {
@@ -25,8 +29,11 @@ export default function getColumns() {
     },
     {
       field: 'actions',
+      type: 'actions',
       headerName: t('form.documents.table.actions.name'),
-      getActions: (params) => [<Actions key={1} id={params.row.id} />],
+      getActions: (params) => [
+        <Actions key={1} id={params.row.id} refresh={refresh} />,
+      ],
     },
   ];
   return columns;
