@@ -12,20 +12,20 @@ export default async function getDocuments<T extends types>(
       case 'doc':
         return (
           await requests.post<results<T>>(
-            '/documents',
+            '/documents/get',
             { id },
             { responseType: 'blob' },
           )
         ).data;
       case 'law_exec':
         return (
-          await requests.post<results<T>>('/documents', {
+          await requests.post<results<T>>('/documents/get', {
             law_exec_id: id,
           })
         ).data;
       default:
         return (
-          await requests.post<results<T>>('/documents', {
+          await requests.post<results<T>>('/documents/get', {
             law_exec_id: id,
           })
         ).data;
