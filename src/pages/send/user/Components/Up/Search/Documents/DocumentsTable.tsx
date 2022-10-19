@@ -14,10 +14,13 @@ interface DocumentsTableProps {
   id: number;
 }
 export default function DocumentsTable({ id }: DocumentsTableProps) {
-  const refresh = () =>
-    getDocuments(id, 'law_exec').then((res) => {
-      setRows(res);
-    });
+  const refresh = React.useCallback(
+    () =>
+      getDocuments(id, 'law_exec').then((res) => {
+        setRows(res);
+      }),
+    [id],
+  );
   const [columns] = React.useState(getColumns(refresh));
   const onDrop = React.useCallback((acceptedFiles: File[]) => {
     console.log(acceptedFiles);

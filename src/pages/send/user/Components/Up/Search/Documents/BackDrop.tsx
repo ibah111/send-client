@@ -6,7 +6,7 @@ interface BackDropProps {
 export default function BackDrop({ active }: BackDropProps) {
   return (
     <>
-      <Collapse sx={{ height: '30%', width: '100%' }} in={active}>
+      <Collapse mountOnEnter key={1} unmountOnExit in={active}>
         <Paper
           sx={{
             boxSizing: 'border-box',
