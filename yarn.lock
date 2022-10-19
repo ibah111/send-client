@@ -1699,9 +1699,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@contact/models@npm:^0.0.36":
-  version: 0.0.36
-  resolution: "@contact/models@npm:0.0.36::__archiveUrl=https%3A%2F%2Fgit.usb.ru%2Fapi%2Fv4%2Fprojects%2F69%2Fpackages%2Fnpm%2F%40contact%2Fmodels%2F-%2F%40contact%2Fmodels-0.0.36.tgz"
+"@contact/models@npm:^0.0.37":
+  version: 0.0.37
+  resolution: "@contact/models@npm:0.0.37::__archiveUrl=https%3A%2F%2Fgit.usb.ru%2Fapi%2Fv4%2Fprojects%2F69%2Fpackages%2Fnpm%2F%40contact%2Fmodels%2F-%2F%40contact%2Fmodels-0.0.37.tgz"
   dependencies:
     reflect-metadata: ^0.1.13
     tedious: ^15.1.0
@@ -1709,7 +1709,7 @@ __metadata:
   peerDependencies:
     "@contact/sequelize": ^6.21.3
     "@contact/sequelize-typescript": ^2.1.4
-  checksum: 1e356f49fb6b62f2418b5c9b942842fa8c0d88028d0f48e2d2ccbbe3f46086af1e3a9b726a494bbf766ad33f76ab9c3a9a6b01103622cc4572e423cf3a069d24
+  checksum: c06024e10c12dc5f530b3bcbce9bbb80ea2c9f8d72c7fab201d9e5db94a48885aa6fa9778972dc114c0794bd4dff680b120a8e593917ad3853437d92f2ec3a49
   languageName: node
   linkType: hard
 
@@ -5353,7 +5353,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "client@workspace:."
   dependencies:
-    "@contact/models": ^0.0.36
+    "@contact/models": ^0.0.37
     "@emotion/react": ^11.10.4
     "@emotion/styled": ^11.10.4
     "@fontsource/roboto": ^4.5.8
