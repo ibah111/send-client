@@ -21,12 +21,11 @@ export class LawActPlain {
   'Debt.StatusDict.name': string;
 }
 export default async function search(): Promise<LawActPlain[]> {
-  const token = store.getState().User.token;
   const request = store.getState().Search;
   const response = await axios({
     method: 'POST',
     url: server() + '/search_la',
-    data: { token, ...request },
+    data: request,
   });
   return response.data;
 }

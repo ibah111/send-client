@@ -1,12 +1,34 @@
-import { createSlice } from '@reduxjs/toolkit';
-export const token = createSlice({
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { plainToInstance } from 'class-transformer';
+import { AuthUser, AuthUserSuccess } from '../Schemas/Auth';
+
+const initialState: AuthUser<boolean> = {
+  output: 'Вы не вошли',
+  id: 0,
+  local_id: 0,
+  login: '',
+  login_result: false,
+  birthdate: '',
+  department: '',
+  position: '',
+  firstname: '',
+  secondname: '',
+  thirdname: '',
+  roles: [],
+  error: '',
+  avatar: '',
+};
+export const UserSlice = createSlice({
   name: 'User',
-  initialState: { token: 0 },
+  initialState,
   reducers: {
-    setToken: (state, action) => {
-      state.token = action.payload;
+    setUser: (state, value: PayloadAction<AuthUserSuccess>) => {
+      return plainToInstance(AuthUser<true>, value.payload);
+    },
+    resetUser() {
+      return initialState;
     },
   },
 });
-export const { setToken } = token.actions;
-export default token.reducer;
+export const { setUser, resetUser } = UserSlice.actions;
+export default UserSlice.reducer;

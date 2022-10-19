@@ -31,12 +31,11 @@ export class LawExecPlain {
   'Person.Addresses': PersonAddress[];
 }
 export default async function search(): Promise<LawExecPlain[]> {
-  const token = store.getState().User.token;
   const request = store.getState().Search;
   const response = await axios({
     method: 'POST',
     url: server() + '/search',
-    data: { token, ...request },
+    data: request,
   });
   return response.data;
 }
