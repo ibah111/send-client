@@ -1,8 +1,7 @@
 import store from '../Reducer';
-import axios from 'axios';
-import server from '../utils/server';
 import { PersonAddress } from './search';
 import processError from '../utils/processError';
+import requests from '../utils/requests';
 export class LawActPlain {
   'id': number;
   'typ': number;
@@ -21,14 +20,10 @@ export class LawActPlain {
   'Debt.status': number;
   'Debt.StatusDict.name': string;
 }
-export default async function search(): Promise<LawActPlain[]> {
+export default async function search() {
   try {
     const request = store.getState().Search;
-    const response = await axios({
-      method: 'POST',
-      url: server() + '/search_la',
-      data: request,
-    });
+    const response = await requests.post<LawActPlain[]>('/search_la', request);
     return response.data;
   } catch (e) {
     processError(e);

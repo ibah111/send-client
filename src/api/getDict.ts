@@ -1,10 +1,9 @@
-import axios from 'axios';
-import server from '../utils/server';
 import { Dict } from '@contact/models';
 import processError from '../utils/processError';
+import requests from '../utils/requests';
 export default async function getDict(value: number) {
   try {
-    const response = await axios.post<Dict[]>(server() + '/dict', {
+    const response = await requests.post<Dict[]>('/dict', {
       id: value,
     });
     return response.data;

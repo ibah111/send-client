@@ -1,17 +1,16 @@
 import store from '../Reducer';
-import axios from 'axios';
-import server from '../utils/server';
 import processError from '../utils/processError';
+import requests from '../utils/requests';
+type FileUpdate =
+  | false
+  | {
+      file: { data: number[] };
+      name: string;
+    };
 export default async function updateExec() {
   try {
     const data = store.getState().Send;
-    const response = await axios.post<
-      | false
-      | {
-          file: { data: number[] };
-          name: string;
-        }
-    >(server() + '/update_exec', data);
+    const response = await requests.post<FileUpdate>('/update_exec', data);
     return response.data;
   } catch (e) {
     processError(e);

@@ -1,7 +1,6 @@
 import { DocAttach } from '@contact/models';
-import axios from 'axios';
 import processError from '../utils/processError';
-import server from '../utils/server';
+import requests from '../utils/requests';
 type types = 'doc' | 'law_exec';
 type results<T extends types> = T extends 'doc' ? Blob : DocAttach[];
 export default async function getDocuments<T extends types>(
@@ -12,21 +11,21 @@ export default async function getDocuments<T extends types>(
     switch (type) {
       case 'doc':
         return (
-          await axios.post<results<T>>(
-            server() + '/documents',
+          await requests.post<results<T>>(
+            '/documents',
             { id },
             { responseType: 'blob' },
           )
         ).data;
       case 'law_exec':
         return (
-          await axios.post<results<T>>(server() + '/documents', {
+          await requests.post<results<T>>('/documents', {
             law_exec_id: id,
           })
         ).data;
       default:
         return (
-          await axios.post<results<T>>(server() + '/documents', {
+          await requests.post<results<T>>('/documents', {
             law_exec_id: id,
           })
         ).data;

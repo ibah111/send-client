@@ -1,6 +1,5 @@
-import axios from 'axios';
 import processError from '../utils/processError';
-import server from '../utils/server';
+import requests from '../utils/requests';
 export class CreateExecOld {
   court_doc_num: string;
   executive_typ: number;
@@ -9,13 +8,10 @@ export class CreateExecOld {
 }
 export default async function createExec(value: number, old?: CreateExecOld) {
   try {
-    const response = await axios.post<number | false>(
-      server() + '/create_exec',
-      {
-        id: value,
-        old,
-      },
-    );
+    const response = await requests.post<number | false>('/create_exec', {
+      id: value,
+      old,
+    });
     return response.data;
   } catch (e) {
     processError(e);

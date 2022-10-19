@@ -1,14 +1,10 @@
-import axios from 'axios';
 import processError from '../utils/processError';
-import server from '../utils/server';
+import requests from '../utils/requests';
 export default async function deleteExec(value: number) {
   try {
-    const response = await axios.post<false | number>(
-      server() + '/delete_exec',
-      {
-        id: value,
-      },
-    );
+    const response = await requests.post<false | number>('/delete_exec', {
+      id: value,
+    });
     return response.data;
   } catch (e) {
     processError(e);

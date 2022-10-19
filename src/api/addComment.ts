@@ -1,6 +1,5 @@
-import axios from 'axios';
 import processError from '../utils/processError';
-import server from '../utils/server';
+import requests from '../utils/requests';
 export default async function addComment(
   id: number,
   value: string,
@@ -8,7 +7,7 @@ export default async function addComment(
   law_exec: boolean,
 ) {
   try {
-    const response = await axios.post<boolean>(server() + '/add_comment', {
+    const response = await requests.post<boolean>('/add_comment', {
       id,
       value,
       law_act,
