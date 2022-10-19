@@ -2,7 +2,7 @@ import React from 'react';
 import NotLoged from './NotLoged';
 import PropTypes from 'prop-types';
 import server from '../utils/server';
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 import { setToken } from '../Reducer/User';
 import { getToken } from '../utils/getToken';
 import { useDispatch } from 'react-redux';
@@ -23,7 +23,7 @@ const connect = async (
       setToken(token);
     }
   } catch (e: unknown) {
-    if (e instanceof AxiosError) {
+    if (axios.isAxiosError(e)) {
       const data: any = e.response?.data;
       if (['not_contact', 'error_token'].includes(data?.code)) {
         setError(data?.message);
