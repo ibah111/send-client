@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Typography as T } from '@mui/material';
 const style = { textAlign: 'center' };
-export default function NotConnected() {
+export function NotConnected() {
   return (
     <>
       <Grid

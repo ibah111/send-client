@@ -8,6 +8,7 @@ import Results from './Results';
 import Error from './Error';
 import Comment from './Comment';
 import StateResults from './StateResults';
+import Message from './Message';
 const store = configureStore({
   reducer: {
     User,
@@ -18,6 +19,7 @@ const store = configureStore({
     Error,
     Comment,
     StateResults,
+    Message,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }),
