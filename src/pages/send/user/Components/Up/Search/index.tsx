@@ -25,10 +25,14 @@ export default function Search() {
   const reload = useAppSelector((state) => state.Results.reload);
   const Click = () => {
     dispatch(setLoadingResults(true));
-    search().then((res) => {
-      dispatch(setResults(res));
-      dispatch(setLoadingResults(false));
-    });
+    search()
+      .then((res) => {
+        dispatch(setResults(res));
+        dispatch(setLoadingResults(false));
+      })
+      .catch(() => {
+        setLoadingResults(false);
+      });
   };
   React.useEffect(() => {
     dispatch(reset());

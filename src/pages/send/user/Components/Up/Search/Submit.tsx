@@ -48,18 +48,20 @@ export default function Submit() {
   const Click = () => {
     if (check(Error, AddAlert)) {
       setLoading(true);
-      updateExec().then((res) => {
-        if (res) {
-          const file = new Blob([toArrayBuffer(res.file.data)], {
-            type: 'application/pdf',
-          });
-          saveAs(file, res.name);
-          dispatch(setId(0));
-          dispatch(reset());
-          dispatch(ResetComment());
-          setLoading(false);
-        }
-      });
+      updateExec()
+        .then((res) => {
+          if (res) {
+            const file = new Blob([toArrayBuffer(res.file.data)], {
+              type: 'application/pdf',
+            });
+            saveAs(file, res.name);
+            dispatch(setId(0));
+            dispatch(reset());
+            dispatch(ResetComment());
+            setLoading(false);
+          }
+        })
+        .catch(() => setLoading(false));
     }
   };
   return (
