@@ -1,6 +1,7 @@
 import { Grid } from '@mui/material';
 import { DataGridPremium, useGridApiRef } from '@mui/x-data-grid-premium';
 import React from 'react';
+import { LawExecPlain } from '../../../../../api/search';
 import { useAppDispatch, useAppSelector } from '../../../../../Reducer';
 import { setPageState } from '../../../../../Reducer/StateResults';
 import PopoverHook from '../PopoverHook';
@@ -11,7 +12,7 @@ export default function Results() {
   const [columns] = React.useState(getColumns());
   const dispatch = useAppDispatch();
   const [dialog, setDialog] = React.useState(false);
-  const [row, setRow] = React.useState<any>({});
+  const [row, setRow] = React.useState<LawExecPlain>();
   const apiRef = useGridApiRef();
   const rows = useAppSelector((state) => state.Results);
   const stateGrid = useAppSelector((state) => state.StateResults.create);
@@ -47,7 +48,9 @@ export default function Results() {
         />
       </Grid>
       <ElementPopover />
-      <Dialogs open={dialog} onClose={() => setDialog(false)} row={row} />
+      {row && (
+        <Dialogs open={dialog} onClose={() => setDialog(false)} row={row} />
+      )}
     </>
   );
 }

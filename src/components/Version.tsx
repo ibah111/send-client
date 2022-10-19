@@ -1,8 +1,10 @@
 import { Typography } from '@mui/material';
 import React from 'react';
 import getVersion from '../utils/getVersion';
-
-export default function Version({ minimize }: any) {
+interface VersionProps {
+  minimize?: boolean;
+}
+export default function Version({ minimize }: VersionProps) {
   return (
     <>
       <Typography>

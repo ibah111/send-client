@@ -13,7 +13,7 @@ export default function Demo() {
           size="small"
           InputLabelProps={{ shrink: true }}
           label="Пользователь"
-          onChange={(event: any) => {
+          onChange={(event) => {
             dispatch(setToken(event.target.value));
           }}
           value={token}

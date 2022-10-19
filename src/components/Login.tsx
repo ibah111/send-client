@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 const connect = async (
   token: string,
   callback: (value: boolean) => void,
-  setToken: (value: any) => void,
+  setToken: (value: string) => void,
   setError: (value: string | null) => void,
 ) => {
   try {
@@ -24,7 +24,7 @@ const connect = async (
     }
   } catch (e: unknown) {
     if (axios.isAxiosError(e)) {
-      const data: any = e.response?.data;
+      const data = e.response?.data;
       if (['not_contact', 'error_token'].includes(data?.code)) {
         setError(data?.message);
       } else {
@@ -33,7 +33,10 @@ const connect = async (
     }
   }
 };
-export default function Connect({ children }: any) {
+interface LoginProps {
+  children: React.ReactNode;
+}
+export default function Login({ children }: LoginProps) {
   const dispatch = useDispatch();
   const [loged, setLoged] = React.useState(false);
   const [message, setMessage] = React.useState<string | null>(null);
@@ -50,6 +53,6 @@ export default function Connect({ children }: any) {
     <>{loged ? children : <NotLoged message={message ? message : ''} />}</>
   );
 }
-Connect.propTypes = {
+Login.propTypes = {
   children: PropTypes.node,
 };

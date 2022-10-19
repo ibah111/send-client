@@ -1,21 +1,23 @@
-import { Grid, TextField } from '@mui/material';
+import { Grid, InputBaseComponentProps, TextField } from '@mui/material';
 import { NumericFormat } from 'react-number-format';
 import React from 'react';
 import getData from '../../../../../../../utils/getData';
 import { useTranslation } from 'react-i18next';
-const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(
-  props: any,
-  ref,
-) {
+interface NumberCustomProps {
+  onChange?: (args: { target: { value: string } }) => void;
+}
+const NumberFormatCustom = React.forwardRef<
+  HTMLInputElement,
+  NumberCustomProps
+>(function NumberFormatCustom(props, ref) {
   const { onChange, ...other } = props;
   return (
     <NumericFormat
       {...other}
       getInputRef={ref}
       onValueChange={(values) => {
-        onChange({
+        onChange?.({
           target: {
-            name: props.name,
             value: values.value,
           },
         });
@@ -24,13 +26,13 @@ const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(
       decimalSeparator=","
       decimalScale={2}
       isAllowed={({ floatValue }) =>
-        floatValue && 0 <= floatValue && floatValue <= 10000000
+        Boolean(floatValue && 0 <= floatValue && floatValue <= 10000000)
       }
       valueIsNumericString
       suffix="р"
     />
   );
-});
+}) as React.ElementType<InputBaseComponentProps>;
 export default function TotalSum() {
   const { t } = useTranslation();
   const data = getData('total_sum', 'number');

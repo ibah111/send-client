@@ -8,8 +8,11 @@ import Demo from './Demo';
 import version from '../utils/version';
 import { useTranslation } from 'react-i18next';
 import Version from './Version';
-
-export default function AccountMenu({ stop, always }: any) {
+interface AccountMenuProps {
+  stop: boolean;
+  always: boolean;
+}
+export default function AccountMenu({ stop, always }: AccountMenuProps) {
   const { t } = useTranslation();
   const location = useLocation();
   return (

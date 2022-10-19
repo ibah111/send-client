@@ -1,4 +1,5 @@
 import React from 'react';
+import { LawExecPlain } from '../../../../../api/search';
 import Canceled from './Canceled';
 import YesOrNo from './YesOrNo';
 
@@ -9,7 +10,7 @@ export default function Dialogs({
 }: {
   open: boolean;
   onClose: () => void;
-  row: any;
+  row: LawExecPlain;
 }) {
   const [openYesOrNo, setOpenYesOrNo] = React.useState(false);
   const [openCanceled, setOpenCanceled] = React.useState(false);

@@ -14,7 +14,7 @@ export default function EntryForceDt() {
           label={t('form.send.entry_force_dt')}
           value={data.value}
           mask="__.__.____"
-          onChange={(newValue: any) => data.setValue(newValue)}
+          onChange={(newValue) => data.setValue(newValue)}
           renderInput={(params) => (
             <TextField required fullWidth {...params} error={data.isInvalid} />
           )}

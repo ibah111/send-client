@@ -1,3 +1,4 @@
+import { LawCourt } from '@contact/models';
 import { Autocomplete, Grid, TextField } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -6,8 +7,8 @@ import getData from '../../../../../../../utils/getData';
 
 export default function RCourtId() {
   const { t } = useTranslation();
-  const [types, setTypes] = React.useState<any[]>(['']);
-  const [type, setType] = React.useState<any>('');
+  const [types, setTypes] = React.useState<('' | LawCourt)[]>(['']);
+  const [type, setType] = React.useState<'' | LawCourt>('');
   const [name, setName] = React.useState('');
   const data = getData('r_court_id', 'null');
   React.useEffect(() => {
@@ -44,21 +45,21 @@ export default function RCourtId() {
               : t('system.none')
           }
           inputValue={name}
-          onChange={(event, value) => {
+          onChange={(_, value) => {
             if (value) {
               data.setValue(value.id);
             } else {
               data.setValue('');
             }
           }}
-          isOptionEqualToValue={(option: any, value: any) =>
-            option === '' && value === '' ? true : option?.id === value?.id
+          isOptionEqualToValue={(option, value) =>
+            option !== '' && value !== '' ? option?.id === value?.id : true
           }
-          onInputChange={(event, newInputValue) => {
+          onInputChange={(_, newInputValue) => {
             setName(newInputValue);
           }}
           fullWidth
-          renderInput={(params: any) => (
+          renderInput={(params) => (
             <TextField
               {...params}
               inputProps={{

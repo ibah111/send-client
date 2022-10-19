@@ -19,7 +19,10 @@ const connect = (callback: (value: boolean) => void) => {
     callback(false);
   });
 };
-export default function Connect({ children }: any) {
+interface ConnectProps {
+  children: React.ReactNode;
+}
+export default function Connect({ children }: ConnectProps) {
   const [connected, setConnected] = React.useState(false);
   React.useEffect(() => {
     connect(setConnected);

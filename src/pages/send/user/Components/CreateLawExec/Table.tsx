@@ -3,7 +3,7 @@ import { DataGridPremium, useGridApiRef } from '@mui/x-data-grid-premium';
 import React from 'react';
 import createExec from '../../../../../api/createExec';
 import getComment from '../../../../../api/getComment';
-import getLawAct from '../../../../../api/getLawAct';
+import getLawAct, { LawActPlain } from '../../../../../api/getLawAct';
 import { useAppDispatch, useAppSelector } from '../../../../../Reducer';
 import { ResetComment, setLawActComment } from '../../../../../Reducer/Comment';
 import { setId } from '../../../../../Reducer/Send';
@@ -15,8 +15,8 @@ import getColumns from './getColumns';
 export default function Table({ handleClose }: { handleClose: () => void }) {
   const [columns] = React.useState(getColumns());
   const dispatch = useAppDispatch();
-  const [rows, setRows] = React.useState([]);
-  const [row, setRow] = React.useState(null);
+  const [rows, setRows] = React.useState<LawActPlain[]>([]);
+  const [row, setRow] = React.useState<LawActPlain>();
   const [loading, setLoading] = React.useState(false);
   const [openCanceled, setOpenCanceled] = React.useState(false);
   const search = useAppSelector((state) => state.Search);
@@ -76,7 +76,7 @@ export default function Table({ handleClose }: { handleClose: () => void }) {
           }}
         />
         <ElementPopover />
-        {openCanceled && (
+        {row && (
           <Canceled
             onClose={() => setOpenCanceled(false)}
             open={openCanceled}

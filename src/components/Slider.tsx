@@ -1,13 +1,18 @@
 import { Grid, Slide } from '@mui/material';
 import React from 'react';
 import { useAppSelector } from '../Reducer';
-
+interface SliderProps {
+  stop?: boolean;
+  always?: boolean;
+  children: React.ReactNode;
+  position?: 'up' | 'left' | 'right' | 'down';
+}
 export default function Slider({
   stop = false,
   always = false,
   children,
   position = 'up',
-}: any) {
+}: SliderProps) {
   const [open, setOpen] = React.useState(false);
   const minApp = useAppSelector((state) => state.App.minApp),
     timeout = useAppSelector((state) => state.App.timeout);

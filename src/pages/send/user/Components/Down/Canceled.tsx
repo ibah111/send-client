@@ -8,6 +8,7 @@ import {
 } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { LawExecPlain } from '../../../../../api/search';
 import DebtCalc from '../Up/Search/DebtCalc';
 import Documents from '../Up/Search/Documents';
 import Debt from './Debt';
@@ -20,7 +21,7 @@ export default function Canceled({
 }: {
   open: boolean;
   onClose: () => void;
-  row: any;
+  row: LawExecPlain;
   next: () => void;
 }) {
   const { t } = useTranslation();

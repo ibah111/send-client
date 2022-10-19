@@ -57,7 +57,7 @@ export default function Home() {
         </React.Suspense>
         <React.Suspense fallback={<>...</>}></React.Suspense>
         <Routes location={current}>
-          {routes.map((route: any, index: any) => (
+          {routes.map((route, index) => (
             <Route
               key={index}
               path={route.path}
@@ -67,7 +67,7 @@ export default function Home() {
                 </React.Suspense>
               }
             >
-              {route.childrens.map((children: any, index: any) => (
+              {route.childrens?.map((children, index) => (
                 <Route
                   key={index}
                   path={children.path}

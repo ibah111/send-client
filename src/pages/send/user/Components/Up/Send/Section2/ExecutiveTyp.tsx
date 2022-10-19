@@ -1,3 +1,4 @@
+import { Dict } from '@contact/models';
 import { FormControl, Grid, InputLabel, MenuItem, Select } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -5,7 +6,7 @@ import getDict from '../../../../../../../api/getDict';
 import getData from '../../../../../../../utils/getData';
 export default function ExecutiveTyp() {
   const { t } = useTranslation();
-  const [types, setTypes] = React.useState<any[]>([]);
+  const [types, setTypes] = React.useState<Dict[]>([]);
   const data = getData('executive_typ', 'string');
   React.useEffect(() => {
     getDict(124).then((dict) => setTypes(dict));

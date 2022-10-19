@@ -2,7 +2,6 @@ import { DocAttach, User } from '@contact/models';
 import { Box } from '@mui/material';
 import {
   DataGridPremium,
-  GridCellParams,
   GridColumns,
   GridValueGetterParams,
   useGridApiRef,
@@ -71,7 +70,7 @@ export default function DocumentsTable({ id }: DocumentsTableProps) {
             dispatch(setDocumentsState(apiRef.current.exportState()));
           }}
           columns={columns}
-          onCellDoubleClick={(params: GridCellParams<any, DocAttach>) => {
+          onCellDoubleClick={(params) => {
             getDocuments(Number(params.id), 'doc').then((res) => {
               setFile(
                 new Blob([res], { type: String(lookup(params.row.name)) }),

@@ -2,6 +2,7 @@ import { Grid } from '@mui/material';
 import { DataGridPremium, useGridApiRef } from '@mui/x-data-grid-premium';
 import React from 'react';
 import getDebt from '../../../../../../api/getDebt';
+import { LawActPlain } from '../../../../../../api/getLawAct';
 import updateDebt from '../../../../../../api/updateDebt';
 import { useAppDispatch, useAppSelector } from '../../../../../../Reducer';
 import { ReloadResults } from '../../../../../../Reducer/Results';
@@ -12,7 +13,7 @@ export default function Table({
   row,
   handleClose,
 }: {
-  row: any;
+  row: LawActPlain;
   handleClose: () => void;
 }) {
   const [columns] = React.useState(getColumns());

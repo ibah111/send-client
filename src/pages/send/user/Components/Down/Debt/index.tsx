@@ -7,6 +7,7 @@ import {
 } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { LawExecPlain } from '../../../../../../api/search';
 import Table from './Table';
 
 export default function Debt({
@@ -15,7 +16,7 @@ export default function Debt({
   handleClose,
   handleNext,
 }: {
-  row: any;
+  row: LawExecPlain;
   open: boolean;
   handleClose: () => void;
   handleNext: () => void;

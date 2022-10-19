@@ -20,7 +20,6 @@ function toArrayBuffer(buf: number[]) {
 }
 const check = (
   Error: ErrorTypes,
-  res: any,
   error: (value: string, type: VariantType) => void,
 ) => {
   let errors = 0;
@@ -47,7 +46,7 @@ export default function Submit() {
     enqueueSnackbar(value, { variant, autoHideDuration: 3000 });
   };
   const Click = () => {
-    if (check(Error, Send, AddAlert)) {
+    if (check(Error, AddAlert)) {
       setLoading(true);
       updateExec().then((res) => {
         if (res) {

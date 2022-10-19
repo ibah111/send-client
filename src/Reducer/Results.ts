@@ -1,5 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-const initialState: { reload: boolean; loading: boolean; data: any[] } = {
+import { LawExecPlain } from '../api/search';
+const initialState: {
+  reload: boolean;
+  loading: boolean;
+  data: LawExecPlain[];
+} = {
   loading: false,
   data: [],
   reload: false,
@@ -8,7 +13,7 @@ export const results = createSlice({
   name: 'Results',
   initialState: initialState,
   reducers: {
-    setResults: (state, action: PayloadAction<any[]>) => {
+    setResults: (state, action: PayloadAction<LawExecPlain[]>) => {
       state.data = action.payload;
     },
     setLoadingResults: (state, action: PayloadAction<boolean>) => {

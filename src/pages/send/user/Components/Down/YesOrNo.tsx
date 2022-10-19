@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next';
 import createExec from '../../../../../api/createExec';
 import deleteExec from '../../../../../api/deleteExec';
 import getComment from '../../../../../api/getComment';
+import { LawExecPlain } from '../../../../../api/search';
 import { useAppDispatch } from '../../../../../Reducer';
 import {
   ResetComment,
@@ -29,7 +30,7 @@ export default function YesOrNo({
 }: {
   open: boolean;
   onClose: () => void;
-  row: any;
+  row: LawExecPlain;
 }) {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();

@@ -14,7 +14,7 @@ export default function ReceiptRecoverDt() {
           label={t('form.send.receipt_recover_dt')}
           value={data.value}
           mask="__.__.____"
-          onChange={(newValue: any) => data.setValue(newValue)}
+          onChange={(newValue) => data.setValue(newValue)}
           renderInput={(params) => (
             <TextField fullWidth {...params} error={data.isInvalid} />
           )}

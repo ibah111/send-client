@@ -1,7 +1,8 @@
 import { Popover, Typography } from '@mui/material';
 import React, { useCallback } from 'react';
-
-export default function PopoverHook(rows: any[]) {
+import { LawActPlain } from '../../../../api/getLawAct';
+import { LawExecPlain } from '../../../../api/search';
+export default function PopoverHook(rows: (LawExecPlain | LawActPlain)[]) {
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
   const [value, setValue] = React.useState('');
 
@@ -10,11 +11,12 @@ export default function PopoverHook(rows: any[]) {
     if (field === 'Address') {
       const id = event.currentTarget.parentElement?.dataset.id;
       const row = rows.find((r) => r.id === Number(id));
-      setValue(
-        row['Person.Addresses']?.[0]?.full_adr
-          ? row['Person.Addresses']?.[0]?.full_adr
-          : `АДРЕС НЕ ЗАПОЛЕН. НАДО НАЙТИ ДОЛГ ПО ID = ${row['Debt.id']}`,
-      );
+      if (row)
+        setValue(
+          row['Person.Addresses']?.[0]?.full_adr
+            ? row['Person.Addresses']?.[0]?.full_adr
+            : `АДРЕС НЕ ЗАПОЛЕН. НАДО НАЙТИ ДОЛГ ПО ID = ${row['Debt.id']}`,
+        );
 
       setAnchorEl(event.currentTarget);
     }
