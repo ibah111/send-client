@@ -2,6 +2,7 @@ import store from '../Reducer';
 import axios from 'axios';
 import server from '../utils/server';
 import { PersonAddress } from './search';
+import processError from '../utils/processError';
 export class LawActPlain {
   'id': number;
   'typ': number;
@@ -21,11 +22,16 @@ export class LawActPlain {
   'Debt.StatusDict.name': string;
 }
 export default async function search(): Promise<LawActPlain[]> {
-  const request = store.getState().Search;
-  const response = await axios({
-    method: 'POST',
-    url: server() + '/search_la',
-    data: request,
-  });
-  return response.data;
+  try {
+    const request = store.getState().Search;
+    const response = await axios({
+      method: 'POST',
+      url: server() + '/search_la',
+      data: request,
+    });
+    return response.data;
+  } catch (e) {
+    processError(e);
+    throw e;
+  }
 }

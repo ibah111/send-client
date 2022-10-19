@@ -12,6 +12,8 @@ import { Provider } from 'react-redux';
 import store from './Reducer';
 import version from './utils/version';
 import { tz } from 'moment-timezone';
+import ErrorHandler from './components/ErrorHandler';
+import { SnackbarProvider } from 'notistack';
 export default function Document() {
   React.useEffect(() => {
     tz.setDefault('GMT');
@@ -21,13 +23,16 @@ export default function Document() {
   return (
     <LocalizationProvider adapterLocale="ru" dateAdapter={AdapterMoment}>
       <Provider store={store}>
-        <Connect>
-          <Login>
-            <BrowserRouter basename={version.root}>
-              <Router />
-            </BrowserRouter>
-          </Login>
-        </Connect>
+        <SnackbarProvider maxSnack={11}>
+          <ErrorHandler />
+          <Connect>
+            <Login>
+              <BrowserRouter basename={version.root}>
+                <Router />
+              </BrowserRouter>
+            </Login>
+          </Connect>
+        </SnackbarProvider>
       </Provider>
     </LocalizationProvider>
   );
