@@ -4,7 +4,6 @@ import Slider from './Slider';
 import { Button, Collapse, Grid, Typography } from '@mui/material';
 import pages from '../utils/pages';
 import { Link, useLocation } from 'react-router-dom';
-import Demo from './Demo';
 import version from '../utils/version';
 import { useTranslation } from 'react-i18next';
 import Version from './Version';
@@ -65,9 +64,6 @@ export default function AccountMenu({ stop, always }: AccountMenuProps) {
               justifyContent="flex-end"
               alignItems="center"
             >
-              <Grid xs="auto" item>
-                <Demo />
-              </Grid>
               {pages.map(
                 (page, index) =>
                   page?.root && (

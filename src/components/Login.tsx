@@ -3,13 +3,10 @@ import NotLoged from './NotLoged';
 import PropTypes from 'prop-types';
 import server from '../utils/server';
 import axios from 'axios';
-import { setToken } from '../Reducer/User';
 import { getToken } from '../utils/getToken';
-import { useDispatch } from 'react-redux';
 const connect = async (
   token: string,
   callback: (value: boolean) => void,
-  setToken: (value: string) => void,
   setError: (value: string | null) => void,
 ) => {
   try {
@@ -20,7 +17,6 @@ const connect = async (
     });
     if (response.data === 'Ok') {
       callback(true);
-      setToken(token);
     }
   } catch (e: unknown) {
     if (axios.isAxiosError(e)) {
@@ -37,17 +33,11 @@ interface LoginProps {
   children: React.ReactNode;
 }
 export default function Login({ children }: LoginProps) {
-  const dispatch = useDispatch();
   const [loged, setLoged] = React.useState(false);
   const [message, setMessage] = React.useState<string | null>(null);
   React.useEffect(() => {
     const token = getToken();
-    connect(
-      token.token,
-      setLoged,
-      (token) => dispatch(setToken(token)),
-      (message) => setMessage(message),
-    );
+    connect(token.token, setLoged, (message) => setMessage(message));
   }, []);
   return (
     <>{loged ? children : <NotLoged message={message ? message : ''} />}</>
