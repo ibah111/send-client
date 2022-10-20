@@ -32,8 +32,8 @@ export default function Comments() {
         </Button>
       </Grid>
       <Dialog open={open} fullWidth maxWidth={'xl'} onClose={handleClose}>
-        <DialogTitle sx={{ textAlign: 'center' }}>
-          <Typography variant="h4">{t('form.comments.title')}</Typography>
+        <DialogTitle variant="h4" sx={{ textAlign: 'center' }}>
+          {t('form.comments.title')}
         </DialogTitle>
         <DialogContent>
           <Grid
