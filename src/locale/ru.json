@@ -67,7 +67,8 @@
       "r_court_id": "Наименование ФССП",
       "template_typ": "Тип заявления",
       "dsc": "Коментарий",
-      "law_court": { "address": "Адрес ФССП" }
+      "law_court": { "address": "Адрес ФССП" },
+      "add_interests": "Проценты"
     },
     "yes_or_no": {
       "title": "Выберите действие",

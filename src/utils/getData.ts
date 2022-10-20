@@ -1,5 +1,5 @@
 import { t } from 'i18next';
-import moment from 'moment';
+import moment, { MomentInput } from 'moment';
 import { Moment } from 'moment';
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '../Reducer';
@@ -8,7 +8,7 @@ import checkDate from './checkDate';
 import checkNull from './checkNull';
 import checkNumber from './checkNumber';
 import checkString from './checkString';
-type Typed = 'string' | 'date' | 'null' | 'number' | null;
+type Typed = 'string' | 'date' | 'null' | 'number' | 'boolean' | null;
 export default function getError<K extends DataNames>(
   name: K,
   type: Typed = null,
@@ -29,7 +29,7 @@ export default function getError<K extends DataNames>(
   const setValue = (newValue: DataTypes[K]) => {
     switch (type) {
       case 'date': {
-        const data: Moment = moment(newValue);
+        const data: Moment = moment(newValue as MomentInput);
         data?.startOf('day');
         dispatch(setData([name, data]));
         break;

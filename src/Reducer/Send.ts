@@ -16,6 +16,7 @@ export interface DataTypes {
   fssp_date: null | MomentInput;
   r_court_id: string | number;
   dsc: null | string;
+  add_interests: boolean;
 }
 type ValueOf<T> = T[keyof T];
 export type TypesData = ValueOf<DataTypes>;
@@ -35,6 +36,7 @@ export const initState: DataTypes = {
   fssp_date: null,
   r_court_id: '',
   dsc: null,
+  add_interests: false,
 };
 export const send = createSlice({
   name: 'send',
@@ -56,6 +58,7 @@ export const send = createSlice({
       state.fssp_date = moment().toISOString();
       state.r_court_id = data.r_court_id;
       state.dsc = data.dsc;
+      state.add_interests = false;
     },
     setData<K extends DataNames>(
       state: Draft<DataTypes>,

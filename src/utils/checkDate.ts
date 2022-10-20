@@ -1,4 +1,4 @@
-import moment from 'moment';
+import moment, { MomentInput } from 'moment';
 import Reducer from '../Reducer';
 import { DataNames } from '../Reducer/Send';
 import callError from './callError';
@@ -16,8 +16,8 @@ export default function checkDate<K extends DataNames>(
     }
   } else {
     if (
-      moment(value, 'DD.MM.YYYY', true).isValid() ||
-      moment(value, moment.ISO_8601, true).isValid()
+      moment(value as MomentInput, 'DD.MM.YYYY', true).isValid() ||
+      moment(value as MomentInput, moment.ISO_8601, true).isValid()
     ) {
       callError(name, null);
     } else {
