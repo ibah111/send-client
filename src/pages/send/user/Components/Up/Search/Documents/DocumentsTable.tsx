@@ -28,11 +28,8 @@ export default function DocumentsTable({ id }: DocumentsTableProps) {
   const [rows, setRows] = React.useState<DocAttach[]>([]);
   React.useEffect(() => {
     refresh();
-    apiRef.current.subscribeEvent('cellDragEnter', (_, event) => {
-      event.defaultMuiPrevented = true;
-    });
-    apiRef.current.subscribeEvent('columnHeaderDragEnter', (_, event) => {
-      event.defaultMuiPrevented = true;
+    apiRef.current.subscribeEvent('columnHeaderDragEnter', (_, e) => {
+      console.log(e);
     });
     apiRef.current.restoreState(stateGrid);
   }, []);
@@ -52,8 +49,23 @@ export default function DocumentsTable({ id }: DocumentsTableProps) {
           onStateChange={() => {
             dispatch(setDocumentsState(apiRef.current.exportState()));
           }}
+          sx={{
+            cursor: 'default',
+            userSelect: 'none',
+            '&.MuiDataGrid-root .MuiDataGrid-cell:focus': {
+              outline: 'none',
+            },
+          }}
           columns={columns}
-          onCellDoubleClick={(params) => {
+          disableColumnReorder
+          componentsProps={{
+            cell: {
+              disableDragEvents: true,
+            },
+          }}
+          disableSelectionOnClick
+          onCellDoubleClick={(params, event) => {
+            event.defaultMuiPrevented = true;
             getDocuments(Number(params.id), 'doc').then((res) => {
               setFile(
                 new Blob([res], { type: String(lookup(params.row.name)) }),

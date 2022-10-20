@@ -1,9 +1,5 @@
 import { DocAttach, User } from '@contact/models';
-import {
-  GridColumns,
-  GridRowParams,
-  GridValueGetterParams,
-} from '@mui/x-data-grid-premium';
+import { GridColumns, GridValueGetterParams } from '@mui/x-data-grid-premium';
 import { t } from 'i18next';
 import { generateName } from '../../../../../../../utils/generateName';
 import Actions from './Actions';
