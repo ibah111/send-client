@@ -11,7 +11,8 @@
       "create_exec": "Создать ИП",
       "comments": "Коментарии",
       "debt_calc": "Платежи",
-      "documents": "Документы"
+      "documents": "Документы",
+      "reset": "Сброс"
     },
     "debt_calc": {
       "title": "Платежи",

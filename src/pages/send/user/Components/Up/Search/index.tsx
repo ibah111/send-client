@@ -17,6 +17,7 @@ import {
 import Comments from './Comments';
 import DebtCalc from './DebtCalc';
 import Documents from './Documents';
+import Reset from './Reset';
 
 export default function Search() {
   const dispatch = useAppDispatch();
@@ -65,6 +66,7 @@ export default function Search() {
         <Comments />
         <DebtCalc id={Number(id)} />
         <Documents id={Number(id)} />
+        <Reset />
       </Grid>
     </>
   );

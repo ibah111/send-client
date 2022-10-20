@@ -10,6 +10,7 @@ import { LoadingButton } from '@mui/lab';
 import { useTranslation } from 'react-i18next';
 import { ResetComment } from '../../../../../../Reducer/Comment';
 import { ErrorTypes } from '../../../../../../Reducer/Error';
+import resetData from '../../../../../../utils/resetData';
 function toArrayBuffer(buf: number[]) {
   const ab = new ArrayBuffer(buf.length);
   const view = new Uint8Array(ab);
@@ -55,9 +56,7 @@ export default function Submit() {
               type: 'application/pdf',
             });
             saveAs(file, res.name);
-            dispatch(setId(0));
-            dispatch(reset());
-            dispatch(ResetComment());
+            resetData();
             setLoading(false);
           }
         })

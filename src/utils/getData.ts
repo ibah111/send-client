@@ -22,6 +22,9 @@ export default function getError<K extends DataNames>(
     case 'string':
       value = (SendValue === null ? '' : SendValue) as DataTypes[K];
       break;
+    case 'number':
+      value = (SendValue === null ? '' : SendValue) as DataTypes[K];
+      break;
   }
   const setValue = (newValue: DataTypes[K]) => {
     switch (type) {

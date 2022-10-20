@@ -4,20 +4,23 @@ import React from 'react';
 import getData from '../../../../../../../utils/getData';
 import { useTranslation } from 'react-i18next';
 interface NumberCustomProps {
-  onChange?: (args: { target: { value: string } }) => void;
+  onChange: (args: { target: { name: string; value: string } }) => void;
+  name: string;
 }
 const NumberFormatCustom = React.forwardRef<
   HTMLInputElement,
   NumberCustomProps
 >(function NumberFormatCustom(props, ref) {
-  const { onChange, ...other } = props;
+  const { onChange, name, ...other } = props;
+  console.log(other);
   return (
     <NumericFormat
       {...other}
       getInputRef={ref}
       onValueChange={(values) => {
-        onChange?.({
+        onChange({
           target: {
+            name: name,
             value: values.value,
           },
         });
@@ -25,14 +28,21 @@ const NumberFormatCustom = React.forwardRef<
       thousandSeparator=" "
       decimalSeparator=","
       decimalScale={2}
-      isAllowed={({ floatValue }) =>
-        Boolean(floatValue && 0 <= floatValue && floatValue <= 10000000)
-      }
-      valueIsNumericString
+      isAllowed={({ floatValue }) => {
+        console.log(floatValue);
+        if (floatValue && 0 <= floatValue && floatValue <= 10000000) {
+          return true;
+        } else {
+          if (floatValue === undefined) {
+            return true;
+          }
+          return false;
+        }
+      }}
       suffix="р"
     />
   );
-}) as React.ElementType<InputBaseComponentProps>;
+}) as unknown as React.ElementType<InputBaseComponentProps>;
 export default function TotalSum() {
   const { t } = useTranslation();
   const data = getData('total_sum', 'number');
