@@ -3,13 +3,14 @@ import { t } from 'i18next';
 import { useSnackbar, VariantType } from 'notistack';
 import React from 'react';
 import updateExec from '../../../../../../api/updateExec';
-import { useAppSelector } from '../../../../../../Reducer';
+import { useAppDispatch, useAppSelector } from '../../../../../../Reducer';
 import { saveAs } from 'file-saver';
 import { LoadingButton } from '@mui/lab';
 import { useTranslation } from 'react-i18next';
 import { ErrorTypes } from '../../../../../../Reducer/Error';
 import resetData from '../../../../../../utils/resetData';
 import processError from '../../../../../../utils/processError';
+import { callError } from '../../../../../../Reducer/Message';
 function toArrayBuffer(buf: number[]) {
   const ab = new ArrayBuffer(buf.length);
   const view = new Uint8Array(ab);
@@ -41,6 +42,7 @@ export default function Submit() {
   const [loading, setLoading] = React.useState(false);
   const Send = useAppSelector((state) => state.Send);
   const Error = useAppSelector((state) => state.Error);
+  const dispatch = useAppDispatch();
   const AddAlert = (value: string, variant: VariantType = 'success') => {
     enqueueSnackbar(value, { variant, autoHideDuration: 3000 });
   };
@@ -59,10 +61,10 @@ export default function Submit() {
           } else {
             setLoading(false);
             if (res === null) {
-              processError('Дело не имеет изменений');
+              dispatch(callError('Дело не имеет изменений'));
             }
             if (res === false) {
-              processError('Вас нет в Контакте, обратитесь в IT отдел');
+              dispatch(callError('Вас нет в Контакте, обратитесь в IT отдел'));
             }
           }
         })
