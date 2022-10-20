@@ -9,6 +9,7 @@ import { LoadingButton } from '@mui/lab';
 import { useTranslation } from 'react-i18next';
 import { ErrorTypes } from '../../../../../../Reducer/Error';
 import resetData from '../../../../../../utils/resetData';
+import processError from '../../../../../../utils/processError';
 function toArrayBuffer(buf: number[]) {
   const ab = new ArrayBuffer(buf.length);
   const view = new Uint8Array(ab);
@@ -55,6 +56,14 @@ export default function Submit() {
             saveAs(file, res.name);
             resetData();
             setLoading(false);
+          } else {
+            setLoading(false);
+            if (res === null) {
+              processError('Дело не имеет изменений');
+            }
+            if (res === false) {
+              processError('Вас нет в Контакте, обратитесь в IT отдел');
+            }
           }
         })
         .catch(() => setLoading(false));
