@@ -3,12 +3,10 @@ import { t } from 'i18next';
 import { useSnackbar, VariantType } from 'notistack';
 import React from 'react';
 import updateExec from '../../../../../../api/updateExec';
-import { useAppDispatch, useAppSelector } from '../../../../../../Reducer';
+import { useAppSelector } from '../../../../../../Reducer';
 import { saveAs } from 'file-saver';
-import { reset, setId } from '../../../../../../Reducer/Send';
 import { LoadingButton } from '@mui/lab';
 import { useTranslation } from 'react-i18next';
-import { ResetComment } from '../../../../../../Reducer/Comment';
 import { ErrorTypes } from '../../../../../../Reducer/Error';
 import resetData from '../../../../../../utils/resetData';
 function toArrayBuffer(buf: number[]) {
@@ -38,7 +36,6 @@ const check = (
 };
 export default function Submit() {
   const { t } = useTranslation();
-  const dispatch = useAppDispatch();
   const { enqueueSnackbar } = useSnackbar();
   const [loading, setLoading] = React.useState(false);
   const Send = useAppSelector((state) => state.Send);

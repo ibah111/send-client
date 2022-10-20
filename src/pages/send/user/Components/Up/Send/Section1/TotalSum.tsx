@@ -12,7 +12,6 @@ const NumberFormatCustom = React.forwardRef<
   NumberCustomProps
 >(function NumberFormatCustom(props, ref) {
   const { onChange, name, ...other } = props;
-  console.log(other);
   return (
     <NumericFormat
       {...other}
@@ -29,7 +28,6 @@ const NumberFormatCustom = React.forwardRef<
       decimalSeparator=","
       decimalScale={2}
       isAllowed={({ floatValue }) => {
-        console.log(floatValue);
         if (floatValue && 0 <= floatValue && floatValue <= 10000000) {
           return true;
         } else {
