@@ -4,6 +4,14 @@ import { callError } from '../Reducer/Message';
 
 export default function processError(e: unknown) {
   if (axios.isAxiosError(e)) {
-    store.dispatch(callError(e.response?.data.message));
+    if (e.response) {
+      if (e.response.data) {
+        store.dispatch(callError(e.response.data.message));
+      } else {
+        store.dispatch(callError('Произошла непредвиденная ошибка сервера'));
+      }
+    } else {
+      store.dispatch(callError('Произошла ошибка при запросе'));
+    }
   }
 }
