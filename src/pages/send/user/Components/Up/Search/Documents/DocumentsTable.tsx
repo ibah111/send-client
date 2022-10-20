@@ -28,6 +28,12 @@ export default function DocumentsTable({ id }: DocumentsTableProps) {
   const [rows, setRows] = React.useState<DocAttach[]>([]);
   React.useEffect(() => {
     refresh();
+    apiRef.current.subscribeEvent('cellDragEnter', (_, event) => {
+      event.defaultMuiPrevented = true;
+    });
+    apiRef.current.subscribeEvent('columnHeaderDragEnter', (_, event) => {
+      event.defaultMuiPrevented = true;
+    });
     apiRef.current.restoreState(stateGrid);
   }, []);
   return (
