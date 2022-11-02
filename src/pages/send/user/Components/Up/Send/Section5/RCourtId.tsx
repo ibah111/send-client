@@ -52,9 +52,6 @@ export default function RCourtId() {
               data.setValue('');
             }
           }}
-          isOptionEqualToValue={(option, value) =>
-            option !== '' && value !== '' ? option?.id === value?.id : true
-          }
           onInputChange={(_, newInputValue) => {
             setName(newInputValue);
           }}
