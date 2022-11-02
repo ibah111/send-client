@@ -3,6 +3,7 @@ import { createSlice, Draft } from '@reduxjs/toolkit';
 import getName from '../utils/getName';
 export interface DataTypes {
   fio: null | string;
+  port: null | string;
   contract: null | string;
   total_sum: null | number;
   load_dt: null | MomentInput;
@@ -24,6 +25,7 @@ export type DataNames = keyof DataTypes;
 export const initState: DataTypes = {
   fio: null,
   contract: null,
+  port: null,
   total_sum: null,
   load_dt: null,
   court_doc_num: null,
@@ -45,6 +47,7 @@ export const send = createSlice({
     setSend: (state, action) => {
       const data = action.payload;
       state.fio = getName([data.Person.f, data.Person.i, data.Person.o]);
+      state.port = data.Portfolio.name;
       state.contract = data.Debt.contract;
       state.load_dt = moment().toISOString();
       state.total_sum = data.total_sum;

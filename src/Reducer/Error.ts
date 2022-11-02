@@ -1,6 +1,7 @@
 import { createSlice, Draft } from '@reduxjs/toolkit';
 export type ErrorTypes = {
   fio: null | string;
+  port: null | string;
   contract: null | string;
   total_sum: null | string;
   load_dt: null | string;
@@ -21,6 +22,7 @@ export type TypesError = ValueOf<ErrorTypes>;
 export type ErrorNames = keyof ErrorTypes;
 export const initState: ErrorTypes = {
   fio: null,
+  port: null,
   contract: null,
   total_sum: null,
   load_dt: null,

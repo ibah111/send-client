@@ -7,6 +7,7 @@ export default function Info() {
   const { t } = useTranslation();
   const name = useAppSelector((state) => state.Send.fio);
   const contract = useAppSelector((state) => state.Send.contract);
+  const port = useAppSelector((state) => state.Send.port);
   return (
     <>
       <Grid item>
@@ -20,6 +21,13 @@ export default function Info() {
         <TextField
           label={t('form.search.contract')}
           value={contract === null ? '' : contract}
+          disabled
+        />
+      </Grid>
+      <Grid item>
+        <TextField
+          label={t('form.search.port')}
+          value={port === null ? '' : port}
           disabled
         />
       </Grid>
