@@ -11,7 +11,7 @@ export default function Id() {
       <Grid item>
         <TextField
           label={t('form.send.id')}
-          value={id === null ? '' : id}
+          value={id === null || ''}
           disabled
         />
       </Grid>

@@ -9,7 +9,6 @@ import { LoadingButton } from '@mui/lab';
 import { useTranslation } from 'react-i18next';
 import { ErrorTypes } from '../../../../../../Reducer/Error';
 import resetData from '../../../../../../utils/resetData';
-import processError from '../../../../../../utils/processError';
 import { callError } from '../../../../../../Reducer/Message';
 function toArrayBuffer(buf: number[]) {
   const ab = new ArrayBuffer(buf.length);

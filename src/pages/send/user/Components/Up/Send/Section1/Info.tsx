@@ -11,25 +11,17 @@ export default function Info() {
   return (
     <>
       <Grid item>
-        <TextField
-          label={t('form.search.name')}
-          value={name === null ? '' : name}
-          disabled
-        />
+        <TextField label={t('form.search.name')} value={name || ''} disabled />
       </Grid>
       <Grid item>
         <TextField
           label={t('form.search.contract')}
-          value={contract === null ? '' : contract}
+          value={contract || ''}
           disabled
         />
       </Grid>
       <Grid item>
-        <TextField
-          label={t('form.search.port')}
-          value={port === null ? '' : port}
-          disabled
-        />
+        <TextField label={t('form.search.port')} value={port || ''} disabled />
       </Grid>
     </>
   );

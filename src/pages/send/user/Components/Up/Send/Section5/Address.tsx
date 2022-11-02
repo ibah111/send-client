@@ -23,7 +23,7 @@ export default function Address() {
         <TextField
           fullWidth
           label={t('form.send.law_court.address')}
-          value={address === null ? '' : address}
+          value={address || ''}
           disabled
         />
       </Grid>

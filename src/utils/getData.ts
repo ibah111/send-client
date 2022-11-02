@@ -20,10 +20,10 @@ export default function getError<K extends DataNames>(
   let value: DataTypes[K] = SendValue;
   switch (type) {
     case 'string':
-      value = (SendValue === null ? '' : SendValue) as DataTypes[K];
+      value = (SendValue || '') as DataTypes[K];
       break;
     case 'number':
-      value = (SendValue === null ? '' : SendValue) as DataTypes[K];
+      value = (SendValue || '') as DataTypes[K];
       break;
   }
   const setValue = (newValue: DataTypes[K]) => {
