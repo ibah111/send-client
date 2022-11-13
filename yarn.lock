@@ -3318,9 +3318,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tools/health-status-react-component@npm:^0.0.2":
-  version: 0.0.2
-  resolution: "@tools/health-status-react-component@npm:0.0.2::__archiveUrl=https%3A%2F%2Fgit.usb.ru%2Fapi%2Fv4%2Fprojects%2F158%2Fpackages%2Fnpm%2F%40tools%2Fhealth-status-react-component%2F-%2F%40tools%2Fhealth-status-react-component-0.0.2.tgz"
+"@tools/health-status-react-component@npm:^0.0.3":
+  version: 0.0.3
+  resolution: "@tools/health-status-react-component@npm:0.0.3::__archiveUrl=https%3A%2F%2Fgit.usb.ru%2Fapi%2Fv4%2Fprojects%2F158%2Fpackages%2Fnpm%2F%40tools%2Fhealth-status-react-component%2F-%2F%40tools%2Fhealth-status-react-component-0.0.3.tgz"
   dependencies:
     "@emotion/react": ^11.10.5
     "@emotion/styled": ^11.10.5
@@ -3330,7 +3330,7 @@ __metadata:
     react: ^18.2.0
     react-dom: ^18.2.0
     react-transition-group: ^4.4.5
-  checksum: 1e9a228badd1fe4bf90bbfa2baa5126d58bc1a5725ab262b348f616395372b418590d20d15cdd36e317928cfd89db8a36f0081137b6181eac25f47a7a302716d
+  checksum: 496e4e76377ee4957c6b1ecfef3df4b08b3f27d090abea3d0ab10910cf7ad2c56792bbde22bdc0d3602488aac6d11658daec0a6ea98ca6d6a6662432060441e0
   languageName: node
   linkType: hard
 
@@ -5373,7 +5373,7 @@ __metadata:
     "@mui/x-data-grid-premium": ^5.17.11
     "@mui/x-date-pickers-pro": ^5.0.8
     "@reduxjs/toolkit": ^1.9.0
-    "@tools/health-status-react-component": ^0.0.2
+    "@tools/health-status-react-component": ^0.0.3
     "@types/file-saver": ^2.0.5
     "@types/jest": ^29.2.2
     "@types/mime-types": ^2.1.1
