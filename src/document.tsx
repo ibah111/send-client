@@ -14,6 +14,9 @@ import version from './utils/version';
 import { tz } from 'moment-timezone';
 import ErrorHandler from './components/ErrorHandler';
 import { SnackbarProvider } from 'notistack';
+import { HealthProvider } from '@tools/health-status-react-component';
+import server from './utils/server';
+const url = server();
 export default function Document() {
   React.useEffect(() => {
     tz.setDefault('GMT');
@@ -26,11 +29,13 @@ export default function Document() {
         <SnackbarProvider maxSnack={11}>
           <ErrorHandler />
           <Connect>
-            <Login>
-              <BrowserRouter basename={version.root}>
-                <Router />
-              </BrowserRouter>
-            </Login>
+            <HealthProvider url={url}>
+              <Login>
+                <BrowserRouter basename={version.root}>
+                  <Router />
+                </BrowserRouter>
+              </Login>
+            </HealthProvider>
           </Connect>
         </SnackbarProvider>
       </Provider>
