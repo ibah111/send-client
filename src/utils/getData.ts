@@ -4,6 +4,7 @@ import { Moment } from 'moment';
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '../Reducer';
 import { DataNames, DataTypes, setData } from '../Reducer/Send';
+import callError from './callError';
 import checkDate from './checkDate';
 import checkNull from './checkNull';
 import checkNumber from './checkNumber';
@@ -26,7 +27,7 @@ export default function getError<K extends DataNames>(
       value = (SendValue || '') as DataTypes[K];
       break;
   }
-  const setValue = (newValue: DataTypes[K]) => {
+  const setValue = React.useCallback((newValue: DataTypes[K]) => {
     switch (type) {
       case 'date': {
         const data: Moment = moment(newValue as MomentInput);
@@ -38,23 +39,25 @@ export default function getError<K extends DataNames>(
         dispatch(setData([name, newValue]));
         break;
     }
-  };
+  }, []);
   React.useEffect(() => {
+    let error;
     switch (type) {
       case 'string':
-        checkString(name);
+        error = checkString(SendValue);
         break;
       case 'date':
-        checkDate(name, availableEmpty);
+        error = checkDate(SendValue, availableEmpty);
         break;
       case 'number':
-        checkNumber(name);
+        error = checkNumber(SendValue);
         break;
       case 'null':
-        checkNull(name);
+        error = checkNull(SendValue);
         break;
     }
-  }, [SendValue]);
+    callError(name, error);
+  }, [name, SendValue]);
   return {
     setValue,
     value,

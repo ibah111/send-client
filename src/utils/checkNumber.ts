@@ -1,16 +1,13 @@
-import Reducer from '../Reducer';
-import { DataNames } from '../Reducer/Send';
-import callError from './callError';
+import { TypesData } from '../Reducer/Send';
 
-export default function checkNumber<K extends DataNames>(name: K) {
-  const value = Reducer.getState().Send[name];
+export default function checkNumber(value: TypesData) {
   if (!value) {
-    callError(name, 'empty');
+    return 'empty';
   } else {
     if (value === 0) {
-      callError(name, 'number_0');
+      return 'number_0';
     } else {
-      callError(name, null);
+      return null;
     }
   }
 }

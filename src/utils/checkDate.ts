@@ -1,27 +1,19 @@
 import moment, { MomentInput } from 'moment';
-import Reducer from '../Reducer';
-import { DataNames } from '../Reducer/Send';
-import callError from './callError';
+import { TypesData } from '../Reducer/Send';
 
-export default function checkDate<K extends DataNames>(
-  name: K,
-  availableEmpty = false,
-) {
-  const value = Reducer.getState().Send[name];
+export default function checkDate(value: TypesData, availableEmpty = false) {
   if (value === null) {
-    if (availableEmpty) {
-      callError(name, null);
-    } else {
-      callError(name, 'empty');
+    if (!availableEmpty) {
+      return 'empty';
     }
   } else {
     if (
       moment(value as MomentInput, 'DD.MM.YYYY', true).isValid() ||
       moment(value as MomentInput, moment.ISO_8601, true).isValid()
     ) {
-      callError(name, null);
+      return null;
     } else {
-      callError(name, 'invalid_date');
+      return 'invalid_date';
     }
   }
 }

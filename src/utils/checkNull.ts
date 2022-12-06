@@ -1,12 +1,9 @@
-import Reducer from '../Reducer';
-import { DataNames } from '../Reducer/Send';
-import callError from './callError';
+import { TypesData } from '../Reducer/Send';
 
-export default function checkNull<K extends DataNames>(name: K) {
-  const value = Reducer.getState().Send[name];
+export default function checkNull(value: TypesData) {
   if (!value) {
-    callError(name, 'empty');
+    return 'empty';
   } else {
-    callError(name, null);
+    return null;
   }
 }
