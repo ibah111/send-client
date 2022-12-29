@@ -11,7 +11,7 @@ export default function Address() {
   React.useEffect(() => {
     if (r_court_id !== '') {
       getCourt({ id: r_court_id as number }).then((court) => {
-        setAddress(court[0].address);
+        setAddress(court[0].address!);
       });
     } else {
       setAddress('');
