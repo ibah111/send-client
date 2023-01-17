@@ -6,13 +6,13 @@ import React from 'react';
 export default function Form() {
   return (
     <>
-      <Box sx={{ flexGrow: 1 }}>
+      <Box sx={{ flexGrow: 1, height: '90vh' }}>
         <Grid
+          height={'100%'}
           container
           item
           spacing={1}
           direction="column"
-          justifyContent="center"
           alignItems="center"
         >
           <Up />

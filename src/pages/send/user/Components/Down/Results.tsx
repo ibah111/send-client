@@ -24,7 +24,7 @@ export default function Results() {
   }, []);
   return (
     <>
-      <Grid sx={{ width: '100%', height: 400 }} item>
+      <Grid sx={{ width: '100%' }} xs item>
         <DataGridPremium
           columns={columns}
           rows={rows.data}

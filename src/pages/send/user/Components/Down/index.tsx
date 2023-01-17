@@ -8,6 +8,7 @@ export default function Down() {
       <Grid
         container
         item
+        xs
         spacing={1}
         direction="column"
         justifyContent="center"
