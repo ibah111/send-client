@@ -8,6 +8,7 @@ import {
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
+import DarkButton from '../../../components/DarkButton';
 import Slider from '../../../components/Slider';
 import Version from '../../../components/Version';
 import pages from '../../../utils/pages';
@@ -52,6 +53,11 @@ export default function Home() {
                     </Collapse>
                   ),
               )}
+              <Collapse unmountOnExit key={'mode'} mountOnEnter in={true}>
+                <Grid item>
+                  <DarkButton />
+                </Grid>
+              </Collapse>
               <Grid item>
                 <Version />
               </Grid>

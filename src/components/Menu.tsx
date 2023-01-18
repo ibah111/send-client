@@ -7,6 +7,7 @@ import { Link, useLocation } from 'react-router-dom';
 import version from '../utils/version';
 import { useTranslation } from 'react-i18next';
 import Version from './Version';
+import DarkButton from './DarkButton';
 interface AccountMenuProps {
   stop: boolean;
   always: boolean;
@@ -64,6 +65,9 @@ export default function AccountMenu({ stop, always }: AccountMenuProps) {
               justifyContent="flex-end"
               alignItems="center"
             >
+              <Grid item>
+                <DarkButton />
+              </Grid>
               {pages.map(
                 (page, index) =>
                   page?.root && (
@@ -82,7 +86,6 @@ export default function AccountMenu({ stop, always }: AccountMenuProps) {
               )}
             </Grid>
           </Grid>
-
           <Grid item>
             <Version minimize />
           </Grid>
