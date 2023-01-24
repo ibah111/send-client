@@ -12,6 +12,7 @@ export class LawExecPlain {
   'court_date': Date;
   'entry_force_dt': Date;
   'StateDict.name': string;
+  'LawExecPersonLink.DebtGuarantor.fio'?: string;
   'LawAct.id': number;
   'LawAct.typ': number;
   'LawAct.StatusDict.name': string;

@@ -9,6 +9,7 @@ import Error from './Error';
 import Comment from './Comment';
 import StateResults from './StateResults';
 import Message from './Message';
+import LawExec from './LawExec';
 const store = configureStore({
   reducer: {
     User,
@@ -20,6 +21,7 @@ const store = configureStore({
     Comment,
     StateResults,
     Message,
+    LawExec,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }),

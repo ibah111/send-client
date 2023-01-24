@@ -1,21 +1,23 @@
 import moment, { MomentInput } from 'moment';
-import { createSlice, Draft } from '@reduxjs/toolkit';
+import { createSlice, Draft, PayloadAction } from '@reduxjs/toolkit';
 import getName from '../utils/getName';
+import { LawExec } from '@contact/models';
 export interface DataTypes {
+  debt_guarantor: null | string | number;
   fio: null | string;
   port: null | string;
   contract: null | string;
   total_sum: null | number;
   load_dt: null | MomentInput;
   court_doc_num: null | string;
-  executive_typ: string | number;
+  executive_typ: null | string | number;
   court_date: null | MomentInput;
   DELIVERY_TYP: string | number;
   entry_force_dt: null | MomentInput;
   template_typ: string | number;
   receipt_recover_dt: null | MomentInput;
   fssp_date: null | MomentInput;
-  r_court_id: string | number;
+  r_court_id: string | number | null;
   dsc: null | string;
   add_interests: boolean;
 }
@@ -23,13 +25,14 @@ type ValueOf<T> = T[keyof T];
 export type TypesData = ValueOf<DataTypes>;
 export type DataNames = keyof DataTypes;
 export const initState: DataTypes = {
+  debt_guarantor: null,
   fio: null,
   contract: null,
   port: null,
   total_sum: null,
   load_dt: null,
   court_doc_num: null,
-  executive_typ: '',
+  executive_typ: null,
   court_date: null,
   DELIVERY_TYP: '',
   entry_force_dt: null,
@@ -44,11 +47,12 @@ export const send = createSlice({
   name: 'send',
   initialState: { id: null, ...initState },
   reducers: {
-    setSend: (state, action) => {
+    setSend: (state, action: PayloadAction<LawExec>) => {
       const data = action.payload;
-      state.fio = getName([data.Person.f, data.Person.i, data.Person.o]);
-      state.port = data.Portfolio.name;
-      state.contract = data.Debt.contract;
+      state.debt_guarantor = data.LawExecPersonLink?.PERSON_ID || -1;
+      state.fio = getName([data!.Person!.f, data!.Person!.i, data!.Person!.o]);
+      state.port = data.Portfolio!.name;
+      state.contract = data.Debt!.contract;
       state.load_dt = moment().toISOString();
       state.total_sum = data.total_sum;
       state.court_doc_num = data.court_doc_num;

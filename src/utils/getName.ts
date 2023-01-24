@@ -1,4 +1,4 @@
-export default function getName(vars: string[]) {
+export default function getName(vars: (string | null)[]) {
   const tmp = [];
   for (const value of vars) {
     if (value !== null) {

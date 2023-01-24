@@ -18,6 +18,7 @@ import Comments from './Comments';
 import DebtCalc from './DebtCalc';
 import Documents from './Documents';
 import Reset from './Reset';
+import { setLawExec } from '../../../../../../Reducer/LawExec';
 
 export default function Search() {
   const dispatch = useAppDispatch();
@@ -39,7 +40,10 @@ export default function Search() {
     dispatch(reset());
     if (id)
       getLawExec(id).then((res) => {
-        if (res !== null) dispatch(setSend(res));
+        if (res !== null) {
+          dispatch(setLawExec(res));
+          dispatch(setSend(res));
+        }
       });
   }, [id]);
   React.useEffect(() => {

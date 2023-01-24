@@ -57,6 +57,7 @@
     "send": {
       "id": "ID дела ИД",
       "total_sum": "Общая сумма",
+      "debt_guarantor": "Поручитель",
       "load_dt": "Дата создания ИП",
       "court_doc_num": "№ Испол. док-та",
       "executive_typ": "Тип исполнительного документа",
@@ -106,6 +107,7 @@
         "contract": "Договор",
         "status": "Статус долга"
       },
+      "debt_guarantor": { "fio": "Поручитель" },
       "portfolio": { "name": "Портфель" },
       "address": "Адрес регистрации",
       "law_act": {

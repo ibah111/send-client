@@ -7,6 +7,7 @@ export class LawActPlain {
   'typ': number;
   'StatusDict.name': string;
   'ActStatusDict.name': string;
+  'LawActPersonLink.DebtGuarantor.fio'?: string;
   'Person.fio': string;
   'Person.id': number;
   'Person.f': string;

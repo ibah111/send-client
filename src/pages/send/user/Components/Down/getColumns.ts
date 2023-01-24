@@ -18,6 +18,10 @@ export default function getColumns(): GridColDef[] {
       width: 200,
     },
     {
+      field: 'LawExecPersonLink.DebtGuarantor.fio',
+      headerName: t('form.results.debt_guarantor.fio'),
+    },
+    {
       field: 'Debt.contract',
       width: 300,
       headerName: t('form.results.debt.contract'),
