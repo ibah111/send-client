@@ -1,16 +1,11 @@
-import { Dict } from '@contact/models';
 import { FormControl, Grid, InputLabel, MenuItem, Select } from '@mui/material';
-import React from 'react';
 import { useTranslation } from 'react-i18next';
-import getDict from '../../../../../../../api/getDict';
+import useDict from '../../../../../../../hooks/useDict';
 import getData from '../../../../../../../utils/getData';
 export default function ExecutiveTyp() {
   const { t } = useTranslation();
-  const [types, setTypes] = React.useState<Dict[]>([]);
+  const dict = useDict(124);
   const data = getData('executive_typ', 'string');
-  React.useEffect(() => {
-    getDict(124).then((dict) => setTypes(dict));
-  }, []);
   return (
     <>
       <Grid sx={{ width: 555 }} item>
@@ -27,7 +22,7 @@ export default function ExecutiveTyp() {
             label={t('form.send.executive_typ')}
           >
             <MenuItem value={''}>{t('system.none')}</MenuItem>
-            {types.map((type, index) => (
+            {dict.map((type, index) => (
               <MenuItem key={index} value={type.code}>
                 {type.name}
               </MenuItem>
