@@ -15,6 +15,7 @@ import StateResults from './StateResults';
 import Message from './Message';
 import LawExec from './LawExec';
 import React from 'react';
+import Dict from './Dict';
 const store = configureStore({
   reducer: {
     User,
@@ -27,6 +28,7 @@ const store = configureStore({
     StateResults,
     Message,
     LawExec,
+    Dict,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }),
