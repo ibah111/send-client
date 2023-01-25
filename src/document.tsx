@@ -9,7 +9,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Login } from './components/Login';
 import { Connect } from './components/Connect';
 import { Provider } from 'react-redux';
-import store from './Reducer';
+import store, { RootReducerContext } from './Reducer';
 import version from './utils/version';
 import { tz } from 'moment-timezone';
 import ErrorHandler from './components/ErrorHandler';
@@ -25,7 +25,7 @@ export default function Document() {
   }, []);
   return (
     <LocalizationProvider adapterLocale="ru" dateAdapter={AdapterMoment}>
-      <Provider store={store}>
+      <Provider context={RootReducerContext} store={store}>
         <SnackbarProvider maxSnack={11}>
           <ErrorHandler />
           <Connect>

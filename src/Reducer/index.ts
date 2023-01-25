@@ -1,5 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import {
+  createDispatchHook,
+  TypedUseSelectorHook,
+  createSelectorHook,
+} from 'react-redux';
 import User from './User';
 import App from './App';
 import Search from './Search';
@@ -10,6 +14,7 @@ import Comment from './Comment';
 import StateResults from './StateResults';
 import Message from './Message';
 import LawExec from './LawExec';
+import React from 'react';
 const store = configureStore({
   reducer: {
     User,
@@ -28,6 +33,10 @@ const store = configureStore({
 });
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-export const useAppDispatch = () => useDispatch<AppDispatch>();
-export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+export const RootReducerContext = React.createContext(null as any);
+export const useAppDispatch: () => AppDispatch =
+  createDispatchHook(RootReducerContext);
+
+export const useAppSelector: TypedUseSelectorHook<RootState> =
+  createSelectorHook(RootReducerContext);
 export default store;
