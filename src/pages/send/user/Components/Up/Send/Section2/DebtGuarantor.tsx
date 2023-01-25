@@ -9,7 +9,6 @@ export default function DebtGuarantor() {
     (state) => state.LawExec?.Debt?.DebtGuarantors,
   );
   const data = getData('debt_guarantor', 'string');
-  console.log(data);
   return (
     <Grid width={200} item>
       <FormControl fullWidth>
@@ -23,12 +22,17 @@ export default function DebtGuarantor() {
             data.setValue(event.target.value);
           }}
         >
-          <MenuItem value={-1}>Должник</MenuItem>
+          <MenuItem key={-1} value={-1}>
+            <em>Должник</em>
+          </MenuItem>
           {guarantors?.map((guarantor) => (
             <MenuItem key={guarantor.id} value={guarantor.id}>
               {guarantor.fio}
             </MenuItem>
           ))}
+          <MenuItem key={-2} value={-2}>
+            <em>Добавить должника</em>
+          </MenuItem>
         </Select>
       </FormControl>
     </Grid>
