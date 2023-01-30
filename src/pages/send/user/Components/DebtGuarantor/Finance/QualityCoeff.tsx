@@ -8,6 +8,9 @@ export default function QualityCoeff() {
       <TextField
         label="Коефф. кач-ва"
         type="number"
+        required={data.required}
+        error={data.error}
+        helperText={data.helperText}
         value={data.value}
         onChange={(event) => data.setValue(Number(event.target.value))}
       />

@@ -7,6 +7,9 @@ export default function ExtId() {
     <Grid item xs={2}>
       <TextField
         label="ID Клиента"
+        required={data.required}
+        error={data.error}
+        helperText={data.helperText}
         onChange={(event) => data.setValue(event.target.value)}
         value={data.value}
       />

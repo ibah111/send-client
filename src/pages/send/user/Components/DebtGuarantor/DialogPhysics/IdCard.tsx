@@ -8,6 +8,9 @@ export default function IdCard() {
       <TextField
         label="№ Уд. личн"
         value={data.value}
+        required={data.required}
+        error={data.error}
+        helperText={data.helperText}
         onChange={(event) => data.setValue(event.target.value)}
       />
     </Grid>

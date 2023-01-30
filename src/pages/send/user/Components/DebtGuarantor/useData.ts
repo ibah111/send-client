@@ -14,5 +14,5 @@ export default function useData<T extends keyof TypeDebtGuarantor>(name: T) {
   const setValue = (value: DebtGuarantor[T]) => {
     dispatch(setDebtGuarantorValue([name, value]));
   };
-  return { value, setValue };
+  return { value, setValue, required: true, error: true, helperText: 'Ашибка' };
 }

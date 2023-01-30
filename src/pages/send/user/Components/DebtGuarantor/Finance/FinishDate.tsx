@@ -10,7 +10,15 @@ export default function FinishDate() {
         label="Дата завершения"
         value={data.value || null}
         onChange={(value) => data.setValue(value as Date)}
-        renderInput={(params) => <TextField fullWidth {...params} />}
+        renderInput={(params) => (
+          <TextField
+            fullWidth
+            required={data.required}
+            helperText={data.helperText}
+            {...params}
+            error={data.error}
+          />
+        )}
       />
     </Grid>
   );

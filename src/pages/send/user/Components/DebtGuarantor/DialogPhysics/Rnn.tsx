@@ -8,6 +8,9 @@ export default function Rnn() {
       <TextField
         label="РНН"
         value={data.value}
+        required={data.required}
+        error={data.error}
+        helperText={data.helperText}
         onChange={(event) => data.setValue(event.target.value)}
       />
     </Grid>

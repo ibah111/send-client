@@ -14,7 +14,15 @@ export default function BirthDate() {
           console.log(value);
           data.setValue(value as Date);
         }}
-        renderInput={(params) => <TextField fullWidth {...params} />}
+        renderInput={(params) => (
+          <TextField
+            fullWidth
+            required={data.required}
+            helperText={data.helperText}
+            {...params}
+            error={data.error}
+          />
+        )}
       />
     </Grid>
   );

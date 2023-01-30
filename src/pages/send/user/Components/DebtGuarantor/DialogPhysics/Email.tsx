@@ -8,6 +8,8 @@ export default function Email() {
       <TextField
         label="Email"
         value={data.value}
+        error={data.error}
+        helperText={data.helperText}
         onChange={(event) => data.setValue(event.target.value)}
       />
     </Grid>

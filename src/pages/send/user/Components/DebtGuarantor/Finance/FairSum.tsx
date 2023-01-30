@@ -10,6 +10,9 @@ export default function FairSum() {
         label="Справедливая стоимость"
         value={data.value}
         onChange={(event) => data.setValue(Number(event.target.value))}
+        required={data.required}
+        error={data.error}
+        helperText={data.helperText}
         InputProps={{
           inputComponent: NumberFormatCustom,
         }}

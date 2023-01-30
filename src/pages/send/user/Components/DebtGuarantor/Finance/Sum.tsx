@@ -10,6 +10,9 @@ export default function Sum() {
         label="Залоговая стоимость"
         value={data.value}
         onChange={(event) => data.setValue(Number(event.target.value))}
+        required={data.required}
+        error={data.error}
+        helperText={data.helperText}
         InputProps={{
           inputComponent: NumberFormatCustom,
         }}

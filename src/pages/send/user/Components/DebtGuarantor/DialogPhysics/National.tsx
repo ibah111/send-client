@@ -8,6 +8,9 @@ export default function National() {
       <TextField
         value={data.value}
         label="Гражданство"
+        required={data.required}
+        error={data.error}
+        helperText={data.helperText}
         onChange={(event) => data.setValue(event.target.value)}
       />
     </Grid>

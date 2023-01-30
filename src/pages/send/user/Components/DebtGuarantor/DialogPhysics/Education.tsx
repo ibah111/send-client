@@ -1,4 +1,11 @@
-import { FormControl, Grid, InputLabel, MenuItem, Select } from '@mui/material';
+import {
+  FormControl,
+  FormHelperText,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+} from '@mui/material';
 import useDict from '../../../../../../hooks/useDict';
 import useData from '../useData';
 
@@ -7,7 +14,7 @@ export default function Education() {
   const dict = useDict(38);
   return (
     <Grid item xs={6}>
-      <FormControl>
+      <FormControl required={data.required} error={data.error}>
         <InputLabel id="education-label">Образование</InputLabel>
         <Select
           value={data.value}
@@ -19,6 +26,7 @@ export default function Education() {
             </MenuItem>
           ))}
         </Select>
+        <FormHelperText>{data.helperText}</FormHelperText>
       </FormControl>
     </Grid>
   );

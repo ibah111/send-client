@@ -9,6 +9,9 @@ export default function RealSum() {
       <TextField
         label="Рыночная стоимость"
         value={data.value}
+        required={data.required}
+        error={data.error}
+        helperText={data.helperText}
         onChange={(event) => data.setValue(Number(event.target.value))}
         InputProps={{
           inputComponent: NumberFormatCustom,

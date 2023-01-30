@@ -1,4 +1,11 @@
-import { FormControl, Grid, InputLabel, MenuItem, Select } from '@mui/material';
+import {
+  FormControl,
+  FormHelperText,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+} from '@mui/material';
 import useDict from '../../../../../../hooks/useDict';
 import useData from '../useData';
 
@@ -7,7 +14,7 @@ export default function FamilyStatus() {
   const data = useData('family_status');
   return (
     <Grid item xs={3}>
-      <FormControl required>
+      <FormControl required={data.required} error={data.error}>
         <InputLabel id="family-status-label">Семейное положение</InputLabel>
         <Select
           labelId="family-status-label"
@@ -21,6 +28,7 @@ export default function FamilyStatus() {
             </MenuItem>
           ))}
         </Select>
+        <FormHelperText>{data.helperText}</FormHelperText>
       </FormControl>
     </Grid>
   );

@@ -8,6 +8,9 @@ export default function BirthPlace() {
       <TextField
         label="Место рождения"
         value={data.value}
+        required={data.required}
+        error={data.error}
+        helperText={data.helperText}
         multiline
         onChange={(event) => data.setValue(event.target.value)}
       />

@@ -6,9 +6,10 @@ export default function Fio() {
   return (
     <Grid item xs={5}>
       <TextField
-        required
         label="ФИО"
-        value={data.value}
+        required={data.required}
+        error={data.error}
+        helperText={data.helperText}
         onChange={(event) => data.setValue(event.target.value)}
       />
     </Grid>
