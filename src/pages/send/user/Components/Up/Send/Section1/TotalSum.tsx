@@ -7,7 +7,7 @@ interface NumberCustomProps {
   onChange: (args: { target: { name: string; value: string } }) => void;
   name: string;
 }
-const NumberFormatCustom = React.forwardRef<
+export const NumberFormatCustom = React.forwardRef<
   HTMLInputElement,
   NumberCustomProps
 >(function NumberFormatCustom(props, ref) {
