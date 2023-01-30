@@ -7,8 +7,16 @@ import {
   useDgDispatch,
   useDgSelector,
 } from './Reducer';
-
-export default function useData<T extends keyof TypeDebtGuarantor>(name: T) {
+export interface ResultData<T extends keyof TypeDebtGuarantor> {
+  value: TypeDebtGuarantor[T] | string;
+  setValue: (value: DebtGuarantor[T]) => void;
+  required?: boolean;
+  error?: boolean;
+  helperText?: string;
+}
+export default function useData<T extends keyof TypeDebtGuarantor>(
+  name: T,
+): ResultData<T> {
   const value = useDgSelector((state) => state.DebtGuarantor?.[name] || '');
   const dispatch = useDgDispatch();
   const setValue = (value: DebtGuarantor[T]) => {
