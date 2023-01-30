@@ -2,6 +2,7 @@ import { FormControl, Grid, InputLabel, MenuItem, Select } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useAppSelector } from '../../../../../../../Reducer';
 import getData from '../../../../../../../utils/getData';
+import DebtGuarantorForm from '../../../DebtGuarantor';
 
 export default function DebtGuarantor() {
   const { t } = useTranslation();
@@ -35,6 +36,7 @@ export default function DebtGuarantor() {
           </MenuItem>
         </Select>
       </FormControl>
+      <DebtGuarantorForm />
     </Grid>
   );
 }
