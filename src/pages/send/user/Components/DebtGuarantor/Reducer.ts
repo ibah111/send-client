@@ -13,7 +13,7 @@ import {
   TypedUseSelectorHook,
 } from 'react-redux';
 export type TypeDebtGuarantor = CreationAttributes<DebtGuarantor>;
-const initialState = null as null | TypeDebtGuarantor;
+const initialState = {} as TypeDebtGuarantor;
 const DebtGuarantorSlice = createSlice({
   name: 'DebtGuarantor',
   initialState,
@@ -21,10 +21,9 @@ const DebtGuarantorSlice = createSlice({
     setDebtGuarantor: (state, action: PayloadAction<DebtGuarantor>) =>
       action.payload,
     setDebtGuarantorValue<T extends keyof TypeDebtGuarantor>(
-      state: Draft<TypeDebtGuarantor | null>,
+      state: Draft<TypeDebtGuarantor>,
       action: PayloadAction<[T, TypeDebtGuarantor[T]]>,
     ) {
-      if (!state) state = {} as TypeDebtGuarantor;
       state[action.payload[0]] = action.payload[1];
       return state;
     },

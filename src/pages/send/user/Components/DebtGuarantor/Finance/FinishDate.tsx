@@ -8,7 +8,7 @@ export default function FinishDate() {
     <Grid xs={6} item>
       <DatePicker
         label="Дата завершения"
-        value={data.value}
+        value={data.value || null}
         onChange={(value) => data.setValue(value as Date)}
         renderInput={(params) => <TextField fullWidth {...params} />}
       />
