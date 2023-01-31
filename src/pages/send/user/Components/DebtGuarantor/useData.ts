@@ -1,5 +1,7 @@
 import { DebtGuarantor } from '@contact/models';
 import { Attributes } from '@sql-tools/sequelize';
+import React from 'react';
+import { DataInstance } from './DataInstance';
 import {
   setDebtGuarantor,
   setDebtGuarantorValue,
@@ -7,6 +9,10 @@ import {
   useDgDispatch,
   useDgSelector,
 } from './Reducer';
+import checker from './validation/checker';
+import errorCheck from './validation/errorCheck';
+import helperCheck from './validation/helperCheck';
+import requiredCheck from './validation/requiredCheck';
 export interface ResultData<T extends keyof TypeDebtGuarantor> {
   value: TypeDebtGuarantor[T] | string;
   setValue: (value: DebtGuarantor[T]) => void;
@@ -22,5 +28,9 @@ export default function useData<T extends keyof TypeDebtGuarantor>(
   const setValue = (value: DebtGuarantor[T]) => {
     dispatch(setDebtGuarantorValue([name, value]));
   };
-  return { value, setValue, required: true, error: true, helperText: 'Ашибка' };
+  const { required, error, helperText } = React.useMemo(
+    () => checker(DataInstance, name, value),
+    [name, value],
+  );
+  return { value, setValue, required, error, helperText };
 }
