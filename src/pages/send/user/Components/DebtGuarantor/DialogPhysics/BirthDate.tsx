@@ -11,7 +11,6 @@ export default function BirthDate() {
         label="Дата рождения"
         value={data.value || null}
         onChange={(value) => {
-          console.log(value);
           data.setValue(value as Date);
         }}
         renderInput={(params) => (
