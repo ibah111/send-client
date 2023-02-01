@@ -39,6 +39,7 @@ export default function checker<T extends object, F>(
   });
   result.required = requiredCheck(dataNull);
   const errors = validateSync(data, { skipUndefinedProperties: true });
+  console.log(name);
   result.error = errorCheck(errors);
   result.helperText = helperCheck(errors);
   return result;

@@ -23,7 +23,7 @@ export default function Sex() {
           onChange={(event) => data.setValue(event.target.value)}
         >
           {dict.map((item) => (
-            <MenuItem key={item.id} value={item.code}>
+            <MenuItem key={item.id} value={String(item.code)}>
               {item.name}
             </MenuItem>
           ))}
