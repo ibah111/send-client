@@ -11,6 +11,7 @@ export default function Inn() {
         required={data.required}
         error={data.error}
         helperText={data.helperText}
+        inputProps={{ maxLength: 12 }}
         onChange={(event) => data.setValue(event.target.value)}
       />
     </Grid>

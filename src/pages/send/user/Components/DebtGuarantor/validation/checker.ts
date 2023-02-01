@@ -26,8 +26,6 @@ export default function checker<T extends object, F>(
     helperText: '',
   };
   const dataNull = plainToInstance(example, { [name]: null });
-  console.log(name);
-  console.log(dataNull);
   const data = plainToInstance(example, {
     [name]:
       value === undefined || value === null || value === '' ? null : value,

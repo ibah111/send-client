@@ -12,8 +12,6 @@ import useData from './useData';
 export default function SelectRole() {
   const dict = useDict(155);
   const data = useData('kind');
-  console.log(dict);
-  console.log(data.value);
   return (
     <Grid item xs={3}>
       <FormControl required={data.required} error={data.error}>

@@ -1,8 +1,8 @@
 import { Transform, Type } from 'class-transformer';
-import { IsEmail, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
+import { IsOptional } from 'class-validator';
 import moment from 'moment';
 import { NullOrMoment } from './validation/checker';
-import { IsInn } from './validation/isInn';
+import { IsNotEmpty, IsInn, IsEmail, IsNumber } from './validation/locale';
 
 export class DataInstance {
   @IsNotEmpty()
