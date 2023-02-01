@@ -2,7 +2,13 @@ import { Transform, Type } from 'class-transformer';
 import { IsOptional } from 'class-validator';
 import moment from 'moment';
 import { NullOrMoment } from './validation/checker';
-import { IsNotEmpty, IsInn, IsEmail, IsNumber } from './validation/locale';
+import {
+  IsNotEmpty,
+  IsInn,
+  IsEmail,
+  IsNumber,
+  Length,
+} from './validation/locale';
 
 export class DataInstance {
   @IsNotEmpty()
@@ -16,6 +22,7 @@ export class DataInstance {
     toClassOnly: true,
   })
   birth_date: moment.Moment;
+  @Length(0, 2)
   passport: string;
   @IsNotEmpty()
   sex: string;

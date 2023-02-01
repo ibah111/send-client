@@ -15,6 +15,13 @@ interface CheckerResult {
   error: boolean;
   helperText: string;
 }
+export class TranslateOptions {
+  [index: string]: any;
+}
+export class TranslateMessage {
+  name: string;
+  options: TranslateOptions = {};
+}
 export default function checker<T extends object, F>(
   example: ClassConstructor<T>,
   name: string,
