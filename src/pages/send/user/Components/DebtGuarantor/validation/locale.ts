@@ -8,8 +8,8 @@ import {
   ValidationOptions,
 } from 'class-validator';
 import ValidatorJS from 'validator';
-import { TranslateMessage } from './checker';
 import { IsInn as IsInnOrigin } from './isInn';
+import { IsValidMoment as IsValidMomentOrigin } from './isValidMoment';
 export const IsNotEmpty = (validationOptions?: ValidationOptions) =>
   IsNotEmptyOrigin({ message: 'isNotEmpty', ...validationOptions });
 export const IsInn = (validationOptions?: ValidationOptions) =>
@@ -52,3 +52,5 @@ export const Length = (
     },
     ...validationOptions,
   });
+export const IsValidMoment = (validationOptions?: ValidationOptions) =>
+  IsValidMomentOrigin({ message: 'isValidMoment', ...validationOptions });

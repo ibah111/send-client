@@ -1,13 +1,12 @@
 import { Transform, Type } from 'class-transformer';
 import { IsOptional, IsString } from 'class-validator';
 import moment from 'moment';
-import { NullOrMoment } from './validation/checker';
 import {
   IsNotEmpty,
   IsInn,
   IsEmail,
   IsNumber,
-  Length,
+  IsValidMoment,
 } from './validation/locale';
 
 export class DataInstance {
@@ -16,11 +15,9 @@ export class DataInstance {
   @IsNumber()
   @IsNotEmpty()
   parent_id: number;
+  @IsValidMoment()
   @IsNotEmpty()
-  @Type(() => Date)
-  @Transform(NullOrMoment, {
-    toClassOnly: true,
-  })
+  @Type(() => moment)
   birth_date: moment.Moment;
   @IsOptional()
   @IsString()
@@ -73,8 +70,17 @@ export class DataInstance {
   @IsOptional()
   @IsString()
   contract?: string | null;
+  @IsNotEmpty()
+  @IsValidMoment()
+  @Type(() => moment)
   start_date?: moment.Moment | null;
+  @IsNotEmpty()
+  @IsValidMoment()
+  @Type(() => moment)
   end_date?: moment.Moment | null;
+  @IsNotEmpty()
+  @IsValidMoment()
+  @Type(() => moment)
   finish_date?: moment.Moment | null;
   @IsOptional()
   @IsNumber()
@@ -154,5 +160,8 @@ export class DataInstance {
   @IsOptional()
   @IsString()
   PAS_SERIES?: string | null;
+  @IsNotEmpty()
+  @IsValidMoment()
+  @Type(() => moment)
   PASS_DT?: moment.Moment | null;
 }

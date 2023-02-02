@@ -4,6 +4,7 @@ import useData from '../useData';
 
 export default function BirthDate() {
   const data = useData('birth_date');
+  console.log(data.value);
   return (
     <Grid xs={3} item>
       <DatePicker

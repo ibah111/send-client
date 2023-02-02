@@ -28,9 +28,6 @@ export default function DocumentsTable({ id }: DocumentsTableProps) {
   const [rows, setRows] = React.useState<DocAttach[]>([]);
   React.useEffect(() => {
     refresh();
-    apiRef.current.subscribeEvent('columnHeaderDragEnter', (_, e) => {
-      console.log(e);
-    });
     apiRef.current.restoreState(stateGrid);
   }, []);
   return (
