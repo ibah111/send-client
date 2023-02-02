@@ -19,148 +19,147 @@ export class DataInstance {
   @IsNotEmpty()
   @Type(() => moment)
   birth_date: moment.Moment;
-  @IsOptional()
   @IsString()
+  @IsOptional()
   passport: string;
   @IsString()
   @IsNotEmpty()
   sex: string;
-  @IsOptional()
   @IsNumber()
+  @IsOptional()
   id?: number;
-  @IsOptional()
   @IsNumber()
+  @IsOptional()
   sum?: number | null;
-  @IsOptional()
   @IsString()
+  @IsOptional()
   dsc?: string | null;
-  @IsOptional()
   @IsString()
+  @IsOptional()
   address?: string | null;
   @IsNumber()
   @IsNotEmpty()
   typ: number;
-  @IsOptional()
   @IsString()
+  @IsOptional()
   ext_id?: string | null;
-  @IsOptional()
   @IsNumber()
+  @IsOptional()
   family_status?: number | null;
-  @IsOptional()
   @IsNumber()
+  @IsOptional()
   education?: number | null;
-  @IsOptional()
   @IsString()
+  @IsOptional()
   company_name?: string | null;
-  @IsOptional()
   @IsString()
+  @IsOptional()
   position?: string | null;
-  @IsOptional()
   @IsInn()
+  @IsOptional()
   inn?: string | null;
-  @IsOptional()
   @IsString()
+  @IsOptional()
   kpp?: string | null;
-  @IsOptional()
   @IsString()
+  @IsOptional()
   pay_info?: string | null;
-  @IsOptional()
   @IsString()
+  @IsOptional()
   director_fio?: string | null;
-  @IsOptional()
   @IsString()
+  @IsOptional()
   contract?: string | null;
-  @IsNotEmpty()
   @IsValidMoment()
   @Type(() => moment)
+  @IsOptional()
   start_date?: moment.Moment | null;
-  @IsNotEmpty()
   @IsValidMoment()
   @Type(() => moment)
+  @IsOptional()
   end_date?: moment.Moment | null;
-  @IsNotEmpty()
   @IsValidMoment()
   @Type(() => moment)
+  @IsOptional()
   finish_date?: moment.Moment | null;
-  @IsOptional()
   @IsNumber()
+  @IsOptional()
   currency?: number | null;
-  @IsOptional()
   @IsNumber()
+  @IsOptional()
   real_sum?: number | null;
-  @IsOptional()
   @IsNumber()
+  @IsOptional()
   fair_sum?: number | null;
-  @IsOptional()
   @IsNumber()
+  @IsOptional()
   quality_coeff?: number | null;
-  @IsOptional()
   @IsString()
+  @IsOptional()
   name?: string | null;
-  @IsOptional()
   @IsString()
+  @IsOptional()
   birth_place?: string | null;
-  @IsOptional()
   @IsNumber()
+  @IsOptional()
   liability?: number | null;
-  @IsOptional()
   @IsString()
+  @IsOptional()
   id_card?: string | null;
-  @IsOptional()
   @IsString()
+  @IsOptional()
   social_number?: string | null;
-  @IsOptional()
   @IsString()
+  @IsOptional()
   tin?: string | null;
-  @IsNotEmpty()
   @IsNumber()
+  @IsNotEmpty()
   kind: number;
-  @IsOptional()
   @IsEmail()
+  @IsOptional()
   string_value_1?: string | null;
-  @IsOptional()
   @IsString()
+  @IsOptional()
   string_value_2?: string | null;
-  @IsOptional()
   @IsNumber()
+  @IsOptional()
   number_value_1?: number | null;
-  @IsOptional()
   @IsString()
+  @IsOptional()
   BIK?: string | null;
-  @IsOptional()
   @IsString()
+  @IsOptional()
   B_NAME?: string | null;
-  @IsOptional()
   @IsNumber()
+  @IsOptional()
   DICT_VALUE_1?: number | null;
-  @IsOptional()
   @IsString()
+  @IsOptional()
   K_ACCOUNT?: string | null;
-  @IsOptional()
   @IsString()
+  @IsOptional()
   OGRN?: string | null;
-  @IsOptional()
   @IsString()
+  @IsOptional()
   OKPO?: string | null;
-  @IsOptional()
   @IsString()
+  @IsOptional()
   OKVED?: string | null;
-  @IsOptional()
   @IsString()
+  @IsOptional()
   R_ACCOUNT?: string | null;
-  @IsOptional()
   @IsNumber()
+  @IsOptional()
   PAS_DOC_TYPE?: number | null;
-  @IsOptional()
   @IsString()
+  @IsOptional()
   PAS_NUMBER?: string | null;
-  @IsOptional()
   @IsString()
+  @IsOptional()
   PAS_PLACE?: string | null;
-  @IsOptional()
   @IsString()
+  @IsOptional()
   PAS_SERIES?: string | null;
-  @IsNotEmpty()
   @IsValidMoment()
   @Type(() => moment)
   PASS_DT?: moment.Moment | null;
