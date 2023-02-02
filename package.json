@@ -23,7 +23,7 @@
   },
   "packageManager": "yarn@3.3.1",
   "devDependencies": {
-    "@contact/models": "^0.3.7",
+    "@contact/models": "^0.3.16",
     "@sql-tools/sequelize": "^6.27.8",
     "@sql-tools/sequelize-typescript": "^2.1.5",
     "@types/file-saver": "^2.0.5",

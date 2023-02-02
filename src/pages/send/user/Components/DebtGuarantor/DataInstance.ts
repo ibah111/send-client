@@ -1,3 +1,6 @@
+import { DebtGuarantor } from '@contact/models';
+import { TypDate } from '@contact/models/dist/config';
+import { CreationAttributes } from '@sql-tools/sequelize';
 import { Transform, TransformFnParams, Type } from 'class-transformer';
 import { IsOptional, IsString } from 'class-validator';
 import moment from 'moment';
@@ -13,7 +16,7 @@ const getDate = (date?: boolean) => (date ? Date : moment);
 const getTransform = (date?: boolean) =>
   date ? ({ value }: TransformFnParams) => value : NullOrMoment;
 export function createInstance(date?: boolean) {
-  class DataInstance {
+  class DataInstance implements CreationAttributes<DebtGuarantor> {
     @IsNotEmpty()
     fio: string;
     @IsNumber()

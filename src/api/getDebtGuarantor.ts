@@ -13,9 +13,7 @@ export default async function getDebtGuarantor(
       id: value,
     });
     const instance = plainToInstance(DataInstance, response.data);
-    console.log(instance);
     const result = instanceToPlain(instance) as DebtGuarantor;
-    console.log(result);
     return result;
   } catch (e) {
     processError(e);
