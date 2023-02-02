@@ -7,6 +7,7 @@ export default function Fio() {
     <Grid item xs={4}>
       <TextField
         label="ФИО"
+        value={data.value}
         required={data.required}
         error={data.error}
         helperText={data.helperText}

@@ -5,14 +5,23 @@ import Form from './Form';
 import store, { DgReducerContext } from './Reducer';
 import { createTheme } from './theme';
 
-export default function DebtGuarantorForm() {
+interface DebtGuarantorFormProps {
+  id?: number;
+  open?: boolean;
+  onClose: () => void;
+}
+export default function DebtGuarantorForm({
+  id,
+  open,
+  onClose,
+}: DebtGuarantorFormProps) {
   const oldTheme = useTheme();
   const theme = React.useMemo(() => createTheme(oldTheme), [oldTheme]);
   return (
     <ThemeProvider theme={theme}>
       <Provider context={DgReducerContext} store={store}>
-        <Dialog fullWidth maxWidth="lg" open={true}>
-          <Form />
+        <Dialog fullWidth maxWidth="lg" open={open || false} onClose={onClose}>
+          <Form id={id} />
         </Dialog>
       </Provider>
     </ThemeProvider>

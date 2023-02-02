@@ -1,3 +1,4 @@
+import { TransformFnParams } from 'class-transformer';
 import {
   registerDecorator,
   ValidationArguments,
@@ -6,11 +7,13 @@ import {
   ValidatorConstraintInterface,
 } from 'class-validator';
 import moment from 'moment';
-
+export const NullOrMoment = ({ value }: TransformFnParams) => {
+  return value === null ? null : moment(value);
+};
 @ValidatorConstraint({ name: 'isValidMoment' })
 export class IsValidMomentConstructor implements ValidatorConstraintInterface {
   validate(value: moment.Moment, args: ValidationArguments): boolean {
-    return value?.isValid();
+    return value?.isValid?.();
   }
   defaultMessage(args: ValidationArguments): string {
     return `This data '($value)' not valid Date`;
