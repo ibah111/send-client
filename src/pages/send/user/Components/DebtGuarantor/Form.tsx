@@ -1,12 +1,14 @@
-import { DialogContent, DialogTitle, Grid } from '@mui/material';
+import { DialogContent, DialogTitle, Grid, TextField } from '@mui/material';
 import DialogPhysics from './DialogPhysics';
 import ExtId from './ExtId';
 import Finance from './Finance';
 import Fio from './Fio';
 import SelectRole from './SelectRole';
 import SelectTyp from './SelectTyp';
+import useData from './useData';
 
 export default function Form() {
+  const data = useData('id');
   return (
     <>
       <DialogTitle>Редактирование поручителя</DialogTitle>
@@ -19,6 +21,9 @@ export default function Form() {
           justifyContent="center"
           alignItems="center"
         >
+          <Grid item xs={1}>
+            <TextField label="ID" value={data.value} disabled />
+          </Grid>
           <Fio />
           <SelectTyp />
           <SelectRole />

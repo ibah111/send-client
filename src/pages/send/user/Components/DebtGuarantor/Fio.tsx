@@ -4,7 +4,7 @@ import useData from './useData';
 export default function Fio() {
   const data = useData('fio');
   return (
-    <Grid item xs={5}>
+    <Grid item xs={4}>
       <TextField
         label="ФИО"
         required={data.required}
