@@ -8,11 +8,13 @@ import { createTheme } from './theme';
 interface DebtGuarantorFormProps {
   id?: number;
   open?: boolean;
+  parent_id?: number | null;
   onClose: () => void;
 }
 export default function DebtGuarantorForm({
   id,
   open,
+  parent_id,
   onClose,
 }: DebtGuarantorFormProps) {
   const oldTheme = useTheme();
@@ -21,7 +23,7 @@ export default function DebtGuarantorForm({
     <ThemeProvider theme={theme}>
       <Provider context={DgReducerContext} store={store}>
         <Dialog fullWidth maxWidth="lg" open={open || false} onClose={onClose}>
-          <Form id={id} />
+          <Form id={id} parent_id={parent_id} />
         </Dialog>
       </Provider>
     </ThemeProvider>

@@ -12,15 +12,21 @@ import DialogPhysics from './DialogPhysics';
 import ExtId from './ExtId';
 import Finance from './Finance';
 import Fio from './Fio';
-import { setDebtGuarantor, useDgDispatch } from './Reducer';
+import {
+  resetDebtGuarantor,
+  setDebtGuarantor,
+  setDebtGuarantorValue,
+  useDgDispatch,
+} from './Reducer';
 import SelectRole from './SelectRole';
 import SelectTyp from './SelectTyp';
 import Submit from './Submit';
 import useData from './useData';
 interface FormProps {
   id?: number;
+  parent_id?: number | null;
 }
-export default function Form({ id }: FormProps) {
+export default function Form({ id, parent_id }: FormProps) {
   const dispatch = useDgDispatch();
   const { t } = useTranslation();
   React.useEffect(() => {
@@ -28,6 +34,9 @@ export default function Form({ id }: FormProps) {
       getDebtGuarantor(id).then((res) => {
         dispatch(setDebtGuarantor(res));
       });
+    } else {
+      dispatch(resetDebtGuarantor());
+      if (parent_id) dispatch(setDebtGuarantorValue(['parent_id', parent_id]));
     }
   }, [id]);
   const data = useData('id');

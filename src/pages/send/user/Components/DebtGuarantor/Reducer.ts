@@ -27,9 +27,12 @@ const DebtGuarantorSlice = createSlice({
       state[action.payload[0]] = action.payload[1];
       return state;
     },
+    resetDebtGuarantor() {
+      return initialState;
+    },
   },
 });
-export const { setDebtGuarantor, setDebtGuarantorValue } =
+export const { setDebtGuarantor, setDebtGuarantorValue, resetDebtGuarantor } =
   DebtGuarantorSlice.actions;
 const store = configureStore({
   reducer: { DebtGuarantor: DebtGuarantorSlice.reducer },

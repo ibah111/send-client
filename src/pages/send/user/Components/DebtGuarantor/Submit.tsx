@@ -7,6 +7,6 @@ export default function Submit() {
   const data = useDgSelector((state) => state.DebtGuarantor);
   const save = React.useCallback(() => {
     updateDebtGuarantor(data);
-  }, []);
+  }, [data]);
   return <Button onClick={save}>Сохранить</Button>;
 }

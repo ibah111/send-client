@@ -12,6 +12,7 @@ export default function DebtGuarantor() {
   const guarantors = useAppSelector(
     (state) => state.LawExec?.Debt?.DebtGuarantors,
   );
+  const parent_id = useAppSelector((state) => state.LawExec?.r_debt_id);
   const data = getData('debt_guarantor', 'string');
   React.useEffect(() => {
     if (data.value && data.value >= -1) {
@@ -45,15 +46,17 @@ export default function DebtGuarantor() {
               {guarantor.fio}
             </MenuItem>
           ))}
-          <MenuItem
-            key={-2}
-            value={-2}
-            onClick={() => {
-              setOpen(true);
-            }}
-          >
-            <em>Добавить должника</em>
-          </MenuItem>
+          {parent_id && (
+            <MenuItem
+              key={-2}
+              value={-2}
+              onClick={() => {
+                setOpen(true);
+              }}
+            >
+              <em>Добавить должника</em>
+            </MenuItem>
+          )}
           {data.value && (data.value > -1 || data.value === -3) && (
             <MenuItem
               key={-3}
@@ -67,11 +70,14 @@ export default function DebtGuarantor() {
           )}
         </Select>
       </FormControl>
-      <DebtGuarantorForm
-        open={open}
-        onClose={() => setOpen(false)}
-        id={dg_id}
-      />
+      {open && (
+        <DebtGuarantorForm
+          open={open}
+          onClose={() => setOpen(false)}
+          parent_id={parent_id}
+          id={dg_id}
+        />
+      )}
     </Grid>
   );
 }

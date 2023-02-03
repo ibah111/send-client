@@ -42,7 +42,17 @@
       "real_sum": "Рыночная стоимость",
       "fair_sum": "Справедливая стоимость",
       "quality_coeff": "Коефф. кач-ва",
-      "number_value_1": "Доход"
+      "number_value_1": "Доход",
+      "errors_popup": {
+        "length>=": "Значение должно быть больше или равно {{constraint1}}",
+        "length<=": "Значение должно быть меньше или равно {{constraint2}}",
+        "length<>": "Значение должно быть между {{constraint1}} и {{constraint2}}",
+        "isNotEmpty": "Поле \"$t(form.debt_guarantor.{{property}})\" должно быть заполнено",
+        "isEmail": "В поле \"\" введена не почта",
+        "isInn": "Значение в поле \"\" не является 10 или 12",
+        "isInnNotValid": "Значение в поле \"\" не является ИНН",
+        "isValidMoment": "Дата в поле \"\" занесена не правильно"
+      }
     },
     "debt_calc": {
       "title": "Платежи",
