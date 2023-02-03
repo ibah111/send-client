@@ -1,5 +1,12 @@
-import { DialogContent, DialogTitle, Grid, TextField } from '@mui/material';
+import {
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Grid,
+  TextField,
+} from '@mui/material';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import getDebtGuarantor from '../../../../../api/getDebtGuarantor';
 import DialogPhysics from './DialogPhysics';
 import ExtId from './ExtId';
@@ -8,12 +15,14 @@ import Fio from './Fio';
 import { setDebtGuarantor, useDgDispatch } from './Reducer';
 import SelectRole from './SelectRole';
 import SelectTyp from './SelectTyp';
+import Submit from './Submit';
 import useData from './useData';
 interface FormProps {
   id?: number;
 }
 export default function Form({ id }: FormProps) {
   const dispatch = useDgDispatch();
+  const { t } = useTranslation();
   React.useEffect(() => {
     if (id) {
       getDebtGuarantor(id).then((res) => {
@@ -35,7 +44,11 @@ export default function Form({ id }: FormProps) {
           alignItems="center"
         >
           <Grid item xs={1}>
-            <TextField label="ID" value={data.value} disabled />
+            <TextField
+              label={t('form.debt_guarantor.id')}
+              value={data.value}
+              disabled
+            />
           </Grid>
           <Fio />
           <SelectTyp />
@@ -54,6 +67,9 @@ export default function Form({ id }: FormProps) {
           <Finance />
         </Grid>
       </DialogContent>
+      <DialogActions>
+        <Submit />
+      </DialogActions>
     </>
   );
 }

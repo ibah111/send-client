@@ -171,6 +171,7 @@ export function createInstance(date?: boolean) {
     @IsString()
     @IsOptional()
     PAS_SERIES?: string | null;
+    @IsOptional()
     @IsValidMoment()
     @Type(() => getDate(date))
     @Transform(getTransform(date))
