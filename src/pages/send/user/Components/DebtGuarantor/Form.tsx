@@ -25,8 +25,9 @@ import useData from './useData';
 interface FormProps {
   id?: number;
   parent_id?: number | null;
+  onClose: () => void;
 }
-export default function Form({ id, parent_id }: FormProps) {
+export default function Form({ id, parent_id, onClose }: FormProps) {
   const dispatch = useDgDispatch();
   const { t } = useTranslation();
   React.useEffect(() => {
@@ -77,7 +78,7 @@ export default function Form({ id, parent_id }: FormProps) {
         </Grid>
       </DialogContent>
       <DialogActions>
-        <Submit />
+        <Submit onClose={onClose} />
       </DialogActions>
     </>
   );

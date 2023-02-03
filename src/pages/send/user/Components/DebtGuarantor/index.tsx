@@ -23,7 +23,7 @@ export default function DebtGuarantorForm({
     <ThemeProvider theme={theme}>
       <Provider context={DgReducerContext} store={store}>
         <Dialog fullWidth maxWidth="lg" open={open || false} onClose={onClose}>
-          <Form id={id} parent_id={parent_id} />
+          <Form id={id} parent_id={parent_id} onClose={onClose} />
         </Dialog>
       </Provider>
     </ThemeProvider>
