@@ -25,7 +25,7 @@ import useData from './useData';
 interface FormProps {
   id?: number;
   parent_id?: number | null;
-  onClose: () => void;
+  onClose: (id?: number) => void;
 }
 export default function Form({ id, parent_id, onClose }: FormProps) {
   const dispatch = useDgDispatch();

@@ -9,7 +9,7 @@ interface DebtGuarantorFormProps {
   id?: number;
   open?: boolean;
   parent_id?: number | null;
-  onClose: () => void;
+  onClose: (id?: number) => void;
 }
 export default function DebtGuarantorForm({
   id,
@@ -22,7 +22,12 @@ export default function DebtGuarantorForm({
   return (
     <ThemeProvider theme={theme}>
       <Provider context={DgReducerContext} store={store}>
-        <Dialog fullWidth maxWidth="lg" open={open || false} onClose={onClose}>
+        <Dialog
+          fullWidth
+          maxWidth="lg"
+          open={open || false}
+          onClose={() => onClose()}
+        >
           <Form id={id} parent_id={parent_id} onClose={onClose} />
         </Dialog>
       </Provider>

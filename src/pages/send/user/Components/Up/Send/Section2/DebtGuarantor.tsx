@@ -1,18 +1,23 @@
 import { FormControl, Grid, InputLabel, MenuItem, Select } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useAppSelector } from '../../../../../../../Reducer';
+import getLawExec from '../../../../../../../api/getLawExec';
+import { useAppDispatch, useAppSelector } from '../../../../../../../Reducer';
+import { setLawExec } from '../../../../../../../Reducer/LawExec';
+import { setSend } from '../../../../../../../Reducer/Send';
 import getData from '../../../../../../../utils/getData';
 import DebtGuarantorForm from '../../../DebtGuarantor';
 
 export default function DebtGuarantor() {
   const [dg_id, setDg] = React.useState<number>();
   const [open, setOpen] = React.useState(false);
+  const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const guarantors = useAppSelector(
     (state) => state.LawExec?.Debt?.DebtGuarantors,
   );
   const parent_id = useAppSelector((state) => state.LawExec?.r_debt_id);
+  const le_id = useAppSelector((state) => state.LawExec?.id);
   const data = getData('debt_guarantor', 'string');
   React.useEffect(() => {
     if (data.value && data.value >= -1) {
@@ -73,7 +78,19 @@ export default function DebtGuarantor() {
       {open && (
         <DebtGuarantorForm
           open={open}
-          onClose={() => setOpen(false)}
+          onClose={(id) => {
+            if (id) {
+              data.setValue(id);
+              getLawExec(le_id!).then((res) => {
+                if (res !== null) {
+                  dispatch(setLawExec(res));
+                  dispatch(setSend(res));
+                }
+              });
+            }
+
+            setOpen(false);
+          }}
           parent_id={parent_id}
           id={dg_id}
         />

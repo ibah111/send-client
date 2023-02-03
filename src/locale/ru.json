@@ -48,10 +48,10 @@
         "length<=": "Значение должно быть меньше или равно {{constraint2}}",
         "length<>": "Значение должно быть между {{constraint1}} и {{constraint2}}",
         "isNotEmpty": "Поле \"$t(form.debt_guarantor.{{property}})\" должно быть заполнено",
-        "isEmail": "В поле \"\" введена не почта",
-        "isInn": "Значение в поле \"\" не является 10 или 12",
-        "isInnNotValid": "Значение в поле \"\" не является ИНН",
-        "isValidMoment": "Дата в поле \"\" занесена не правильно"
+        "isEmail": "В поле \"$t(form.debt_guarantor.{{property}})\" введена не почта",
+        "isInn": "Значение в поле \"$t(form.debt_guarantor.{{property}})\" не является 10 или 12",
+        "isInnNotValid": "Значение в поле \"$t(form.debt_guarantor.{{property}})\" не является ИНН",
+        "isValidMoment": "Дата в поле \"$t(form.debt_guarantor.{{property}})\" занесена не правильно"
       }
     },
     "debt_calc": {
