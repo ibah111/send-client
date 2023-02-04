@@ -56,6 +56,7 @@ export default function DebtGuarantor() {
               key={-2}
               value={-2}
               onClick={() => {
+                setDg(undefined);
                 setOpen(true);
               }}
             >
@@ -67,6 +68,7 @@ export default function DebtGuarantor() {
               key={-3}
               value={-3}
               onClick={() => {
+                setDg((data.value as number) || undefined);
                 setOpen(true);
               }}
             >
