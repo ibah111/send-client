@@ -12,10 +12,10 @@ export const NullOrMoment = ({ value }: TransformFnParams) => {
 };
 @ValidatorConstraint({ name: 'isValidMoment' })
 export class IsValidMomentConstructor implements ValidatorConstraintInterface {
-  validate(value: moment.Moment, args: ValidationArguments): boolean {
+  validate(value: moment.Moment): boolean {
     return value?.isValid?.();
   }
-  defaultMessage(args: ValidationArguments): string {
+  defaultMessage(): string {
     return `This data '($value)' not valid Date`;
   }
 }

@@ -1,5 +1,4 @@
 import {
-  buildMessage,
   registerDecorator,
   ValidationArguments,
   ValidationOptions,

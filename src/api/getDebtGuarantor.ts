@@ -1,6 +1,5 @@
 import { DebtGuarantor } from '@contact/models';
 import { instanceToPlain, plainToInstance } from 'class-transformer';
-import moment from 'moment';
 import { createInstance } from '../pages/send/user/Components/DebtGuarantor/DataInstance';
 import processError from '../utils/processError';
 import requests from '../utils/requests';

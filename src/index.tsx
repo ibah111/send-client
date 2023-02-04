@@ -3,7 +3,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './document';
 import ThemeProvider from './Providers/ThemeProvider';
-import moment from 'moment';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );

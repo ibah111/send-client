@@ -1,4 +1,3 @@
-import { Box } from '@mui/material';
 import { DataGridPremium } from '@mui/x-data-grid-premium';
 import React from 'react';
 import getDebtGuarantorAddress from '../../../../../../api/getDebtGuarantorAddress';

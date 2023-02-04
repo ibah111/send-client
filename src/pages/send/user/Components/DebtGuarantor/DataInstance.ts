@@ -1,5 +1,4 @@
 import { DebtGuarantor } from '@contact/models';
-import { TypDate } from '@contact/models/dist/config';
 import { CreationAttributes } from '@sql-tools/sequelize';
 import { Transform, TransformFnParams, Type } from 'class-transformer';
 import { IsOptional, IsString } from 'class-validator';
