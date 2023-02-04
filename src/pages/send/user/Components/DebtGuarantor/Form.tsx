@@ -8,6 +8,7 @@ import {
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import getDebtGuarantor from '../../../../../api/getDebtGuarantor';
+import AddressGrid from './Address';
 import DialogPhysics from './DialogPhysics';
 import ExtId from './ExtId';
 import Finance from './Finance';
@@ -76,6 +77,7 @@ export default function Form({ id, parent_id, onClose }: FormProps) {
           <DialogPhysics />
           <Finance />
         </Grid>
+        <AddressGrid />
       </DialogContent>
       <DialogActions>
         <Submit onClose={onClose} />
