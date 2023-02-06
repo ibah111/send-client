@@ -22,6 +22,11 @@ export default function getColumns(): GridColDef[] {
       width: 300,
     },
     {
+      field: 'Debt.name',
+      width: 300,
+      headerName: t('form.results.debt.name'),
+    },
+    {
       field: 'Address',
       headerName: t('form.results.address'),
       width: 200,
