@@ -1,4 +1,4 @@
-import { DebtGuarantor } from '@contact/models';
+import { Address, DebtGuarantor } from '@contact/models';
 import {
   configureStore,
   createSlice,
@@ -13,10 +13,10 @@ import {
   TypedUseSelectorHook,
 } from 'react-redux';
 export type TypeDebtGuarantor = CreationAttributes<DebtGuarantor>;
-const initialState = {} as TypeDebtGuarantor;
+const initialStateDg = {} as TypeDebtGuarantor;
 const DebtGuarantorSlice = createSlice({
   name: 'DebtGuarantor',
-  initialState,
+  initialState: initialStateDg,
   reducers: {
     setDebtGuarantor: (state, action: PayloadAction<DebtGuarantor>) =>
       action.payload,
@@ -28,14 +28,42 @@ const DebtGuarantorSlice = createSlice({
       return state;
     },
     resetDebtGuarantor() {
-      return initialState;
+      return initialStateDg;
+    },
+  },
+});
+export type TypeDebtGuarantorAddress = CreationAttributes<Address>;
+const initialStateDgAddress = {} as TypeDebtGuarantorAddress;
+const DebtGuarantorAddressSlice = createSlice({
+  name: 'Address',
+  initialState: initialStateDgAddress,
+  reducers: {
+    setDebtGuarantorAddress: (state, action: PayloadAction<Address>) =>
+      action.payload,
+    setDebtGuarantorAddressValue<T extends keyof TypeDebtGuarantorAddress>(
+      state: Draft<TypeDebtGuarantorAddress>,
+      action: PayloadAction<[T, TypeDebtGuarantorAddress[T]]>,
+    ) {
+      state[action.payload[0]] = action.payload[1];
+      return state;
+    },
+    resetDebtGuarantorAddress() {
+      return initialStateDgAddress;
     },
   },
 });
 export const { setDebtGuarantor, setDebtGuarantorValue, resetDebtGuarantor } =
   DebtGuarantorSlice.actions;
+export const {
+  setDebtGuarantorAddress,
+  setDebtGuarantorAddressValue,
+  resetDebtGuarantorAddress,
+} = DebtGuarantorAddressSlice.actions;
 const store = configureStore({
-  reducer: { DebtGuarantor: DebtGuarantorSlice.reducer },
+  reducer: {
+    DebtGuarantor: DebtGuarantorSlice.reducer,
+    Address: DebtGuarantorAddressSlice.reducer,
+  },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }),
 });

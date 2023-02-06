@@ -77,7 +77,7 @@ export default function Form({ id, parent_id, onClose }: FormProps) {
           <DialogPhysics />
           <Finance />
         </Grid>
-        <AddressGrid />
+        {id && <AddressGrid />}
       </DialogContent>
       <DialogActions>
         <Submit onClose={onClose} />
