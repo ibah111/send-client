@@ -44,7 +44,7 @@ export default function Form({ id, parent_id, onClose }: FormProps) {
   const data = useData('id');
   return (
     <>
-      <DialogTitle>Редактирование поручителя</DialogTitle>
+      <DialogTitle>{t('form.debt_guarantor.name')}</DialogTitle>
       <DialogContent>
         <Grid
           container
