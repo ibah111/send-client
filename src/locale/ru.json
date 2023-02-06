@@ -15,6 +15,12 @@
       "documents": "Документы",
       "reset": "Сброс"
     },
+    "address": {
+      "create": "Создать",
+      "typ": "Тип",
+      "full_adr": "Адрес",
+      "dsc": "Коментарий"
+    },
     "debt_guarantor": {
       "id": "ID",
       "fio": "ФИО",
