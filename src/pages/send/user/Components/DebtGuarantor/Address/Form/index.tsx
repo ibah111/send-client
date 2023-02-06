@@ -7,6 +7,7 @@ import {
   DialogTitle,
 } from '@mui/material';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import updateDebtGuarantorAddress from '../../../../../../../api/updateDebtGuarantorAddress';
 import {
   resetDebtGuarantorAddress,
@@ -31,6 +32,7 @@ export default function Form({
   debt_id,
   onClose,
 }: FormProps) {
+  const { t } = useTranslation();
   const data = useDgSelector((state) => state.Address);
   const dispatch = useDgDispatch();
   React.useEffect(() => {
@@ -46,7 +48,7 @@ export default function Form({
   }, [address]);
   return (
     <Dialog open={true} fullWidth onClose={onClose}>
-      <DialogTitle>Адрес поручителя</DialogTitle>
+      <DialogTitle>{t('form.address.name')}</DialogTitle>
       <DialogContent>
         <Typ />
         <FullAdr />
@@ -56,7 +58,7 @@ export default function Form({
         <Button
           onClick={() => updateDebtGuarantorAddress(data).then(() => onClose())}
         >
-          Сохранить
+          {t('form.address.save')}
         </Button>
       </DialogActions>
     </Dialog>

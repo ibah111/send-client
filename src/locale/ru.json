@@ -16,10 +16,22 @@
       "reset": "Сброс"
     },
     "address": {
+      "id": "ID",
       "create": "Создать",
       "typ": "Тип",
       "full_adr": "Адрес",
-      "dsc": "Коментарий"
+      "dsc": "Коментарий",
+      "save": "Сохранить",
+      "errors_popup": {
+        "length>=": "Значение должно быть больше или равно {{constraint1}}",
+        "length<=": "Значение должно быть меньше или равно {{constraint2}}",
+        "length<>": "Значение должно быть между {{constraint1}} и {{constraint2}}",
+        "isNotEmpty": "Поле \"$t(form.address.{{property}})\" должно быть заполнено",
+        "isEmail": "В поле \"$t(form.address.{{property}})\" введена не почта",
+        "isInn": "Значение в поле \"$t(form.address.{{property}})\" не является 10 или 12",
+        "isInnNotValid": "Значение в поле \"$t(form.address.{{property}})\" не является ИНН",
+        "isValidMoment": "Дата в поле \"$t(form.address.{{property}})\" занесена не правильно"
+      }
     },
     "debt_guarantor": {
       "id": "ID",
@@ -49,6 +61,7 @@
       "fair_sum": "Справедливая стоимость",
       "quality_coeff": "Коефф. кач-ва",
       "number_value_1": "Доход",
+      "save": "Сохранить",
       "errors_popup": {
         "length>=": "Значение должно быть больше или равно {{constraint1}}",
         "length<=": "Значение должно быть меньше или равно {{constraint2}}",

@@ -11,20 +11,17 @@ function isValidationErrors(e: unknown): e is ValidationError[] {
     if (e.length > 0) if (e[0] instanceof ValidationError) return true;
   return false;
 }
-export default function processError(e: unknown) {
+export default function processError(e: unknown, name?: string) {
   if (isValidationErrors(e)) {
     for (const error of e)
       if (error.constraints) {
         const keys = objectKeys(error.constraints);
         store.dispatch(
           callError(
-            t(
-              `form.debt_guarantor.errors_popup.${error.constraints[keys[0]]}`,
-              {
-                property: error.property,
-                value: error.value,
-              },
-            ),
+            t(`form.${name}.errors_popup.${error.constraints[keys[0]]}`, {
+              property: error.property,
+              value: error.value,
+            }),
           ),
         );
       }

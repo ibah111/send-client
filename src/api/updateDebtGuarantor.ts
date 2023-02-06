@@ -22,7 +22,7 @@ export default async function updateDebtGuarantor(
     );
     return res.data;
   } catch (e) {
-    processError(e);
+    processError(e, 'debt_guarantor');
     throw e;
   }
 }

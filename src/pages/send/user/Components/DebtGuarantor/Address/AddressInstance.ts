@@ -1,7 +1,8 @@
 import { Address } from '@contact/models';
 import { CreationAttributes } from '@sql-tools/sequelize';
 import { Expose } from 'class-transformer';
-import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsOptional, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber } from '../validation/locale';
 
 export class AddressInstance implements CreationAttributes<Address> {
   @Expose()

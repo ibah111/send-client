@@ -1,6 +1,7 @@
 import { DebtGuarantor } from '@contact/models';
 import { Button } from '@mui/material';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import updateDebtGuarantor from '../../../../../api/updateDebtGuarantor';
 import { useDgSelector } from './Reducer';
 interface SubmitProps {
@@ -14,6 +15,7 @@ function checkDebtGuarantor(
 }
 export default function Submit({ onClose }: SubmitProps) {
   const data = useDgSelector((state) => state.DebtGuarantor);
+  const { t } = useTranslation();
   const save = React.useCallback(() => {
     updateDebtGuarantor(data).then((res) => {
       if (checkDebtGuarantor(res)) {
@@ -23,5 +25,5 @@ export default function Submit({ onClose }: SubmitProps) {
       }
     });
   }, [data]);
-  return <Button onClick={save}>Сохранить</Button>;
+  return <Button onClick={save}>{t('form.debt_guarantor.save')}</Button>;
 }
