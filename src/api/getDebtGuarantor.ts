@@ -1,9 +1,9 @@
 import { DebtGuarantor } from '@contact/models';
 import { instanceToPlain, plainToInstance } from 'class-transformer';
-import { createInstance } from '../pages/send/user/Components/DebtGuarantor/DataInstance';
+import { createDebtGuarantorInstance } from '../pages/send/user/Components/DebtGuarantor/DebtGuarantorInstance';
 import processError from '../utils/processError';
 import requests from '../utils/requests';
-const DataInstance = createInstance(true);
+const DebtGuarantorInstance = createDebtGuarantorInstance(true);
 export default async function getDebtGuarantor(
   value: number,
 ): Promise<DebtGuarantor> {
@@ -11,7 +11,7 @@ export default async function getDebtGuarantor(
     const response = await requests.post<DebtGuarantor>('/get_debt_guarantor', {
       id: value,
     });
-    const instance = plainToInstance(DataInstance, response.data);
+    const instance = plainToInstance(DebtGuarantorInstance, response.data);
     const result = instanceToPlain(instance) as DebtGuarantor;
     return result;
   } catch (e) {

@@ -1,6 +1,6 @@
 import { DebtGuarantor } from '@contact/models';
 import React from 'react';
-import { createInstance } from './DataInstance';
+import { createDebtGuarantorInstance } from './DebtGuarantorInstance';
 import {
   setDebtGuarantorValue,
   TypeDebtGuarantor,
@@ -8,7 +8,7 @@ import {
   useDgSelector,
 } from './Reducer';
 import checker from './validation/checker';
-const DataInstance = createInstance();
+const DebtGuarantorInstance = createDebtGuarantorInstance();
 export interface ResultData<T extends keyof TypeDebtGuarantor> {
   value: TypeDebtGuarantor[T] | string;
   setValue: (value: DebtGuarantor[T]) => void;
@@ -30,7 +30,7 @@ export default function useData<T extends keyof TypeDebtGuarantor>(
     dispatch(setDebtGuarantorValue([name, value]));
   };
   const { required, error, helperText } = React.useMemo(
-    () => checker(DataInstance, name, value),
+    () => checker(DebtGuarantorInstance, name, value),
     [name, value],
   );
   return { value, setValue, required, error, helperText };

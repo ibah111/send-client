@@ -14,7 +14,7 @@ import {
 const getDate = (date?: boolean) => (date ? Date : moment);
 const getTransform = (date?: boolean) =>
   date ? ({ value }: TransformFnParams) => value : NullOrMoment;
-export function createInstance(date?: boolean) {
+export function createDebtGuarantorInstance(date?: boolean) {
   class DataInstance implements CreationAttributes<DebtGuarantor> {
     @IsNotEmpty()
     fio: string;
