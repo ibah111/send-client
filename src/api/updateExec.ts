@@ -10,7 +10,10 @@ type FileUpdate =
 export default async function updateExec() {
   try {
     const data = store.getState().Send;
-    const response = await requests.post<FileUpdate>('/update_exec', data);
+    const response = await requests.post<FileUpdate>('/update_exec', {
+      ...data,
+      options: { save_file: true },
+    });
     return response.data;
   } catch (e) {
     processError(e);
