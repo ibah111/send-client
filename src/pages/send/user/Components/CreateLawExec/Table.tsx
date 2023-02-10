@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material';
+import { darken, Grid, lighten, styled } from '@mui/material';
 import { DataGridPremium, useGridApiRef } from '@mui/x-data-grid-premium';
 import React from 'react';
 import createExec from '../../../../../api/createExec';
@@ -8,9 +8,37 @@ import { useAppDispatch, useAppSelector } from '../../../../../Reducer';
 import { ResetComment, setLawActComment } from '../../../../../Reducer/Comment';
 import { setId } from '../../../../../Reducer/Send';
 import { setCreateState } from '../../../../../Reducer/StateResults';
+import version from '../../../../../utils/version';
 import PopoverHook from '../PopoverHook';
 import Canceled from './Canceled';
 import getColumns from './getColumns';
+
+const getBackgroundColor = (color: string, mode: string) =>
+  mode === 'dark' ? darken(color, 0.6) : lighten(color, 0.6);
+
+const getHoverBackgroundColor = (color: string, mode: string) =>
+  mode === 'dark' ? darken(color, 0.5) : lighten(color, 0.5);
+const PREFIX = 'ResultsLawAct';
+const classes = {
+  root: `${PREFIX}-root`,
+  rejected: `${PREFIX}-rejected`,
+};
+const Root = styled(Grid)(({ theme }) => ({
+  [`& .${classes.rejected}`]: {
+    backgroundColor: getBackgroundColor(
+      theme.palette.error.main,
+      theme.palette.mode,
+    ),
+    '&:hover': {
+      backgroundColor: getHoverBackgroundColor(
+        theme.palette.error.main,
+        theme.palette.mode,
+      ),
+    },
+  },
+}));
+
+const status_rejected = version.rejected;
 
 export default function Table({ handleClose }: { handleClose: () => void }) {
   const [columns] = React.useState(getColumns());
@@ -37,7 +65,7 @@ export default function Table({ handleClose }: { handleClose: () => void }) {
   }, []);
   return (
     <>
-      <Grid sx={{ width: '100%', height: 400 }} item>
+      <Root sx={{ width: '100%', height: 400 }} item>
         <DataGridPremium
           columns={columns}
           rows={rows}
@@ -54,6 +82,11 @@ export default function Table({ handleClose }: { handleClose: () => void }) {
           }}
           disableSelectionOnClick
           disableColumnSelector
+          getRowClassName={(params) =>
+            status_rejected.includes(params.row['Debt.status'])
+              ? classes.rejected
+              : ''
+          }
           onCellDoubleClick={(params) => {
             if (params.row['Debt.status'])
               if (params.row['Debt.status'] !== 7) {
@@ -86,7 +119,7 @@ export default function Table({ handleClose }: { handleClose: () => void }) {
             }}
           />
         )}
-      </Grid>
+      </Root>
     </>
   );
 }

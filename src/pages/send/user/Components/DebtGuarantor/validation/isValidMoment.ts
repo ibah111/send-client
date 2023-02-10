@@ -23,7 +23,6 @@ export const NullOrMoment = ({ value }: TransformFnParams) => {
 @ValidatorConstraint({ name: 'isValidMoment' })
 export class IsValidMomentConstructor implements ValidatorConstraintInterface {
   validate(value: moment.Moment): boolean {
-    console.log(value?.toISOString?.());
     return value?.isValid?.();
   }
   defaultMessage(): string {
