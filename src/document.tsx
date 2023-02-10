@@ -16,13 +16,11 @@ import ErrorHandler from './components/ErrorHandler';
 import { SnackbarProvider } from 'notistack';
 import { HealthProvider } from '@tools/health-status-react-component';
 import server from './utils/server';
+import 'moment-timezone';
 const url = server();
+moment.tz.setDefault('GMT');
+moment.locale('ru');
 export default function Document() {
-  React.useEffect(() => {
-    tz.setDefault('GMT');
-
-    moment.locale('ru');
-  }, []);
   return (
     <LocalizationProvider adapterLocale="ru" dateAdapter={AdapterMoment}>
       <Provider context={RootReducerContext} store={store}>
