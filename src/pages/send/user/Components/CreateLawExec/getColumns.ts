@@ -19,11 +19,11 @@ export default function getColumns(): GridColDef[] {
     {
       field: 'Debt.contract',
       headerName: t('form.results.debt.contract'),
-      width: 300,
+      width: 150,
     },
     {
       field: 'Debt.name',
-      width: 300,
+      width: 200,
       headerName: t('form.results.debt.name'),
     },
     {
@@ -39,7 +39,6 @@ export default function getColumns(): GridColDef[] {
     {
       field: 'Portfolio.name',
       headerName: t('form.results.portfolio.name'),
-      width: 300,
     },
     {
       field: 'Debt.StatusDict.name',

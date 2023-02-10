@@ -9,7 +9,7 @@ export default function getColumns(): GridColDef[] {
     {
       field: 'LawAct.id',
       headerName: t('form.results.law_act.id'),
-      width: 100,
+      width: 70,
     },
     { field: 'id', headerName: t('form.results.law_exec.id'), width: 70 },
     {
@@ -23,7 +23,7 @@ export default function getColumns(): GridColDef[] {
     },
     {
       field: 'Debt.contract',
-      width: 300,
+      width: 150,
       headerName: t('form.results.debt.contract'),
     },
     {
@@ -69,7 +69,7 @@ export default function getColumns(): GridColDef[] {
     {
       field: 'LawAct.Status',
       headerName: t('form.results.law_act.status'),
-      width: 300,
+      width: 200,
       valueGetter: (params) => {
         switch (params.row['LawAct.typ']) {
           case 0:
@@ -90,7 +90,7 @@ export default function getColumns(): GridColDef[] {
     {
       field: 'StateDict.name',
       headerName: t('form.results.law_exec.state'),
-      width: 300,
+      width: 200,
     },
     {
       width: 300,
