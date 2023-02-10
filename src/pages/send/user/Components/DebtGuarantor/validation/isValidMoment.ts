@@ -8,11 +8,22 @@ import {
 } from 'class-validator';
 import moment from 'moment';
 export const NullOrMoment = ({ value }: TransformFnParams) => {
-  return value === null ? null : moment(value);
+  if (value === null) return null;
+  if (moment.isMoment(value)) {
+    const creation = value.creationData();
+    if (creation.input && !value.isValid()) {
+      const result = moment(creation.input, creation.format, creation.strict);
+      return result;
+    } else {
+      return moment(value.toDate());
+    }
+  }
+  return moment(value);
 };
 @ValidatorConstraint({ name: 'isValidMoment' })
 export class IsValidMomentConstructor implements ValidatorConstraintInterface {
   validate(value: moment.Moment): boolean {
+    console.log(value?.toISOString?.());
     return value?.isValid?.();
   }
   defaultMessage(): string {
