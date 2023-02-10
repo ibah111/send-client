@@ -33,5 +33,10 @@ export default function useData<T extends keyof TypeDebtGuarantor>(
     () => checker(DebtGuarantorInstance, name, value),
     [name, value],
   );
+  React.useEffect(() => {
+    if (value === '') {
+      dispatch(setDebtGuarantorValue([name, null]));
+    }
+  }, [value, dispatch]);
   return { value, setValue, required, error, helperText };
 }
