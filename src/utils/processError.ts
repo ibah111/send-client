@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { ValidationError } from 'class-validator';
 import { t } from 'i18next';
+import getToken from '../api/getToken';
 import store from '../Reducer';
 import { callError } from '../Reducer/Message';
+import requests from './requests';
 function objectKeys<T extends {}>(obj: T) {
   return Object.keys(obj) as Array<keyof T>;
 }
@@ -28,6 +30,10 @@ export default function processError(e: unknown, name?: string) {
   }
   if (axios.isAxiosError(e)) {
     if (e.response) {
+      if (e.response?.status === 401)
+        getToken().then(
+          (token) => (requests.defaults.headers['token'] = token),
+        );
       if (e.response.data) {
         store.dispatch(callError(e.response.data.message));
       } else {
