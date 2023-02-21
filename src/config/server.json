@@ -1,5 +1,4 @@
 {
-  "protocol": "ssl",
-  "server": "apps.usb.ru",
-  "port": "3006"
+  "server": "https://apps.usb.ru:3006",
+  "oauth": "https://apps.usb.ru:3008"
 }

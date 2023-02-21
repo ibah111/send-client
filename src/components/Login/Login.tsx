@@ -6,11 +6,14 @@ import { AuthUserSuccess } from '../../Schemas/Auth';
 import { useAppDispatch, useAppSelector } from '../../Reducer';
 import { setUser } from '../../Reducer/User';
 import requests from '../../utils/requests';
+import getToken from '../../api/getToken';
 const connect = async (
   callback: (value: AuthUserSuccess) => void,
   setError: (value: string | null) => void,
 ) => {
   try {
+    const token = await getToken();
+    requests.defaults.headers['token'] = token;
     const response = await requests.post<AuthUserSuccess>('/login');
     callback(response.data);
   } catch (e: unknown) {

@@ -1,16 +1,9 @@
 import config from '../config/server.json';
-export default () => {
-  let prot;
-  switch (config.protocol) {
-    case 'http':
-      prot = 'http';
-      break;
-    case 'ssl':
-      prot = 'https';
-      break;
+export default function server(name?: string) {
+  switch (name) {
+    case 'oauth':
+      return config.oauth;
     default:
-      prot = 'http';
-      break;
+      return config.server;
   }
-  return `${prot}://${config.server}:${config.port}`;
-};
+}
