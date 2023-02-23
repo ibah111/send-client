@@ -11,7 +11,6 @@ import { Connect } from './components/Connect';
 import { Provider } from 'react-redux';
 import store, { RootReducerContext } from './Reducer';
 import version from './utils/version';
-import { tz } from 'moment-timezone';
 import ErrorHandler from './components/ErrorHandler';
 import { SnackbarProvider } from 'notistack';
 import { HealthProvider } from '@tools/health-status-react-component';

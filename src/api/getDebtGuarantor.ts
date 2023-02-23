@@ -1,5 +1,5 @@
 import { DebtGuarantor } from '@contact/models';
-import { instanceToPlain, plainToInstance } from 'class-transformer';
+import { plainToInstance } from 'class-transformer';
 import { createDebtGuarantorInstance } from '../pages/send/user/Components/DebtGuarantor/DebtGuarantorInstance';
 import processError from '../utils/processError';
 import requests from '../utils/requests';

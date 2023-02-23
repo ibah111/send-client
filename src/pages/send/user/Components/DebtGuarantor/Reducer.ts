@@ -10,6 +10,7 @@ import React from 'react';
 import {
   createDispatchHook,
   createSelectorHook,
+  ReactReduxContextValue,
   TypedUseSelectorHook,
 } from 'react-redux';
 export type TypeDebtGuarantor = CreationAttributes<DebtGuarantor>;
@@ -69,7 +70,9 @@ const store = configureStore({
 });
 export type DgState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-export const DgReducerContext = React.createContext(null as any);
+export const DgReducerContext = React.createContext(
+  null as unknown as ReactReduxContextValue,
+);
 export const useDgDispatch: () => AppDispatch =
   createDispatchHook(DgReducerContext);
 

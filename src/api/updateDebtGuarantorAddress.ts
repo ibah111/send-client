@@ -1,4 +1,4 @@
-import { Address, DebtGuarantor } from '@contact/models';
+import { Address } from '@contact/models';
 import { CreationAttributes } from '@sql-tools/sequelize';
 import { plainToInstance } from 'class-transformer';
 import { validateOrReject } from 'class-validator';

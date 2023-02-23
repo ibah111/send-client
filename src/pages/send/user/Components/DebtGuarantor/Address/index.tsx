@@ -7,9 +7,7 @@ import {
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import getDebtGuarantorAddress from '../../../../../../api/getDebtGuarantorAddress';
-import updateDebtGuarantorAddress from '../../../../../../api/updateDebtGuarantorAddress';
 import asyncMemo from '../../../../../../utils/asyncMemo';
-import { useDgSelector } from '../Reducer';
 import useData from '../useData';
 import getColumns from './columns';
 import Form from './Form';

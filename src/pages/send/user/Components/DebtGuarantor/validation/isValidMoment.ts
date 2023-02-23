@@ -1,7 +1,6 @@
 import { TransformFnParams } from 'class-transformer';
 import {
   registerDecorator,
-  ValidationArguments,
   ValidationOptions,
   ValidatorConstraint,
   ValidatorConstraintInterface,

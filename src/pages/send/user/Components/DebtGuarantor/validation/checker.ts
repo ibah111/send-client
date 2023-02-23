@@ -9,7 +9,7 @@ interface CheckerResult {
   helperText: string;
 }
 export class TranslateOptions {
-  [index: string]: any;
+  [index: string]: unknown;
 }
 export class TranslateMessage {
   name: string;

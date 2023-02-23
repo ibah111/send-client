@@ -3,6 +3,7 @@ import {
   createDispatchHook,
   TypedUseSelectorHook,
   createSelectorHook,
+  ReactReduxContextValue,
 } from 'react-redux';
 import User from './User';
 import App from './App';
@@ -35,7 +36,9 @@ const store = configureStore({
 });
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-export const RootReducerContext = React.createContext(null as any);
+export const RootReducerContext = React.createContext(
+  null as unknown as ReactReduxContextValue,
+);
 export const useAppDispatch: () => AppDispatch =
   createDispatchHook(RootReducerContext);
 

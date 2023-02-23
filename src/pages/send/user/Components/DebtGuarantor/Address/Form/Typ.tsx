@@ -8,7 +8,6 @@ import {
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import useDict from '../../../../../../../hooks/useDict';
-import asyncMemo from '../../../../../../../utils/asyncMemo';
 import useData from './useData';
 
 export default function Typ() {
