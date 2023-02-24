@@ -2,7 +2,7 @@ import './locale';
 import React from 'react';
 import Router from './router';
 import moment from 'moment';
-import 'moment/locale/ru';
+import 'moment/dist/locale/ru';
 import { LocalizationProvider } from '@mui/x-date-pickers-pro';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { BrowserRouter } from 'react-router-dom';

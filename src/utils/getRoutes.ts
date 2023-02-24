@@ -10,12 +10,14 @@ export default function getRoutes() {
   pages.forEach((page) => {
     if (page?.root) {
       routes.push({
-        Element: React.lazy(() => import(`../${page.root}/user`)),
+        Element: React.lazy(() => import(`../${page.root}/user/index.tsx`)),
         path: page.path,
         childrens: [
           {
             path: 'admin',
-            Element: React.lazy(() => import(`../${page.root}/admin`)),
+            Element: React.lazy(
+              () => import(`../${page.root}/admin/index.tsx`),
+            ),
           },
         ],
       });
