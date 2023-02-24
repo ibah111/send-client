@@ -27,19 +27,20 @@ export default function Search() {
   const reload = useAppSelector((state) => state.Results.reload);
   const Click = () => {
     dispatch(setLoadingResults(true));
-    search()
-      .then((res) => {
+    search().subscribe({
+      next: (res) => {
         dispatch(setResults(res));
         dispatch(setLoadingResults(false));
-      })
-      .catch(() => {
+      },
+      error: () => {
         setLoadingResults(false);
-      });
+      },
+    });
   };
   React.useEffect(() => {
     dispatch(reset());
     if (id)
-      getLawExec(id).then((res) => {
+      getLawExec(id).subscribe((res) => {
         if (res !== null) {
           dispatch(setLawExec(res));
           dispatch(setSend(res));

@@ -14,7 +14,7 @@ interface DocumentsTableProps {
 export default function DocumentsTable({ id }: DocumentsTableProps) {
   const refresh = React.useCallback(
     () =>
-      getDocuments(id, 'law_exec').then((res) => {
+      getDocuments(id, 'law_exec').subscribe((res) => {
         setRows(res);
       }),
     [id],
@@ -63,7 +63,7 @@ export default function DocumentsTable({ id }: DocumentsTableProps) {
           disableSelectionOnClick
           onCellDoubleClick={(params, event) => {
             event.defaultMuiPrevented = true;
-            getDocuments(Number(params.id), 'doc').then((res) => {
+            getDocuments(Number(params.id), 'doc').subscribe((res) => {
               setFile(
                 new Blob([res], { type: String(lookup(params.row.name)) }),
               );

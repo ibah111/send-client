@@ -1,14 +1,18 @@
 import { LawCourt } from '@contact/models';
-import processError from '../utils/processError';
+import { Observable } from 'rxjs';
+import {
+  createError,
+  createNextDefault,
+  createRetry,
+} from '../utils/processError';
 import requests from '../utils/requests';
-export default async function getCourt(
+export default function getCourt(
   data: { name: string } | { id: number | string | null },
 ) {
-  try {
-    const response = await requests.post<LawCourt[]>('/court', data);
-    return response.data;
-  } catch (e) {
-    processError(e);
-    throw e;
-  }
+  return new Observable<LawCourt[]>((subscriber) => {
+    requests
+      .post<LawCourt[]>('/court', data)
+      .then(createNextDefault(subscriber))
+      .catch(createError(subscriber));
+  }).pipe(createRetry());
 }

@@ -1,19 +1,18 @@
 import { Address } from '@contact/models';
-import processError from '../utils/processError';
+import { Observable } from 'rxjs';
+import {
+  createError,
+  createNextDefault,
+  createRetry,
+} from '../utils/processError';
 import requests from '../utils/requests';
-export default async function getDebtGuarantorAddress(
-  value: number,
-): Promise<Address[]> {
-  try {
-    const response = await requests.post<Address[]>(
-      '/get_debt_guarantor/address',
-      {
+export default function getDebtGuarantorAddress(value: number) {
+  return new Observable<Address[]>((subscriber) => {
+    requests
+      .post<Address[]>('/get_debt_guarantor/address', {
         id: value,
-      },
-    );
-    return response.data;
-  } catch (e) {
-    processError(e);
-    throw e;
-  }
+      })
+      .then(createNextDefault(subscriber))
+      .catch(createError(subscriber));
+  }).pipe(createRetry());
 }

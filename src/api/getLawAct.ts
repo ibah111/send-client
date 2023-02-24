@@ -1,7 +1,12 @@
 import store from '../Reducer';
 import { PersonAddress } from './search';
-import processError from '../utils/processError';
 import requests from '../utils/requests';
+import { Observable } from 'rxjs';
+import {
+  createError,
+  createNextDefault,
+  createRetry,
+} from '../utils/processError';
 export class LawActPlain {
   'id': number;
   'typ': number;
@@ -21,13 +26,12 @@ export class LawActPlain {
   'Debt.status': number;
   'Debt.StatusDict.name': string;
 }
-export default async function search() {
-  try {
-    const request = store.getState().Search;
-    const response = await requests.post<LawActPlain[]>('/search_la', request);
-    return response.data;
-  } catch (e) {
-    processError(e);
-    throw e;
-  }
+export default function search() {
+  const request = store.getState().Search;
+  return new Observable<LawActPlain[]>((subscriber) => {
+    requests
+      .post<LawActPlain[]>('/search_la', request)
+      .then(createNextDefault(subscriber))
+      .catch(createError(subscriber));
+  }).pipe(createRetry());
 }

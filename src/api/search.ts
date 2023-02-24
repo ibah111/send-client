@@ -1,5 +1,10 @@
+import { Observable } from 'rxjs';
 import store from '../Reducer';
-import processError from '../utils/processError';
+import {
+  createError,
+  createNextDefault,
+  createRetry,
+} from '../utils/processError';
 import requests from '../utils/requests';
 export class PersonAddress {
   full_adr: string;
@@ -31,13 +36,12 @@ export class LawExecPlain {
   'Person.o': string;
   'Person.Addresses': PersonAddress[];
 }
-export default async function search() {
-  try {
-    const request = store.getState().Search;
-    const response = await requests.post<LawExecPlain[]>('/search', request);
-    return response.data;
-  } catch (e) {
-    processError(e);
-    throw e;
-  }
+export default function search() {
+  const request = store.getState().Search;
+  return new Observable<LawExecPlain[]>((subscriber) => {
+    requests
+      .post<LawExecPlain[]>('/search', request)
+      .then(createNextDefault(subscriber))
+      .catch(createError(subscriber));
+  }).pipe(createRetry());
 }

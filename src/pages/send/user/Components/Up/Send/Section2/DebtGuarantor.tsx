@@ -83,7 +83,7 @@ export default function DebtGuarantor() {
           onClose={(id) => {
             if (id) {
               data.setValue(id);
-              getLawExec(le_id!).then((res) => {
+              getLawExec(le_id!).subscribe((res) => {
                 if (res !== null) {
                   dispatch(setLawExec(res));
                   dispatch(setSend(res));

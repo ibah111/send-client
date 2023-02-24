@@ -26,7 +26,7 @@ export default function Table({
 
   React.useEffect(() => {
     setLoading(true);
-    getDebt().then((res) => {
+    getDebt().subscribe((res) => {
       setRows(res);
       setLoading(false);
     });
@@ -48,7 +48,7 @@ export default function Table({
           disableSelectionOnClick
           disableColumnSelector
           onCellDoubleClick={(params) => {
-            updateDebt({ law_exec_id: row.id }, params.row.id).then(() => {
+            updateDebt({ law_exec_id: row.id }, params.row.id).subscribe(() => {
               dispatch(ReloadResults());
               handleClose();
             });

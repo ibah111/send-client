@@ -10,7 +10,7 @@ export default function Address() {
   const r_court_id = useAppSelector((state) => state.Send.r_court_id);
   React.useEffect(() => {
     if (r_court_id !== '') {
-      getCourt({ id: r_court_id as number }).then((court) => {
+      getCourt({ id: r_court_id as number }).subscribe((court) => {
         setAddress(court[0].address!);
       });
     } else {

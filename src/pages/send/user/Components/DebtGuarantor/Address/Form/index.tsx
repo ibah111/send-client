@@ -56,7 +56,9 @@ export default function Form({
       </DialogContent>
       <DialogActions>
         <Button
-          onClick={() => updateDebtGuarantorAddress(data).then(() => onClose())}
+          onClick={() =>
+            updateDebtGuarantorAddress(data).subscribe(() => onClose())
+          }
         >
           {t('form.address.save')}
         </Button>

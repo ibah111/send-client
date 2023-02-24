@@ -7,7 +7,7 @@ interface ActionsProps {
 }
 export default function Actions({ id, refresh }: ActionsProps) {
   return (
-    <IconButton onClick={() => removeDocument(id).then(refresh)}>
+    <IconButton onClick={() => removeDocument(id).subscribe(refresh)}>
       <DeleteIcon />
     </IconButton>
   );

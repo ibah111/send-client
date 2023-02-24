@@ -41,11 +41,11 @@ export default function YesOrNo({
       executive_typ: row.executive_typ,
       court_date: row.court_date,
       entry_force_dt: row.entry_force_dt,
-    }).then((res) => {
+    }).subscribe((res) => {
       if (res) {
         dispatch(ResetComment());
         dispatch(setId(res));
-        getComment({ type: 'law_exec', id: row.id }).then((res) => {
+        getComment({ type: 'law_exec', id: row.id }).subscribe((res) => {
           dispatch(setLawActComment(res.LawAct.dsc));
           dispatch(setLawExecComment(res.dsc));
         });
@@ -59,10 +59,10 @@ export default function YesOrNo({
       executive_typ: row.executive_typ,
       court_date: row.court_date,
       entry_force_dt: row.entry_force_dt,
-    }).then((res) => {
+    }).subscribe((res) => {
       if (res) {
         dispatch(ResetComment());
-        getComment({ type: 'law_exec', id: row.id }).then((res) => {
+        getComment({ type: 'law_exec', id: row.id }).subscribe((res) => {
           dispatch(setLawActComment(res.LawAct.dsc));
           dispatch(setLawExecComment(res.dsc));
         });
@@ -74,7 +74,7 @@ export default function YesOrNo({
   };
   const Update = () => {
     dispatch(ResetComment());
-    getComment({ type: 'law_exec', id: row.id }).then((res) => {
+    getComment({ type: 'law_exec', id: row.id }).subscribe((res) => {
       dispatch(setLawActComment(res.LawAct.dsc));
       dispatch(setLawExecComment(res.dsc));
       onClose();

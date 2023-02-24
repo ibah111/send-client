@@ -55,7 +55,7 @@ export default function Table({ handleClose }: { handleClose: () => void }) {
 
   React.useEffect(() => {
     setLoading(true);
-    getLawAct().then((res) => {
+    getLawAct().subscribe((res) => {
       setRows(res);
       setLoading(false);
     });
@@ -90,14 +90,15 @@ export default function Table({ handleClose }: { handleClose: () => void }) {
           onCellDoubleClick={(params) => {
             if (params.row['Debt.status'])
               if (params.row['Debt.status'] !== 7) {
-                createExec(params.row.id).then((res) => {
+                createExec(params.row.id).subscribe((res) => {
                   if (res) {
                     dispatch(ResetComment());
-                    getComment({ type: 'law_act', id: params.row.id }).then(
-                      (res) => {
-                        dispatch(setLawActComment(res.dsc));
-                      },
-                    );
+                    getComment({
+                      type: 'law_act',
+                      id: params.row.id,
+                    }).subscribe((res) => {
+                      dispatch(setLawActComment(res.dsc));
+                    });
                     dispatch(setId(res));
                     handleClose();
                   }

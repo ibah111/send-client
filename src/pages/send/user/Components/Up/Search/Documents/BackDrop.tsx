@@ -12,6 +12,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import React from 'react';
 import { useDropzone } from 'react-dropzone';
 import uploadFile from '../../../../../../../api/uploadFile';
+import { forkJoin } from 'rxjs';
 interface BackDropProps {
   children: React.ReactNode;
   refresh: () => void;
@@ -34,12 +35,13 @@ export default function BackDrop({ children, id, refresh }: BackDropProps) {
   const [loading, setLoading] = React.useState(false);
   const onDrop = React.useCallback((acceptedFiles: File[]) => {
     setLoading(true);
-    Promise.all(acceptedFiles.map((file) => uploadFile(id, file)))
-      .then(() => {
+    forkJoin(acceptedFiles.map((file) => uploadFile(id, file))).subscribe({
+      next: () => {
         refresh();
         setLoading(false);
-      })
-      .catch(() => setLoading(false));
+      },
+      error: () => setLoading(false),
+    });
   }, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,

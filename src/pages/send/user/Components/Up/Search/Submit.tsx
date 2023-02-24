@@ -48,8 +48,8 @@ export default function Submit() {
   const Click = () => {
     if (check(Error, AddAlert)) {
       setLoading(true);
-      updateExec()
-        .then((res) => {
+      updateExec().subscribe({
+        next: (res) => {
           if (res) {
             const file = new Blob([toArrayBuffer(res.file.data)], {
               type: 'application/pdf',
@@ -66,8 +66,9 @@ export default function Submit() {
               dispatch(callError('Вас нет в Контакте, обратитесь в IT отдел'));
             }
           }
-        })
-        .catch(() => setLoading(false));
+        },
+        error: () => setLoading(false),
+      });
     }
   };
   return (

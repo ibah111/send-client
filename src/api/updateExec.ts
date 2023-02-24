@@ -1,5 +1,10 @@
+import { Observable } from 'rxjs';
 import store from '../Reducer';
-import processError from '../utils/processError';
+import {
+  createError,
+  createNextDefault,
+  createRetry,
+} from '../utils/processError';
 import requests from '../utils/requests';
 type FileUpdate =
   | false
@@ -7,16 +12,16 @@ type FileUpdate =
       file: { data: number[] };
       name: string;
     };
-export default async function updateExec() {
-  try {
-    const data = store.getState().Send;
-    const response = await requests.post<FileUpdate>('/update_exec', {
-      ...data,
-      options: { save_file: true },
-    });
-    return response.data;
-  } catch (e) {
-    processError(e);
-    throw e;
-  }
+export default function updateExec() {
+  const data = store.getState().Send;
+
+  return new Observable<FileUpdate>((subscriber) => {
+    requests
+      .post<FileUpdate>('/update_exec', {
+        ...data,
+        options: { save_file: true },
+      })
+      .then(createNextDefault(subscriber))
+      .catch(createError(subscriber));
+  }).pipe(createRetry());
 }

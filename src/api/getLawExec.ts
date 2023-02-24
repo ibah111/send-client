@@ -1,11 +1,16 @@
-import processError from '../utils/processError';
+import { LawExec } from '@contact/models';
+import { Observable } from 'rxjs';
+import {
+  createError,
+  createNextDefault,
+  createRetry,
+} from '../utils/processError';
 import requests from '../utils/requests';
-export default async function getLawExec(value: number | null) {
-  try {
-    const response = await requests.post('/law_exec', { id: value });
-    return response.data;
-  } catch (e) {
-    processError(e);
-    throw e;
-  }
+export default function getLawExec(value: number | null) {
+  return new Observable<LawExec>((subscriber) => {
+    requests
+      .post<LawExec>('/law_exec', { id: value })
+      .then(createNextDefault(subscriber))
+      .catch(createError(subscriber));
+  }).pipe(createRetry());
 }

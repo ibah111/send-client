@@ -17,7 +17,7 @@ export default function Submit({ onClose }: SubmitProps) {
   const data = useDgSelector((state) => state.DebtGuarantor);
   const { t } = useTranslation();
   const save = React.useCallback(() => {
-    updateDebtGuarantor(data).then((res) => {
+    updateDebtGuarantor(data).subscribe((res) => {
       if (checkDebtGuarantor(res)) {
         onClose(res.id);
       } else {

@@ -1,21 +1,22 @@
 import { DebtGuarantor } from '@contact/models';
 import { plainToInstance } from 'class-transformer';
+import { Observable } from 'rxjs';
 import { createDebtGuarantorInstance } from '../pages/send/user/Components/DebtGuarantor/DebtGuarantorInstance';
-import processError from '../utils/processError';
+import { createError, createRetry } from '../utils/processError';
 import requests from '../utils/requests';
 const DebtGuarantorInstance = createDebtGuarantorInstance(true);
-export default async function getDebtGuarantor(
-  value: number,
-): Promise<DebtGuarantor> {
-  try {
-    const response = await requests.post<DebtGuarantor>('/get_debt_guarantor', {
-      id: value,
-    });
-    const instance = plainToInstance(DebtGuarantorInstance, response.data);
-    const { ...result } = instance;
-    return result as DebtGuarantor;
-  } catch (e) {
-    processError(e);
-    throw e;
-  }
+export default function getDebtGuarantor(value: number) {
+  return new Observable<DebtGuarantor>((subscriber) => {
+    requests
+      .post<DebtGuarantor>('/get_debt_guarantor', {
+        id: value,
+      })
+      .then((res) => {
+        const instance = plainToInstance(DebtGuarantorInstance, res.data);
+        const { ...result } = instance;
+        subscriber.next(result as DebtGuarantor);
+        subscriber.complete();
+      })
+      .catch(createError(subscriber));
+  }).pipe(createRetry());
 }

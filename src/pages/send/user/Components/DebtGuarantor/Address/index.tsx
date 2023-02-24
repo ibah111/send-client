@@ -7,7 +7,7 @@ import {
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import getDebtGuarantorAddress from '../../../../../../api/getDebtGuarantorAddress';
-import asyncMemo from '../../../../../../utils/asyncMemo';
+import { observableMemo } from '../../../../../../utils/asyncMemo';
 import useData from '../useData';
 import getColumns from './columns';
 import Form from './Form';
@@ -28,7 +28,7 @@ export default function AddressGrid() {
   const { value: debt_id } = useData('parent_id');
   const [address, setAddress] = React.useState<Address>();
   const [open, setOpen] = React.useState(false);
-  const rows = asyncMemo(
+  const rows = observableMemo(
     () => (id ? getDebtGuarantorAddress(id as number) : undefined),
     [id, open],
   );

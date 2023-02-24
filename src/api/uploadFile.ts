@@ -1,14 +1,19 @@
-import processError from '../utils/processError';
+import { Observable } from 'rxjs';
+import {
+  createError,
+  createNextDefault,
+  createRetry,
+} from '../utils/processError';
 import requests from '../utils/requests';
 
-export default async function uploadFile(id: number, file: File) {
-  try {
-    const data = new FormData();
-    data.append('file', file);
-    const res = await requests.post<number>(`/documents/upload/${id}`, data);
-    return res.data;
-  } catch (e) {
-    processError(e);
-    throw e;
-  }
+export default function uploadFile(id: number, file: File) {
+  const data = new FormData();
+  data.append('file', file);
+
+  return new Observable<number>((subscriber) => {
+    requests
+      .post<number>(`/documents/upload/${id}`, data)
+      .then(createNextDefault(subscriber))
+      .catch(createError(subscriber));
+  }).pipe(createRetry());
 }
