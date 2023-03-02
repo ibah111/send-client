@@ -33,10 +33,11 @@ export default function DebtGuarantor() {
   return (
     <Grid width={200} item>
       <FormControl fullWidth>
-        <InputLabel id={'debt_guarantor'}>
+        <InputLabel id={'debt_guarantor_label'}>
           {t('form.send.debt_guarantor')}
         </InputLabel>
         <Select
+          labelId="debt_guarantor_label"
           label={t('form.send.debt_guarantor')}
           value={data.value}
           onChange={(event) => {
