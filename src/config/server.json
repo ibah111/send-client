@@ -1,4 +1,5 @@
 {
   "server": "https://apps.usb.ru:3006",
-  "oauth": "https://apps.usb.ru:3008"
+  "oauth": "https://apps.usb.ru:3008",
+  "bitrix": "https://chat.nbkfinance.ru"
 }

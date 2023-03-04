@@ -4,19 +4,25 @@ import {
   Grid,
   Button,
   Collapse,
+  useTheme,
+  ThemeProvider,
 } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
+import Account from '../../../components/Account';
 import DarkButton from '../../../components/DarkButton';
 import Slider from '../../../components/Slider';
 import Version from '../../../components/Version';
 import pages from '../../../utils/pages';
 import version from '../../../utils/version';
+import { createTheme } from './theme';
 
 export default function Home() {
   const { t } = useTranslation();
   const location = useLocation();
+  const theme = useTheme();
+  const themeAccount = React.useMemo(() => createTheme(theme), [theme]);
   return (
     <>
       <Slider position="down">
@@ -30,6 +36,9 @@ export default function Home() {
               justifyContent="center"
               alignItems="center"
             >
+              <ThemeProvider theme={themeAccount}>
+                <Account />
+              </ThemeProvider>
               <Grid item>
                 <T sx={{ fontWeight: 600 }} variant="h1">
                   {t(version.title)}

@@ -30,3 +30,6 @@ export default async function getToken() {
   if (!(await checkToken(token))) redirect();
   return token;
 }
+export async function logout() {
+  return await requests.get('oauth/logout');
+}

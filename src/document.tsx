@@ -26,7 +26,7 @@ export default function Document() {
         <SnackbarProvider maxSnack={11}>
           <ErrorHandler />
           <Connect>
-            <HealthProvider url={url} top={40}>
+            <HealthProvider url={url} position="left" top={80}>
               <Login>
                 <BrowserRouter basename={version.root}>
                   <Router />
