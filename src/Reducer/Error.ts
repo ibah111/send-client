@@ -17,6 +17,7 @@ export type ErrorTypes = {
   r_court_id: null | string;
   dsc: null | string;
   debt_guarantor: null | string;
+  person_property: null | string;
 };
 type ValueOf<T> = T[keyof T];
 export type TypesError = ValueOf<ErrorTypes>;
@@ -39,6 +40,7 @@ export const initState: ErrorTypes = {
   dsc: null,
   add_interests: null,
   debt_guarantor: null,
+  person_property: null,
 };
 export const error = createSlice({
   name: 'error',

@@ -20,6 +20,7 @@ export interface DataTypes {
   r_court_id: string | number | null;
   dsc: null | string;
   add_interests: boolean;
+  person_property: number | string | null;
 }
 type ValueOf<T> = T[keyof T];
 export type TypesData = ValueOf<DataTypes>;
@@ -42,6 +43,7 @@ export const initState: DataTypes = {
   r_court_id: '',
   dsc: null,
   add_interests: false,
+  person_property: null,
 };
 export const send = createSlice({
   name: 'send',
@@ -66,6 +68,7 @@ export const send = createSlice({
       state.r_court_id = data.r_court_id;
       state.dsc = data.dsc;
       state.add_interests = false;
+      state.person_property = data.Debt?.PersonProperties?.[0].id || null;
     },
     setData<K extends DataNames>(
       state: Draft<DataTypes>,
