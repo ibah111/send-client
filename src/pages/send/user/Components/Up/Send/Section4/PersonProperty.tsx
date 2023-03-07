@@ -5,6 +5,7 @@ import getLawExec from '../../../../../../../api/getLawExec';
 import { useAppDispatch, useAppSelector } from '../../../../../../../Reducer';
 import { setLawExec } from '../../../../../../../Reducer/LawExec';
 import { setSend } from '../../../../../../../Reducer/Send';
+import { Vehicle } from '../../../../../../../Schemas/Vehicle';
 import getData from '../../../../../../../utils/getData';
 import DebtGuarantorForm from '../../../DebtGuarantor';
 
@@ -38,11 +39,13 @@ export default function PersonProperty() {
           <MenuItem key={-1} value={''}>
             <em>Нету</em>
           </MenuItem>
-          {person_properties?.map((property) => (
-            <MenuItem key={property.id} value={property.id}>
-              {property.name}
-            </MenuItem>
-          ))}
+          {person_properties
+            ?.map((property) => new Vehicle(property.PersonPropertyParams!))
+            .map((property) => (
+              <MenuItem key={property.id} value={property.id}>
+                {property.model} {property.vin}
+              </MenuItem>
+            ))}
         </Select>
       </FormControl>
     </Grid>
