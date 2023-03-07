@@ -6,19 +6,13 @@ import { Vehicle } from '../../../../../../../Schemas/Vehicle';
 import getData from '../../../../../../../utils/getData';
 
 export default function PersonProperty() {
-  const [pp_id, setPp] = React.useState<number>();
+  const [pp_id, setPp] = React.useState<number | string>();
   const { t } = useTranslation();
   const person_properties = useAppSelector(
     (state) => state.LawExec?.Debt?.PersonProperties,
   );
-  const data = getData('person_property', 'string');
-  React.useEffect(() => {
-    if (data.value && data.value > 0) {
-      setPp(person_properties?.[0]?.id);
-    } else {
-      data.setValue(pp_id || null);
-    }
-  }, [data.value]);
+  const data = getData('person_property', 'string', true);
+  console.log(data.value);
   return (
     <Grid width={200} item>
       <FormControl fullWidth>
@@ -29,7 +23,7 @@ export default function PersonProperty() {
           label={t('form.send.person_property')}
           value={data.value}
           onChange={(event) => {
-            data.setValue(event.target.value);
+            data.setValue(event.target.value || null);
           }}
         >
           <MenuItem key={-1} value={''}>

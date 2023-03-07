@@ -44,7 +44,7 @@ export default function getError<K extends DataNames>(
     let error;
     switch (type) {
       case 'string':
-        error = checkString(SendValue);
+        error = checkString(SendValue, availableEmpty);
         break;
       case 'date':
         error = checkDate(SendValue, availableEmpty);
