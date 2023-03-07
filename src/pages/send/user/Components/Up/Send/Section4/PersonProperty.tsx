@@ -1,13 +1,9 @@
 import { FormControl, Grid, InputLabel, MenuItem, Select } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import getLawExec from '../../../../../../../api/getLawExec';
-import { useAppDispatch, useAppSelector } from '../../../../../../../Reducer';
-import { setLawExec } from '../../../../../../../Reducer/LawExec';
-import { setSend } from '../../../../../../../Reducer/Send';
+import { useAppSelector } from '../../../../../../../Reducer';
 import { Vehicle } from '../../../../../../../Schemas/Vehicle';
 import getData from '../../../../../../../utils/getData';
-import DebtGuarantorForm from '../../../DebtGuarantor';
 
 export default function PersonProperty() {
   const [pp_id, setPp] = React.useState<number>();
@@ -40,10 +36,16 @@ export default function PersonProperty() {
             <em>Нету</em>
           </MenuItem>
           {person_properties
-            ?.map((property) => new Vehicle(property.PersonPropertyParams!))
+            ?.map(
+              (property) =>
+                new Vehicle(
+                  property.PersonPropertyParams!,
+                  property.StatusDict!.name,
+                ),
+            )
             .map((property) => (
               <MenuItem key={property.id} value={property.id}>
-                {property.model} {property.vin}
+                {property.status} {property.model} {property.vin}
               </MenuItem>
             ))}
         </Select>

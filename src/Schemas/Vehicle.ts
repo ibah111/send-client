@@ -44,7 +44,7 @@ function setProperty<D extends IPropertyData<T, K>, K extends keyof T, T>(
 }
 export class Vehicle {
   private readonly instances: PersonPropertyParam[];
-  constructor(instances: PersonPropertyParam[]) {
+  constructor(instances: PersonPropertyParam[], readonly status: string) {
     Object.defineProperty(this, 'instances', {
       value: instances,
       enumerable: false,
