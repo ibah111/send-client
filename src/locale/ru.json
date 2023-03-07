@@ -138,7 +138,8 @@
       "template_typ": "Тип заявления",
       "dsc": "Коментарий",
       "law_court": { "address": "Адрес ФССП" },
-      "add_interests": "Проценты"
+      "add_interests": "Проценты",
+      "person_property": "Имущество"
     },
     "yes_or_no": {
       "title": "Выберите действие",
