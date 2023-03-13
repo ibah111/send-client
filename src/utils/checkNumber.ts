@@ -1,6 +1,12 @@
 import { TypesData } from '../Reducer/Send';
 
-export default function checkNumber(value: TypesData) {
+export default function checkNumber(
+  value: TypesData,
+  availableEmpty?: boolean,
+) {
+  if (availableEmpty) {
+    return null;
+  }
   if (!value) {
     return 'empty';
   } else {

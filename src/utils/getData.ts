@@ -50,7 +50,7 @@ export default function getError<K extends DataNames>(
         error = checkDate(SendValue, availableEmpty);
         break;
       case 'number':
-        error = checkNumber(SendValue);
+        error = checkNumber(SendValue, availableEmpty);
         break;
       case 'null':
         error = checkNull(SendValue);

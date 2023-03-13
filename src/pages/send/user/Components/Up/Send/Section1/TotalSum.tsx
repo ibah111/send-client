@@ -43,7 +43,7 @@ export const NumberFormatCustom = React.forwardRef<
 }) as unknown as React.ElementType<InputBaseComponentProps>;
 export default function TotalSum() {
   const { t } = useTranslation();
-  const data = getData('total_sum', 'number');
+  const data = getData('total_sum', 'number', true);
   return (
     <>
       <Grid item>
@@ -51,7 +51,6 @@ export default function TotalSum() {
           error={data.isInvalid}
           label={t('form.send.total_sum')}
           value={data.value}
-          required
           InputProps={{
             inputComponent: NumberFormatCustom,
           }}
