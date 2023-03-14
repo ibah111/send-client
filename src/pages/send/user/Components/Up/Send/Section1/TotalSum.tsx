@@ -48,9 +48,10 @@ export default function TotalSum() {
     <>
       <Grid item>
         <TextField
-          error={data.isInvalid}
+          error={!data.value || data.isInvalid}
           label={t('form.send.total_sum')}
           value={data.value}
+          required
           InputProps={{
             inputComponent: NumberFormatCustom,
           }}
