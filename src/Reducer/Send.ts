@@ -68,7 +68,9 @@ export const send = createSlice({
       state.r_court_id = data.r_court_id;
       state.dsc = data.dsc;
       state.add_interests = false;
-      state.person_property = data.Debt?.PersonProperties?.[0]?.id || null;
+      state.person_property = data.deposit_typ
+        ? data.Debt?.PersonProperties?.[0]?.id || null
+        : null;
     },
     setData<K extends DataNames>(
       state: Draft<DataTypes>,

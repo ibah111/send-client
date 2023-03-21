@@ -12,7 +12,6 @@ export default function PersonProperty() {
     (state) => state.LawExec?.Debt?.PersonProperties,
   );
   const data = getData('person_property', 'string', true);
-  console.log(data.value);
   return (
     <Grid width={200} item>
       <FormControl fullWidth>
