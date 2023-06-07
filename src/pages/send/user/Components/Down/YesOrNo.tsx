@@ -35,7 +35,7 @@ export default function YesOrNo({
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const new_row = Boolean(row.fssp_doc_num);
-  const Create = () => {
+  const Create = React.useCallback(() => {
     createExec(row['LawAct.id'], {
       court_doc_num: row.court_doc_num,
       executive_typ: row.executive_typ,
@@ -52,8 +52,8 @@ export default function YesOrNo({
         onClose();
       }
     });
-  };
-  const CreateWithDelete = () => {
+  }, []);
+  const CreateWithDelete = React.useCallback(() => {
     createExec(row['LawAct.id'], {
       court_doc_num: row.court_doc_num,
       executive_typ: row.executive_typ,
@@ -71,8 +71,8 @@ export default function YesOrNo({
         onClose();
       }
     });
-  };
-  const Update = () => {
+  }, []);
+  const Update = React.useCallback(() => {
     dispatch(ResetComment());
     getComment({ type: 'law_exec', id: row.id }).subscribe((res) => {
       dispatch(setLawActComment(res.LawAct.dsc));
@@ -81,7 +81,7 @@ export default function YesOrNo({
     });
     dispatch(setId(row.id));
     onClose();
-  };
+  }, []);
   return (
     <>
       <Dialog open={open} maxWidth="md" onClose={onClose}>

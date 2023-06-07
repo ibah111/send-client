@@ -15,12 +15,12 @@ interface DocumentsProps {
 export default function Documents({ id }: DocumentsProps) {
   const [open, setOpen] = React.useState(false);
   const { t } = useTranslation();
-  const handleClose = () => {
+  const handleClose = React.useCallback(() => {
     setOpen(false);
-  };
-  const handleOpen = () => {
+  }, []);
+  const handleOpen = React.useCallback(() => {
     setOpen(true);
-  };
+  }, []);
   return (
     <>
       <Grid item>

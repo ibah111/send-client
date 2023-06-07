@@ -8,11 +8,11 @@ export default function Contract({ onEnter }: { onEnter: () => void }) {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const contract = useAppSelector((state) => state.Search.contract);
-  const onPress = (event: React.KeyboardEvent) => {
+  const onPress = React.useCallback((event: React.KeyboardEvent) => {
     if (event.key === 'Enter') {
       onEnter();
     }
-  };
+  }, []);
   return (
     <>
       <Grid item>

@@ -18,12 +18,15 @@ export default function Account() {
   const user = useAppSelector((state) => state.User);
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
+  const handleClick = React.useCallback(
+    (event: React.MouseEvent<HTMLElement>) => {
+      setAnchorEl(event.currentTarget);
+    },
+    [],
+  );
+  const handleClose = React.useCallback(() => {
     setAnchorEl(null);
-  };
+  }, []);
   return (
     <Box>
       <IconButton onClick={handleClick}>

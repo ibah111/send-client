@@ -18,12 +18,12 @@ export default function Comments() {
   const id = useAppSelector((state) => state.Send.id);
   const LawActComment = useAppSelector((state) => state.Comment.LawAct);
   const LawExecComment = useAppSelector((state) => state.Comment.LawExec);
-  const handleClose = () => {
+  const handleClose = React.useCallback(() => {
     setOpen(false);
-  };
-  const handleOpen = () => {
+  }, []);
+  const handleOpen = React.useCallback(() => {
     setOpen(true);
-  };
+  }, []);
   return (
     <>
       <Grid item>

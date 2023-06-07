@@ -25,7 +25,7 @@ export default function Search() {
   const id = useAppSelector((state) => state.Send.id);
   const loading = useAppSelector((state) => state.Results.loading);
   const reload = useAppSelector((state) => state.Results.reload);
-  const Click = () => {
+  const Click = React.useCallback(() => {
     dispatch(setLoadingResults(true));
     search().subscribe({
       next: (res) => {
@@ -36,7 +36,7 @@ export default function Search() {
         setLoadingResults(false);
       },
     });
-  };
+  }, []);
   React.useEffect(() => {
     dispatch(reset());
     if (id)

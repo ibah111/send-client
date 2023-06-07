@@ -42,10 +42,13 @@ export default function Submit() {
   const Send = useAppSelector((state) => state.Send);
   const Error = useAppSelector((state) => state.Error);
   const dispatch = useAppDispatch();
-  const AddAlert = (value: string, variant: VariantType = 'success') => {
-    enqueueSnackbar(value, { variant, autoHideDuration: 3000 });
-  };
-  const Click = () => {
+  const AddAlert = React.useCallback(
+    (value: string, variant: VariantType = 'success') => {
+      enqueueSnackbar(value, { variant, autoHideDuration: 3000 });
+    },
+    [],
+  );
+  const Click = React.useCallback(() => {
     if (check(Error, AddAlert)) {
       setLoading(true);
       updateExec().subscribe({
@@ -70,7 +73,7 @@ export default function Submit() {
         error: () => setLoading(false),
       });
     }
-  };
+  }, []);
   return (
     <>
       <Grid item>

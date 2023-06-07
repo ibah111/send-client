@@ -25,18 +25,18 @@ export default function ButtonComment({
   const [open, setOpen] = React.useState(false);
   const [checkedLawAct, setCheckedLawAct] = React.useState(true);
   const [checkedLawExec, setCheckedLawExec] = React.useState(true);
-  const handleClose = () => {
+  const handleClose = React.useCallback(() => {
     setOpen(false);
     onClick();
-  };
-  const handleOpen = () => {
+  }, []);
+  const handleOpen = React.useCallback(() => {
     setOpen(true);
-  };
-  const handleSubmit = () => {
+  }, []);
+  const handleSubmit = React.useCallback(() => {
     addComment(id, comment, checkedLawAct, checkedLawExec).subscribe(() => {
       handleClose();
     });
-  };
+  }, []);
   return (
     <>
       <Button
