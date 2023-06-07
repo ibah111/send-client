@@ -1,5 +1,5 @@
 import { Address } from '@contact/models';
-import { Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import {
   DataGridPremium,
   GridToolbarContainer,
@@ -11,10 +11,10 @@ import { useObservableMemo } from '../../../../../../utils/useAsyncMemo';
 import useData from '../useData';
 import getColumns from './columns';
 import Form from './Form';
-interface CustomToolbar {
+interface CustomToolbarProps {
   onCreate: () => void;
 }
-function CustomToolbar({ onCreate }: CustomToolbar) {
+function CustomToolbar({ onCreate }: CustomToolbarProps) {
   const { t } = useTranslation();
   return (
     <GridToolbarContainer>
@@ -33,7 +33,7 @@ export default function AddressGrid() {
     [id, open],
   );
   return (
-    <div style={{ display: 'flex', height: 300 }}>
+    <Box sx={{ display: 'flex', height: 300 }}>
       <DataGridPremium
         columns={columns}
         components={{ Toolbar: CustomToolbar }}
@@ -59,6 +59,6 @@ export default function AddressGrid() {
           onClose={() => setOpen(false)}
         />
       )}
-    </div>
+    </Box>
   );
 }

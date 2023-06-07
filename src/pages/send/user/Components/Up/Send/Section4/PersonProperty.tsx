@@ -6,7 +6,6 @@ import { Vehicle } from '../../../../../../../Schemas/Vehicle';
 import getData from '../../../../../../../utils/getData';
 
 export default function PersonProperty() {
-  const [pp_id, setPp] = React.useState<number | string>();
   const { t } = useTranslation();
   const person_properties = useAppSelector(
     (state) => state.LawExec?.Debt?.PersonProperties,

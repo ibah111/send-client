@@ -48,7 +48,8 @@ export default function DebtCalcTable({ id }: DebtCalcTableProps) {
   React.useEffect(() => {
     getDebtCalc(id).subscribe(setRows);
     apiRef.current.restoreState(stateGrid);
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [apiRef, id]);
   return (
     <>
       <Box sx={{ width: '100%', height: 400 }}>

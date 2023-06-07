@@ -40,7 +40,7 @@ export default function Form({ id, parent_id, onClose }: FormProps) {
       dispatch(resetDebtGuarantor());
       if (parent_id) dispatch(setDebtGuarantorValue(['parent_id', parent_id]));
     }
-  }, [id]);
+  }, [dispatch, id, parent_id]);
   const data = useData('id');
   return (
     <>

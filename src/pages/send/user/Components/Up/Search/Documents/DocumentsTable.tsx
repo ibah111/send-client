@@ -29,7 +29,8 @@ export default function DocumentsTable({ id }: DocumentsTableProps) {
   React.useEffect(() => {
     refresh();
     apiRef.current.restoreState(stateGrid);
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [apiRef, refresh]);
   return (
     <>
       <DialogFile

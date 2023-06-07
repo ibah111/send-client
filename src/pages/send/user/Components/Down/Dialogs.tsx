@@ -25,7 +25,7 @@ export default function Dialogs({
       setOpenYesOrNo(false);
       setOpenCanceled(false);
     }
-  }, [open]);
+  }, [open, row]);
   return (
     <>
       <Canceled

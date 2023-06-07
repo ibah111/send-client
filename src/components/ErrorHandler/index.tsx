@@ -13,6 +13,6 @@ export default function ErrorHandler() {
         enqueueSnackbar(message.text, message.params);
       dispatch(resetMessage());
     }
-  }, [messages]);
+  }, [dispatch, enqueueSnackbar, messages]);
   return <></>;
 }

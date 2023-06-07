@@ -18,7 +18,7 @@ export default function Slider({
     timeout = useAppSelector((state) => state.App.timeout);
   React.useEffect(() => {
     setOpen(stop ? false : always ? true : minApp);
-  }, [minApp]);
+  }, [always, minApp, stop]);
   return (
     <Slide
       direction={position}

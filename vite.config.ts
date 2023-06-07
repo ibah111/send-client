@@ -25,7 +25,10 @@ export default defineConfig({
     dynamicImport(),
     legacy({ targets: ['defaults'] }),
     react(),
-    checker({ typescript: true }),
+    checker({
+      typescript: true,
+      eslint: { lintCommand: 'eslint "src/**/*.{ts,tsx}"' },
+    }),
   ],
   build: { outDir: 'build' },
   server: { port: 3000 },

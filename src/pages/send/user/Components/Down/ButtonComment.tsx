@@ -28,7 +28,7 @@ export default function ButtonComment({
   const handleClose = React.useCallback(() => {
     setOpen(false);
     onClick();
-  }, []);
+  }, [onClick]);
   const handleOpen = React.useCallback(() => {
     setOpen(true);
   }, []);
@@ -36,7 +36,7 @@ export default function ButtonComment({
     addComment(id, comment, checkedLawAct, checkedLawExec).subscribe(() => {
       handleClose();
     });
-  }, []);
+  }, [checkedLawAct, checkedLawExec, comment, handleClose, id]);
   return (
     <>
       <Button

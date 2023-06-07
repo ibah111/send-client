@@ -46,8 +46,8 @@ export default function Home() {
               </Grid>
               {pages.map(
                 (page, index) =>
-                  (Boolean(page.demo) == false ||
-                    Boolean(page.demo) == version.demo) && (
+                  (Boolean(page.demo) === false ||
+                    Boolean(page.demo) === version.demo) && (
                     <Collapse
                       unmountOnExit
                       key={index}

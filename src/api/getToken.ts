@@ -15,7 +15,7 @@ export async function authorize() {
   return res.data;
 }
 export function redirect() {
-  location.replace(
+  document.location.replace(
     server('oauth') + `/oauth/authorize?origin=${window.location.href}`,
   );
 }

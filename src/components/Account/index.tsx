@@ -1,12 +1,10 @@
 import {
   Avatar,
   Box,
-  Button,
   Divider,
   IconButton,
   Menu,
   MenuItem,
-  Typography,
 } from '@mui/material';
 import React from 'react';
 import { logout } from '../../api/getToken';
@@ -48,7 +46,9 @@ export default function Account() {
             const data = new URLSearchParams();
             data.append('backurl', document.location.pathname);
             logout().then(() =>
-              location.replace(portal + '/auth/?logout=yes&' + data.toString()),
+              document.location.replace(
+                portal + '/auth/?logout=yes&' + data.toString(),
+              ),
             );
           }}
         >

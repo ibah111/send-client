@@ -36,7 +36,7 @@ export default function Search() {
         setLoadingResults(false);
       },
     });
-  }, []);
+  }, [dispatch]);
   React.useEffect(() => {
     dispatch(reset());
     if (id)
@@ -46,13 +46,13 @@ export default function Search() {
           dispatch(setSend(res));
         }
       });
-  }, [id]);
+  }, [dispatch, id]);
   React.useEffect(() => {
     if (reload) {
       Click();
       dispatch(setReloadResults(false));
     }
-  }, [reload]);
+  }, [Click, dispatch, reload]);
   return (
     <>
       <Grid

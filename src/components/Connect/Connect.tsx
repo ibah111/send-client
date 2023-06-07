@@ -32,7 +32,7 @@ export function Connect({ children }: ConnectProps) {
     if (connected === false) {
       dispatch(resetUser());
     }
-  }, [connected]);
+  }, [connected, dispatch]);
   return <>{connected ? children : <NotConnected />}</>;
 }
 Connect.propTypes = {

@@ -46,7 +46,8 @@ export default function Results() {
   );
   React.useEffect(() => {
     apiRef.current.restoreState(stateGrid);
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [apiRef]);
   return (
     <>
       <Root sx={{ width: '100%' }} xs item>

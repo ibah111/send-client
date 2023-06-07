@@ -24,9 +24,12 @@ export default function useData<T extends keyof TypeDebtGuarantorAddress>(
       : state.Address?.[name],
   );
   const dispatch = useDgDispatch();
-  const setValue = React.useCallback((value: Address[T]) => {
-    dispatch(setDebtGuarantorAddressValue([name, value]));
-  }, []);
+  const setValue = React.useCallback(
+    (value: Address[T]) => {
+      dispatch(setDebtGuarantorAddressValue([name, value]));
+    },
+    [dispatch, name],
+  );
   const { required, error, helperText } = React.useMemo(
     () => checker(AddressInstance, name, value),
     [name, value],

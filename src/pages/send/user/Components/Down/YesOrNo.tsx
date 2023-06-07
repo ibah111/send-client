@@ -52,7 +52,7 @@ export default function YesOrNo({
         onClose();
       }
     });
-  }, []);
+  }, [dispatch, onClose, row]);
   const CreateWithDelete = React.useCallback(() => {
     createExec(row['LawAct.id'], {
       court_doc_num: row.court_doc_num,
@@ -71,7 +71,7 @@ export default function YesOrNo({
         onClose();
       }
     });
-  }, []);
+  }, [dispatch, onClose, row]);
   const Update = React.useCallback(() => {
     dispatch(ResetComment());
     getComment({ type: 'law_exec', id: row.id }).subscribe((res) => {
@@ -81,7 +81,7 @@ export default function YesOrNo({
     });
     dispatch(setId(row.id));
     onClose();
-  }, []);
+  }, [dispatch, onClose, row.id]);
   return (
     <>
       <Dialog open={open} maxWidth="md" onClose={onClose}>

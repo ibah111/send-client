@@ -37,12 +37,12 @@ export default function Home() {
       dispatch(setApp(true));
       setCurrent(location.pathname);
     }, timeout);
-  }, [location.pathname]);
+  }, [dispatch, location.pathname, timeout]);
   React.useEffect(() => {
     if (timeout !== newTimeout && minApp) {
       setTimeout(() => dispatch(setTime(newTimeout)), 20);
     }
-  }, [minApp]);
+  }, [dispatch, minApp, timeout]);
   return (
     <>
       <Grid

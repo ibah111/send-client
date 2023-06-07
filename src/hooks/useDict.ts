@@ -8,6 +8,6 @@ export default function useDict(id: number) {
   const dispatch = useAppDispatch();
   React.useEffect(() => {
     if (!dict) getDict(id).subscribe((res) => dispatch(setDict(res)));
-  }, [id]);
+  }, [dict, dispatch, id]);
   return dict || [];
 }

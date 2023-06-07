@@ -19,7 +19,7 @@ export default function RCourtId() {
         },
       );
     }
-  }, [name]);
+  }, [name, t]);
   React.useEffect(() => {
     if (data.value !== '') {
       getCourt({ id: data.value as number }).subscribe((court) => {

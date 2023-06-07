@@ -33,16 +33,19 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 }));
 export default function BackDrop({ children, id, refresh }: BackDropProps) {
   const [loading, setLoading] = React.useState(false);
-  const onDrop = React.useCallback((acceptedFiles: File[]) => {
-    setLoading(true);
-    forkJoin(acceptedFiles.map((file) => uploadFile(id, file))).subscribe({
-      next: () => {
-        refresh();
-        setLoading(false);
-      },
-      error: () => setLoading(false),
-    });
-  }, []);
+  const onDrop = React.useCallback(
+    (acceptedFiles: File[]) => {
+      setLoading(true);
+      forkJoin(acceptedFiles.map((file) => uploadFile(id, file))).subscribe({
+        next: () => {
+          refresh();
+          setLoading(false);
+        },
+        error: () => setLoading(false),
+      });
+    },
+    [id, refresh],
+  );
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     noClick: true,

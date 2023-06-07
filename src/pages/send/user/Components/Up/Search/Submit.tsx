@@ -46,7 +46,7 @@ export default function Submit() {
     (value: string, variant: VariantType = 'success') => {
       enqueueSnackbar(value, { variant, autoHideDuration: 3000 });
     },
-    [],
+    [enqueueSnackbar],
   );
   const Click = React.useCallback(() => {
     if (check(Error, AddAlert)) {
@@ -73,7 +73,7 @@ export default function Submit() {
         error: () => setLoading(false),
       });
     }
-  }, []);
+  }, [AddAlert, Error, dispatch]);
   return (
     <>
       <Grid item>

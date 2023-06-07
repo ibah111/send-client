@@ -43,7 +43,7 @@ export function Login({ children }: LoginProps) {
         (message) => setMessage(message),
       );
     }
-  }, [loged]);
+  }, [dispatch, loged]);
   return (
     <>{loged ? children : <NotLoged message={message ? message : ''} />}</>
   );

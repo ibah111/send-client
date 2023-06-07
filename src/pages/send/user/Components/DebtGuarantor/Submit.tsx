@@ -24,6 +24,6 @@ export default function Submit({ onClose }: SubmitProps) {
         onClose();
       }
     });
-  }, [data]);
+  }, [data, onClose]);
   return <Button onClick={save}>{t('form.debt_guarantor.save')}</Button>;
 }

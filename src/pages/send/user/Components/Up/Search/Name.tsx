@@ -8,11 +8,14 @@ export default function Name({ onEnter }: { onEnter: () => void }) {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const name = useAppSelector((state) => state.Search.name);
-  const onPress = React.useCallback((event: React.KeyboardEvent) => {
-    if (event.key === 'Enter') {
-      onEnter();
-    }
-  }, []);
+  const onPress = React.useCallback(
+    (event: React.KeyboardEvent) => {
+      if (event.key === 'Enter') {
+        onEnter();
+      }
+    },
+    [onEnter],
+  );
   return (
     <>
       <Grid item>

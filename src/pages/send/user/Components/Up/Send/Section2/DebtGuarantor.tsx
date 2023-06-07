@@ -20,7 +20,7 @@ export default function DebtGuarantor() {
   const le_id = useAppSelector((state) => state.LawExec?.id);
   const data = getData('debt_guarantor', 'string');
   React.useEffect(() => {
-    if (data.value && data.value >= -1) {
+    if (data.value && typeof data.value === 'number' && data.value >= -1) {
       if (data.value === -1) {
         setDg(undefined);
       } else {
@@ -29,7 +29,7 @@ export default function DebtGuarantor() {
     } else {
       data.setValue(dg_id || '');
     }
-  }, [data.value]);
+  }, [data, data.value, dg_id]);
   return (
     <Grid width={200} item>
       <FormControl fullWidth>
@@ -64,18 +64,20 @@ export default function DebtGuarantor() {
               <em>Добавить должника</em>
             </MenuItem>
           )}
-          {data.value && (data.value > -1 || data.value === -3) && (
-            <MenuItem
-              key={-3}
-              value={-3}
-              onClick={() => {
-                setDg((data.value as number) || undefined);
-                setOpen(true);
-              }}
-            >
-              <em>Редактирование должника</em>
-            </MenuItem>
-          )}
+          {data.value &&
+            typeof data.value === 'number' &&
+            (data.value > -1 || data.value === -3) && (
+              <MenuItem
+                key={-3}
+                value={-3}
+                onClick={() => {
+                  setDg((data.value as number) || undefined);
+                  setOpen(true);
+                }}
+              >
+                <em>Редактирование должника</em>
+              </MenuItem>
+            )}
         </Select>
       </FormControl>
       {open && (

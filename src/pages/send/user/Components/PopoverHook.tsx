@@ -22,7 +22,7 @@ export default function PopoverHook(rows: (LawExecPlain | LawActPlain)[]) {
         setAnchorEl(event.currentTarget);
       }
     },
-    [],
+    [rows],
   );
 
   const handlePopoverClose = React.useCallback(() => {
@@ -51,7 +51,7 @@ export default function PopoverHook(rows: (LawExecPlain | LawActPlain)[]) {
         <Typography sx={{ p: 1 }}>{value}</Typography>
       </Popover>
     );
-  }, [open, anchorEl, value]);
+  }, [open, anchorEl, handlePopoverClose, value]);
   return {
     handlePopoverOpen,
     handlePopoverClose,

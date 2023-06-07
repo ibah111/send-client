@@ -33,7 +33,8 @@ export default function Table({
   }, [search]);
   React.useEffect(() => {
     apiRef.current.restoreState(stateGrid);
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [apiRef]);
   return (
     <>
       <Grid sx={{ width: '100%', height: 400 }} item>

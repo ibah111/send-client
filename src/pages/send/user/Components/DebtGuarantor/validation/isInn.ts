@@ -10,8 +10,8 @@ function checkINN(input: string) {
   input = '' + input;
   const numbers = input.split('').map(Number);
   if (
-    numbers.length == 10 &&
-    numbers[9] ==
+    numbers.length === 10 &&
+    numbers[9] ===
       ((2 * numbers[0] +
         4 * numbers[1] +
         10 * numbers[2] +
@@ -27,8 +27,8 @@ function checkINN(input: string) {
     return true;
     //для ИНН в 12 знаков
   } else if (
-    numbers.length == 12 &&
-    numbers[10] ==
+    numbers.length === 12 &&
+    numbers[10] ===
       ((7 * numbers[0] +
         2 * numbers[1] +
         4 * numbers[2] +
@@ -41,7 +41,7 @@ function checkINN(input: string) {
         8 * numbers[9]) %
         11) %
         10 &&
-    numbers[11] ==
+    numbers[11] ===
       ((3 * numbers[0] +
         7 * numbers[1] +
         2 * numbers[2] +

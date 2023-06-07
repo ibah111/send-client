@@ -45,7 +45,7 @@ export default function Form({
         setDebtGuarantorAddressValue(['r_debt_guarantor_id', r_debt_guarantor]),
       );
     }
-  }, [address]);
+  }, [address, debt_id, dispatch, r_debt_guarantor]);
   return (
     <Dialog open={true} fullWidth onClose={onClose}>
       <DialogTitle>{t('form.address.name')}</DialogTitle>

@@ -25,6 +25,7 @@ export default function DialogFile({ open, onClose, file }: DialogFileProps) {
         <iframe
           width="100%"
           height="100%"
+          title="Документ"
           src={file ? URL.createObjectURL(file) : ''}
         />
       </Dialog>
