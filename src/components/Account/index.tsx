@@ -45,7 +45,7 @@ export default function Account() {
           onClick={() => {
             const data = new URLSearchParams();
             data.append('backurl', document.location.pathname);
-            logout().then(() =>
+            logout().subscribe(() =>
               document.location.replace(
                 portal + '/auth/?logout=yes&' + data.toString(),
               ),

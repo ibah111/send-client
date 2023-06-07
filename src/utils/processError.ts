@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import { ValidationError } from 'class-validator';
 import { t } from 'i18next';
-import { Subscriber, retry, Observable, of, map, mergeMap, from } from 'rxjs';
+import { Subscriber, retry, Observable, of, map, mergeMap } from 'rxjs';
 import getToken from '../api/getToken';
 import store from '../Reducer';
 import { callError } from '../Reducer/Message';
@@ -55,7 +55,7 @@ export function processError(e: unknown, name?: string) {
     }),
     mergeMap((result) => {
       if (result.addon === 'retry')
-        return from(getToken()).pipe(
+        return getToken().pipe(
           map((token) => {
             if (token) {
               requests.defaults.headers['token'] = token;

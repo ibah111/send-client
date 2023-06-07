@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import store from '../Reducer';
+//import store from '../Reducer';
 import {
   createError,
   createNextDefault,
@@ -37,10 +37,10 @@ export class LawExecPlain {
   'Person.Addresses': PersonAddress[];
 }
 export default function search() {
-  const request = store.getState().Search;
+  // const request = store.getState().Search;
   return new Observable<LawExecPlain[]>((subscriber) => {
     requests
-      .post<LawExecPlain[]>('/search', request)
+      .post<LawExecPlain[]>('/search')
       .then(createNextDefault(subscriber))
       .catch(createError(subscriber));
   }).pipe(createRetry());

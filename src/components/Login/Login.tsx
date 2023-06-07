@@ -1,32 +1,9 @@
 import React from 'react';
 import { NotLoged } from './NotLoged';
 import PropTypes from 'prop-types';
-import axios from 'axios';
-import { AuthUserSuccess } from '../../Schemas/Auth';
 import { useAppDispatch, useAppSelector } from '../../Reducer';
 import { setUser } from '../../Reducer/User';
-import requests from '../../utils/requests';
-import getToken from '../../api/getToken';
-const connect = async (
-  callback: (value: AuthUserSuccess) => void,
-  setError: (value: string | null) => void,
-) => {
-  try {
-    const token = await getToken();
-    requests.defaults.headers['token'] = token;
-    const response = await requests.post<AuthUserSuccess>('/login');
-    callback(response.data);
-  } catch (e: unknown) {
-    if (axios.isAxiosError(e)) {
-      const data = e.response?.data;
-      if (data.Result === 'error') {
-        setError(data?.Message);
-      } else {
-        setError(null);
-      }
-    }
-  }
-};
+import connect from './connect';
 interface LoginProps {
   children: React.ReactNode;
 }
@@ -36,12 +13,12 @@ export function Login({ children }: LoginProps) {
   const [message, setMessage] = React.useState<string | null>(null);
   React.useEffect(() => {
     if (!loged) {
-      connect(
-        (value) => {
+      connect().subscribe({
+        next: (value) => {
           dispatch(setUser(value));
         },
-        (message) => setMessage(message),
-      );
+        error: (message) => setMessage(message),
+      });
     }
   }, [dispatch, loged]);
   return (
