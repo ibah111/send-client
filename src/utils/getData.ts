@@ -10,7 +10,7 @@ import checkNull from './checkNull';
 import checkNumber from './checkNumber';
 import checkString from './checkString';
 type Typed = 'string' | 'date' | 'null' | 'number' | 'boolean' | null;
-export default function getError<K extends DataNames>(
+export default function useError<K extends DataNames>(
   name: K,
   type: Typed = null,
   availableEmpty = false,
@@ -27,19 +27,22 @@ export default function getError<K extends DataNames>(
       value = (SendValue || '') as DataTypes[K];
       break;
   }
-  const setValue = React.useCallback((newValue: DataTypes[K]) => {
-    switch (type) {
-      case 'date': {
-        const data: Moment = moment(newValue as MomentInput);
-        data?.startOf('day');
-        dispatch(setData([name, data]));
-        break;
+  const setValue = React.useCallback(
+    (newValue: DataTypes[K]) => {
+      switch (type) {
+        case 'date': {
+          const data: Moment = moment(newValue as MomentInput);
+          data?.startOf('day');
+          dispatch(setData([name, data]));
+          break;
+        }
+        default:
+          dispatch(setData([name, newValue]));
+          break;
       }
-      default:
-        dispatch(setData([name, newValue]));
-        break;
-    }
-  }, []);
+    },
+    [dispatch, name, type],
+  );
   React.useEffect(() => {
     let error;
     switch (type) {
@@ -57,7 +60,7 @@ export default function getError<K extends DataNames>(
         break;
     }
     callError(name, error);
-  }, [name, SendValue]);
+  }, [name, SendValue, type, availableEmpty]);
   return {
     setValue,
     value,
