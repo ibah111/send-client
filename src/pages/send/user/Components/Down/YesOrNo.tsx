@@ -22,6 +22,7 @@ import { setId } from '../../../../../Reducer/Send';
 import DebtCalc from '../Up/Search/DebtCalc';
 import Documents from '../Up/Search/Documents';
 import ButtonComment from './ButtonComment';
+import { map, mergeMap, tap } from 'rxjs';
 
 export default function YesOrNo({
   open,
@@ -41,17 +42,25 @@ export default function YesOrNo({
       executive_typ: row.executive_typ,
       court_date: row.court_date,
       entry_force_dt: row.entry_force_dt,
-    }).subscribe((res) => {
-      if (res) {
-        dispatch(ResetComment());
-        dispatch(setId(res));
-        getComment({ type: 'law_exec', id: row.id }).subscribe((res) => {
-          dispatch(setLawActComment(res.LawAct.dsc));
-          dispatch(setLawExecComment(res.dsc));
-        });
-        onClose();
-      }
-    });
+    })
+      .pipe(
+        mergeMap((value) =>
+          getComment({ type: 'law_exec', id: row.id }).pipe(
+            tap((res) => {
+              dispatch(setLawActComment(res.LawAct.dsc));
+              dispatch(setLawExecComment(res.dsc));
+            }),
+            map(() => value),
+          ),
+        ),
+      )
+      .subscribe((res) => {
+        if (res) {
+          dispatch(ResetComment());
+          dispatch(setId(res));
+          onClose();
+        }
+      });
   }, [dispatch, onClose, row]);
   const CreateWithDelete = React.useCallback(() => {
     createExec(row['LawAct.id'], {
@@ -59,18 +68,26 @@ export default function YesOrNo({
       executive_typ: row.executive_typ,
       court_date: row.court_date,
       entry_force_dt: row.entry_force_dt,
-    }).subscribe((res) => {
-      if (res) {
-        dispatch(ResetComment());
-        getComment({ type: 'law_exec', id: row.id }).subscribe((res) => {
-          dispatch(setLawActComment(res.LawAct.dsc));
-          dispatch(setLawExecComment(res.dsc));
-        });
-        deleteExec(row.id);
-        dispatch(setId(res));
-        onClose();
-      }
-    });
+    })
+      .pipe(
+        mergeMap((value) =>
+          getComment({ type: 'law_exec', id: row.id }).pipe(
+            tap((res) => {
+              dispatch(setLawActComment(res.LawAct.dsc));
+              dispatch(setLawExecComment(res.dsc));
+            }),
+            map(() => value),
+          ),
+        ),
+      )
+      .subscribe((res) => {
+        if (res) {
+          dispatch(ResetComment());
+          deleteExec(row.id);
+          dispatch(setId(res));
+          onClose();
+        }
+      });
   }, [dispatch, onClose, row]);
   const Update = React.useCallback(() => {
     dispatch(ResetComment());

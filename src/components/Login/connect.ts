@@ -15,7 +15,7 @@ export default function connect() {
         post<AuthUserSuccess>(requests, '/login'),
         transformAxios(),
         transformError(),
-        catchError((e) => {
+        catchError((e: unknown) => {
           if (axios.isAxiosError(e)) {
             const data = e.response?.data;
             if (data.Result === 'error') {

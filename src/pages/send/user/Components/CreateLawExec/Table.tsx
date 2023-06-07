@@ -12,6 +12,7 @@ import version from '../../../../../utils/version';
 import PopoverHook from '../PopoverHook';
 import Canceled from './Canceled';
 import getColumns from './getColumns';
+import { map, mergeMap, tap } from 'rxjs';
 
 const getBackgroundColor = (color: string, mode: string) =>
   mode === 'dark' ? darken(color, 0.6) : lighten(color, 0.6);
@@ -91,19 +92,24 @@ export default function Table({ handleClose }: { handleClose: () => void }) {
           onCellDoubleClick={(params) => {
             if (params.row['Debt.status'])
               if (params.row['Debt.status'] !== 7) {
-                createExec(params.row.id).subscribe((res) => {
-                  if (res) {
-                    dispatch(ResetComment());
-                    getComment({
-                      type: 'law_act',
-                      id: params.row.id,
-                    }).subscribe((res) => {
-                      dispatch(setLawActComment(res.dsc));
-                    });
-                    dispatch(setId(res));
-                    handleClose();
-                  }
-                });
+                createExec(params.row.id)
+                  .pipe(
+                    mergeMap((value) =>
+                      getComment({ type: 'law_act', id: params.row.id }).pipe(
+                        tap((res) => {
+                          dispatch(setLawActComment(res.dsc));
+                        }),
+                        map(() => value),
+                      ),
+                    ),
+                  )
+                  .subscribe((res) => {
+                    if (res) {
+                      dispatch(ResetComment());
+                      dispatch(setId(res));
+                      handleClose();
+                    }
+                  });
               } else {
                 setRow(params.row);
                 setOpenCanceled(true);

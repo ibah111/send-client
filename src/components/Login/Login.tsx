@@ -17,7 +17,9 @@ export function Login({ children }: LoginProps) {
         next: (value) => {
           dispatch(setUser(value));
         },
-        error: (message) => setMessage(message),
+        error: (message: unknown) => {
+          if (typeof message === 'string') setMessage(message);
+        },
       });
       return () => data.unsubscribe();
     }
