@@ -13,11 +13,12 @@ export default function RCourtId() {
   const data = getData('r_court_id', 'null');
   React.useEffect(() => {
     if (name[0] !== '(') {
-      getCourt({ name: name === t('system.none') ? '' : name }).subscribe(
-        (court) => {
-          setTypes(['', ...court]);
-        },
-      );
+      const data = getCourt({
+        name: name === t('system.none') ? '' : name,
+      }).subscribe((court) => {
+        setTypes(['', ...court]);
+      });
+      return data.unsubscribe();
     }
   }, [name, t]);
   React.useEffect(() => {

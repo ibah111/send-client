@@ -13,12 +13,13 @@ export function Login({ children }: LoginProps) {
   const [message, setMessage] = React.useState<string | null>(null);
   React.useEffect(() => {
     if (!loged) {
-      connect().subscribe({
+      const data = connect().subscribe({
         next: (value) => {
           dispatch(setUser(value));
         },
         error: (message) => setMessage(message),
       });
+      return () => data.unsubscribe();
     }
   }, [dispatch, loged]);
   return (

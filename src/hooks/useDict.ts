@@ -7,7 +7,12 @@ export default function useDict(id: number) {
   const dict = useAppSelector((state) => state.Dict[id]);
   const dispatch = useAppDispatch();
   React.useEffect(() => {
-    if (!dict) getDict(id).subscribe((res) => dispatch(setDict(res)));
+    if (!dict) {
+      const data = getDict(id).subscribe((res) => dispatch(setDict(res)));
+      return () => {
+        data.unsubscribe();
+      };
+    }
   }, [dict, dispatch, id]);
   return dict || [];
 }
