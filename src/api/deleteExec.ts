@@ -1,17 +1,14 @@
-import { Observable } from 'rxjs';
-import {
-  createError,
-  createNextDefault,
-  createRetry,
-} from '../utils/processError';
+import { of } from 'rxjs';
 import requests from '../utils/requests';
+import { post } from '../utils/rxjs-pipes/post';
+import { transformError } from '../utils/rxjs-pipes/transformError';
+import { transformAxios } from '../utils/rxjs-pipes/transformAxios';
+import { authRetry } from '../utils/rxjs-pipes/authRetry';
 export default function deleteExec(value: number) {
-  return new Observable<false | number>((subscriber) => {
-    requests
-      .post<false | number>('/delete_exec', {
-        id: value,
-      })
-      .then(createNextDefault(subscriber))
-      .catch(createError(subscriber));
-  }).pipe(createRetry());
+  return of({ id: value }).pipe(
+    post<false | number>(requests, '/delete_exec'),
+    transformAxios(),
+    transformError(),
+    authRetry(),
+  );
 }

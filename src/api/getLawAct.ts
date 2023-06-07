@@ -1,12 +1,11 @@
 import store from '../Reducer';
 import { PersonAddress } from './search';
 import requests from '../utils/requests';
-import { Observable } from 'rxjs';
-import {
-  createError,
-  createNextDefault,
-  createRetry,
-} from '../utils/processError';
+import { of } from 'rxjs';
+import { post } from '../utils/rxjs-pipes/post';
+import { transformAxios } from '../utils/rxjs-pipes/transformAxios';
+import { transformError } from '../utils/rxjs-pipes/transformError';
+import { authRetry } from '../utils/rxjs-pipes/authRetry';
 export class LawActPlain {
   'id': number;
   'typ': number;
@@ -28,10 +27,10 @@ export class LawActPlain {
 }
 export default function search() {
   const request = store.getState().Search;
-  return new Observable<LawActPlain[]>((subscriber) => {
-    requests
-      .post<LawActPlain[]>('/search_la', request)
-      .then(createNextDefault(subscriber))
-      .catch(createError(subscriber));
-  }).pipe(createRetry());
+  return of(request).pipe(
+    post<LawActPlain[]>(requests, '/search_la'),
+    transformAxios(),
+    transformError(),
+    authRetry(),
+  );
 }

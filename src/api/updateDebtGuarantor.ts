@@ -2,14 +2,14 @@ import { DebtGuarantor } from '@contact/models';
 import { CreationAttributes } from '@sql-tools/sequelize';
 import { plainToInstance } from 'class-transformer';
 import { validateOrReject } from 'class-validator';
-import { Observable } from 'rxjs';
 import { createDebtGuarantorInstance } from '../pages/send/user/Components/DebtGuarantor/DebtGuarantorInstance';
-import {
-  createError,
-  createNextDefault,
-  createRetry,
-} from '../utils/processError';
 import requests from '../utils/requests';
+import { validateData } from '../utils/rxjs-pipes/validateData';
+import { post } from '../utils/rxjs-pipes/post';
+import { transformAxios } from '../utils/rxjs-pipes/transformAxios';
+import { transformError } from '../utils/rxjs-pipes/transformError';
+import { authRetry } from '../utils/rxjs-pipes/authRetry';
+import { of } from 'rxjs';
 
 const DebtGuarantorInstance = createDebtGuarantorInstance();
 export async function call(body: CreationAttributes<DebtGuarantor>) {
@@ -27,9 +27,11 @@ export async function call(body: CreationAttributes<DebtGuarantor>) {
 export default function updateDebtGuarantor(
   body: CreationAttributes<DebtGuarantor>,
 ) {
-  return new Observable<DebtGuarantor | { update: true }>((subscriber) => {
-    call(body)
-      .then(createNextDefault(subscriber))
-      .catch(createError(subscriber, 'debt_guarantor'));
-  }).pipe(createRetry());
+  return of(body).pipe(
+    validateData(DebtGuarantorInstance),
+    post<DebtGuarantor | { update: true }>(requests, '/debt_calc'),
+    transformAxios(),
+    transformError('debt_guarantor'),
+    authRetry(),
+  );
 }

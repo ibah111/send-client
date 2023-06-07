@@ -1,6 +1,10 @@
-import { Observable } from 'rxjs';
+import { of } from 'rxjs';
 import store from '../Reducer';
 import requests from '../utils/requests';
+import { post } from '../utils/rxjs-pipes/post';
+import { transformAxios } from '../utils/rxjs-pipes/transformAxios';
+import { transformError } from '../utils/rxjs-pipes/transformError';
+import { authRetry } from '../utils/rxjs-pipes/authRetry';
 export class PersonAddress {
   full_adr: string;
 }
@@ -33,10 +37,10 @@ export class LawExecPlain {
 }
 export default function search() {
   const request = store.getState().Search;
-  return new Observable<LawExecPlain[]>((subscriber) => {
-    requests
-      .post<LawExecPlain[]>('/search', request)
-      .then(createNextDefault(subscriber))
-      .catch(createError(subscriber));
-  }).pipe(createRetry());
+  return of(request).pipe(
+    post<LawExecPlain[]>(requests, '/search'),
+    transformAxios(),
+    transformError(),
+    authRetry(),
+  );
 }

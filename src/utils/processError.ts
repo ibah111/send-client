@@ -1,7 +1,7 @@
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 import { ValidationError } from 'class-validator';
 import { t } from 'i18next';
-import { Subscriber, retry, Observable, of, map, mergeMap } from 'rxjs';
+import { of, map, mergeMap } from 'rxjs';
 import getToken from '../api/getToken';
 import store from '../Reducer';
 import { callError } from '../Reducer/Message';
@@ -67,25 +67,4 @@ export function processError(e: unknown, name?: string) {
       return of(result.e);
     }),
   );
-}
-export function createError<T>(subscriber: Subscriber<T>, name?: string) {
-  return (e: unknown) =>
-    processError(e, name).subscribe((e) => {
-      subscriber.error(e);
-    });
-}
-export function createRetry<T>() {
-  return retry<T>({
-    delay: (err) =>
-      new Observable((subscriber) => {
-        if (err === 'retry') subscriber.next();
-        subscriber.complete();
-      }),
-  });
-}
-export function createNextDefault<T>(subscriber: Subscriber<T>) {
-  return (res: AxiosResponse<T>) => {
-    subscriber.next(res.data);
-    subscriber.complete();
-  };
 }

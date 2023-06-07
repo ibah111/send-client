@@ -1,10 +1,9 @@
-import { Observable } from 'rxjs';
-import {
-  createError,
-  createNextDefault,
-  createRetry,
-} from '../utils/processError';
+import { of } from 'rxjs';
 import requests from '../utils/requests';
+import { post } from '../utils/rxjs-pipes/post';
+import { transformAxios } from '../utils/rxjs-pipes/transformAxios';
+import { transformError } from '../utils/rxjs-pipes/transformError';
+import { authRetry } from '../utils/rxjs-pipes/authRetry';
 export class CreateExecOld {
   court_doc_num: string;
   executive_typ: number;
@@ -12,13 +11,10 @@ export class CreateExecOld {
   entry_force_dt: Date;
 }
 export default function createExec(value: number, old?: CreateExecOld) {
-  return new Observable<number | false>((subscriber) => {
-    requests
-      .post<number | false>('/create_exec', {
-        id: value,
-        old,
-      })
-      .then(createNextDefault(subscriber))
-      .catch(createError(subscriber));
-  }).pipe(createRetry());
+  return of({ id: value, old }).pipe(
+    post<number | false>(requests, '/create_exec'),
+    transformAxios(),
+    transformError(),
+    authRetry(),
+  );
 }

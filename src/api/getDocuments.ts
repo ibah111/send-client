@@ -1,38 +1,29 @@
 import { DocAttach } from '@contact/models';
-import { AxiosResponse } from 'axios';
-import { Observable } from 'rxjs';
-import {
-  createError,
-  createNextDefault,
-  createRetry,
-} from '../utils/processError';
+import { of } from 'rxjs';
 import requests from '../utils/requests';
+import { post } from '../utils/rxjs-pipes/post';
+import { transformAxios } from '../utils/rxjs-pipes/transformAxios';
+import { transformError } from '../utils/rxjs-pipes/transformError';
+import { authRetry } from '../utils/rxjs-pipes/authRetry';
 type types = 'doc' | 'law_exec';
 type results<T extends types> = T extends 'doc' ? Blob : DocAttach[];
 export default function getDocuments<T extends types>(id: number, type: T) {
-  let promise: Promise<AxiosResponse<results<T>>>;
   switch (type) {
     case 'doc':
-      promise = requests.post<results<T>>(
-        '/documents/get',
-        { id },
-        { responseType: 'blob' },
+      return of({ id }).pipe(
+        post<results<T>>(requests, '/documents/get', {
+          responseType: 'blob',
+        }),
+        transformAxios(),
+        transformError(),
+        authRetry(),
       );
-
-      break;
-    case 'law_exec':
-      promise = requests.post<results<T>>('/documents/get', {
-        law_exec_id: id,
-      });
-      break;
     default:
-      promise = requests.post<results<T>>('/documents/get', {
-        law_exec_id: id,
-      });
-      break;
+      return of({ law_exec_id: id }).pipe(
+        post<results<T>>(requests, '/documents/get'),
+        transformAxios(),
+        transformError(),
+        authRetry(),
+      );
   }
-
-  return new Observable<results<T>>((subscriber) => {
-    promise.then(createNextDefault(subscriber)).catch(createError(subscriber));
-  }).pipe(createRetry());
 }

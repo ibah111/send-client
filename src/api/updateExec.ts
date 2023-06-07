@@ -1,11 +1,10 @@
-import { Observable } from 'rxjs';
+import { of } from 'rxjs';
 import store from '../Reducer';
-import {
-  createError,
-  createNextDefault,
-  createRetry,
-} from '../utils/processError';
 import requests from '../utils/requests';
+import { transformAxios } from '../utils/rxjs-pipes/transformAxios';
+import { transformError } from '../utils/rxjs-pipes/transformError';
+import { authRetry } from '../utils/rxjs-pipes/authRetry';
+import { post } from '../utils/rxjs-pipes/post';
 type FileUpdate =
   | false
   | {
@@ -14,14 +13,13 @@ type FileUpdate =
     };
 export default function updateExec() {
   const data = store.getState().Send;
-
-  return new Observable<FileUpdate>((subscriber) => {
-    requests
-      .post<FileUpdate>('/update_exec', {
-        ...data,
-        options: { save_file: true },
-      })
-      .then(createNextDefault(subscriber))
-      .catch(createError(subscriber));
-  }).pipe(createRetry());
+  return of({
+    ...data,
+    options: { save_file: true },
+  }).pipe(
+    post<FileUpdate>(requests, '/update_exec'),
+    transformAxios(),
+    transformError(),
+    authRetry(),
+  );
 }

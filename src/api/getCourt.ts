@@ -1,18 +1,17 @@
 import { LawCourt } from '@contact/models';
-import { Observable } from 'rxjs';
-import {
-  createError,
-  createNextDefault,
-  createRetry,
-} from '../utils/processError';
+import { of } from 'rxjs';
 import requests from '../utils/requests';
+import { post } from '../utils/rxjs-pipes/post';
+import { transformAxios } from '../utils/rxjs-pipes/transformAxios';
+import { transformError } from '../utils/rxjs-pipes/transformError';
+import { authRetry } from '../utils/rxjs-pipes/authRetry';
 export default function getCourt(
   data: { name: string } | { id: number | string | null },
 ) {
-  return new Observable<LawCourt[]>((subscriber) => {
-    requests
-      .post<LawCourt[]>('/court', data)
-      .then(createNextDefault(subscriber))
-      .catch(createError(subscriber));
-  }).pipe(createRetry());
+  return of(data).pipe(
+    post<LawCourt[]>(requests, '/court'),
+    transformAxios(),
+    transformError(),
+    authRetry(),
+  );
 }
