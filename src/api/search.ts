@@ -1,10 +1,5 @@
 import { Observable } from 'rxjs';
-//import store from '../Reducer';
-import {
-  createError,
-  createNextDefault,
-  createRetry,
-} from '../utils/processError';
+import store from '../Reducer';
 import requests from '../utils/requests';
 export class PersonAddress {
   full_adr: string;
@@ -37,10 +32,10 @@ export class LawExecPlain {
   'Person.Addresses': PersonAddress[];
 }
 export default function search() {
-  // const request = store.getState().Search;
+  const request = store.getState().Search;
   return new Observable<LawExecPlain[]>((subscriber) => {
     requests
-      .post<LawExecPlain[]>('/search')
+      .post<LawExecPlain[]>('/search', request)
       .then(createNextDefault(subscriber))
       .catch(createError(subscriber));
   }).pipe(createRetry());

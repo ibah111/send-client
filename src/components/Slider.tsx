@@ -18,7 +18,8 @@ export default function Slider({
     timeout = useAppSelector((state) => state.App.timeout);
   React.useEffect(() => {
     setOpen(stop ? false : always ? true : minApp);
-  }, [always, minApp, stop]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [minApp]);
   return (
     <Slide
       direction={position}
