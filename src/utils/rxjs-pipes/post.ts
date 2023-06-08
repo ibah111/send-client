@@ -1,5 +1,5 @@
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { from, mergeMap, Observable } from 'rxjs';
+import { asyncScheduler, from, mergeMap, Observable, observeOn } from 'rxjs';
 
 export function post<V, T = {} | undefined>(
   request: AxiosInstance,
@@ -11,6 +11,7 @@ export function post<V, T = {} | undefined>(
       const controller = new AbortController();
       from(source)
         .pipe(
+          observeOn(asyncScheduler),
           mergeMap((value) =>
             request.post<V>(url, value, {
               ...config,

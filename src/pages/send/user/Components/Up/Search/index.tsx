@@ -27,7 +27,7 @@ export default function Search() {
   const reload = useAppSelector((state) => state.Results.reload);
   const Click = React.useCallback(() => {
     dispatch(setLoadingResults(true));
-    search().subscribe({
+    const sub = search().subscribe({
       next: (res) => {
         dispatch(setResults(res));
         dispatch(setLoadingResults(false));
@@ -36,21 +36,24 @@ export default function Search() {
         setLoadingResults(false);
       },
     });
+    return sub.unsubscribe.bind(sub);
   }, [dispatch]);
   React.useEffect(() => {
     dispatch(reset());
-    if (id)
-      getLawExec(id).subscribe((res) => {
+    if (id) {
+      const sub = getLawExec(id).subscribe((res) => {
         if (res !== null) {
           dispatch(setLawExec(res));
           dispatch(setSend(res));
         }
       });
+      return sub.unsubscribe.bind(sub);
+    }
   }, [dispatch, id]);
   React.useEffect(() => {
     if (reload) {
-      Click();
       dispatch(setReloadResults(false));
+      return Click();
     }
   }, [Click, dispatch, reload]);
   return (

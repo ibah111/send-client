@@ -26,10 +26,11 @@ export default function Table({
 
   React.useEffect(() => {
     setLoading(true);
-    getDebt().subscribe((res) => {
+    const sub = getDebt().subscribe((res) => {
       setRows(res);
       setLoading(false);
     });
+    return sub.unsubscribe.bind(sub);
   }, [search]);
   React.useEffect(() => {
     apiRef.current.restoreState(stateGrid);

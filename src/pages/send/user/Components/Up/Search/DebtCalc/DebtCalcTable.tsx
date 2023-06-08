@@ -46,8 +46,9 @@ export default function DebtCalcTable({ id }: DebtCalcTableProps) {
   const dispatch = useAppDispatch();
   const [rows, setRows] = React.useState<DebtCalc[]>([]);
   React.useEffect(() => {
-    getDebtCalc(id).subscribe(setRows);
+    const sub = getDebtCalc(id).subscribe(setRows);
     apiRef.current.restoreState(stateGrid);
+    return sub.unsubscribe.bind(sub);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [apiRef, id]);
   return (

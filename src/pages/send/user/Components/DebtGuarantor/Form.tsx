@@ -33,9 +33,10 @@ export default function Form({ id, parent_id, onClose }: FormProps) {
   const { t } = useTranslation();
   React.useEffect(() => {
     if (id) {
-      getDebtGuarantor(id).subscribe((res) => {
+      const sub = getDebtGuarantor(id).subscribe((res) => {
         dispatch(setDebtGuarantor(res));
       });
+      return sub.unsubscribe.bind(sub);
     } else {
       dispatch(resetDebtGuarantor());
       if (parent_id) dispatch(setDebtGuarantorValue(['parent_id', parent_id]));

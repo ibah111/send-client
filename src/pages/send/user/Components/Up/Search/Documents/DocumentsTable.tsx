@@ -12,13 +12,12 @@ interface DocumentsTableProps {
   id: number;
 }
 export default function DocumentsTable({ id }: DocumentsTableProps) {
-  const refresh = React.useCallback(
-    () =>
-      getDocuments(id, 'law_exec').subscribe((res) => {
-        setRows(res);
-      }),
-    [id],
-  );
+  const refresh = React.useCallback(() => {
+    const sub = getDocuments(id, 'law_exec').subscribe((res) => {
+      setRows(res);
+    });
+    return sub.unsubscribe.bind(sub);
+  }, [id]);
   const [columns] = React.useState(getColumns(refresh));
   const [open, setOpen] = React.useState(false);
   const [file, setFile] = React.useState<Blob | null>(null);
@@ -27,8 +26,8 @@ export default function DocumentsTable({ id }: DocumentsTableProps) {
   const dispatch = useAppDispatch();
   const [rows, setRows] = React.useState<DocAttach[]>([]);
   React.useEffect(() => {
-    refresh();
     apiRef.current.restoreState(stateGrid);
+    return refresh();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [apiRef, refresh]);
   return (

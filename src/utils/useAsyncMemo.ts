@@ -20,7 +20,8 @@ export function useObservableMemo<T>(
   React.useEffect(() => {
     const observable = effect();
     if (isObservable(observable)) {
-      observable.subscribe(setData);
+      const sub = observable.subscribe(setData);
+      return sub.unsubscribe.bind(sub);
     } else {
       setData(observable);
     }

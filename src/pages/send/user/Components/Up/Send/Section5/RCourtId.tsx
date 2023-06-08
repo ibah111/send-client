@@ -13,20 +13,21 @@ export default function RCourtId() {
   const data = getData('r_court_id', 'null');
   React.useEffect(() => {
     if (name[0] !== '(') {
-      const data = getCourt({
+      const sub = getCourt({
         name: name === t('system.none') ? '' : name,
       }).subscribe((court) => {
         setTypes(['', ...court]);
       });
-      return data.unsubscribe();
+      return sub.unsubscribe.bind(sub);
     }
   }, [name, t]);
   React.useEffect(() => {
     if (data.value !== '') {
-      getCourt({ id: data.value as number }).subscribe((court) => {
+      const sub = getCourt({ id: data.value as number }).subscribe((court) => {
         setTypes(['', ...court]);
         setType(court[0]);
       });
+      return sub.unsubscribe.bind(sub);
     } else {
       setTypes(['']);
       setType('');

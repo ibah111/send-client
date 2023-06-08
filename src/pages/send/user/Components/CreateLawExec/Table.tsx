@@ -56,10 +56,11 @@ export default function Table({ handleClose }: { handleClose: () => void }) {
 
   React.useEffect(() => {
     setLoading(true);
-    getLawAct().subscribe((res) => {
+    const sub = getLawAct().subscribe((res) => {
       setRows(res);
       setLoading(false);
     });
+    return sub.unsubscribe.bind(sub);
   }, [search]);
   React.useEffect(() => {
     apiRef.current.restoreState(stateGrid);
