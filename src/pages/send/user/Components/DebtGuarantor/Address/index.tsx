@@ -36,8 +36,8 @@ export default function AddressGrid() {
     <Box sx={{ display: 'flex', height: 300 }}>
       <DataGridPremium
         columns={columns}
-        components={{ Toolbar: CustomToolbar }}
-        componentsProps={{
+        slots={{ toolbar: CustomToolbar }}
+        slotProps={{
           toolbar: {
             onCreate() {
               setAddress(undefined);

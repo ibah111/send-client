@@ -30,7 +30,8 @@ const getColumns = () => {
     {
       field: 'PurposeDict',
       headerName: t('form.debt_calc.table.purpose'),
-      valueGetter: (params: GridValueGetterParams<Dict>) => params.value?.name,
+      valueGetter: (params: GridValueGetterParams<DebtCalc, Dict>) =>
+        params.value?.name,
     },
     { field: 'dsc', headerName: t('form.debt_calc.table.dsc') },
   ];

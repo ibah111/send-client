@@ -61,7 +61,7 @@
     "@mui/icons-material": "^5.11.16",
     "@mui/lab": "^5.0.0-alpha.133",
     "@mui/material": "^5.13.4",
-    "@mui/x-data-grid-premium": "^5.17.26",
+    "@mui/x-data-grid-premium": "^6.6.0",
     "@mui/x-date-pickers-pro": "^5.0.20",
     "@reduxjs/toolkit": "^1.9.5",
     "@tools/health-status-react-component": "^0.1.2",

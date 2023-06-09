@@ -55,12 +55,12 @@ export default function DocumentsTable({ id }: DocumentsTableProps) {
           }}
           columns={columns}
           disableColumnReorder
-          componentsProps={{
+          slotProps={{
             cell: {
               disableDragEvents: true,
             },
           }}
-          disableSelectionOnClick
+          disableRowSelectionOnClick
           onCellDoubleClick={(params, event) => {
             event.defaultMuiPrevented = true;
             getDocuments(Number(params.id), 'doc').subscribe((res) => {

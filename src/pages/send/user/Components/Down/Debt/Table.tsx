@@ -47,7 +47,7 @@ export default function Table({
           onStateChange={() => {
             dispatch(setDebtState(apiRef.current.exportState()));
           }}
-          disableSelectionOnClick
+          disableRowSelectionOnClick
           disableColumnSelector
           onCellDoubleClick={(params) => {
             updateDebt({ law_exec_id: row.id }, params.row.id).subscribe(() => {

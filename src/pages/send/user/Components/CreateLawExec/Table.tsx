@@ -74,7 +74,7 @@ export default function Table({ handleClose }: { handleClose: () => void }) {
           rows={rows}
           loading={loading}
           apiRef={apiRef}
-          componentsProps={{
+          slotProps={{
             cell: {
               onMouseEnter: handlePopoverOpen,
               onMouseLeave: handlePopoverClose,
@@ -83,7 +83,7 @@ export default function Table({ handleClose }: { handleClose: () => void }) {
           onStateChange={() => {
             dispatch(setCreateState(apiRef.current.exportState()));
           }}
-          disableSelectionOnClick
+          disableRowSelectionOnClick
           disableColumnSelector
           getRowClassName={(params) =>
             status_rejected.includes(params.row['Debt.status'])

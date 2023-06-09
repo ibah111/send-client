@@ -59,13 +59,13 @@ export default function Results() {
           onStateChange={() => {
             dispatch(setPageState(apiRef.current.exportState()));
           }}
-          componentsProps={{
+          slotProps={{
             cell: {
               onMouseEnter: handlePopoverOpen,
               onMouseLeave: handlePopoverClose,
             },
           }}
-          disableSelectionOnClick
+          disableRowSelectionOnClick
           disableColumnSelector
           getRowClassName={(params) =>
             status_rejected.includes(params.row['Debt.status'])
