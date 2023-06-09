@@ -2,7 +2,7 @@ import { DebtCalc, Dict } from '@contact/models';
 import { Box } from '@mui/material';
 import {
   DataGridPremium,
-  GridColumns,
+  GridColDef,
   GridValueGetterParams,
   useGridApiRef,
 } from '@mui/x-data-grid-premium';
@@ -12,7 +12,7 @@ import getDebtCalc from '../../../../../../../api/getDebtCalc';
 import { useAppDispatch, useAppSelector } from '../../../../../../../Reducer';
 import { setDebtCalcState } from '../../../../../../../Reducer/StateResults';
 const getColumns = () => {
-  const columns: GridColumns<DebtCalc> = [
+  const columns: GridColDef<DebtCalc>[] = [
     { field: 'id', headerName: 'ID' },
     {
       field: 'dt',

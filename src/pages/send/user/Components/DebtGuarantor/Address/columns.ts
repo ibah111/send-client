@@ -1,8 +1,8 @@
 import { Address } from '@contact/models';
-import { GridColumns } from '@mui/x-data-grid-premium';
+import { GridColDef } from '@mui/x-data-grid-premium';
 import { t } from 'i18next';
 export default function getColumns() {
-  const columns: GridColumns<Address> = [
+  const columns: GridColDef<Address>[] = [
     {
       field: 'id',
       headerName: t('form.address.id'),

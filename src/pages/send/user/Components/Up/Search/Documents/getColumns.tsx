@@ -1,11 +1,15 @@
 import { DocAttach, User } from '@contact/models';
-import { GridColumns, GridValueGetterParams } from '@mui/x-data-grid-premium';
+import {
+  GridActionsColDef,
+  GridColDef,
+  GridValueGetterParams,
+} from '@mui/x-data-grid-premium';
 import { t } from 'i18next';
 import { generateName } from '../../../../../../../utils/generateName';
 import Actions from './Actions';
 
 export default function getColumns(refresh: () => void) {
-  const columns: GridColumns<DocAttach> = [
+  const columns: (GridColDef<DocAttach> | GridActionsColDef<DocAttach>)[] = [
     { field: 'id', headerName: 'ID' },
     {
       field: 'name',
