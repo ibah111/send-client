@@ -6,6 +6,7 @@ import getToken from '../api/getToken';
 import store from '../Reducer';
 import { callError } from '../Reducer/Message';
 import requests from './requests';
+import { createError } from '@tools/rxjs-pipes';
 function objectKeys<T extends {}>(obj: T) {
   return Object.keys(obj) as Array<keyof T>;
 }
@@ -68,3 +69,4 @@ export function processError(e: unknown, name?: string) {
     }),
   );
 }
+export const transformError = createError(processError);

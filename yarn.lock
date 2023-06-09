@@ -3473,6 +3473,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tools/rxjs-pipes@npm:^0.1.6":
+  version: 0.1.6
+  resolution: "@tools/rxjs-pipes@npm:0.1.6::__archiveUrl=https%3A%2F%2Fgit.usb.ru%2Fapi%2Fv4%2Fprojects%2F208%2Fpackages%2Fnpm%2F%40tools%2Frxjs-pipes%2F-%2F%40tools%2Frxjs-pipes-0.1.6.tgz"
+  dependencies:
+    axios: ^1.4.0
+    rxjs: ^7.8.1
+  peerDependencies:
+    axios: ^1.x.x
+    class-transformer: ^0.5.x
+    class-validator: ^0.x.x
+    reflect-metadata: 0.1.x
+  checksum: 5ebe1c652c03bc936a6b34d7c89e523815e2453b6037d819051b901370dde1270187c03e86dfeb1665d32d40143d56541d14dea61e199686fa0d6ad426eca209
+  languageName: node
+  linkType: hard
+
 "@tootallnate/once@npm:2":
   version: 2.0.0
   resolution: "@tootallnate/once@npm:2.0.0"
@@ -4309,7 +4324,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.1.3, axios@npm:^1.3.2":
+"axios@npm:^1.1.3":
   version: 1.3.2
   resolution: "axios@npm:1.3.2"
   dependencies:
@@ -4317,6 +4332,17 @@ __metadata:
     form-data: ^4.0.0
     proxy-from-env: ^1.1.0
   checksum: 9791af75a6df137b15ef45d13ad11eb357b3860d2496347ee18778db9d0abc2320362a4452f1e070e3160f1dbcc518fcefdc9e005be097e7db39acb22cf608e5
+  languageName: node
+  linkType: hard
+
+"axios@npm:^1.4.0":
+  version: 1.4.0
+  resolution: "axios@npm:1.4.0"
+  dependencies:
+    follow-redirects: ^1.15.0
+    form-data: ^4.0.0
+    proxy-from-env: ^1.1.0
+  checksum: 7fb6a4313bae7f45e89d62c70a800913c303df653f19eafec88e56cea2e3821066b8409bc68be1930ecca80e861c52aa787659df0ffec6ad4d451c7816b9386b
   languageName: node
   linkType: hard
 
@@ -4799,6 +4825,7 @@ __metadata:
     "@sql-tools/sequelize": ^6.27.8
     "@sql-tools/sequelize-typescript": ^2.1.5
     "@tools/health-status-react-component": ^0.0.8
+    "@tools/rxjs-pipes": ^0.1.6
     "@types/file-saver": ^2.0.5
     "@types/git-semver-tags": ^4.1.1
     "@types/jest": ^29.4.0
@@ -4810,7 +4837,7 @@ __metadata:
     "@typescript-eslint/parser": ^5.50.0
     "@vitejs/plugin-legacy": ^4.0.1
     "@vitejs/plugin-react": ^3.1.0
-    axios: ^1.3.2
+    axios: ^1.4.0
     class-transformer: ^0.5.1
     class-validator: ^0.14.0
     cross-env: ^7.0.3
@@ -4841,7 +4868,7 @@ __metadata:
     react-redux: ^8.0.5
     react-router-dom: ^6.8.0
     reflect-metadata: ^0.1.13
-    rxjs: ^7.8.0
+    rxjs: ^7.8.1
     semver: ^7.3.8
     socket.io-client: ^4.5.4
     terser: ^5.16.5
@@ -8767,12 +8794,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rxjs@npm:^7.8.0":
-  version: 7.8.0
-  resolution: "rxjs@npm:7.8.0"
+"rxjs@npm:^7.8.1":
+  version: 7.8.1
+  resolution: "rxjs@npm:7.8.1"
   dependencies:
     tslib: ^2.1.0
-  checksum: 61b4d4fd323c1043d8d6ceb91f24183b28bcf5def4f01ca111511d5c6b66755bc5578587fe714ef5d67cf4c9f2e26f4490d4e1d8cabf9bd5967687835e9866a2
+  checksum: de4b53db1063e618ec2eca0f7965d9137cabe98cf6be9272efe6c86b47c17b987383df8574861bcced18ebd590764125a901d5506082be84a8b8e364bf05f119
   languageName: node
   linkType: hard
 

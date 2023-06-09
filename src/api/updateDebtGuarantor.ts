@@ -4,12 +4,14 @@ import { plainToInstance } from 'class-transformer';
 import { validateOrReject } from 'class-validator';
 import { createDebtGuarantorInstance } from '../pages/send/user/Components/DebtGuarantor/DebtGuarantorInstance';
 import requests from '../utils/requests';
-import { validateData } from '../utils/rxjs-pipes/validateData';
-import { post } from '../utils/rxjs-pipes/post';
-import { transformAxios } from '../utils/rxjs-pipes/transformAxios';
-import { transformError } from '../utils/rxjs-pipes/transformError';
-import { authRetry } from '../utils/rxjs-pipes/authRetry';
 import { of } from 'rxjs';
+import {
+  validateData,
+  post,
+  transformAxios,
+  authRetry,
+} from '@tools/rxjs-pipes';
+import { transformError } from '../utils/processError';
 
 const DebtGuarantorInstance = createDebtGuarantorInstance();
 export async function call(body: CreationAttributes<DebtGuarantor>) {
@@ -28,7 +30,7 @@ export default function updateDebtGuarantor(
   body: CreationAttributes<DebtGuarantor>,
 ) {
   return of(body).pipe(
-    validateData(DebtGuarantorInstance),
+    validateData(DebtGuarantorInstance, { resultTransform: true }),
     post<DebtGuarantor | { update: true }>(requests, '/debt_calc'),
     transformAxios(),
     transformError('debt_guarantor'),
