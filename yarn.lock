@@ -5320,7 +5320,7 @@ __metadata:
     mime-types: ^2.1.35
     moment: ^2.29.4
     moment-timezone: ^0.5.43
-    notistack: ^2.0.8
+    notistack: ^3.0.1
     path-browserify: ^1.0.1
     prettier: ^2.8.8
     react: ^18.2.0
@@ -5339,7 +5339,6 @@ __metadata:
     typescript: ^4.9.5
     vite: ^4.3.9
     vite-plugin-checker: 0.6.0
-    vite-plugin-dynamic-import: ^1.4.0
   languageName: unknown
   linkType: soft
 
@@ -5901,13 +5900,6 @@ __metadata:
     isarray: ^2.0.5
     stop-iteration-iterator: ^1.0.0
   checksum: 8fa118da42667a01a7c7529f8a8cca514feeff243feec1ce0bb73baaa3514560bd09d2b3438873cf8a5aaec5d52da248131de153b28e2638a061b6e4df13267d
-  languageName: node
-  linkType: hard
-
-"es-module-lexer@npm:^1.2.1":
-  version: 1.2.1
-  resolution: "es-module-lexer@npm:1.2.1"
-  checksum: c4145b853e1491eaa5d591e4580926d242978c38071ad3d09165c3b6d50314cc0ae3bf6e1dec81a9e53768b9299df2063d2e4a67d7742a5029ddeae6c4fc26f0
   languageName: node
   linkType: hard
 
@@ -6475,7 +6467,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-glob@npm:^3.2.12, fast-glob@npm:^3.2.7, fast-glob@npm:^3.2.9":
+"fast-glob@npm:^3.2.7, fast-glob@npm:^3.2.9":
   version: 3.2.12
   resolution: "fast-glob@npm:3.2.12"
   dependencies:
@@ -6880,6 +6872,15 @@ __metadata:
     merge2: ^1.4.1
     slash: ^3.0.0
   checksum: b4be8885e0cfa018fc783792942d53926c35c50b3aefd3fdcfb9d22c627639dc26bd2327a40a0b74b074100ce95bb7187bfeae2f236856aa3de183af7a02aea6
+  languageName: node
+  linkType: hard
+
+"goober@npm:^2.0.33":
+  version: 2.1.13
+  resolution: "goober@npm:2.1.13"
+  peerDependencies:
+    csstype: ^3.0.10
+  checksum: 0c00b90d26d1a2fad432e311fd4f47bc9fef1eee2a733158d9e2c72a89cf76d414090d063a8d20fe378f2b2b8087df0a83b0f00a3244d1466b97a0d3b14344a7
   languageName: node
   linkType: hard
 
@@ -8305,24 +8306,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"notistack@npm:^2.0.8":
-  version: 2.0.8
-  resolution: "notistack@npm:2.0.8"
+"notistack@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "notistack@npm:3.0.1"
   dependencies:
     clsx: ^1.1.0
-    hoist-non-react-statics: ^3.3.0
+    goober: ^2.0.33
   peerDependencies:
-    "@emotion/react": ^11.4.1
-    "@emotion/styled": ^11.3.0
-    "@mui/material": ^5.0.0
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-  peerDependenciesMeta:
-    "@emotion/react":
-      optional: true
-    "@emotion/styled":
-      optional: true
-  checksum: f95952ea7209840f6f05a65e74f0fb4e7a1bb321753b2955ae6052f2205d47a6a3c50a42b72db11eac2fc491c4105b4687bed89e79287399530973fa133a5380
+  checksum: 421c970308690b8c8cb2e275e7f66020db7c1955e104f638e7fa562396a6b9322ff95f0e62492b07f3d36b0ef72adb4de2c2ce9803089c1c8f028d1a3b088e01
   languageName: node
   linkType: hard
 
@@ -10185,17 +10178,6 @@ __metadata:
     vue-tsc:
       optional: true
   checksum: 4ca01fed07c4bb5c8b341d1f0b29931bf53db834e9ff8c554e5f9b2effd35559d1661914b7897f01edcebf1360ce9af933328df5b8332f540da9bc8c7525ef47
-  languageName: node
-  linkType: hard
-
-"vite-plugin-dynamic-import@npm:^1.4.0":
-  version: 1.4.0
-  resolution: "vite-plugin-dynamic-import@npm:1.4.0"
-  dependencies:
-    acorn: ^8.8.2
-    es-module-lexer: ^1.2.1
-    fast-glob: ^3.2.12
-  checksum: e49bdbcb9b75a0c02e23e2b516c34c22f72a0e45c884f335b7373db8e73bee6a6c6edf43ea28fb56b2dc1fb4692c1d2a09502b57f2980becd42292fe2abc0e51
   languageName: node
   linkType: hard
 

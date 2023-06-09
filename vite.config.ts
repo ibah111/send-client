@@ -4,7 +4,6 @@ import legacy from '@vitejs/plugin-legacy';
 import fs from 'fs/promises';
 import s from 'semver';
 import gitSemverTags from 'git-semver-tags';
-import dynamicImport from 'vite-plugin-dynamic-import';
 import checker from 'vite-plugin-checker';
 const gitGet = () =>
   new Promise((resolve) => {
@@ -22,7 +21,6 @@ prepare();
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    dynamicImport(),
     legacy({ targets: ['defaults'] }),
     react(),
     checker({
