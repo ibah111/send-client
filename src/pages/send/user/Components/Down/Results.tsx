@@ -50,7 +50,7 @@ export default function Results() {
   }, [apiRef]);
   return (
     <>
-      <Root sx={{ width: '100%' }} xs item>
+      <Root sx={{ width: '100%' }} xs minHeight={0} item>
         <DataGridPremium
           columns={columns}
           rows={rows.data}
