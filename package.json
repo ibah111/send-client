@@ -10,6 +10,7 @@
     "lint": "eslint \"src/**/*.{ts,tsx}\" --fix",
     "prepare": "husky install",
     "postinstall": "husky install",
+    "release": "release-it",
     "commitlint": "commitlint --edit"
   },
   "browserslist": {
@@ -29,6 +30,7 @@
     "@commitlint/cli": "^17.6.6",
     "@commitlint/config-conventional": "^17.6.6",
     "@contact/models": "^0.3.42",
+    "@release-it/conventional-changelog": "^6.0.0",
     "@sql-tools/association-literal": "^0.0.3",
     "@sql-tools/sequelize": "^6.29.4",
     "@sql-tools/sequelize-typescript": "^2.1.5",
@@ -54,6 +56,7 @@
     "git-semver-tags": "^5.0.0",
     "husky": "^8.0.3",
     "prettier": "^2.8.8",
+    "release-it": "^15.11.0",
     "semver": "^7.5.1",
     "terser": "^5.17.7",
     "typescript": "^4.9.5",
