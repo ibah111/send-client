@@ -1,6 +1,5 @@
 import { DocAttach } from '@contact/models';
 import { DataGridPremium, useGridApiRef } from '@mui/x-data-grid-premium';
-import { lookup } from 'mime-types';
 import React from 'react';
 import getDocuments from '../../../../../../../api/getDocuments';
 import { useAppDispatch, useAppSelector } from '../../../../../../../Reducer';
@@ -20,7 +19,7 @@ export default function DocumentsTable({ id }: DocumentsTableProps) {
   }, [id]);
   const [columns] = React.useState(getColumns(refresh));
   const [open, setOpen] = React.useState(false);
-  const [file, setFile] = React.useState<Blob | null>(null);
+  const [file, setFile] = React.useState<number | null>(null);
   const stateGrid = useAppSelector((state) => state.StateResults.documents);
   const apiRef = useGridApiRef();
   const dispatch = useAppDispatch();
@@ -63,12 +62,8 @@ export default function DocumentsTable({ id }: DocumentsTableProps) {
           disableRowSelectionOnClick
           onCellDoubleClick={(params, event) => {
             event.defaultMuiPrevented = true;
-            getDocuments(Number(params.id), 'doc').subscribe((res) => {
-              setFile(
-                new Blob([res], { type: String(lookup(params.row.name)) }),
-              );
-              setOpen(true);
-            });
+            setFile(params.id as number);
+            setOpen(true);
           }}
           rows={rows}
         />

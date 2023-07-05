@@ -1,12 +1,19 @@
 import { AppBar, Dialog, IconButton, Toolbar } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import React from 'react';
+import server from '../../../../../../../utils/server';
 
 interface DialogFileProps {
   open: boolean;
-  file: null | Blob;
+  file: null | number;
   onClose: () => void;
 }
 export default function DialogFile({ open, onClose, file }: DialogFileProps) {
+  const data = React.useMemo(
+    () =>
+      file ? new URL('documents/' + file.toString(), server()).toString() : '',
+    [file],
+  );
   return (
     <>
       <Dialog fullScreen open={open} onClose={onClose}>
@@ -22,12 +29,7 @@ export default function DialogFile({ open, onClose, file }: DialogFileProps) {
             </IconButton>
           </Toolbar>
         </AppBar>
-        <iframe
-          width="100%"
-          height="100%"
-          title="Документ"
-          src={file ? URL.createObjectURL(file) : ''}
-        />
+        <iframe width="100%" height="100%" title="Документ" src={data} />
       </Dialog>
     </>
   );
