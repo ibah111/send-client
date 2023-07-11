@@ -93,6 +93,7 @@ export default function Table({ handleClose }: { handleClose: () => void }) {
           onCellDoubleClick={(params) => {
             if (params.row['Debt.status'])
               if (params.row['Debt.status'] !== 7) {
+                dispatch(ResetComment());
                 createExec(params.row.id)
                   .pipe(
                     mergeMap((value) =>
@@ -106,7 +107,6 @@ export default function Table({ handleClose }: { handleClose: () => void }) {
                   )
                   .subscribe((res) => {
                     if (res) {
-                      dispatch(ResetComment());
                       dispatch(setId(res));
                       handleClose();
                     }
