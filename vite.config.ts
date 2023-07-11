@@ -5,6 +5,7 @@ import fs from 'fs/promises';
 import s from 'semver';
 import gitSemverTags from 'git-semver-tags';
 import checker from 'vite-plugin-checker';
+import dynamicImport from 'vite-plugin-dynamic-import';
 const gitGet = () =>
   new Promise((resolve) => {
     gitSemverTags({ tagPrefix: 'v' }, (err, result) => {
@@ -27,6 +28,7 @@ export default defineConfig({
       typescript: true,
       eslint: { lintCommand: 'eslint "src/**/*.{ts,tsx}"' },
     }),
+    dynamicImport(),
   ],
   build: { outDir: 'build' },
   server: { port: 3000 },
