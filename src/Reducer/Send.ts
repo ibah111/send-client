@@ -1,22 +1,22 @@
-import moment, { MomentInput } from 'moment';
 import { createSlice, Draft, PayloadAction } from '@reduxjs/toolkit';
 import getName from '../utils/getName';
 import { LawExec } from '@contact/models';
+import { DateTime } from 'luxon';
 export interface DataTypes {
   debt_guarantor: null | string | number;
   fio: null | string;
   port: null | string;
   contract: null | string;
   total_sum: null | number;
-  load_dt: null | MomentInput;
+  load_dt: null | DateTime;
   court_doc_num: null | string;
   executive_typ: null | string | number;
-  court_date: null | MomentInput;
+  court_date: null | DateTime;
   DELIVERY_TYP: string | number;
-  entry_force_dt: null | MomentInput;
+  entry_force_dt: null | DateTime;
   template_typ: string | number;
-  receipt_recover_dt: null | MomentInput;
-  fssp_date: null | MomentInput;
+  receipt_recover_dt: null | DateTime;
+  fssp_date: null | DateTime;
   r_court_id: string | number | null;
   dsc: null | string;
   add_interests: boolean;
@@ -55,7 +55,7 @@ export const send = createSlice({
       state.fio = getName([data!.Person!.f, data!.Person!.i, data!.Person!.o]);
       state.port = data.Portfolio!.name;
       state.contract = data.Debt!.contract;
-      state.load_dt = moment().toISOString();
+      state.load_dt = DateTime.now();
       state.total_sum = data.total_sum;
       state.court_doc_num = data.court_doc_num;
       state.executive_typ = data.executive_typ;
@@ -64,7 +64,7 @@ export const send = createSlice({
       state.template_typ = 16;
       state.entry_force_dt = data.entry_force_dt;
       state.receipt_recover_dt = data.receipt_recover_dt;
-      state.fssp_date = moment().toISOString();
+      state.fssp_date = DateTime.now();
       state.r_court_id = data.r_court_id;
       state.dsc = data.dsc;
       state.add_interests = false;

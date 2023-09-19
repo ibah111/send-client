@@ -4,8 +4,6 @@ import { Provider } from 'react-redux';
 import Form from './Form';
 import store, { DgReducerContext } from './Reducer';
 import { createTheme } from './theme';
-import { LocalizationProvider } from '@mui/x-date-pickers-pro';
-import { AdapterLuxon } from '@mui/x-date-pickers-pro/AdapterLuxon';
 
 interface DebtGuarantorFormProps {
   id?: number;
@@ -23,18 +21,16 @@ export default function DebtGuarantorForm({
   const theme = React.useMemo(() => createTheme(oldTheme), [oldTheme]);
   return (
     <ThemeProvider theme={theme}>
-      <LocalizationProvider adapterLocale="ru" dateAdapter={AdapterLuxon}>
-        <Provider context={DgReducerContext} store={store}>
-          <Dialog
-            fullWidth
-            maxWidth="lg"
-            open={open || false}
-            onClose={() => onClose()}
-          >
-            <Form id={id} parent_id={parent_id} onClose={onClose} />
-          </Dialog>
-        </Provider>
-      </LocalizationProvider>
+      <Provider context={DgReducerContext} store={store}>
+        <Dialog
+          fullWidth
+          maxWidth="lg"
+          open={open || false}
+          onClose={() => onClose()}
+        >
+          <Form id={id} parent_id={parent_id} onClose={onClose} />
+        </Dialog>
+      </Provider>
     </ThemeProvider>
   );
 }

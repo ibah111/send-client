@@ -1,5 +1,5 @@
-import moment, { MomentInput } from 'moment';
 import { TypesData } from '../Reducer/Send';
+import { DateTime } from 'luxon';
 
 export default function checkDate(value: TypesData, availableEmpty = false) {
   if (value === null) {
@@ -7,10 +7,7 @@ export default function checkDate(value: TypesData, availableEmpty = false) {
       return 'empty';
     }
   } else {
-    if (
-      moment(value as MomentInput, 'DD.MM.YYYY', true).isValid() ||
-      moment(value as MomentInput, moment.ISO_8601, true).isValid()
-    ) {
+    if ((value as DateTime).isValid) {
       return null;
     } else {
       return 'invalid_date';

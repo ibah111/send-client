@@ -1,6 +1,5 @@
 import { GridColDef } from '@mui/x-data-grid-pro';
 import { t } from 'i18next';
-import moment from 'moment';
 
 export default function getColumns(): GridColDef[] {
   return [
@@ -111,7 +110,7 @@ export default function getColumns(): GridColDef[] {
       field: 'court_date',
       headerName: t('form.results.law_exec.court_date'),
       type: 'date',
-      valueGetter: (params) => moment(params.value).toDate(),
+      valueGetter: (params) => new Date(params.value),
     },
   ];
 }

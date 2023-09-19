@@ -1,6 +1,4 @@
 import { t } from 'i18next';
-import moment, { MomentInput } from 'moment';
-import { Moment } from 'moment';
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '../Reducer';
 import { DataNames, DataTypes, setData } from '../Reducer/Send';
@@ -9,6 +7,7 @@ import checkDate from './checkDate';
 import checkNull from './checkNull';
 import checkNumber from './checkNumber';
 import checkString from './checkString';
+import { DateTime } from 'luxon';
 type Typed = 'string' | 'date' | 'null' | 'number' | 'boolean' | null;
 export default function useError<K extends DataNames>(
   name: K,
@@ -18,26 +17,24 @@ export default function useError<K extends DataNames>(
   const dispatch = useAppDispatch();
   const ErrorValue = useAppSelector((state) => state.Error[name]);
   const SendValue = useAppSelector((state) => state.Send[name]);
-  let value: DataTypes[K] = SendValue;
-  switch (type) {
-    case 'string':
-      value = (SendValue || '') as DataTypes[K];
-      break;
-    case 'number':
-      value = (SendValue || '') as DataTypes[K];
-      break;
-    case 'date':
-      if (!moment.isMoment(value) && value)
-        value = moment(value as string) as DataTypes[K];
-      break;
-  }
+  const value: DataTypes[K] = React.useMemo(() => {
+    switch (type) {
+      case 'string':
+        return (SendValue || '') as DataTypes[K];
+      case 'number':
+        return (SendValue || '') as DataTypes[K];
+      case 'date':
+        if (!DateTime.isDateTime(SendValue) && SendValue)
+          return DateTime.fromISO(SendValue as string) as DataTypes[K];
+        break;
+    }
+    return SendValue as DataTypes[K];
+  }, [SendValue, type]);
   const setValue = React.useCallback(
     (newValue: DataTypes[K]) => {
       switch (type) {
         case 'date': {
-          const data: Moment = moment(newValue as MomentInput);
-          data?.startOf('day');
-          dispatch(setData([name, data]));
+          dispatch(setData([name, (newValue as DateTime).startOf('day')]));
           break;
         }
         default:
@@ -51,20 +48,20 @@ export default function useError<K extends DataNames>(
     let error;
     switch (type) {
       case 'string':
-        error = checkString(SendValue, availableEmpty);
+        error = checkString(value, availableEmpty);
         break;
       case 'date':
-        error = checkDate(SendValue, availableEmpty);
+        error = checkDate(value, availableEmpty);
         break;
       case 'number':
-        error = checkNumber(SendValue, availableEmpty);
+        error = checkNumber(value, availableEmpty);
         break;
       case 'null':
-        error = checkNull(SendValue);
+        error = checkNull(value);
         break;
     }
     callError(name, error);
-  }, [name, SendValue, type, availableEmpty]);
+  }, [name, value, availableEmpty, type]);
   return {
     setValue,
     value,

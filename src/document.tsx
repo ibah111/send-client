@@ -1,10 +1,8 @@
 import './locale';
 import React from 'react';
 import Router from './router';
-import moment from 'moment';
-import 'moment/dist/locale/ru';
 import { LocalizationProvider } from '@mui/x-date-pickers-pro';
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+import { AdapterLuxon } from '@mui/x-date-pickers-pro/AdapterLuxon';
 import { BrowserRouter } from 'react-router-dom';
 import { Login } from './components/Login';
 import { Connect } from './components/Connect';
@@ -15,13 +13,10 @@ import ErrorHandler from './components/ErrorHandler';
 import { SnackbarProvider } from 'notistack';
 import { HealthProvider } from '@tools/health-status-react-component';
 import server from './utils/server';
-import 'moment-timezone';
 const url = server();
-moment.tz.setDefault('GMT');
-moment.locale('ru');
 export default function Document() {
   return (
-    <LocalizationProvider adapterLocale="ru" dateAdapter={AdapterMoment}>
+    <LocalizationProvider adapterLocale="ru" dateAdapter={AdapterLuxon}>
       <Provider context={RootReducerContext} store={store}>
         <SnackbarProvider maxSnack={11}>
           <ErrorHandler />
