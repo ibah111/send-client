@@ -26,6 +26,10 @@ export default function useError<K extends DataNames>(
     case 'number':
       value = (SendValue || '') as DataTypes[K];
       break;
+    case 'date':
+      if (!moment.isMoment(value) && value)
+        value = moment(value as string) as DataTypes[K];
+      break;
   }
   const setValue = React.useCallback(
     (newValue: DataTypes[K]) => {

@@ -1,6 +1,5 @@
 import { DatePicker } from '@mui/x-date-pickers-pro';
-import { Grid, TextField } from '@mui/material';
-import React from 'react';
+import { Grid } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import getData from '../../../../../../../utils/getData';
 
@@ -13,11 +12,14 @@ export default function LoadDt() {
         <DatePicker
           label={t('form.send.load_dt')}
           value={data.value}
-          mask="__.__.____"
           onChange={(newValue) => data.setValue(newValue)}
-          renderInput={(params) => (
-            <TextField required fullWidth {...params} error={data.isInvalid} />
-          )}
+          slotProps={{
+            textField: {
+              fullWidth: true,
+              required: true,
+              error: data.isInvalid,
+            },
+          }}
         />
       </Grid>
     </>

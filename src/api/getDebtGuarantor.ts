@@ -9,7 +9,7 @@ import {
   transformInstance,
 } from '@tools/rxjs-pipes';
 import { transformError } from '../utils/processError';
-const DebtGuarantorInstance = createDebtGuarantorInstance(true);
+const DebtGuarantorInstance = createDebtGuarantorInstance(false);
 export default function getDebtGuarantor(value: number) {
   return of({ id: value }).pipe(
     post<DebtGuarantor>(requests, '/get_debt_guarantor'),

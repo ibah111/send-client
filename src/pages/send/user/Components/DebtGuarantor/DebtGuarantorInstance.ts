@@ -2,7 +2,7 @@ import { DebtGuarantor } from '@contact/models';
 import { CreationAttributes } from '@sql-tools/sequelize';
 import { Transform, TransformFnParams, Type } from 'class-transformer';
 import { IsOptional, IsString } from 'class-validator';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import { NullOrMoment } from './validation/isValidMoment';
 import {
   IsNotEmpty,
