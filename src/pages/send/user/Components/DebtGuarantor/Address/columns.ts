@@ -11,7 +11,7 @@ export default function getColumns() {
     {
       field: 'typ',
       headerName: t('form.address.typ'),
-      valueGetter: (params) => params.row.TypDict?.name,
+      valueGetter: (params) => params.row.Typ?.name,
     },
     { field: 'full_adr', headerName: t('form.address.full_adr') },
   ];

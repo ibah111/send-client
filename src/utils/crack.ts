@@ -6,6 +6,7 @@ export default function license() {
     expiryDate: new Date(new Date().getTime() + oneYear),
     orderNumber: 'MUI-45675676',
     scope: 'premium',
+    licensingModel: 'perpetual',
   });
   LicenseInfo.setLicenseKey(validLicense);
 }
