@@ -1,6 +1,5 @@
 import { DebtGuarantor } from '@contact/models';
 import React from 'react';
-import { createDebtGuarantorInstance } from './DebtGuarantorInstance';
 import {
   setDebtGuarantorValue,
   TypeDebtGuarantor,
@@ -8,7 +7,7 @@ import {
   useDgSelector,
 } from './Reducer';
 import checker from './validation/checker';
-const DebtGuarantorInstance = createDebtGuarantorInstance();
+import { DebtGuarantorInstance } from './DebtGuarantorInstance';
 export interface ResultData<T extends keyof TypeDebtGuarantor> {
   value: TypeDebtGuarantor[T] | string;
   setValue: (value: DebtGuarantor[T]) => void;

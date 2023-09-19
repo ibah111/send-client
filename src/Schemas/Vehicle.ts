@@ -1,6 +1,6 @@
 import { PersonPropertyParam } from '@contact/models';
 import { ClassConstructor } from 'class-transformer';
-import moment from 'moment';
+import { DateTime } from 'luxon';
 const metadataKey = 'design:type_property';
 function Property(type: number, typ_params?: Function) {
   if (!typ_params)
@@ -44,7 +44,10 @@ function setProperty<D extends IPropertyData<T, K>, K extends keyof T, T>(
 }
 export class Vehicle {
   private readonly instances: PersonPropertyParam[];
-  constructor(instances: PersonPropertyParam[], readonly status: string) {
+  constructor(
+    instances: PersonPropertyParam[],
+    readonly status: string,
+  ) {
     Object.defineProperty(this, 'instances', {
       value: instances,
       enumerable: false,
@@ -79,8 +82,8 @@ export class Vehicle {
   /**
    * Год выпуска
    */
-  @Property(42, (value: string) => moment(value, 'DD.MM.YYYY'))
-  year: string | null;
+  @Property(42, (value: string) => DateTime.fromFormat(value, 'DD.MM.YYYY'))
+  year: DateTime | null;
   /**
    * Номер двигателя
    */

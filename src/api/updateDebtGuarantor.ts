@@ -1,6 +1,5 @@
 import { DebtGuarantor } from '@contact/models';
 import { CreationAttributes } from '@sql-tools/sequelize';
-import { createDebtGuarantorInstance } from '../pages/send/user/Components/DebtGuarantor/DebtGuarantorInstance';
 import requests from '../utils/requests';
 import { of } from 'rxjs';
 import {
@@ -10,8 +9,8 @@ import {
   authRetry,
 } from '@tools/rxjs-pipes';
 import { transformError } from '../utils/processError';
+import { DebtGuarantorInstance } from '../pages/send/user/Components/DebtGuarantor/DebtGuarantorInstance';
 
-const DebtGuarantorInstance = createDebtGuarantorInstance();
 export default function updateDebtGuarantor(
   body: CreationAttributes<DebtGuarantor>,
 ) {

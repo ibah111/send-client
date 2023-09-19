@@ -31,7 +31,7 @@
         "isEmail": "В поле \"$t(form.address.{{property}})\" введена не почта",
         "isInn": "Значение в поле \"$t(form.address.{{property}})\" не является 10 или 12",
         "isInnNotValid": "Значение в поле \"$t(form.address.{{property}})\" не является ИНН",
-        "isValidMoment": "Дата в поле \"$t(form.address.{{property}})\" занесена не правильно"
+        "isValidDateTime": "Дата в поле \"$t(form.address.{{property}})\" занесена не правильно"
       }
     },
     "debt_guarantor": {
@@ -72,7 +72,7 @@
         "isEmail": "В поле \"$t(form.debt_guarantor.{{property}})\" введена не почта",
         "isInn": "Значение в поле \"$t(form.debt_guarantor.{{property}})\" не является 10 или 12",
         "isInnNotValid": "Значение в поле \"$t(form.debt_guarantor.{{property}})\" не является ИНН",
-        "isValidMoment": "Дата в поле \"$t(form.debt_guarantor.{{property}})\" занесена не правильно"
+        "isValidDateTime": "Дата в поле \"$t(form.debt_guarantor.{{property}})\" занесена не правильно"
       }
     },
     "debt_calc": {
@@ -117,7 +117,7 @@
       "isEmail": "Введеное значение не является почтой",
       "isInn": "Значение не является 10 или 12",
       "isInnNotValid": "Значение не является ИНН",
-      "isValidMoment": "Дата занесена не правильно",
+      "isValidDateTime": "Дата занесена не правильно",
       "empty": "Не заполнено поле",
       "number_0": "Не может быть равна 0",
       "invalid_date": "Неправильно введена дата"

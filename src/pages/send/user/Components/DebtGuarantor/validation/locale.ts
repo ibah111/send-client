@@ -9,7 +9,7 @@ import {
 } from 'class-validator';
 import ValidatorJS from 'validator';
 import { IsInn as IsInnOrigin } from './isInn';
-import { IsValidMoment as IsValidMomentOrigin } from './isValidMoment';
+import { IsValidDateTime as IsValidDateTimeOrigin } from './isValidDateTime';
 export const IsNotEmpty = (validationOptions?: ValidationOptions) =>
   IsNotEmptyOrigin({ message: 'isNotEmpty', ...validationOptions });
 export const IsInn = (validationOptions?: ValidationOptions) =>
@@ -52,5 +52,5 @@ export const Length = (
     },
     ...validationOptions,
   });
-export const IsValidMoment = (validationOptions?: ValidationOptions) =>
-  IsValidMomentOrigin({ message: 'isValidMoment', ...validationOptions });
+export const IsValidDateTime = (validationOptions?: ValidationOptions) =>
+  IsValidDateTimeOrigin({ message: 'isValidDateTime', ...validationOptions });
