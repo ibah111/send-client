@@ -7,11 +7,9 @@ import gitSemverTags from 'git-semver-tags';
 import checker from 'vite-plugin-checker';
 import dynamicImport from 'vite-plugin-dynamic-import';
 const gitGet = () =>
-  new Promise((resolve) => {
-    gitSemverTags({ tagPrefix: 'v' }, (err, result) => {
-      const tags = result.map((value) => s.clean(value));
-      resolve(tags[0]);
-    });
+  gitSemverTags({ tagPrefix: 'v' }).then((result) => {
+    const tags = result.map((value) => s.clean(value));
+    return tags[0];
   });
 const prepare = async () => {
   const tag = await gitGet();
