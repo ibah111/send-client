@@ -3226,31 +3226,31 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tools/health-status-react-component@npm:^0.1.7":
-  version: 0.1.7
-  resolution: "@tools/health-status-react-component@npm:0.1.7::__archiveUrl=https%3A%2F%2Fgit.usb.ru%2Fapi%2Fv4%2Fprojects%2F158%2Fpackages%2Fnpm%2F%40tools%2Fhealth-status-react-component%2F-%2F%40tools%2Fhealth-status-react-component-0.1.7.tgz"
+"@tools/health-status-react-component@npm:^0.2.1":
+  version: 0.2.1
+  resolution: "@tools/health-status-react-component@npm:0.2.1::__archiveUrl=https%3A%2F%2Fgit.usb.ru%2Fapi%2Fv4%2Fprojects%2F158%2Fpackages%2Fnpm%2F%40tools%2Fhealth-status-react-component%2F-%2F%40tools%2Fhealth-status-react-component-0.2.1.tgz"
   peerDependencies:
     "@mui/icons-material": ^5.6.0
     "@mui/material": ^5.6.0
-    "@tools/rxjs-pipes": ^0.1.0
+    "@tools/rxjs-pipes": ^0.2.0
     axios: ^1.0.0
     react: ^18.2.0
     react-transition-group: ^4.0.0
     rxjs: ^7.3.0
-  checksum: 13ef4bb91d046907766ef25f95caf38169cc9b28cd6f37f72c5245e89e829ed8d97af052a201f669b47fe1a56d0e174712e8cb71f760e569d7b37937fd30da96
+  checksum: bfeed7087fdf1950a9d0c335fc384df640d0b097e7b945f04dac1d37cfe4e38ab649166912c23cf2c96b20897cae941e14fce7d734d05c2521019a474c17b3b3
   languageName: node
   linkType: hard
 
-"@tools/rxjs-pipes@npm:^0.1.14":
-  version: 0.1.14
-  resolution: "@tools/rxjs-pipes@npm:0.1.14::__archiveUrl=https%3A%2F%2Fgit.usb.ru%2Fapi%2Fv4%2Fprojects%2F208%2Fpackages%2Fnpm%2F%40tools%2Frxjs-pipes%2F-%2F%40tools%2Frxjs-pipes-0.1.14.tgz"
+"@tools/rxjs-pipes@npm:^0.2.5":
+  version: 0.2.5
+  resolution: "@tools/rxjs-pipes@npm:0.2.5::__archiveUrl=https%3A%2F%2Fgit.usb.ru%2Fapi%2Fv4%2Fprojects%2F208%2Fpackages%2Fnpm%2F%40tools%2Frxjs-pipes%2F-%2F%40tools%2Frxjs-pipes-0.2.5.tgz"
   peerDependencies:
     axios: ^1.0.0
     class-transformer: ^0.5.x
     class-validator: ^0.x.x
     reflect-metadata: 0.1.x
     rxjs: ^7.3.0
-  checksum: 56adce28a73fecb8d4387fba4c3b268996ca6e6e93af1b426bc798b781420304510d681aacece4218bc6e0c4d70ff380cab974547d0cf9ca83851a8a73ab5b7a
+  checksum: d1dfac38c9d6265ef60599639ba18b90e51c26f2d4f9c797d18fe65435a5c28bdb57d717a2f75b117ecea1291ee47e557d476e794af39c5694e766aa6067fe10
   languageName: node
   linkType: hard
 
@@ -4846,8 +4846,8 @@ __metadata:
     "@sql-tools/association-literal": "npm:^0.0.3"
     "@sql-tools/sequelize": "npm:^6.32.0"
     "@sql-tools/sequelize-typescript": "npm:^2.1.5"
-    "@tools/health-status-react-component": "npm:^0.1.7"
-    "@tools/rxjs-pipes": "npm:^0.1.14"
+    "@tools/health-status-react-component": "npm:^0.2.1"
+    "@tools/rxjs-pipes": "npm:^0.2.5"
     "@types/file-saver": "npm:^2.0.7"
     "@types/git-semver-tags": "npm:^4.1.3"
     "@types/jest": "npm:^29.5.10"
