@@ -1,4 +1,4 @@
-import { of } from 'rxjs';
+import { defer, forkJoin, of } from 'rxjs';
 import store from '../Reducer';
 import requests from '../utils/requests';
 import { post, transformAxios, authRetry } from '@tools/rxjs-pipes/axios';
@@ -9,13 +9,13 @@ type FileUpdate =
       file: { data: number[] };
       name: string;
     };
+const url = of('/update_exec');
+const data = defer(() =>
+  of({ ...store.getState().Send, options: { save_file: true } }),
+);
 export default function updateExec() {
-  const data = store.getState().Send;
-  return of({
-    ...data,
-    options: { save_file: true },
-  }).pipe(
-    post<FileUpdate>(requests, '/update_exec'),
+  return forkJoin([requests, url, data]).pipe(
+    post<FileUpdate>(),
     transformAxios(),
     transformError(),
     authRetry(),

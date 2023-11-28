@@ -1,7 +1,7 @@
 import store from '../Reducer';
 import { PersonAddress } from './search';
 import requests from '../utils/requests';
-import { of } from 'rxjs';
+import { defer, forkJoin, of } from 'rxjs';
 import { post, transformAxios, authRetry } from '@tools/rxjs-pipes/axios';
 import { transformError } from '../utils/processError';
 export class LawActPlain {
@@ -23,10 +23,11 @@ export class LawActPlain {
   'Debt.status': number;
   'Debt.StatusDict.name': string;
 }
+const url = of('/search_la');
+const data = defer(() => of(store.getState().Search));
 export default function search() {
-  const request = store.getState().Search;
-  return of(request).pipe(
-    post<LawActPlain[]>(requests, '/search_la'),
+  return forkJoin([requests, url, data]).pipe(
+    post<LawActPlain[]>(),
     transformAxios(),
     transformError(),
     authRetry(),

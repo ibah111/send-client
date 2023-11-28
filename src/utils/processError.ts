@@ -5,7 +5,7 @@ import { of, map, mergeMap } from 'rxjs';
 import getToken from '../api/getToken';
 import store from '../Reducer';
 import { callError } from '../Reducer/Message';
-import requests from './requests';
+import { requestsInstance } from './requests';
 import { createError } from '@tools/rxjs-pipes/axios';
 function objectKeys<T extends {}>(obj: T) {
   return Object.keys(obj) as Array<keyof T>;
@@ -59,7 +59,7 @@ export function processError(e: unknown, name?: string) {
         return getToken().pipe(
           map((token) => {
             if (token) {
-              requests.defaults.headers['token'] = token;
+              requestsInstance.defaults.headers['token'] = token;
               return result.addon;
             }
             return result.e;

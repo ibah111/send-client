@@ -1,20 +1,24 @@
 import axios from 'axios';
 import server from '../utils/server';
-import { map, mergeMap, of } from 'rxjs';
+import { forkJoin, map, mergeMap, of } from 'rxjs';
 import { post, transformAxios, get } from '@tools/rxjs-pipes/axios';
-const requests = axios.create({
-  baseURL: server('oauth'),
-  withCredentials: true,
-});
+const requests = of(
+  axios.create({
+    baseURL: server('oauth'),
+    withCredentials: true,
+  }),
+);
+const urlCheck = of('oauth/check');
 export function checkToken(token: string) {
-  return of({ token }).pipe(
-    post<boolean>(requests, 'oauth/check'),
+  return forkJoin([requests, urlCheck, of({ token })]).pipe(
+    post<boolean>(),
     transformAxios(),
   );
 }
+const urlAuthorize = of('oauth/authorize');
 export function authorize() {
-  return of('oauth/authorize').pipe(
-    get<string | false>(requests),
+  return forkJoin([requests, urlAuthorize]).pipe(
+    get<string | false>(),
     transformAxios(),
   );
 }
@@ -44,6 +48,7 @@ export default function getToken() {
     }),
   );
 }
+const urlLogout = of('oauth/logout');
 export function logout() {
-  return of('oauth/logout').pipe(get(requests));
+  return forkJoin([requests, urlLogout]).pipe(get());
 }

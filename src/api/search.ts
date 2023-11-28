@@ -1,4 +1,4 @@
-import { of } from 'rxjs';
+import { defer, forkJoin, of } from 'rxjs';
 import store from '../Reducer';
 import requests from '../utils/requests';
 import { post, transformAxios, authRetry } from '@tools/rxjs-pipes/axios';
@@ -33,10 +33,11 @@ export class LawExecPlain {
   'Person.o': string;
   'Person.Addresses': PersonAddress[];
 }
+const url = of('/search');
+const data = defer(() => of(store.getState().Search));
 export default function search() {
-  const request = store.getState().Search;
-  return of(request).pipe(
-    post<LawExecPlain[]>(requests, '/search'),
+  return forkJoin([requests, url, data]).pipe(
+    post<LawExecPlain[]>(),
     transformAxios(),
     transformError(),
     authRetry(),
