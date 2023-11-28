@@ -79,7 +79,6 @@ export const send = createSlice({
       state: Draft<DataTypes>,
       action: { payload: [K, DataTypes[K]] },
     ) {
-      console.log(action);
       state[action.payload[0]] = action.payload[1];
     },
     setId: (state, action) => {
