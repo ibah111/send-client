@@ -4,8 +4,11 @@ import AddInterests from './AddInterests';
 import CourtDate from './CourtDate';
 import DeliveryTyp from './DeliveryTyp';
 import TemplateTyp from './TemplateTyp';
+import AppealTyp from './AppealTyp';
+import { useAppSelector } from '../../../../../../../Reducer';
 
 export default function Section1() {
+  const typ = useAppSelector((state) => state.Send.template_typ);
   return (
     <>
       <Grid
@@ -19,6 +22,7 @@ export default function Section1() {
         <CourtDate />
         <DeliveryTyp />
         <TemplateTyp />
+        {typ === 30 && <AppealTyp />}
         <AddInterests />
       </Grid>
     </>

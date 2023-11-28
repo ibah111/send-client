@@ -22,7 +22,7 @@ export default function useError<K extends DataNames>(
       case 'string':
         return (SendValue || '') as DataTypes[K];
       case 'number':
-        return (SendValue || '') as DataTypes[K];
+        return (SendValue === null ? '' : SendValue) as DataTypes[K];
       case 'date':
         if (!DateTime.isDateTime(SendValue) && SendValue)
           return DateTime.fromISO(SendValue as string) as DataTypes[K];
