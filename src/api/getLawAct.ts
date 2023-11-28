@@ -2,7 +2,7 @@ import store from '../Reducer';
 import { PersonAddress } from './search';
 import requests from '../utils/requests';
 import { of } from 'rxjs';
-import { post, transformAxios, authRetry } from '@tools/rxjs-pipes';
+import { post, transformAxios, authRetry } from '@tools/rxjs-pipes/axios';
 import { transformError } from '../utils/processError';
 export class LawActPlain {
   'id': number;

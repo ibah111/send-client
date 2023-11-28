@@ -1,7 +1,7 @@
 import axios from 'axios';
 import server from '../utils/server';
 import { map, mergeMap, of } from 'rxjs';
-import { post, transformAxios, get } from '@tools/rxjs-pipes';
+import { post, transformAxios, get } from '@tools/rxjs-pipes/axios';
 const requests = axios.create({
   baseURL: server('oauth'),
   withCredentials: true,

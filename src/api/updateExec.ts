@@ -1,7 +1,7 @@
 import { of } from 'rxjs';
 import store from '../Reducer';
 import requests from '../utils/requests';
-import { post, transformAxios, authRetry } from '@tools/rxjs-pipes';
+import { post, transformAxios, authRetry } from '@tools/rxjs-pipes/axios';
 import { transformError } from '../utils/processError';
 type FileUpdate =
   | false

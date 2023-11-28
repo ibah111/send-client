@@ -1,6 +1,6 @@
 import { of } from 'rxjs';
 import requests from '../utils/requests';
-import { post, transformAxios, authRetry } from '@tools/rxjs-pipes';
+import { post, transformAxios, authRetry } from '@tools/rxjs-pipes/axios';
 import { transformError } from '../utils/processError';
 export class CreateExecOld {
   court_doc_num: string;

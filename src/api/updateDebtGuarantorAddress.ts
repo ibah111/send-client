@@ -4,13 +4,9 @@ import { of } from 'rxjs';
 import { AddressInstance } from '../pages/send/user/Components/DebtGuarantor/Address/AddressInstance';
 
 import requests from '../utils/requests';
-import {
-  validateData,
-  post,
-  transformAxios,
-  authRetry,
-} from '@tools/rxjs-pipes';
+import { post, transformAxios, authRetry } from '@tools/rxjs-pipes/axios';
 import { transformError } from '../utils/processError';
+import { validateData } from '@tools/rxjs-pipes/validator';
 export default function updateDebtGuarantorAddress(
   body: CreationAttributes<Address>,
 ) {

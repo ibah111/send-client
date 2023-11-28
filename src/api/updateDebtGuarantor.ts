@@ -2,14 +2,10 @@ import { DebtGuarantor } from '@contact/models';
 import { CreationAttributes } from '@sql-tools/sequelize';
 import requests from '../utils/requests';
 import { of } from 'rxjs';
-import {
-  validateData,
-  post,
-  transformAxios,
-  authRetry,
-} from '@tools/rxjs-pipes';
+import { post, transformAxios, authRetry } from '@tools/rxjs-pipes/axios';
 import { transformError } from '../utils/processError';
 import { DebtGuarantorInstance } from '../pages/send/user/Components/DebtGuarantor/DebtGuarantorInstance';
+import { validateData } from '@tools/rxjs-pipes/validator';
 
 export default function updateDebtGuarantor(
   body: CreationAttributes<DebtGuarantor>,

@@ -3,7 +3,7 @@ import { catchError, mergeMap, of } from 'rxjs';
 import getToken from '../../api/getToken';
 import { AuthUserSuccess } from '../../Schemas/Auth';
 import requests from '../../utils/requests';
-import { post, transformAxios } from '@tools/rxjs-pipes';
+import { post, transformAxios } from '@tools/rxjs-pipes/axios';
 import { transformError } from '../../utils/processError';
 
 export default function connect() {

@@ -6,7 +6,7 @@ import getToken from '../api/getToken';
 import store from '../Reducer';
 import { callError } from '../Reducer/Message';
 import requests from './requests';
-import { createError } from '@tools/rxjs-pipes';
+import { createError } from '@tools/rxjs-pipes/axios';
 function objectKeys<T extends {}>(obj: T) {
   return Object.keys(obj) as Array<keyof T>;
 }
