@@ -12,7 +12,7 @@ export default function TemplateTyp() {
   return (
     <>
       <Grid sx={{ width: 200 }} item>
-        <FormControl fullWidth>
+        <FormControl fullWidth error={data.isInvalid}>
           <InputLabel>{t('form.send.template_typ')}</InputLabel>
           <Select
             value={data.value}

@@ -18,7 +18,7 @@ export default function AppealTyp() {
   return (
     <>
       <Grid sx={{ width: 200 }} item>
-        <FormControl fullWidth>
+        <FormControl fullWidth error={data.isInvalid}>
           <InputLabel>{t('form.send.appeal_typ')}</InputLabel>
           <Select
             value={data.value}
