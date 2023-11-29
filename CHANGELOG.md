@@ -1,5 +1,13 @@
 
 
+## [0.3.1](https://git.usb.ru/send/client/compare/v0.3.0...v0.3.1) (2023-11-29)
+
+
+### Features
+
+* **checker:** добавил проверку на zero ([439e194](https://git.usb.ru/send/client/commit/439e1940ceb49beca22133abdeb05aadbe57ca25))
+* **error:** добавил обработку Error ([b6b7a4d](https://git.usb.ru/send/client/commit/b6b7a4ded1bc96031d74f87bdc49ed99eb75c644))
+
 ## [0.3.0](https://git.usb.ru/send/client/compare/v0.2.7...v0.3.0) (2023-11-29)
 
 
