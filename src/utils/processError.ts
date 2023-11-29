@@ -52,6 +52,9 @@ export function processError(e: unknown, name?: string) {
           store.dispatch(callError('Произошла ошибка при запросе'));
         }
       }
+      if (e instanceof Error) {
+        store.dispatch(callError(e.message));
+      }
       return { e };
     }),
     mergeMap((result) => {
