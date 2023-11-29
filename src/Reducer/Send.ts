@@ -2,6 +2,7 @@ import { createSlice, Draft, PayloadAction } from '@reduxjs/toolkit';
 import getName from '../utils/getName';
 import { LawExec } from '@contact/models';
 import { DateTime } from 'luxon';
+import datetimeNow from '../utils/datetimeNow';
 export interface DataTypes {
   debt_guarantor: null | string | number;
   fio: null | string;
@@ -57,7 +58,7 @@ export const send = createSlice({
       state.fio = getName([data!.Person!.f, data!.Person!.i, data!.Person!.o]);
       state.port = data.Portfolio!.name;
       state.contract = data.Debt!.contract;
-      state.load_dt = DateTime.now();
+      state.load_dt = datetimeNow();
       state.total_sum = data.total_sum;
       state.court_doc_num = data.court_doc_num;
       state.executive_typ = data.executive_typ;
@@ -66,7 +67,7 @@ export const send = createSlice({
       state.template_typ = 16;
       state.entry_force_dt = data.entry_force_dt;
       state.receipt_recover_dt = data.receipt_recover_dt;
-      state.fssp_date = DateTime.now();
+      state.fssp_date = datetimeNow();
       state.r_court_id = data.r_court_id;
       state.dsc = data.dsc;
       state.add_interests = false;

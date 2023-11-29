@@ -13,6 +13,8 @@ import ErrorHandler from './components/ErrorHandler';
 import { SnackbarProvider } from 'notistack';
 import { HealthProvider } from '@tools/health-status-react-component';
 import server from './utils/server';
+import { Settings } from 'luxon';
+Settings.defaultZone = 'utc';
 const url = server();
 export default function Document() {
   return (
