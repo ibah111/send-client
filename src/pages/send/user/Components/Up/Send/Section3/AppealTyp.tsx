@@ -10,7 +10,7 @@ const types = [
 ];
 export default function AppealTyp() {
   const { t } = useTranslation();
-  const data = getData('appeal_typ', 'number');
+  const data = getData('appeal_typ', 'number', false, true);
   React.useEffect(() => {
     return () => data.setValue(null);
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -13,6 +13,7 @@ export default function useError<K extends DataNames>(
   name: K,
   type: Typed = null,
   availableEmpty = false,
+  availableZero = false,
 ) {
   const dispatch = useAppDispatch();
   const ErrorValue = useAppSelector((state) => state.Error[name]);
@@ -54,14 +55,15 @@ export default function useError<K extends DataNames>(
         error = checkDate(value, availableEmpty);
         break;
       case 'number':
-        error = checkNumber(value, availableEmpty);
+        error = checkNumber(value, availableEmpty, availableZero);
+        console.log(name, value, error);
         break;
       case 'null':
         error = checkNull(value);
         break;
     }
     callError(name, error);
-  }, [name, value, availableEmpty, type]);
+  }, [name, value, availableEmpty, type, availableZero]);
   return {
     setValue,
     value,
