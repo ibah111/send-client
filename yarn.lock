@@ -3399,10 +3399,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/luxon@npm:^3.3.5":
-  version: 3.3.5
-  resolution: "@types/luxon@npm:3.3.5"
-  checksum: be2aede1787f437e0ec3e2d1b964c5831fed1838d10cc60d824f814d0c0659dfa8874ffa81bec116004845279bdee2e5127046bb4fd64dc71cce8c0c25f6c25f
+"@types/luxon@npm:^3.4.2":
+  version: 3.4.2
+  resolution: "@types/luxon@npm:3.4.2"
+  checksum: fd89566e3026559f2bc4ddcc1e70a2c16161905ed50be9473ec0cfbbbe919165041408c4f6e06c4bcf095445535052e2c099087c76b1b38e368127e618fc968d
   languageName: node
   linkType: hard
 
@@ -4873,7 +4873,7 @@ __metadata:
     "@types/file-saver": "npm:^2.0.7"
     "@types/git-semver-tags": "npm:^4.1.3"
     "@types/jest": "npm:^29.5.10"
-    "@types/luxon": "npm:^3.3.5"
+    "@types/luxon": "npm:^3.4.2"
     "@types/mime-types": "npm:^2.1.4"
     "@types/node": "npm:^20.10.0"
     "@types/react": "npm:^18.2.39"
@@ -4902,8 +4902,8 @@ __metadata:
     i18next-resources-to-backend: "npm:^1.2.0"
     luxon: "npm:^3.4.4"
     mime-types: "npm:^2.1.35"
-    moment: "npm:^2.29.4"
-    moment-timezone: "npm:^0.5.43"
+    moment: "npm:^2.30.1"
+    moment-timezone: "npm:^0.5.45"
     notistack: "npm:^3.0.1"
     patch-package: "npm:^8.0.0"
     path-browserify: "npm:^1.0.1"
@@ -9063,7 +9063,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"moment-timezone@npm:^0.5.37, moment-timezone@npm:^0.5.43":
+"moment-timezone@npm:^0.5.37":
   version: 0.5.43
   resolution: "moment-timezone@npm:0.5.43"
   dependencies:
@@ -9072,10 +9072,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"moment-timezone@npm:^0.5.45":
+  version: 0.5.45
+  resolution: "moment-timezone@npm:0.5.45"
+  dependencies:
+    moment: "npm:^2.29.4"
+  checksum: 45e3793d44bea8e826c934a335ebf0b92c6d6dae562fdb59d8c45a16d5c11de4d6692b5fa7eebca969881f06b81b55f8535883bfbc727b597d601709fa5a2bb2
+  languageName: node
+  linkType: hard
+
 "moment@npm:^2.29.4":
   version: 2.29.4
   resolution: "moment@npm:2.29.4"
   checksum: 157c5af5a0ba8196e577bc67feb583303191d21ba1f7f2af30b3b40d4c63a64d505ba402be2a1454832082fac6be69db1e0d186c3279dae191e6634b0c33705c
+  languageName: node
+  linkType: hard
+
+"moment@npm:^2.30.1":
+  version: 2.30.1
+  resolution: "moment@npm:2.30.1"
+  checksum: ae42d876d4ec831ef66110bdc302c0657c664991e45cf2afffc4b0f6cd6d251dde11375c982a5c0564ccc0fa593fc564576ddceb8c8845e87c15f58aa6baca69
   languageName: node
   linkType: hard
 
