@@ -32,5 +32,10 @@ export default function getColumns(refresh: () => void) {
       ],
     },
   ];
-  return columns;
+  return columns.map<GridColDef<DocAttach>>((items) => ({
+    headerAlign: 'center',
+    align: 'center',
+    width: 150,
+    ...items,
+  }));
 }
