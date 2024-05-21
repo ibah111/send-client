@@ -29,7 +29,7 @@ export default defineConfig({
     dynamicImport(),
   ],
   build: { outDir: 'build' },
-  server: { port: 3000 },
+  server: { port: 3000, host: '0.0.0.0' },
   base: '/apps/send',
   resolve: { alias: { path: 'path-browserify' } },
 });

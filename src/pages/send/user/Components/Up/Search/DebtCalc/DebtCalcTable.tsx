@@ -11,22 +11,33 @@ import React from 'react';
 import getDebtCalc from '../../../../../../../api/getDebtCalc';
 import { useAppDispatch, useAppSelector } from '../../../../../../../Reducer';
 import { setDebtCalcState } from '../../../../../../../Reducer/StateResults';
+
 const getColumns = () => {
   const columns: GridColDef<DebtCalc>[] = [
     { field: 'id', headerName: 'ID' },
     {
+      field: 'sum',
+      type: 'number',
+      headerName: t('form.debt_calc.table.sum'),
+      valueGetter: (params) => {
+        return params.row.sum;
+      },
+    },
+    {
       field: 'dt',
-      type: 'dateTime',
+      type: 'date',
       headerName: t('form.debt_calc.table.dt'),
       valueGetter: (params) => new Date(params.value),
+      aggregable: false,
     },
     {
       field: 'calc_date',
       type: 'date',
       headerName: t('form.debt_calc.table.calc_date'),
       valueGetter: (params) => new Date(params.value),
+      aggregable: false,
     },
-    { field: 'sum', type: 'number', headerName: t('form.debt_calc.table.sum') },
+
     {
       field: 'PurposeDict',
       headerName: t('form.debt_calc.table.purpose'),
@@ -35,7 +46,12 @@ const getColumns = () => {
     },
     { field: 'dsc', headerName: t('form.debt_calc.table.dsc') },
   ];
-  return columns;
+  return columns.map<GridColDef<DebtCalc>>((item) => ({
+    width: 150,
+    headerAlign: 'center',
+    align: 'center',
+    ...item,
+  }));
 };
 interface DebtCalcTableProps {
   id: number;
@@ -56,6 +72,13 @@ export default function DebtCalcTable({ id }: DebtCalcTableProps) {
     <>
       <Box sx={{ width: '100%', height: 400 }}>
         <DataGridPremium
+          initialState={{
+            aggregation: {
+              model: {
+                sum: 'sum',
+              },
+            },
+          }}
           apiRef={apiRef}
           onStateChange={() => {
             dispatch(setDebtCalcState(apiRef.current.exportState()));
