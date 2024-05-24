@@ -4,7 +4,8 @@
   "homepage": "/apps/send",
   "type": "module",
   "scripts": {
-    "start": "vite",
+    "start": "NODE_ENV=prod vite",
+    "start:dev": "NODE_ENV=dev vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint \"src/**/*.{ts,tsx}\" --fix",
