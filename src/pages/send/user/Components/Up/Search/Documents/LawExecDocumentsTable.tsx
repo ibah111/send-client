@@ -1,23 +1,33 @@
 import { DocAttach } from '@contact/models';
 import { DataGridPremium, useGridApiRef } from '@mui/x-data-grid-premium';
 import React from 'react';
-import getDocuments from '../../../../../../../api/getDocuments';
+import getLawExecDocuments from '../../../../../../../api/getLawExecDocuments';
 import { useAppDispatch, useAppSelector } from '../../../../../../../Reducer';
 import { setDocumentsState } from '../../../../../../../Reducer/StateResults';
 import BackDrop from './BackDrop';
 import DialogFile from './DialogFile';
-import getColumns from './getColumns';
+import getLawExecColumns from './getLawExecColumns';
+import { enqueueSnackbar } from 'notistack';
+
 interface DocumentsTableProps {
-  id: number;
+  law_exec_id: number;
 }
-export default function DocumentsTable({ id }: DocumentsTableProps) {
+/**
+ * Документы law_exec
+ */
+export default function LawExecDocumentsTable({
+  law_exec_id: id,
+}: DocumentsTableProps) {
   const refresh = React.useCallback(() => {
-    const sub = getDocuments(id, 'law_exec').subscribe((res) => {
+    const sub = getLawExecDocuments(id, 'law_exec').subscribe((res) => {
+      enqueueSnackbar('Поиск по law_exec успешен', {
+        variant: 'success',
+      });
       setRows(res);
     });
     return sub.unsubscribe.bind(sub);
   }, [id]);
-  const [columns] = React.useState(getColumns(refresh));
+  const [columns] = React.useState(getLawExecColumns(refresh));
   const [open, setOpen] = React.useState(false);
   const [file, setFile] = React.useState<number | null>(null);
   const stateGrid = useAppSelector((state) => state.StateResults.documents);
@@ -62,7 +72,8 @@ export default function DocumentsTable({ id }: DocumentsTableProps) {
           disableRowSelectionOnClick
           onCellDoubleClick={(params, event) => {
             event.defaultMuiPrevented = true;
-            setFile(params.id as number);
+            const law_exec_doc_attach_id = params.id as number;
+            setFile(law_exec_doc_attach_id);
             setOpen(true);
           }}
           rows={rows}

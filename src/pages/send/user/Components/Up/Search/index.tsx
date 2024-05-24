@@ -25,6 +25,7 @@ export default function Search() {
   const id = useAppSelector((state) => state.Send.id);
   const loading = useAppSelector((state) => state.Results.loading);
   const reload = useAppSelector((state) => state.Results.reload);
+  const la_id = useAppSelector((state) => state.LawExec?.r_act_id);
   const Click = React.useCallback(() => {
     dispatch(setLoadingResults(true));
     const sub = search().subscribe({
@@ -73,7 +74,7 @@ export default function Search() {
         <Submit />
         <Comments />
         <DebtCalc id={Number(id)} />
-        <Documents id={Number(id)} />
+        <Documents law_act_id={Number(la_id)} law_exec_id={Number(id)} />
         <Reset />
       </Grid>
     </>
