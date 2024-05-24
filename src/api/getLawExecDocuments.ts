@@ -6,8 +6,11 @@ import { transformError } from '../utils/processError';
 import { AxiosRequestConfig } from 'axios';
 type types = 'doc' | 'law_exec';
 type results<T extends types> = T extends 'doc' ? Blob : DocAttach[];
-const url = of('/documents/get');
-export default function getDocuments<T extends types>(id: number, type: T) {
+const url = of('/documents/getLawExec');
+export default function getLawExecDocuments<T extends types>(
+  id: number,
+  type: T,
+) {
   return forkJoin([
     requests,
     url,
