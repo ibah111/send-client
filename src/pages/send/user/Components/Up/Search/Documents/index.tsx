@@ -26,10 +26,7 @@ export default function Documents({ law_exec_id, law_act_id }: DocumentsProps) {
   return (
     <>
       <Grid item>
-        <Button
-          //disabled={Boolean(!id)}
-          onClick={handleOpen}
-        >
+        <Button disabled={Boolean(!law_exec_id)} onClick={handleOpen}>
           {t('form.search.documents')}
         </Button>
       </Grid>

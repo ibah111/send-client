@@ -7,6 +7,7 @@ import BackDrop from './BackDrop';
 import DialogFile from './DialogFile';
 import getLawActColumns from './getLawActColumns';
 import getLawActDocuments from '../../../../../../../api/getLawActDocuments';
+import { enqueueSnackbar } from 'notistack';
 interface DocumentsTableProps {
   law_act_id: number;
 }
@@ -18,6 +19,9 @@ export default function LawActDocumentsTable({
 }: DocumentsTableProps) {
   const refresh = React.useCallback(() => {
     const sub = getLawActDocuments(law_act_id).subscribe((res) => {
+      enqueueSnackbar('Поиск по law_act успешен', {
+        variant: 'success',
+      });
       setRows(res);
     });
     return sub.unsubscribe.bind(sub);
