@@ -8,11 +8,13 @@ import {
 } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import DocumentsTable from './DocumentsTable';
+import LawExecDocumentsTable from './LawExecDocumentsTable';
+import LawActDocumentsTable from './LawActDocumentsTable';
 interface DocumentsProps {
-  id: number;
+  law_act_id: number;
+  law_exec_id: number;
 }
-export default function Documents({ id }: DocumentsProps) {
+export default function Documents({ law_exec_id, law_act_id }: DocumentsProps) {
   const [open, setOpen] = React.useState(false);
   const { t } = useTranslation();
   const handleClose = React.useCallback(() => {
@@ -24,7 +26,10 @@ export default function Documents({ id }: DocumentsProps) {
   return (
     <>
       <Grid item>
-        <Button disabled={Boolean(!id)} onClick={handleOpen}>
+        <Button
+          //disabled={Boolean(!id)}
+          onClick={handleOpen}
+        >
           {t('form.search.documents')}
         </Button>
       </Grid>
@@ -33,7 +38,14 @@ export default function Documents({ id }: DocumentsProps) {
           {t('form.documents.title')}
         </DialogTitle>
         <DialogContent>
-          <DocumentsTable id={id} />
+          <Grid container spacing={1}>
+            <Grid item xs={6}>
+              <LawExecDocumentsTable law_exec_id={law_exec_id} />
+            </Grid>
+            <Grid item xs={6}>
+              <LawActDocumentsTable law_act_id={law_act_id} />
+            </Grid>
+          </Grid>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>{t('form.documents.close')}</Button>
