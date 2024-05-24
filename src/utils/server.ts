@@ -1,10 +1,7 @@
 import config from '../config/server.json';
 
-//@ts-ignore
-export const env: 'prod' | 'dev' = process.env.NODE_ENV;
-
 export default function server(name?: string) {
-  const server = env === 'prod' ? config.server : config.server_dev;
+  const server = config.server;
   switch (name) {
     case 'bitrix':
     case 'oauth':
