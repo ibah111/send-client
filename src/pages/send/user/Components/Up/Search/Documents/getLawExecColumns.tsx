@@ -4,9 +4,12 @@ import { t } from 'i18next';
 import { generateName } from '../../../../../../../utils/generateName';
 import Actions from './Actions';
 
-export default function getColumns(refresh: () => void) {
+export default function getLawExecColumns(refresh: () => void) {
   const columns: GridColDef<DocAttach>[] = [
-    { field: 'id', headerName: 'ID' },
+    {
+      field: 'id',
+      headerName: 'ID исполнительного производства',
+    },
     {
       field: 'name',
       headerName: t('form.documents.table.name'),
@@ -33,9 +36,9 @@ export default function getColumns(refresh: () => void) {
     },
   ];
   return columns.map<GridColDef<DocAttach>>((items) => ({
+    ...items,
     headerAlign: 'center',
     align: 'center',
-    width: 150,
-    ...items,
+    width: 100,
   }));
 }
