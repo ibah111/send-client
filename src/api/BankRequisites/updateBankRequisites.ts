@@ -8,7 +8,7 @@ export default function updateBankRequisites(
   id: number,
   body: BankRequisitesClass,
 ) {
-  const url = of(`/updateBankRequisites/${id}`);
+  const url = of(`/BankRequisites/updateBankRequisites/${id}`);
   return forkJoin([requests, url, of(body)]).pipe(
     put(),
     transformAxios(),
