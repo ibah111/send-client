@@ -13,12 +13,13 @@ export type ErrorTypes = {
   template_typ: null | string;
   receipt_recover_dt: null | string;
   fssp_date: null | string;
-  add_interests: null | string;
   r_court_id: null | string;
   dsc: null | string;
   debt_guarantor: null | string;
   person_property: null | string;
   appeal_typ: null | string;
+  add_interests: null | string;
+  custom_requisits_id: null | string;
 };
 type ValueOf<T> = T[keyof T];
 export type TypesError = ValueOf<ErrorTypes>;
@@ -39,10 +40,11 @@ export const initState: ErrorTypes = {
   fssp_date: null,
   r_court_id: null,
   dsc: null,
-  add_interests: null,
   debt_guarantor: null,
   person_property: null,
   appeal_typ: null,
+  add_interests: null,
+  custom_requisits_id: null,
 };
 export const error = createSlice({
   name: 'error',

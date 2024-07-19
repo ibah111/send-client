@@ -10,9 +10,8 @@ type FileUpdate =
       name: string;
     };
 const url = of('/update_exec');
-const data = defer(() =>
-  of({ ...store.getState().Send, options: { save_file: true } }),
-);
+const storeState = store.getState().Send;
+const data = defer(() => of({ ...storeState, options: { save_file: true } }));
 export default function updateExec() {
   return forkJoin([requests, url, data]).pipe(
     post<FileUpdate>(),
