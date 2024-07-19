@@ -1,18 +1,51 @@
 import { FormControl, Grid, InputLabel, MenuItem, Select } from '@mui/material';
 import { BankRequisitesClass } from '../../../../../../../api/BankRequisites/BankRequisitesInput';
+import React from 'react';
+import getAllBankRequisites from '../../../../../../../api/BankRequisites/getAllBankRequisites';
+import getData from '../../../../../../../utils/getData';
+
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 410,
+    },
+  },
+};
 
 export default function Requisits() {
   const label = 'Реквизиты';
-  const requisitsArray: BankRequisitesClass[] = [];
+  const [requisitsArray, setRequisitsArray] = React.useState<
+    BankRequisitesClass[]
+  >([]);
+  const data = getData('custom_requisits_id', 'number', true, true);
+  React.useEffect(() => {
+    getAllBankRequisites().subscribe((requisits) => {
+      setRequisitsArray(requisits);
+    });
+  }, []);
   return (
     <>
       <Grid sx={{ width: 410 }} item>
         <FormControl fullWidth>
           <InputLabel>{label}</InputLabel>
-          <Select label>
+          <Select
+            label={label}
+            onChange={(event) => {
+              const selectValue = event.target.value as number;
+              data.setValue(selectValue);
+            }}
+            MenuProps={MenuProps}
+          >
             <MenuItem value={''}>Исход. реквизиты</MenuItem>
             {requisitsArray.map((type, index) => (
-              <MenuItem key={index} value={type.id}>{``}</MenuItem>
+              <MenuItem key={index} value={type.id}>{`(${type.id}) ${
+                type.recipient
+              } ${type.br_name} ${
+                type.br_address ? type.br_address : ''
+              }`}</MenuItem>
             ))}
           </Select>
         </FormControl>
