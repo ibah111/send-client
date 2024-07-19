@@ -20,7 +20,8 @@ export default function Requisits() {
   const [requisitsArray, setRequisitsArray] = React.useState<
     BankRequisitesClass[]
   >([]);
-  const data = getData('custom_requisits_id', 'number', true, true);
+  const data = getData('custom_requisites_id', 'number', true, true);
+
   React.useEffect(() => {
     getAllBankRequisites().subscribe((requisits) => {
       setRequisitsArray(requisits);
@@ -32,6 +33,7 @@ export default function Requisits() {
         <FormControl fullWidth>
           <InputLabel>{label}</InputLabel>
           <Select
+            value={data.value}
             label={label}
             onChange={(event) => {
               const selectValue = event.target.value as number;

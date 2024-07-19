@@ -23,7 +23,7 @@ export interface DataTypes {
   appeal_typ: string | number | null;
   person_property: number | string | null;
   add_interests: boolean;
-  custom_requisits_id: number;
+  custom_requisites_id: number;
 }
 type ValueOf<T> = T[keyof T];
 export type TypesData = ValueOf<DataTypes>;
@@ -48,7 +48,7 @@ export const initState: DataTypes = {
   person_property: null,
   appeal_typ: null,
   add_interests: false,
-  custom_requisits_id: 0,
+  custom_requisites_id: 0,
 };
 export const send = createSlice({
   name: 'send',
