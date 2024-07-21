@@ -6,12 +6,13 @@ import InnTextField from './RequisitesFormTextFields/InnTextfield';
 import KppTextField from './RequisitesFormTextFields/KppTextField';
 import RAccountTextField from './RequisitesFormTextFields/RAccountTextField';
 import PayPurposeTextField from './RequisitesFormTextFields/PayPurposeTextField';
-import BrAddressTextField from './RequisitesFormTextFields/BrAdressTextField';
+import BrAddressTextField from './RequisitesFormTextFields/BrAddressTextField';
 import TypTextField from './RequisitesFormTextFields/TypTextField';
 import BikTextField from './RequisitesFormTextFields/BikTextField';
 import KBETextField from './RequisitesFormTextFields/KBETextField';
 import KNPTextField from './RequisitesFormTextFields/KNPTextField';
 import KODTextField from './RequisitesFormTextFields/KODTextField';
+import KAccountTextField from './RequisitesFormTextFields/KAccountTextField';
 
 export default function RequisitesForm() {
   return (
@@ -44,7 +45,7 @@ export default function RequisitesForm() {
             <BikTextField />
           </Grid>
           <Grid item xs={4}>
-            <BikTextField />
+            <KAccountTextField />
           </Grid>
           <Grid item xs={4}>
             <PayPurposeTextField />
