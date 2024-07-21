@@ -4,7 +4,7 @@ import { useAppSelector } from '../../../../../../../../../Reducer';
 
 export default function KppTextField() {
   const kpp = useAppSelector((state) => state.Requisites.kpp);
-  const data = useRequisitesData('name', {
+  const data = useRequisitesData('kpp', {
     kpp,
   });
   return (

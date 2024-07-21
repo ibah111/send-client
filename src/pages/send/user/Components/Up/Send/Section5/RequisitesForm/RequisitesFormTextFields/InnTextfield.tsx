@@ -4,7 +4,7 @@ import { useAppSelector } from '../../../../../../../../../Reducer';
 
 export default function InnTextField() {
   const inn = useAppSelector((state) => state.Requisites.inn);
-  const data = useRequisitesData('name', {
+  const data = useRequisitesData('inn', {
     inn,
   });
   return (
