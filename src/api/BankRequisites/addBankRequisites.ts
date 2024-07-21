@@ -5,7 +5,7 @@ import requests from '../../utils/requests';
 import { BankRequisitesClass } from './BankRequisitesInput';
 
 export default function addBankRequisites(body: Partial<BankRequisitesClass>) {
-  const url = of('/BankRequisites/addBankRequisits');
+  const url = of('/BankRequisites/addBankRequisites');
   return forkJoin([requests, url, of(body)]).pipe(
     post(),
     transformAxios(),
