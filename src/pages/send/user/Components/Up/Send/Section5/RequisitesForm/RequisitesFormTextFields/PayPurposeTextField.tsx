@@ -10,7 +10,7 @@ export default function PayPurposeTextField() {
   return (
     <TextField
       fullWidth
-      label="Назначение платежа"
+      label="Назначение платежа / ОГРНИП"
       onChange={(event) => {
         const value = event.target.value;
         data.onChange(value);

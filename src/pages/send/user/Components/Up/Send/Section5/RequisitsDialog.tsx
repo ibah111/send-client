@@ -36,13 +36,6 @@ export default function RequisitsButton() {
   const handleClose = React.useCallback(() => {
     setOpen(false);
   }, []);
-  const refresh = React.useCallback(
-    () =>
-      getAllBankRequisites().subscribe((result) => {
-        setRows(result);
-      }),
-    [],
-  );
   return (
     <>
       <Tooltip title="Реквизиты">
@@ -70,9 +63,7 @@ export default function RequisitsButton() {
                       toolbar: RequisitsToolbar,
                     }}
                     slotProps={{
-                      toolbar: {
-                        refresh,
-                      },
+                      toolbar: {},
                     }}
                   />
                 </Grid>
@@ -85,7 +76,7 @@ export default function RequisitsButton() {
   );
 }
 
-function RequisitsToolbar(refresh: () => void) {
+function RequisitsToolbar() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -129,10 +120,10 @@ function RequisitsToolbar(refresh: () => void) {
                   onClick={() => {
                     addBankRequisites(requisitsBody).subscribe({
                       complete() {
+                        setOpen(false);
                         enqueueSnackbar('Реквизиты добавлены', {
                           variant: 'success',
                         });
-                        refresh();
                       },
                     });
                   }}
@@ -188,7 +179,7 @@ function RequisitsColumns(): GridColDef<BankRequisitesClass>[] {
     },
     {
       field: 'pay_purpose',
-      headerName: 'ОГРНИП',
+      headerName: 'Назначение платежа / ОГРНИП',
     },
     {
       field: 'typ',
