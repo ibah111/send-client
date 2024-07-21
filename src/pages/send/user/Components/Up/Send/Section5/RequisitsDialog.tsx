@@ -4,9 +4,9 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  Divider,
   Grid,
   IconButton,
-  TextField,
   Tooltip,
 } from '@mui/material';
 import React from 'react';
@@ -100,6 +100,7 @@ function RequisitsToolbar() {
           sx={{ width: '100%', height: '100%' }}
         >
           <DialogTitle>Добавление реквизитов</DialogTitle>
+          <Divider />
           <DialogContent>
             <RequisitesForm />
           </DialogContent>

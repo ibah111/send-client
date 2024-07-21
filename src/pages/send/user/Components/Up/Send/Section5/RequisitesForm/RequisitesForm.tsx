@@ -1,14 +1,17 @@
-import { Grid, TextField } from '@mui/material';
+import { Grid } from '@mui/material';
 import NameTextField from './RequisitesFormTextFields/NameTextField';
 import RecipientTextField from './RequisitesFormTextFields/RecipientTextField';
 import BrNameTextField from './RequisitesFormTextFields/BrNameTextField';
 import InnTextField from './RequisitesFormTextFields/InnTextfield';
 import KppTextField from './RequisitesFormTextFields/KppTextField';
 import RAccountTextField from './RequisitesFormTextFields/RAccountTextField';
-import BikTextField from './RequisitesFormTextFields/BikTextfield';
 import PayPurposeTextField from './RequisitesFormTextFields/PayPurposeTextField';
 import BrAddressTextField from './RequisitesFormTextFields/BrAdressTextField';
 import TypTextField from './RequisitesFormTextFields/TypTextField';
+import BikTextField from './RequisitesFormTextFields/BikTextField';
+import KBETextField from './RequisitesFormTextFields/KBETextField';
+import KNPTextField from './RequisitesFormTextFields/KNPTextField';
+import KODTextField from './RequisitesFormTextFields/KODTextField';
 
 export default function RequisitesForm() {
   return (
@@ -48,20 +51,20 @@ export default function RequisitesForm() {
           </Grid>
         </Grid>
         <Grid item container spacing={1}>
-          <Grid item xs={5}>
+          <Grid item xs={4}>
             <BrAddressTextField />
           </Grid>
-          <Grid item xs={1}>
+          <Grid item xs={2}>
             <TypTextField />
           </Grid>
           <Grid item xs={2}>
-            <TextField fullWidth label="КБЕ"></TextField>
+            <KBETextField />
           </Grid>
           <Grid item xs={2}>
-            <TextField fullWidth label="КНП"></TextField>
+            <KNPTextField />
           </Grid>
           <Grid item xs={2}>
-            <TextField fullWidth label="КОД"></TextField>
+            <KODTextField />
           </Grid>
         </Grid>
       </Grid>

@@ -10,13 +10,14 @@ export default function BrAddressTextField() {
   return (
     <TextField
       fullWidth
-      label="Расс.счёт"
+      label="Юр.адресс"
       onChange={(event) => {
         const value = event.target.value;
         data.onChange(value);
       }}
       value={data.value}
       helperText={data.helperText}
+      error={data.error}
     />
   );
 }

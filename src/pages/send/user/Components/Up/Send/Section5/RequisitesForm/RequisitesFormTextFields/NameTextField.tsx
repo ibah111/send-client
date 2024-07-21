@@ -3,9 +3,9 @@ import useRequisitesData from '../../../../../../../../../hooks/useRequisitesDat
 import { useAppSelector } from '../../../../../../../../../Reducer';
 
 export default function NameTextField() {
-  const name = useAppSelector((state) => state.Requisites.recipient);
+  const name = useAppSelector((state) => state.Requisites.name);
   const data = useRequisitesData('name', {
-    recipient: name,
+    name,
   });
   return (
     <TextField
@@ -17,6 +17,7 @@ export default function NameTextField() {
       }}
       value={data.value}
       helperText={data.helperText}
+      error={data.error}
     />
   );
 }

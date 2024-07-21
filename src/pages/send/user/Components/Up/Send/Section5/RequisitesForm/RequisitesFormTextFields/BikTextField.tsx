@@ -16,6 +16,7 @@ export default function BikTextField() {
         data.onChange(value);
       }}
       value={data.value}
+      error={data.error}
       helperText={data.helperText}
     />
   );

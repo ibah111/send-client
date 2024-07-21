@@ -1,4 +1,4 @@
-import { FormControl, MenuItem, Select } from '@mui/material';
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import useRequisitesData from '../../../../../../../../../hooks/useRequisitesData';
 import { useAppSelector } from '../../../../../../../../../Reducer';
 
@@ -16,7 +16,9 @@ export default function TypTextField() {
   });
   return (
     <FormControl>
+      <InputLabel>Тип реквизитов</InputLabel>
       <Select
+        error={data.error}
         value={data.value}
         onChange={(event) => {
           const value = event.target.value as number;

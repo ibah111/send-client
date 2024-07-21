@@ -17,6 +17,7 @@ export default function KppTextField() {
       }}
       value={data.value}
       helperText={data.helperText}
+      error={data.error}
     />
   );
 }

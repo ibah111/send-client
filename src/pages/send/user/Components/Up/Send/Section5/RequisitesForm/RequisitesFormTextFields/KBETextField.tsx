@@ -2,21 +2,20 @@ import { TextField } from '@mui/material';
 import useRequisitesData from '../../../../../../../../../hooks/useRequisitesData';
 import { useAppSelector } from '../../../../../../../../../Reducer';
 
-export default function BrNameTextField() {
-  const br_name = useAppSelector((state) => state.Requisites.br_name);
-  const data = useRequisitesData('br_name', {
-    br_name,
+export default function KBETextField() {
+  const kbe = useAppSelector((state) => state.Requisites.kbe);
+  const data = useRequisitesData('kbe', {
+    kbe,
   });
   return (
     <TextField
       fullWidth
-      label="Юр.имя"
+      label="KBE"
       onChange={(event) => {
         const value = event.target.value;
         data.onChange(value);
       }}
       value={data.value}
-      error={data.error}
       helperText={data.helperText}
     />
   );
