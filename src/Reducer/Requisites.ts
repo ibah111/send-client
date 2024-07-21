@@ -47,7 +47,6 @@ export class BankRequisitesInstance {
   /**
    * Назначение платежа
    */
-  @IsNotEmpty()
   pay_purpose: string;
   /**
    * Юр адресс
