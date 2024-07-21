@@ -17,8 +17,10 @@ import Message from './Message';
 import LawExec from './LawExec';
 import React from 'react';
 import Dict from './Dict';
+import Requisites from './Requisites';
 const store = configureStore({
   reducer: {
+    Requisites,
     User,
     App,
     Search,
