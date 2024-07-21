@@ -1,10 +1,12 @@
 import {
   Button,
   Dialog,
+  DialogActions,
   DialogContent,
   DialogTitle,
   Grid,
   IconButton,
+  TextField,
   Tooltip,
 } from '@mui/material';
 import React from 'react';
@@ -16,6 +18,7 @@ import {
 } from '@mui/x-data-grid-premium';
 import getAllBankRequisites from '../../../../../../../api/BankRequisites/getAllBankRequisites';
 import { BankRequisitesClass } from '../../../../../../../api/BankRequisites/BankRequisitesInput';
+import RequisitesForm from './RequisitesForm/RequisitesForm';
 
 export default function RequisitsButton() {
   const [open, setOpen] = React.useState<boolean>(false);
@@ -89,9 +92,26 @@ function RequisitsToolbar() {
         </Button>
       </GridToolbarContainer>
       {open && (
-        <Dialog open={open} onClose={handleClose}>
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          fullWidth
+          maxWidth={'md'}
+          sx={{ width: '100%', height: '100%' }}
+        >
           <DialogTitle>Добавление реквизитов</DialogTitle>
-          <DialogContent></DialogContent>
+          <DialogContent>
+            <RequisitesForm />
+          </DialogContent>
+          <DialogActions>
+            <Grid container>
+              <Grid item container>
+                <Button variant="contained" color="success" onClick={() => {}}>
+                  Добавить реквизит
+                </Button>
+              </Grid>
+            </Grid>
+          </DialogActions>
         </Dialog>
       )}
     </>
