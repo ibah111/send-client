@@ -9,11 +9,10 @@ type FileUpdate =
       file: { data: number[] };
       name: string;
     };
-const url = of('/update_exec');
-const data = defer(() =>
-  of({ ...store.getState().Send, options: { save_file: true } }),
-);
 export default function updateExec() {
+  const url = of('/update_exec');
+  const storeState = store.getState().Send;
+  const data = defer(() => of({ ...storeState, options: { save_file: true } }));
   return forkJoin([requests, url, data]).pipe(
     post<FileUpdate>(),
     transformAxios(),
