@@ -10,7 +10,7 @@ export default function BrAddressTextField() {
   return (
     <TextField
       fullWidth
-      label="Юр.адресс"
+      label="Юр.адресс банка"
       onChange={(event) => {
         const value = event.target.value;
         data.onChange(value);
