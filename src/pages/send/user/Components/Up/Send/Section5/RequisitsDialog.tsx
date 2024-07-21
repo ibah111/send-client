@@ -19,6 +19,9 @@ import {
 import getAllBankRequisites from '../../../../../../../api/BankRequisites/getAllBankRequisites';
 import { BankRequisitesClass } from '../../../../../../../api/BankRequisites/BankRequisitesInput';
 import RequisitesForm from './RequisitesForm/RequisitesForm';
+import { useAppSelector } from '../../../../../../../Reducer';
+import addBankRequisites from '../../../../../../../api/BankRequisites/addBankRequisites';
+import { enqueueSnackbar } from 'notistack';
 
 export default function RequisitsButton() {
   const [open, setOpen] = React.useState<boolean>(false);
@@ -33,6 +36,13 @@ export default function RequisitsButton() {
   const handleClose = React.useCallback(() => {
     setOpen(false);
   }, []);
+  const refresh = React.useCallback(
+    () =>
+      getAllBankRequisites().subscribe((result) => {
+        setRows(result);
+      }),
+    [],
+  );
   return (
     <>
       <Tooltip title="Реквизиты">
@@ -59,6 +69,11 @@ export default function RequisitsButton() {
                     slots={{
                       toolbar: RequisitsToolbar,
                     }}
+                    slotProps={{
+                      toolbar: {
+                        refresh,
+                      },
+                    }}
                   />
                 </Grid>
               </Grid>
@@ -70,7 +85,7 @@ export default function RequisitsButton() {
   );
 }
 
-function RequisitsToolbar() {
+function RequisitsToolbar(refresh: () => void) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -78,6 +93,7 @@ function RequisitsToolbar() {
   const handleClose = () => {
     setOpen(false);
   };
+  const requisitsBody = useAppSelector((state) => state.Requisites);
   return (
     <>
       <GridToolbarContainer>
@@ -107,7 +123,20 @@ function RequisitsToolbar() {
           <DialogActions>
             <Grid container>
               <Grid item container>
-                <Button variant="contained" color="success" onClick={() => {}}>
+                <Button
+                  variant="contained"
+                  color="success"
+                  onClick={() => {
+                    addBankRequisites(requisitsBody).subscribe({
+                      complete() {
+                        enqueueSnackbar('Реквизиты добавлены', {
+                          variant: 'success',
+                        });
+                        refresh();
+                      },
+                    });
+                  }}
+                >
                   Добавить реквизит
                 </Button>
               </Grid>
