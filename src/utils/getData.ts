@@ -56,7 +56,6 @@ export default function useError<K extends DataNames>(
         break;
       case 'number':
         error = checkNumber(value, availableEmpty, availableZero);
-        console.log(name, value, error);
         break;
       case 'null':
         error = checkNull(value);
