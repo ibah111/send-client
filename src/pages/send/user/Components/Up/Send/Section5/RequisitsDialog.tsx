@@ -22,6 +22,7 @@ import RequisitesForm from './RequisitesForm/RequisitesForm';
 import { useAppSelector } from '../../../../../../../Reducer';
 import addBankRequisites from '../../../../../../../api/BankRequisites/addBankRequisites';
 import { enqueueSnackbar } from 'notistack';
+import { resetRequisitesState } from '../../../../../../../Reducer/Requisites';
 
 export default function RequisitsButton() {
   const [open, setOpen] = React.useState<boolean>(false);
@@ -124,6 +125,7 @@ function RequisitsToolbar() {
                         enqueueSnackbar('Реквизиты добавлены', {
                           variant: 'success',
                         });
+                        resetRequisitesState();
                       },
                     });
                   }}
