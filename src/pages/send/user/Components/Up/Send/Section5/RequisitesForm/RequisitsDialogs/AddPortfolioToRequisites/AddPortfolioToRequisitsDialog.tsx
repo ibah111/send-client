@@ -4,6 +4,8 @@ import { DataGridPremium } from '@mui/x-data-grid-premium';
 import React from 'react';
 import getAllLinksByRequisites from '../../../../../../../../../../api/PortfoliosToRequisites/getAllLinksByRequisites';
 import PortfolioToRequisitesColumns from './PortfolioToRequisitesColumns';
+import AddToolbar from './Toolbar/AddToolbar';
+import SearchAndAddDialog from './Toolbar/SearchAndAddDialog';
 
 interface DialogProps {
   open: boolean;
@@ -17,6 +19,8 @@ export default function PortfoliosToRequisits({
   open,
 }: DialogProps) {
   const [rows, setRows] = React.useState<Portfolio[]>([]);
+  const [openPortfolio, setOpenPortfolio] = React.useState<boolean>(false);
+
   const columns = PortfolioToRequisitesColumns();
   React.useEffect(() => {
     if (id > 0) {
@@ -27,6 +31,13 @@ export default function PortfoliosToRequisits({
    @todo
    * 
    */
+
+  const handleOpenFunction = () => {
+    setOpenPortfolio(true);
+  };
+  const handleClosePortfolio = () => {
+    setOpenPortfolio(false);
+  };
   return (
     <>
       <Dialog
@@ -38,7 +49,26 @@ export default function PortfoliosToRequisits({
       >
         <DialogTitle>{`Привязанные портфели к реквизиту`}</DialogTitle>
         <DialogContent>
-          <DataGridPremium columns={columns} rows={rows} autoHeight />
+          <DataGridPremium
+            columns={columns}
+            rows={rows}
+            autoHeight
+            slots={{
+              toolbar: AddToolbar,
+            }}
+            slotProps={{
+              toolbar: {
+                handleOpenFunction,
+              },
+            }}
+          />
+          {openPortfolio && (
+            <SearchAndAddDialog
+              id={id}
+              open={openPortfolio}
+              onClose={handleClosePortfolio}
+            />
+          )}
         </DialogContent>
       </Dialog>
     </>
