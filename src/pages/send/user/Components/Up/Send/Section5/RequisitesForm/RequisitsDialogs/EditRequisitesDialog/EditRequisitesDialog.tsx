@@ -77,6 +77,7 @@ export default function EditRequisitesDialog({
   const data_knp = useRequisitesData('knp', {
     knp,
   });
+  //-----------------------------------------------------//
   React.useEffect(() => {
     if (id > 0) {
       getOneBankRequisites(id).subscribe((result) => {
@@ -113,6 +114,7 @@ export default function EditRequisitesDialog({
     data_typ,
     id,
   ]);
+  //-----------------------------------------------------//
   return (
     <>
       <Dialog

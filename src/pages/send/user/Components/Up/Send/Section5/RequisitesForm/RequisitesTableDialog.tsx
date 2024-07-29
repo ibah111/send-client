@@ -6,6 +6,9 @@ import { BankRequisitesClass } from '../../../../../../../../api/BankRequisites/
 import getAllBankRequisites from '../../../../../../../../api/BankRequisites/getAllBankRequisites';
 import RequisitsToolbar from './RequisitesToolbar';
 import useRequisitesDialog from './RequisitesHooks/useAddPortfolioToRequsites';
+import useEditRequisites from './RequisitesHooks/useEditRequisites';
+import EditRequisitesDialog from './RequisitsDialogs/EditRequisitesDialog/EditRequisitesDialog';
+import PortfoliosToRequisits from './RequisitsDialogs/AddPortfolioToRequisites/AddPortfolioToRequisitsDialog';
 
 export enum SectionFiveEvents {
   openRequisitesDialog = 'openRequisitesDialog',
@@ -52,6 +55,11 @@ export default function RequisitesTableDialog({ open, onClose }: TableDialog) {
     onClose: () => callback(),
   });
 
+  const requisitesEditDialogControl = useEditRequisites({
+    DialogTarget,
+    onClose: () => callback(),
+  });
+
   return (
     <Dialog
       open={open}
@@ -65,16 +73,32 @@ export default function RequisitesTableDialog({ open, onClose }: TableDialog) {
         <Grid container>
           <Grid item xs>
             <DataGridPremium
+              autoHeight
               columns={columns}
               rows={rows}
               slots={{
                 toolbar: RequisitsToolbar,
               }}
+              pinnedColumns={{
+                right: ['actions'],
+              }}
             />
           </Grid>
         </Grid>
-        {}
-        {}
+        {requisitesDialogControl.open && (
+          <PortfoliosToRequisits
+            open={requisitesDialogControl.open}
+            id={requisitesDialogControl.idValue}
+            onClose={requisitesDialogControl.closeDialog}
+          />
+        )}
+        {requisitesEditDialogControl.open && (
+          <EditRequisitesDialog
+            open={requisitesEditDialogControl.open}
+            onClose={requisitesEditDialogControl.closeDialog}
+            id={requisitesEditDialogControl.idValue}
+          />
+        )}
       </DialogContent>
     </Dialog>
   );
