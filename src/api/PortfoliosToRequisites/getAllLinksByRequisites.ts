@@ -5,7 +5,7 @@ import { Portfolio } from '@contact/models';
 import requests from '../../utils/requests';
 
 export default function getAllLinksByRequisites(id: number) {
-  const url = of(`getAllLinksByRequisites/${id}`);
+  const url = of(`PortfoliosToRequisites/getAllLinksByRequisites/${id}`);
   return forkJoin([requests, url]).pipe(
     get<Portfolio[]>(),
     transformAxios(),
