@@ -7,8 +7,14 @@ import {
   DialogActions,
   TextField,
   Grid,
+  Box,
 } from '@mui/material';
-import { DataGridPremium, GridColDef } from '@mui/x-data-grid-premium';
+import {
+  DataGridPremium,
+  GridColDef,
+  GridPaginationModel,
+  useGridApiRef,
+} from '@mui/x-data-grid-premium';
 import React from 'react';
 import getAllPortfolio from '../../../../../../../../../../../api/PortfoliosToRequisites/getAllPortfolio';
 import CustomPagination from '../../../../../../../../../../../components/CustomPagination';
@@ -24,46 +30,67 @@ export default function SearchAndAddDialog({ open, onClose }: DialogProps) {
   const columns = PortfolioColumns();
   const [loading, setLoading] = React.useState<boolean>(false);
   const [rows, setRows] = React.useState<Portfolio[]>([]);
-  const [value, setValue] = React.useState<string>('');
-  const request = React.useCallback(() => {
-    getAllPortfolio().subscribe((result) => {
-      setRows(result);
+  const [nameValue, setNameValue] = React.useState<string>('');
+  const [paginationModel, setPaginationModel] =
+    React.useState<GridPaginationModel>({
+      page: 0,
+      pageSize: 25,
     });
-  }, []);
-  React.useEffect(() => {}, []);
+
+  const request = React.useCallback(() => {
+    setLoading(true);
+    getAllPortfolio({
+      name: nameValue,
+      paginationModel: paginationModel,
+    }).subscribe((result) => {
+      setRows(result);
+      setLoading(false);
+    });
+  }, [nameValue, paginationModel]);
+  const apiRef = useGridApiRef();
+  React.useEffect(() => {
+    request();
+  }, [request]);
   return (
     <>
-      <Dialog open={open} onClose={onClose}>
+      <Dialog open={open} onClose={onClose} fullWidth maxWidth="lg">
         <DialogTitle>
-          <TextField
-            value={value}
-            onChange={(event) => {
-              const text = event.target.value as string;
-              setValue(text);
-            }}
-          />
+          <Grid item container xs spacing={1}>
+            <Grid item xs={4}>
+              Поиск портфеля
+            </Grid>
+            <Grid item xs>
+              <TextField
+                fullWidth
+                value={nameValue}
+                onChange={(event) => {
+                  const text = event.target.value as string;
+                  setNameValue(text);
+                }}
+              />
+            </Grid>
+          </Grid>
         </DialogTitle>
         <DialogContent>
-          <Grid
-            item
-            xs
+          <Box
             sx={{
-              height: 400,
+              display: 'flex',
+              width: '100%',
+              flexDirection: 'column',
+              m: 'auto',
             }}
           >
-            <DataGridPremium
-              loading={loading}
-              columns={columns}
-              rows={rows}
-              autoHeight
-              checkboxSelection
-              disableRowSelectionOnClick
-              paginationMode="server"
-              slots={{
-                pagination: CustomPagination,
-              }}
-            />
-          </Grid>
+            <Grid sx={{ width: '100%', height: 400 }} item>
+              <DataGridPremium
+                apiRef={apiRef}
+                loading={loading}
+                columns={columns}
+                rows={rows}
+                checkboxSelection
+                disableRowSelectionOnClick
+              />
+            </Grid>
+          </Box>
         </DialogContent>
         <DialogActions></DialogActions>
       </Dialog>
@@ -72,8 +99,36 @@ export default function SearchAndAddDialog({ open, onClose }: DialogProps) {
 }
 
 function PortfolioColumns() {
-  const columns: GridColDef<Portfolio>[] = [];
+  const columns: GridColDef<Portfolio>[] = [
+    {
+      width: 100,
+      field: 'id',
+      headerName: 'ID',
+    },
+    {
+      field: 'name',
+      headerName: 'Имя портфеля',
+    },
+    {
+      field: 'sign_date',
+      type: 'date',
+    },
+    {
+      field: 'Bank',
+      type: 'string',
+      headerName: 'Банк',
+      valueGetter(params) {
+        const bank_id = `(${params.row.Bank?.id})` || '';
+        const bank_name = `${params.row.Bank?.name}` || '';
+        const bank_full_name = `${params.row.Bank?.full_name}` || '';
+        const bank_address = `${params.row.Bank?.bank_address}` || '';
+        return `${bank_id} ${bank_name} // ${bank_full_name} // ${bank_address}`;
+      },
+    },
+  ];
   return columns.map((items) => ({
+    headerAlign: 'center',
+    width: 200,
     ...items,
   }));
 }
