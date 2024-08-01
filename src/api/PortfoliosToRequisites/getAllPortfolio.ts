@@ -12,10 +12,15 @@ class searchProps {
   };
 }
 
+class responseType {
+  count: number;
+  rows: Portfolio[];
+}
+
 export default function getAllPortfolio(body: searchProps) {
   const url = of(`/BankRequisites/getAllPortfolio`);
   return forkJoin([requests, url, of(body)]).pipe(
-    post<Portfolio[]>(),
+    post<responseType>(),
     transformAxios(),
     transformError(),
     authRetry(),
