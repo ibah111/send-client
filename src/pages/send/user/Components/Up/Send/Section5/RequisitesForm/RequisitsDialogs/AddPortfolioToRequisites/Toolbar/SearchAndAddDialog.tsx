@@ -18,6 +18,7 @@ import {
 import React from 'react';
 import getAllPortfolio from '../../../../../../../../../../../api/PortfoliosToRequisites/getAllPortfolio';
 import CustomPagination from '../../../../../../../../../../../components/CustomPagination';
+import moment from 'moment';
 
 interface DialogProps {
   id: number;
@@ -31,6 +32,7 @@ export default function SearchAndAddDialog({ open, onClose }: DialogProps) {
   const [loading, setLoading] = React.useState<boolean>(false);
   const [rows, setRows] = React.useState<Portfolio[]>([]);
   const [nameValue, setNameValue] = React.useState<string>('');
+  const [rowCount, setRowCount] = React.useState<number>(0);
   const [paginationModel, setPaginationModel] =
     React.useState<GridPaginationModel>({
       page: 0,
@@ -42,8 +44,9 @@ export default function SearchAndAddDialog({ open, onClose }: DialogProps) {
     getAllPortfolio({
       name: nameValue,
       paginationModel: paginationModel,
-    }).subscribe((result) => {
-      setRows(result);
+    }).subscribe(({ count, rows }) => {
+      setRowCount(count);
+      setRows(rows);
       setLoading(false);
     });
   }, [nameValue, paginationModel]);
@@ -81,13 +84,26 @@ export default function SearchAndAddDialog({ open, onClose }: DialogProps) {
             }}
           >
             <Grid sx={{ width: '100%', height: 400 }} item>
+              {/*
+               *
+               */}
               <DataGridPremium
+                rowCount={rowCount}
                 apiRef={apiRef}
                 loading={loading}
                 columns={columns}
                 rows={rows}
                 checkboxSelection
                 disableRowSelectionOnClick
+                onPaginationModelChange={({ page, pageSize }) =>
+                  setPaginationModel({
+                    page,
+                    pageSize,
+                  })
+                }
+                slots={{
+                  pagination: CustomPagination,
+                }}
               />
             </Grid>
           </Box>
@@ -110,8 +126,12 @@ function PortfolioColumns() {
       headerName: 'Имя портфеля',
     },
     {
+      headerName: 'Дата подписания',
       field: 'sign_date',
       type: 'date',
+      valueGetter(params) {
+        return moment(params.row.sign_date).toDate();
+      },
     },
     {
       field: 'Bank',
@@ -127,7 +147,6 @@ function PortfolioColumns() {
     },
   ];
   return columns.map((items) => ({
-    headerAlign: 'center',
     width: 200,
     ...items,
   }));
