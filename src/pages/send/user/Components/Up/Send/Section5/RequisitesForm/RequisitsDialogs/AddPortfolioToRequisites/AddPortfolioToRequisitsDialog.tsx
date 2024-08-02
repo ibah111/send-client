@@ -21,7 +21,9 @@ export default function PortfoliosToRequisits({
   const [rows, setRows] = React.useState<Portfolio[]>([]);
   const [openPortfolio, setOpenPortfolio] = React.useState<boolean>(false);
 
-  const columns = PortfolioToRequisitesColumns();
+  const columns = PortfolioToRequisitesColumns({
+    id,
+  });
   React.useEffect(() => {
     if (id > 0) {
       getAllLinksByRequisites(id).subscribe((result) => setRows(result));
@@ -37,6 +39,7 @@ export default function PortfoliosToRequisits({
   };
   const handleClosePortfolio = () => {
     setOpenPortfolio(false);
+    getAllLinksByRequisites(id).subscribe((result) => setRows(result));
   };
   return (
     <>

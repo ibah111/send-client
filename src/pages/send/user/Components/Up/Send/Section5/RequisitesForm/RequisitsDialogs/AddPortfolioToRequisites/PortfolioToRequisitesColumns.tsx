@@ -1,7 +1,17 @@
 import { Portfolio } from '@contact/models';
+import { IconButton, Tooltip } from '@mui/material';
 import { GridColDef } from '@mui/x-data-grid-premium';
+import DeleteIcon from '@mui/icons-material/Delete';
+import DeletePortfolioToRequisitesLink from '../../../../../../../../../../api/PortfoliosToRequisites/DeletePortfolioToRequisitesLink';
+import moment from 'moment';
 
-export default function PortfolioToRequisitesColumns() {
+interface PortfolioToRequisitesColumnsProps {
+  id: number;
+}
+
+export default function PortfolioToRequisitesColumns({
+  id: r_requisites_id,
+}: PortfolioToRequisitesColumnsProps) {
   const columns: GridColDef<Portfolio>[] = [
     {
       headerName: 'ID',
@@ -14,6 +24,10 @@ export default function PortfolioToRequisitesColumns() {
     {
       headerName: 'Дата подписания',
       field: 'sign_date',
+      type: 'date',
+      valueGetter(params) {
+        return moment(params.row.sign_date).toDate();
+      },
     },
     {
       headerName: 'ID банка',
@@ -39,6 +53,27 @@ export default function PortfolioToRequisitesColumns() {
       valueGetter(params) {
         return params.row.Bank?.full_name;
       },
+    },
+    {
+      headerName: 'Действия',
+      field: 'actions',
+      type: 'actions',
+      getActions: (params) => [
+        <Tooltip title={'Удалить связь'}>
+          <IconButton
+            color="error"
+            onClick={() => {
+              const r_portfolio_id = params.row.id;
+              DeletePortfolioToRequisitesLink({
+                r_portfolio_id,
+                r_requisites_id,
+              });
+            }}
+          >
+            <DeleteIcon />
+          </IconButton>
+        </Tooltip>,
+      ],
     },
   ];
   return columns;

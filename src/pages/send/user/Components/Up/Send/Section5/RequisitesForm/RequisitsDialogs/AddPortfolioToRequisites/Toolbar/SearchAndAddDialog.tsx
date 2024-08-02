@@ -1,5 +1,4 @@
 import { Portfolio } from '@contact/models';
-import { loadingButtonClasses } from '@mui/lab';
 import {
   Dialog,
   DialogTitle,
@@ -13,12 +12,16 @@ import {
   DataGridPremium,
   GridColDef,
   GridPaginationModel,
+  GridRowId,
   useGridApiRef,
 } from '@mui/x-data-grid-premium';
 import React from 'react';
 import getAllPortfolio from '../../../../../../../../../../../api/PortfoliosToRequisites/getAllPortfolio';
 import CustomPagination from '../../../../../../../../../../../components/CustomPagination';
 import moment from 'moment';
+import createPortfolioToRequisites from '../../../../../../../../../../../api/PortfoliosToRequisites/createPortfolioToRequisites';
+import { enqueueSnackbar } from 'notistack';
+import { LoadingButton } from '@mui/lab';
 
 interface DialogProps {
   id: number;
@@ -26,13 +29,15 @@ interface DialogProps {
   onClose: VoidFunction;
 }
 
-export default function SearchAndAddDialog({ open, onClose }: DialogProps) {
-  let portfolioArray: Portfolio[] = [];
+export default function SearchAndAddDialog({ open, onClose, id }: DialogProps) {
   const columns = PortfolioColumns();
   const [loading, setLoading] = React.useState<boolean>(false);
   const [rows, setRows] = React.useState<Portfolio[]>([]);
   const [nameValue, setNameValue] = React.useState<string>('');
   const [rowCount, setRowCount] = React.useState<number>(0);
+  const [rowSelectionModel, setRowSelectionModel] = React.useState<GridRowId[]>(
+    [],
+  );
   const [paginationModel, setPaginationModel] =
     React.useState<GridPaginationModel>({
       page: 0,
@@ -51,6 +56,7 @@ export default function SearchAndAddDialog({ open, onClose }: DialogProps) {
     });
   }, [nameValue, paginationModel]);
   const apiRef = useGridApiRef();
+  const [loadingButton, setLoadingButton] = React.useState<boolean>(false);
   React.useEffect(() => {
     request();
   }, [request]);
@@ -60,7 +66,7 @@ export default function SearchAndAddDialog({ open, onClose }: DialogProps) {
         <DialogTitle>
           <Grid item container xs spacing={1}>
             <Grid item xs={4}>
-              Поиск портфеля
+              ID реквизитов: {id}
             </Grid>
             <Grid item xs>
               <TextField
@@ -101,14 +107,44 @@ export default function SearchAndAddDialog({ open, onClose }: DialogProps) {
                     pageSize,
                   })
                 }
+                paginationMode="server"
+                pagination
+                paginationModel={paginationModel}
                 slots={{
                   pagination: CustomPagination,
                 }}
+                rowSelectionModel={rowSelectionModel}
+                onRowSelectionModelChange={(event) =>
+                  setRowSelectionModel(event)
+                }
               />
             </Grid>
           </Box>
         </DialogContent>
-        <DialogActions></DialogActions>
+        <DialogActions>
+          <LoadingButton
+            loading={loadingButton}
+            color="info"
+            variant="contained"
+            onClick={() => {
+              setLoadingButton(true);
+              createPortfolioToRequisites({
+                r_portfolio_ids: rowSelectionModel as number[],
+                r_requisites_id: id,
+              }).subscribe({
+                complete: () => {
+                  setLoadingButton(false);
+                  enqueueSnackbar('Портфели успешно привязаны к реквизитам', {
+                    variant: 'success',
+                  });
+                },
+                error: () => setLoadingButton(false),
+              });
+            }}
+          >
+            Добавить портфели к реквизитам
+          </LoadingButton>
+        </DialogActions>
       </Dialog>
     </>
   );
