@@ -4,8 +4,8 @@ import { post, transformAxios } from '@tools/rxjs-pipes';
 import { transformError } from '../../utils/processError';
 
 interface createLinkProps {
-  requisites_id: number;
-  portfolio_id: number;
+  r_requisites_id: number;
+  r_portfolio_ids: number[];
 }
 
 export default function createPortfolioToRequisites(body: createLinkProps) {
