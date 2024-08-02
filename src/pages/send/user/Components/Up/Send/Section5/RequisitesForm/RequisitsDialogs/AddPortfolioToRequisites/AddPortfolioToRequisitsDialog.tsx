@@ -20,15 +20,20 @@ export default function PortfoliosToRequisits({
 }: DialogProps) {
   const [rows, setRows] = React.useState<Portfolio[]>([]);
   const [openPortfolio, setOpenPortfolio] = React.useState<boolean>(false);
+  const callback = React.useCallback(() => {
+    getAllLinksByRequisites(id).subscribe((result) => setRows(result));
+  }, [id]);
 
   const columns = PortfolioToRequisitesColumns({
     id,
+    refresh: callback,
   });
+
   React.useEffect(() => {
     if (id > 0) {
-      getAllLinksByRequisites(id).subscribe((result) => setRows(result));
+      callback();
     }
-  }, [id]);
+  }, [callback, id]);
   /**
    @todo
    * 

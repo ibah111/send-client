@@ -7,10 +7,12 @@ import moment from 'moment';
 
 interface PortfolioToRequisitesColumnsProps {
   id: number;
+  refresh: VoidFunction;
 }
 
 export default function PortfolioToRequisitesColumns({
   id: r_requisites_id,
+  refresh,
 }: PortfolioToRequisitesColumnsProps) {
   const columns: GridColDef<Portfolio>[] = [
     {
@@ -67,7 +69,7 @@ export default function PortfolioToRequisitesColumns({
               DeletePortfolioToRequisitesLink({
                 r_portfolio_id,
                 r_requisites_id,
-              });
+              }).then(() => refresh());
             }}
           >
             <DeleteIcon />
