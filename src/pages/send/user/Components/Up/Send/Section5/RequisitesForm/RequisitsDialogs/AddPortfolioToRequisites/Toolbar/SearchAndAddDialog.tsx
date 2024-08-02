@@ -133,12 +133,16 @@ export default function SearchAndAddDialog({ open, onClose, id }: DialogProps) {
                 r_requisites_id: id,
               }).subscribe({
                 complete: () => {
+                  request();
                   setLoadingButton(false);
                   enqueueSnackbar('Портфели успешно привязаны к реквизитам', {
                     variant: 'success',
                   });
                 },
-                error: () => setLoadingButton(false),
+                error: () => {
+                  setLoading(false);
+                  request();
+                },
               });
             }}
           >
