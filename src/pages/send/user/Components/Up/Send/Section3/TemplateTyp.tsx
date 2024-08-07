@@ -6,6 +6,10 @@ const types = [
   { id: 17, name: 'ст.46 п.4' },
   { id: 30, name: 'ст.46 п.4 раньше срока' },
   { id: 34, name: 'ст.46 п.3 раньше срока' },
+  {
+    id: 41,
+    name: 'Электронный тип',
+  },
 ];
 export default function TemplateTyp() {
   const { t } = useTranslation();
