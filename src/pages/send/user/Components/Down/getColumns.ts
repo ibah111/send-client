@@ -39,6 +39,31 @@ export default function getColumns(): GridColDef[] {
           ? params.row['Person.Addresses']?.[0]?.full_adr
           : `АДРЕС НЕ ЗАПОЛЕН. НАДО НАЙТИ ДОЛГ ПО ID = ${params.row['Debt.id']}`,
     },
+    {
+      width: 150,
+      field: 'LawAct.exec_number',
+      headerName: 'Номер документа (приказа/иска) (номер СП)',
+    },
+    {
+      width: 150,
+      field: 'LawAct.court_sum',
+      headerName: 'Сумма по решению суда',
+      valueGetter(params) {
+        const value = params.row['LawAct.court_sum'];
+        if (value) return value;
+        else return 'Не определена';
+      },
+    },
+    {
+      width: 150,
+      field: 'Debt.debt_payments_sum',
+      headerName: 'Общая сумма платежей',
+      valueGetter(params) {
+        const value = params.row['Debt.debt_payments_sum'];
+        if (value) return value;
+        else return 'Платежей нет';
+      },
+    },
     { field: 'Debt.debt_sum', headerName: t('form.results.debt.debt_sum') },
     { field: 'Portfolio.name', headerName: t('form.results.portfolio.name') },
     {

@@ -24,6 +24,9 @@ export interface DataTypes {
   person_property: number | string | null;
   add_interests: boolean;
   custom_requisites_id: number;
+  court_sum: null | number;
+  exec_number: null | string;
+  debt_payments_sum: null | number;
 }
 type ValueOf<T> = T[keyof T];
 export type TypesData = ValueOf<DataTypes>;
@@ -49,6 +52,9 @@ export const initState: DataTypes = {
   appeal_typ: null,
   add_interests: false,
   custom_requisites_id: 0,
+  court_sum: null,
+  exec_number: '',
+  debt_payments_sum: null,
 };
 export const send = createSlice({
   name: 'send',
@@ -77,6 +83,14 @@ export const send = createSlice({
       state.person_property = data.deposit_typ
         ? data.Debt?.PersonProperties?.[0]?.id || null
         : null;
+      state.exec_number = data.LawAct ? data.LawAct.exec_number : '';
+      state.court_sum = data.LawAct!.court_sum ? data.LawAct!.court_sum : null;
+      state.debt_payments_sum =
+        data.Debt!.DebtCalcs!.length > 0
+          ? data
+              .Debt!.DebtCalcs!.map((item) => item.sum)
+              .reduce((prev, curr) => prev + curr)
+          : 0;
     },
     setData<K extends DataNames>(
       state: Draft<DataTypes>,
