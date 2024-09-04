@@ -101,18 +101,6 @@ export default function RequisitsColumns({
         </>,
       ],
     },
-    {
-      field: 'kbe',
-      headerName: 'Unknown (kbe)',
-    },
-    {
-      field: 'knp',
-      headerName: 'Unknown (knp)',
-    },
-    {
-      field: 'kod',
-      headerName: 'Unkown (kod)',
-    },
   ];
   return columns.map((items) => ({
     ...items,
