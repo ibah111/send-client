@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { ErrorTypes } from '../../../../../../Reducer/Error';
 import resetData from '../../../../../../utils/resetData';
 import { callError } from '../../../../../../Reducer/Message';
+import getData from '../../../../../../utils/getData';
 function toArrayBuffer(buf: number[]) {
   const ab = new ArrayBuffer(buf.length);
   const view = new Uint8Array(ab);
@@ -48,9 +49,36 @@ export default function Submit() {
     },
     [enqueueSnackbar],
   );
+  const dsc = getData('dsc');
   const Click = React.useCallback(() => {
     if (check(Error, AddAlert)) {
       setLoading(true);
+
+      if (dsc.value) {
+        const value = dsc.value;
+        if (value.length > 2000) {
+          const arr = value.split('\n');
+          let numbers = [];
+          let sum_length: number = 0;
+          const over_length = dsc.value.length;
+          const total_minus_length = over_length + 100 - 2000;
+          for (let i = 0; sum_length <= total_minus_length; i++) {
+            const item = arr[i];
+            sum_length += item.length;
+            console.log(item.length);
+            console.log('sum_length', sum_length);
+            console.log(
+              sum_length <= total_minus_length
+                ? `Ещё не превышено ${sum_length} > ${total_minus_length}`
+                : `Превышено ${sum_length} > ${total_minus_length}`,
+            );
+            numbers.push(i);
+          }
+          const slicing_value = value.slice(sum_length);
+          console.log(slicing_value, slicing_value.length);
+          dsc.setValue(slicing_value);
+        }
+      }
       updateExec().subscribe({
         next: (res) => {
           if (res) {
@@ -73,7 +101,7 @@ export default function Submit() {
         error: () => setLoading(false),
       });
     }
-  }, [AddAlert, Error, dispatch]);
+  }, [AddAlert, Error, dispatch, dsc]);
   return (
     <>
       <Grid item>
