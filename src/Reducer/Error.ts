@@ -20,6 +20,9 @@ export type ErrorTypes = {
   appeal_typ: null | string;
   add_interests: null | string;
   custom_requisites_id: null | string;
+  exec_number: null | string;
+  court_sum: null | string;
+  debt_payments_sum: null | string;
 };
 type ValueOf<T> = T[keyof T];
 export type TypesError = ValueOf<ErrorTypes>;
@@ -45,6 +48,9 @@ export const initState: ErrorTypes = {
   appeal_typ: null,
   add_interests: null,
   custom_requisites_id: null,
+  exec_number: null,
+  court_sum: null,
+  debt_payments_sum: null,
 };
 export const error = createSlice({
   name: 'error',
