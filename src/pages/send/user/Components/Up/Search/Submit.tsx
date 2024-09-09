@@ -53,7 +53,6 @@ export default function Submit() {
   const Click = React.useCallback(() => {
     if (check(Error, AddAlert)) {
       setLoading(true);
-
       if (dsc.value) {
         const value = dsc.value;
         if (value.length > 2000) {
@@ -65,17 +64,9 @@ export default function Submit() {
           for (let i = 0; sum_length <= total_minus_length; i++) {
             const item = arr[i];
             sum_length += item.length;
-            console.log(item.length);
-            console.log('sum_length', sum_length);
-            console.log(
-              sum_length <= total_minus_length
-                ? `Ещё не превышено ${sum_length} > ${total_minus_length}`
-                : `Превышено ${sum_length} > ${total_minus_length}`,
-            );
             numbers.push(i);
           }
           const slicing_value = value.slice(sum_length);
-          console.log(slicing_value, slicing_value.length);
           dsc.setValue(slicing_value);
         }
       }
