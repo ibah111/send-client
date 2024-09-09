@@ -17,6 +17,7 @@ import Version from '../Version';
 import DarkButton from '../DarkButton';
 import Account from '../Account';
 import { createTheme } from './theme';
+import DownloadButton from '../Account/DownloadButton';
 interface AccountMenuProps {
   stop: boolean;
   always: boolean;
@@ -81,6 +82,9 @@ export default function AccountMenu({ stop, always }: AccountMenuProps) {
                 justifyContent="flex-end"
                 alignItems="center"
               >
+                <Grid item>
+                  <DownloadButton />
+                </Grid>
                 <Grid item>
                   <DarkButton />
                 </Grid>
