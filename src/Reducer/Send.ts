@@ -27,6 +27,8 @@ export interface DataTypes {
   court_sum: null | number;
   exec_number: null | string;
   debt_payments_sum: null | number;
+  list_egrul: null | boolean;
+  rename_notification: null | boolean;
 }
 type ValueOf<T> = T[keyof T];
 export type TypesData = ValueOf<DataTypes>;
@@ -55,6 +57,8 @@ export const initState: DataTypes = {
   court_sum: null,
   exec_number: '',
   debt_payments_sum: null,
+  list_egrul: false,
+  rename_notification: false,
 };
 export const send = createSlice({
   name: 'send',
@@ -102,7 +106,10 @@ export const send = createSlice({
       state.id = action.payload;
     },
     reset: (state) => {
-      return { id: state.id, ...initState };
+      return {
+        id: state.id,
+        ...initState,
+      };
     },
   },
 });
