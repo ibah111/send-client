@@ -40,7 +40,7 @@ test_job:
     - yarn config set npmScopes.motivation.npmRegistryServer "https://${CI_SERVER_HOST}/api/v4/packages/npm/"
     - yarn config set npmScopes.tools.npmRegistryServer "https://${CI_SERVER_HOST}/api/v4/packages/npm/"
     - yarn config set npmScopes.sql-tools.npmRegistryServer "https://${CI_SERVER_HOST}/api/v4/packages/npm/"
-script:
+  script:
     - yarn
     - yarn build
     - echo "Test job completed"
