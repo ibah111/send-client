@@ -19,7 +19,7 @@ import DebtCalc from './DebtCalc';
 import Documents from './Documents';
 import Reset from './Reset';
 import { setLawExec } from '../../../../../../Reducer/LawExec';
-import OSPCalcs from './OSPCalcs';
+import Links from './Links';
 
 export default function Search() {
   const dispatch = useAppDispatch();
@@ -79,8 +79,8 @@ export default function Search() {
           law_act_id={Number(law_act_id)}
           law_exec_id={Number(law_exec_id)}
         />
-        <OSPCalcs />
         <Reset />
+        <Links />
       </Grid>
     </>
   );

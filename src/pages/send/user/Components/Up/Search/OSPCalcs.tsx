@@ -1,14 +1,13 @@
-import { Button, Grid } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Grid } from '@mui/material';
+import { LinkMenuItem } from './Links';
 
 export default function OSPCalcs() {
-  const link_url = 'https://chat.nbkfinance.ru/apps/forming/osp';
+  const url = 'https://chat.nbkfinance.ru/apps/forming/osp';
+  const menuItemName = 'Расчёт %';
   return (
     <>
       <Grid item>
-        <Button variant="text" component={Link} to={link_url} target="_blank">
-          Расчёт %
-        </Button>
+        <LinkMenuItem menuItemName={menuItemName} url={url} />
       </Grid>
     </>
   );
