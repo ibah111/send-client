@@ -1,6 +1,7 @@
 stages:
   - test
   - build
+  - release
 variables:
   ADDITIONAL_CA_CERT_BUNDLE: |
     -----BEGIN CERTIFICATE-----
@@ -69,5 +70,7 @@ build_job:
     - echo $HOST_NAME
     - sshpass -e scp -o stricthostkeychecking=no -r build/* $HOST_USER@$HOST_NAME:$PATH_UPLOAD
     - echo "build job completed"
-  only:
+release_job:
+  stage: release
+  only: 
     - tags
