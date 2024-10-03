@@ -12,7 +12,7 @@ const connect = (socket: Socket, callback: (value: boolean) => void) => {
     callback(true);
   });
   socket.on('new_version', () => {
-    document.location.reload();
+    // document.location.reload();
   });
   socket.on('disconnect', () => {
     callback(false);
