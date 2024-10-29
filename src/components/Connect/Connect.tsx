@@ -11,7 +11,8 @@ const connect = (socket: Socket, callback: (value: boolean) => void) => {
     socket.emit('version', getVersion());
     callback(true);
   });
-  socket.on('new_version', () => {
+  socket.on('new_version', (args) => {
+    console.log(args);
     // document.location.reload();
   });
   socket.on('disconnect', () => {
