@@ -4,6 +4,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import getCourt from '../../../../../../../api/getCourt';
 import getData from '../../../../../../../utils/getData';
+import { enqueueSnackbar } from 'notistack';
 
 export default function RCourtId() {
   const { t } = useTranslation();
@@ -49,7 +50,14 @@ export default function RCourtId() {
           inputValue={name}
           onChange={(_, value) => {
             if (value) {
-              data.setValue(value.id);
+              if (value.name === 'Сбербанк') {
+                enqueueSnackbar('Логика сбербанка', {
+                  variant: 'success',
+                });
+                data.setValue(value.id);
+              } else {
+                data.setValue(value.id);
+              }
             } else {
               data.setValue('');
             }

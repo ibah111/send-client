@@ -12,7 +12,6 @@ const connect = (socket: Socket, callback: (value: boolean) => void) => {
     callback(true);
   });
   socket.on('new_version', (args) => {
-    console.log(args);
     // document.location.reload();
   });
   socket.on('disconnect', () => {
