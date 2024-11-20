@@ -11,8 +11,10 @@
     "lint": "eslint \"src/**/*.{ts,tsx}\" --fix",
     "prepare": "patch-package && husky install",
     "postinstall": "patch-package && husky install",
-    "release": "release-it",
-    "commitlint": "commitlint --edit"
+    "commitlint": "commitlint --edit",
+    "release:patch": "dotenv release-it patch --",
+    "release:minor": "dotenv release-it minor --",
+    "release:major": "dotenv release-it major --"
   },
   "browserslist": {
     "production": [
