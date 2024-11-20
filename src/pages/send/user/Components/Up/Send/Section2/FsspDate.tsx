@@ -6,7 +6,7 @@ import getData from '../../../../../../../utils/getData';
 
 export default function FsspDate() {
   const { t } = useTranslation();
-  const data = getData('fssp_date', 'date');
+  const data = getData('fssp_date', 'date', true);
   return (
     <>
       <Grid item>

@@ -29,7 +29,7 @@ export default function DownloadButton() {
     setAnchorEl(null);
   }, []);
   React.useEffect(() => {
-    getScannerDocTags().then((result) => {
+    getScannerDocTags().then((result: any) => {
       const values = result.data.map((items: any) => items.name);
       setTags(values);
     });
