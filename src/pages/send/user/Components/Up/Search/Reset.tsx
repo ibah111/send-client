@@ -7,7 +7,9 @@ export default function Reset() {
   return (
     <>
       <Grid item>
-        <Button onClick={resetData}>{t('form.search.reset')}</Button>
+        <Button variant="contained" color="error" onClick={resetData}>
+          {t('form.search.reset')}
+        </Button>
       </Grid>
     </>
   );
