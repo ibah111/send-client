@@ -72,8 +72,8 @@ export default function Search() {
         <Name onEnter={Click} />
         <Contract onEnter={Click} />
         <Find onClick={Click} loading={loading} />
-        <AdditionalMenu disabled={Boolean(law_exec_id)} />
         <CreateExec />
+        <AdditionalMenu disabled={Boolean(law_exec_id)} />
         <Submit />
         <Comments />
         <DebtCalc id={Number(law_exec_id)} />

@@ -3,6 +3,7 @@ import { NumericFormat } from 'react-number-format';
 import React from 'react';
 import getData from '../../../../../../../utils/getData';
 import { useTranslation } from 'react-i18next';
+import { getPrecision } from '../../../../../../../utils/getPrecision';
 interface NumberCustomProps {
   onChange: (args: { target: { name: string; value: string } }) => void;
   name: string;
@@ -56,7 +57,7 @@ export default function TotalSum() {
   const debt_payments_sum_value = debt_payments_sum_data.value || 0;
   React.useEffect(() => {
     if (court_sum_value) {
-      const newValue = court_sum_value - debt_payments_sum_value;
+      const newValue = getPrecision(court_sum_value - debt_payments_sum_value);
       total_sum_data.setValue(newValue);
     }
   });

@@ -76,13 +76,17 @@ export const send = createSlice({
               .reduce((prev, curr) => prev + curr)
           : 0;
       const debt_payments_sum = getPrecision(cond);
+      const court_sum = data.LawAct!.court_sum
+        ? getPrecision(data.LawAct!.court_sum)
+        : null;
+      const total_sum = getPrecision(data.total_sum);
       state.r_person_id = data.r_person_id;
       state.debt_guarantor = data.LawExecPersonLink?.PERSON_ID || -1;
       state.fio = getName([data!.Person!.f, data!.Person!.i, data!.Person!.o]);
       state.port = data.Portfolio!.name;
       state.contract = data.Debt!.contract;
       state.load_dt = datetimeNow();
-      state.total_sum = data.total_sum;
+      state.total_sum = total_sum;
       state.court_doc_num = data.court_doc_num;
       state.executive_typ = data.executive_typ;
       state.court_date = data.court_date;
@@ -99,7 +103,7 @@ export const send = createSlice({
         ? data.Debt?.PersonProperties?.[0]?.id || null
         : null;
       state.exec_number = data.LawAct ? data.LawAct.exec_number : '';
-      state.court_sum = data.LawAct!.court_sum ? data.LawAct!.court_sum : null;
+      state.court_sum = court_sum;
       state.debt_payments_sum = debt_payments_sum;
     },
     setData<K extends DataNames>(
