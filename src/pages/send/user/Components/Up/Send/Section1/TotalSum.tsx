@@ -28,7 +28,7 @@ export const NumberFormatCustom = React.forwardRef<
       decimalSeparator=","
       decimalScale={2}
       isAllowed={({ floatValue }) => {
-        if (floatValue && 0 <= floatValue && floatValue <= 10000000) {
+        if (floatValue && 0 <= floatValue && floatValue <= 1000000000) {
           return true;
         } else {
           if (floatValue === undefined) {
