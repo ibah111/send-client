@@ -97,6 +97,7 @@ export default function Submit() {
     <>
       <Grid item>
         <LoadingButton
+          variant="outlined"
           disabled={Boolean(!Send.id)}
           loading={loading}
           onClick={Click}

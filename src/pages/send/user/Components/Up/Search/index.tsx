@@ -20,6 +20,7 @@ import Documents from './Documents';
 import Reset from './Reset';
 import { setLawExec } from '../../../../../../Reducer/LawExec';
 import Links from './Links';
+import AdditionalMenu from './Menu/Menu';
 
 export default function Search() {
   const dispatch = useAppDispatch();
@@ -71,6 +72,7 @@ export default function Search() {
         <Name onEnter={Click} />
         <Contract onEnter={Click} />
         <Find onClick={Click} loading={loading} />
+        <AdditionalMenu disabled={Boolean(law_exec_id)} />
         <CreateExec />
         <Submit />
         <Comments />
