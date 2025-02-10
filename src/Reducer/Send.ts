@@ -4,6 +4,7 @@ import { LawExec } from '@contact/models';
 import { DateTime } from 'luxon';
 import datetimeNow from '../utils/datetimeNow';
 export interface DataTypes {
+  r_person_id: null | number;
   debt_guarantor: null | string | number;
   fio: null | string;
   port: null | string;
@@ -34,6 +35,7 @@ type ValueOf<T> = T[keyof T];
 export type TypesData = ValueOf<DataTypes>;
 export type DataNames = keyof DataTypes;
 export const initState: DataTypes = {
+  r_person_id: null,
   debt_guarantor: null,
   fio: null,
   contract: null,
@@ -66,6 +68,7 @@ export const send = createSlice({
   reducers: {
     setSend: (state, action: PayloadAction<LawExec>) => {
       const data = action.payload;
+      state.r_person_id = data.r_person_id;
       state.debt_guarantor = data.LawExecPersonLink?.PERSON_ID || -1;
       state.fio = getName([data!.Person!.f, data!.Person!.i, data!.Person!.o]);
       state.port = data.Portfolio!.name;
@@ -108,6 +111,7 @@ export const send = createSlice({
     reset: (state) => {
       return {
         id: state.id,
+        r_person_id: initState.r_person_id,
         debt_guarantor: initState.debt_guarantor,
         fio: initState.fio,
         contract: initState.contract,
