@@ -1,5 +1,18 @@
 
 
+## [0.3.3](https://git.usb.ru/send/client/compare/v0.3.2...v0.3.3) (2025-02-10)
+
+
+### Features
+
+* change variant and add menu to index ([c4b6ed3](https://git.usb.ru/send/client/commit/c4b6ed378857a9a2cb4192b3975548b8da2c3b7d))
+* changed button name ([7c81eaa](https://git.usb.ru/send/client/commit/7c81eaa87f8a1fe98e0f9d5834d84a134359a2c2))
+* menu ([ed10563](https://git.usb.ru/send/client/commit/ed10563c5429dfa6c7c156159b5dc53d4480a5fa))
+* new api ([8c7b66b](https://git.usb.ru/send/client/commit/8c7b66bd3ef4559be165c4ed24fc68eb9fbff0fe))
+* r_person_id added to states ([14c85df](https://git.usb.ru/send/client/commit/14c85df751e14ef759cae88db9f2eb87e0fb7d78))
+* uncomment page reload and add zeroes to total sum ([343a693](https://git.usb.ru/send/client/commit/343a693ebb2cefbc3d19841de24e796791dd659b))
+* **yarn:** cache ([16585bd](https://git.usb.ru/send/client/commit/16585bd3c8c1d8f680e317e78eafc1af9f3efb63))
+
 ## [0.3.2](https://git.usb.ru/send/client/compare/v0.3.1...v0.3.2) (2024-11-20)
 
 
