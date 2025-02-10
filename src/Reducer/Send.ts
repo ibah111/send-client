@@ -3,6 +3,7 @@ import getName from '../utils/getName';
 import { LawExec } from '@contact/models';
 import { DateTime } from 'luxon';
 import datetimeNow from '../utils/datetimeNow';
+import { getPrecision } from '../utils/getPrecision';
 export interface DataTypes {
   r_person_id: null | number;
   debt_guarantor: null | string | number;
@@ -68,6 +69,13 @@ export const send = createSlice({
   reducers: {
     setSend: (state, action: PayloadAction<LawExec>) => {
       const data = action.payload;
+      const cond =
+        data.Debt!.DebtCalcs!.length > 0
+          ? data
+              .Debt!.DebtCalcs!.map((item) => item.sum)
+              .reduce((prev, curr) => prev + curr)
+          : 0;
+      const debt_payments_sum = getPrecision(cond);
       state.r_person_id = data.r_person_id;
       state.debt_guarantor = data.LawExecPersonLink?.PERSON_ID || -1;
       state.fio = getName([data!.Person!.f, data!.Person!.i, data!.Person!.o]);
@@ -92,12 +100,7 @@ export const send = createSlice({
         : null;
       state.exec_number = data.LawAct ? data.LawAct.exec_number : '';
       state.court_sum = data.LawAct!.court_sum ? data.LawAct!.court_sum : null;
-      state.debt_payments_sum =
-        data.Debt!.DebtCalcs!.length > 0
-          ? data
-              .Debt!.DebtCalcs!.map((item) => item.sum)
-              .reduce((prev, curr) => prev + curr)
-          : 0;
+      state.debt_payments_sum = debt_payments_sum;
     },
     setData<K extends DataNames>(
       state: Draft<DataTypes>,
