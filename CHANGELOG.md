@@ -1,5 +1,14 @@
 
 
+## [0.3.4](https://git.usb.ru/send/client/compare/v0.3.3...v0.3.4) (2025-02-12)
+
+
+### Features
+
+* add precisions ([ed1fe23](https://git.usb.ru/send/client/commit/ed1fe2340cd4ac0322676072cc509eff8914826b))
+* change response ([3652bed](https://git.usb.ru/send/client/commit/3652bed6c34e9b5d2de2b6f84a7bc5d43557a641))
+* fixing debt payments sum ([226e78d](https://git.usb.ru/send/client/commit/226e78d910735e822ea9d87c5b6a390c8906b3e5))
+
 ## [0.3.3](https://git.usb.ru/send/client/compare/v0.3.2...v0.3.3) (2025-02-10)
 
 
