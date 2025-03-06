@@ -6,7 +6,8 @@ import LinkType from './LinkType';
 
 export default function getLinks() {
   const url = of('/Links/getLinks');
-  return forkJoin([requests, url, of()]).pipe(
+  return forkJoin([requests, url]).pipe(
+    //@ts-ignore
     post<LinkType[]>(),
     transformAxios(),
     transformError(),
