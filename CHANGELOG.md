@@ -1,5 +1,19 @@
 
 
+## [0.3.5](https://git.usb.ru/send/client/compare/v0.3.4...v0.3.5) (2025-03-06)
+
+
+### Features
+
+* dockerfile ([a0a9228](https://git.usb.ru/send/client/commit/a0a9228c2832e0d6768558722bd61efa4c771de7))
+* fix names ([9c732c6](https://git.usb.ru/send/client/commit/9c732c6d34b1ff1d3474d0d41bbbeef8abc6b32e))
+* link interface ([1f3c784](https://git.usb.ru/send/client/commit/1f3c78489bc0d7c8650e808470cb1e7327cb9895))
+* links component ([241ae5e](https://git.usb.ru/send/client/commit/241ae5e267622d63ed846ee6716ec232b67d274b))
+* new api's ([b3df6f1](https://git.usb.ru/send/client/commit/b3df6f1803a48393d2eb5492b9f210e5e3cb9765))
+* red css ([30780f3](https://git.usb.ru/send/client/commit/30780f375199b8497fe69edf8acc7eb0e5133b5f))
+* removed async ([5883206](https://git.usb.ru/send/client/commit/5883206581dba236bc8300a558e876227de431a2))
+* type bulling ignored ([217023a](https://git.usb.ru/send/client/commit/217023a2d9441c8b6d5388834282b567a1a8dfe7))
+
 ## [0.3.4](https://git.usb.ru/send/client/compare/v0.3.3...v0.3.4) (2025-02-12)
 
 
