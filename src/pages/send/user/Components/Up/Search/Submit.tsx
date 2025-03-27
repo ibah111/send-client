@@ -11,6 +11,7 @@ import { ErrorTypes } from '../../../../../../Reducer/Error';
 import resetData from '../../../../../../utils/resetData';
 import { callError } from '../../../../../../Reducer/Message';
 import getData from '../../../../../../utils/getData';
+
 function toArrayBuffer(buf: number[]) {
   const ab = new ArrayBuffer(buf.length);
   const view = new Uint8Array(ab);
@@ -19,6 +20,7 @@ function toArrayBuffer(buf: number[]) {
   }
   return ab;
 }
+
 const check = (
   Error: ErrorTypes,
   error: (value: string, type: VariantType) => void,
@@ -36,6 +38,7 @@ const check = (
     return false;
   }
 };
+
 export default function Submit() {
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
@@ -73,10 +76,19 @@ export default function Submit() {
       updateExec().subscribe({
         next: (res) => {
           if (res) {
-            const file = new Blob([toArrayBuffer(res.file.data)], {
-              type: 'application/pdf',
-            });
-            saveAs(file, res.name);
+            if (res === true) {
+              enqueueSnackbar('Документ успешно отправлен в Сбербанк', {
+                variant: 'success',
+              });
+            } else if (res.file) {
+              const file = new Blob([toArrayBuffer(res.file.data)], {
+                type: 'application/pdf',
+              });
+              saveAs(file, res.name);
+              enqueueSnackbar('Документ успешно сформирован и сохранен', {
+                variant: 'success',
+              });
+            }
             resetData();
             setLoading(false);
           } else {
@@ -89,10 +101,18 @@ export default function Submit() {
             }
           }
         },
-        error: () => setLoading(false),
+        error: (error) => {
+          setLoading(false);
+          enqueueSnackbar(
+            error.message || 'Произошла ошибка при отправке документа',
+            {
+              variant: 'error',
+            },
+          );
+        },
       });
     }
-  }, [AddAlert, Error, dispatch, dsc]);
+  }, [AddAlert, Error, dispatch, dsc, enqueueSnackbar]);
   return (
     <>
       <Grid item>
