@@ -1,5 +1,17 @@
 
 
+## [0.3.7](https://git.usb.ru/send/client/compare/v0.3.6...v0.3.7) (2025-07-07)
+
+
+### Features
+
+* added reload button call kill endpoint ([11beb84](https://git.usb.ru/send/client/commit/11beb848b9136601ac386ea0c700e461faafa4c3))
+* change type and simplyfied getPrecision ([eecefdb](https://git.usb.ru/send/client/commit/eecefdb213ab4afee17cc446976a0d614aeeddb9))
+* if total sum = 0 does not send ([7a8e05d](https://git.usb.ru/send/client/commit/7a8e05df7f1ea24a54ad5e4062b548b0cfc36e21))
+* kill endpoint ([a68cfe3](https://git.usb.ru/send/client/commit/a68cfe3b76f83e754f742ace49fe8721be34b768))
+* renamed endpoint ([5ed1e51](https://git.usb.ru/send/client/commit/5ed1e511382e9b748215e5f7985675af7316b90f))
+* snackbar on create-ip ([16f99a3](https://git.usb.ru/send/client/commit/16f99a350118c8e4435e7d3c1b538cf39d75e84b))
+
 ## [0.3.6](https://git.usb.ru/send/client/compare/v0.3.5...v0.3.6) (2025-03-06)
 
 ## [0.3.5](https://git.usb.ru/send/client/compare/v0.3.4...v0.3.5) (2025-03-06)
