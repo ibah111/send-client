@@ -85,8 +85,11 @@ export default function AdditionalMenu({ disabled }: Props) {
          */}
         <MenuItem
           onClick={() =>
-            createIp().subscribe(() => {
+            createIp().subscribe((res) => {
               resetData();
+              enqueueSnackbar('ИП создан', {
+                variant: 'success',
+              });
             })
           }
         >
