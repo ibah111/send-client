@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Typography as T } from '@mui/material';
+import { Button, Grid, Typography as T } from '@mui/material';
 const style = { textAlign: 'center' };
 export function NotConnected() {
   return (
@@ -24,6 +24,11 @@ export function NotConnected() {
             соединение как только сервер будет запущен, поэтому страницу можно
             не перезагружать
           </T>
+        </Grid>
+        <Grid>
+          <Button variant="contained" color="primary" onClick={() => {}}>
+            Reload
+          </Button>
         </Grid>
       </Grid>
     </>

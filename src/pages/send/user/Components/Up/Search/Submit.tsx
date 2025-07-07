@@ -101,10 +101,11 @@ export default function Submit() {
             }
           }
         },
-        error: (error) => {
+        error: (error: unknown) => {
           setLoading(false);
           enqueueSnackbar(
-            error.message || 'Произошла ошибка при отправке документа',
+            (error as Error).message ||
+              'Произошла ошибка при отправке документа',
             {
               variant: 'error',
             },
