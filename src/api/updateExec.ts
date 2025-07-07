@@ -4,15 +4,14 @@ import requests from '../utils/requests';
 import { post, transformAxios, authRetry } from '@tools/rxjs-pipes/axios';
 import { transformError } from '../utils/processError';
 type FileUpdate =
-  | false
+  | boolean
   | {
       file: { data: number[] };
       name: string;
     };
 
 function getPrecision(num: number): number {
-  const value = (Math.round(num * 100) / 100).toFixed(2);
-  return Number(value);
+  return Number(num.toFixed(2));
 }
 
 export default function updateExec() {
