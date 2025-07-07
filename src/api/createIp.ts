@@ -8,9 +8,9 @@ export default function createId() {
   const data = of({
     ...store.getState().Send,
   });
-  const url = of('/Exec/createIp');
+  const url = of('/Exec/create-ip');
   return forkJoin([requests, url, data]).pipe(
-    post<boolean>(),
+    post<boolean | number>(),
     transformAxios(),
     transformError(),
     authRetry(),
