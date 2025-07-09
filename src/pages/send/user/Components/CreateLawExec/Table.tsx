@@ -8,22 +8,25 @@ import { useAppDispatch, useAppSelector } from '../../../../../Reducer';
 import { ResetComment, setLawActComment } from '../../../../../Reducer/Comment';
 import { setId } from '../../../../../Reducer/Send';
 import { setCreateState } from '../../../../../Reducer/StateResults';
-import version from '../../../../../utils/version';
 import PopoverHook from '../PopoverHook';
 import Canceled from './Canceled';
 import getColumns from './getColumns';
 import { map, mergeMap, tap } from 'rxjs';
+import getRejectStatuses from '../../../../../api/RejectStatuses/get';
 
 const getBackgroundColor = (color: string, mode: string) =>
   mode === 'dark' ? darken(color, 0.6) : lighten(color, 0.6);
 
 const getHoverBackgroundColor = (color: string, mode: string) =>
   mode === 'dark' ? darken(color, 0.5) : lighten(color, 0.5);
+
 const PREFIX = 'ResultsLawAct';
+
 const classes = {
   root: `${PREFIX}-root`,
   rejected: `${PREFIX}-rejected`,
 };
+
 const Root = styled(Grid)(({ theme }) => ({
   [`& .${classes.rejected}`]: {
     backgroundColor: getBackgroundColor(
@@ -38,8 +41,6 @@ const Root = styled(Grid)(({ theme }) => ({
     },
   },
 }));
-
-const status_rejected = version.rejected;
 
 export default function Table({ handleClose }: { handleClose: () => void }) {
   const [columns] = React.useState(getColumns());
@@ -62,7 +63,15 @@ export default function Table({ handleClose }: { handleClose: () => void }) {
     });
     return sub.unsubscribe.bind(sub);
   }, [search]);
+
+  const [debt_reject_statuses, setDebtRejectStatuses] = React.useState<
+    number[]
+  >([]);
+
   React.useEffect(() => {
+    getRejectStatuses().then(({ debt_reject_statuses }) => {
+      setDebtRejectStatuses(debt_reject_statuses);
+    });
     apiRef.current.restoreState(stateGrid);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [apiRef]);
@@ -86,7 +95,7 @@ export default function Table({ handleClose }: { handleClose: () => void }) {
           disableRowSelectionOnClick
           disableColumnSelector
           getRowClassName={(params) =>
-            status_rejected.includes(params.row['Debt.status'])
+            debt_reject_statuses.includes(params.row['Debt.status'])
               ? classes.rejected
               : ''
           }
