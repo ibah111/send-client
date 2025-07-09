@@ -1,11 +1,12 @@
-import { transformAxios } from '@tools/rxjs-pipes';
-import { post } from '@tools/rxjs-pipes';
-import { forkJoin, of } from 'rxjs';
+import axios from "axios";
 
-import { transformError } from '../utils/processError';
-
+const route = '/kill';
 export default async function kill() {
-  const route = of('/kill');
-  // @ts-ignore
-  return forkJoin([route]).pipe(post(), transformAxios(), transformError());
+  try {
+    const response = await axios.post(route);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
 }
