@@ -1,25 +1,32 @@
 import { darken, Grid, lighten, styled } from '@mui/material';
-import { DataGridPremium, useGridApiRef } from '@mui/x-data-grid-premium';
+import {
+  DataGridPremium,
+  GridRowClassNameParams,
+  useGridApiRef,
+} from '@mui/x-data-grid-premium';
 import React from 'react';
-import { LawExecPlain } from '../../../../../api/search';
-import { useAppDispatch, useAppSelector } from '../../../../../Reducer';
-import { setPageState } from '../../../../../Reducer/StateResults';
-import version from '../../../../../utils/version';
-import PopoverHook from '../PopoverHook';
-import Dialogs from './Dialogs';
-import getColumns from './getColumns';
+import { LawExecPlain } from '../../../../../../api/search';
+import { useAppDispatch, useAppSelector } from '../../../../../../Reducer';
+import { setPageState } from '../../../../../../Reducer/StateResults';
+import PopoverHook from '../../PopoverHook';
+import Dialogs from '../Dialogs';
+import getColumns from '../getColumns';
+import getRejectStatuses from '../../../../../../api/RejectStatuses/get';
+import ResultsToolbar from './ResultsToolbar';
+
 const getBackgroundColor = (color: string, mode: string) =>
   mode === 'dark' ? darken(color, 0.6) : lighten(color, 0.6);
 
 const getHoverBackgroundColor = (color: string, mode: string) =>
   mode === 'dark' ? darken(color, 0.5) : lighten(color, 0.5);
+
 const PREFIX = 'ResultsLawExec';
+
 const classes = {
   root: `${PREFIX}-root`,
   rejected: `${PREFIX}-rejected`,
 };
-const status_rejected = version.rejected;
-const law_act_status_rejected = version.rejected_law_act;
+
 const Root = styled(Grid)(({ theme }) => ({
   [`& .${classes.rejected}`]: {
     backgroundColor: getBackgroundColor(
@@ -34,6 +41,36 @@ const Root = styled(Grid)(({ theme }) => ({
     },
   },
 }));
+
+interface RowClassNameParams {
+  params: GridRowClassNameParams<any>;
+  debt_reject_statuses: number[];
+  law_act_reject_statuses: string[];
+}
+
+const getRowClassName = ({
+  params,
+  debt_reject_statuses,
+  law_act_reject_statuses,
+}: RowClassNameParams) => {
+  const debt_reject = debt_reject_statuses.includes(params.row['Debt.status'])
+    ? classes.rejected
+    : '';
+  const law_act_reject = law_act_reject_statuses.includes(
+    params.row['LawAct.StatusDict.name'],
+  )
+    ? classes.rejected
+    : '';
+  if (debt_reject && law_act_reject) {
+    return classes.rejected;
+  } else if (debt_reject) {
+    return classes.rejected;
+  } else if (law_act_reject) {
+    return classes.rejected;
+  }
+  return '';
+};
+
 export default function Results() {
   const [columns] = React.useState(getColumns());
   const dispatch = useAppDispatch();
@@ -45,8 +82,22 @@ export default function Results() {
   const { handlePopoverOpen, handlePopoverClose, ElementPopover } = PopoverHook(
     rows.data,
   );
+
+  const [debt_reject_statuses, setDebtRejectStatuses] = React.useState<
+    number[]
+  >([]);
+  const [law_act_reject_statuses, setLawActRejectStatuses] = React.useState<
+    string[]
+  >([]);
+
   React.useEffect(() => {
     apiRef.current.restoreState(stateGrid);
+    getRejectStatuses().then(
+      ({ debt_reject_statuses, law_act_reject_statuses }) => {
+        setDebtRejectStatuses(debt_reject_statuses);
+        setLawActRejectStatuses(law_act_reject_statuses);
+      },
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [apiRef]);
   return (
@@ -68,35 +119,19 @@ export default function Results() {
           }}
           disableRowSelectionOnClick
           disableColumnSelector
-          getRowClassName={(params) => {
-            /**
-             * Решил "поговнокодить"
-             * т.к. это единтсвенный способ
-             * выполнить то что от меня требуется
-             * Сделал
-             */
-            const debt_reject = status_rejected.includes(
-              params.row['Debt.status'],
-            )
-              ? classes.rejected
-              : '';
-            const law_act_reject = law_act_status_rejected.includes(
-              params.row['LawAct.StatusDict.name'],
-            )
-              ? classes.rejected
-              : '';
-            if (debt_reject && law_act_reject) {
-              return classes.rejected;
-            } else if (debt_reject) {
-              return classes.rejected;
-            } else if (law_act_reject) {
-              return classes.rejected;
-            }
-            return '';
-          }}
+          getRowClassName={(params) =>
+            getRowClassName({
+              params,
+              debt_reject_statuses,
+              law_act_reject_statuses,
+            })
+          }
           onCellDoubleClick={(params) => {
             setRow(params.row);
             setDialog(true);
+          }}
+          slots={{
+            toolbar: ResultsToolbar,
           }}
         />
       </Root>
