@@ -101,8 +101,12 @@ export default function Results() {
 
   React.useEffect(() => {
     apiRef.current.restoreState(stateGrid);
+  }, [apiRef, stateGrid]);
+
+  React.useEffect(() => {
     getRejectStatusesCallback();
-  }, [apiRef, getRejectStatusesCallback]);
+  }, [getRejectStatusesCallback]);
+
   return (
     <>
       <Root sx={{ width: '100%' }} xs minHeight={0} item>
