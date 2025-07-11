@@ -22,9 +22,15 @@ import { forkJoin } from 'rxjs';
 
 interface RejectStatus {
   onClose: () => void;
+  debt_reject_statuses: number[];
+  law_act_reject_statuses: string[];
 }
 
-export default function ResultsToolbar({ onClose }: RejectStatus) {
+export default function ResultsToolbar({
+  onClose,
+  debt_reject_statuses,
+  law_act_reject_statuses,
+}: RejectStatus) {
   const [open, setOpen] = React.useState(false);
 
   const handleClose = () => {
@@ -37,32 +43,39 @@ export default function ResultsToolbar({ onClose }: RejectStatus) {
     [],
   );
 
-  const getTablesData = () => {
+  const getTablesData = React.useCallback(() => {
     forkJoin([
-      getDict(DEBT_DICT_STATUSES_PARENT_ID),
-      getDict(LAW_ACT_DICT_STATUSES_PARENT_ID),
+      getDict({
+        id: DEBT_DICT_STATUSES_PARENT_ID,
+        not_in_ids: debt_reject_statuses,
+      }),
+      getDict({
+        id: LAW_ACT_DICT_STATUSES_PARENT_ID,
+        not_in_names: law_act_reject_statuses,
+      }),
     ]).subscribe(([debt_statuses_row, law_act_statuses_row]) => {
       setDebtStatusesRow(debt_statuses_row);
       setLawActStatusesRow(law_act_statuses_row);
     });
-  };
+  }, [debt_reject_statuses, law_act_reject_statuses]);
 
   React.useEffect(() => {
     getTablesData();
-  }, []);
+  }, [getTablesData]);
 
   return (
     <>
       <GridToolbarContainer>
-        <Button onClick={() => setOpen(true)}>Добавить статус отказа</Button>
+        <Button onClick={() => setOpen(true)}>Статусы отказа</Button>
       </GridToolbarContainer>
       {open && (
         <Dialog open={open} onClose={handleClose} fullWidth maxWidth="xl">
-          <DialogTitle>Добавить статус отказа</DialogTitle>
+          <DialogTitle>Текущие статусы отказа</DialogTitle>
           <Divider />
           <DialogContent>
             <Grid container spacing={2}>
               <Grid item xs={6}>
+                Статусы отказа по долгу
                 <DataGridPremium
                   sx={{ height: '400px' }}
                   rows={debt_statuses_row}
@@ -71,6 +84,7 @@ export default function ResultsToolbar({ onClose }: RejectStatus) {
                 />
               </Grid>
               <Grid item xs={6}>
+                Статусы отказа по закону
                 <DataGridPremium
                   checkboxSelection
                   sx={{ height: '400px' }}

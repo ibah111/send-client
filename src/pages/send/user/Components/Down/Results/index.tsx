@@ -90,16 +90,19 @@ export default function Results() {
     string[]
   >([]);
 
-  React.useEffect(() => {
-    apiRef.current.restoreState(stateGrid);
+  const getRejectStatusesCallback = React.useCallback(() => {
     getRejectStatuses().then(
       ({ debt_reject_statuses, law_act_reject_statuses }) => {
         setDebtRejectStatuses(debt_reject_statuses);
         setLawActRejectStatuses(law_act_reject_statuses);
       },
     );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [apiRef]);
+  }, []);
+
+  React.useEffect(() => {
+    apiRef.current.restoreState(stateGrid);
+    getRejectStatusesCallback();
+  }, [apiRef, getRejectStatusesCallback]);
   return (
     <>
       <Root sx={{ width: '100%' }} xs minHeight={0} item>
@@ -110,12 +113,6 @@ export default function Results() {
           loading={rows.loading}
           onStateChange={() => {
             dispatch(setPageState(apiRef.current.exportState()));
-          }}
-          slotProps={{
-            cell: {
-              onMouseEnter: handlePopoverOpen,
-              onMouseLeave: handlePopoverClose,
-            },
           }}
           disableRowSelectionOnClick
           disableColumnSelector
@@ -132,6 +129,19 @@ export default function Results() {
           }}
           slots={{
             toolbar: ResultsToolbar,
+          }}
+          slotProps={{
+            cell: {
+              onMouseEnter: handlePopoverOpen,
+              onMouseLeave: handlePopoverClose,
+            },
+            toolbar: {
+              debt_reject_statuses,
+              law_act_reject_statuses,
+              onClose: () => {
+                getRejectStatusesCallback();
+              },
+            },
           }}
         />
       </Root>
