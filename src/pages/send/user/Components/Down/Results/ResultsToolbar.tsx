@@ -1,15 +1,5 @@
-import {
-  Button,
-  DialogTitle,
-  DialogContent,
-  Dialog,
-  Divider,
-  Grid,
-} from '@mui/material';
-import {
-  DataGridPremium,
-  GridToolbarContainer,
-} from '@mui/x-data-grid-premium';
+import { Button } from '@mui/material';
+import { GridToolbarContainer } from '@mui/x-data-grid-premium';
 import React from 'react';
 import getDict from '../../../../../../api/getDict';
 import {
@@ -17,8 +7,9 @@ import {
   LAW_ACT_DICT_STATUSES_PARENT_ID,
 } from '../../../../../../utils/consts';
 import { Dict } from '@contact/models';
-import { DictColumns } from './DictColumns';
 import { forkJoin } from 'rxjs';
+import AddRejectStatusDialog from './ResultsDialogs/AddRejectStatusDialog';
+import CurrectRejectStatusDialogs from './ResultsDialogs/CurrectRejectStatusDialogs';
 
 interface RejectStatus {
   onClose: () => void;
@@ -32,18 +23,14 @@ export default function ResultsToolbar({
   law_act_reject_statuses,
 }: RejectStatus) {
   const [open, setOpen] = React.useState(false);
-
-  const handleClose = () => {
-    setOpen(false);
-    onClose();
-  };
-
+  const [isLoading, setIsLoading] = React.useState(false);
   const [debt_statuses_row, setDebtStatusesRow] = React.useState<Dict[]>([]);
   const [law_act_statuses_row, setLawActStatusesRow] = React.useState<Dict[]>(
     [],
   );
 
   const getTablesData = React.useCallback(() => {
+    setIsLoading(true);
     forkJoin([
       getDict({
         id: DEBT_DICT_STATUSES_PARENT_ID,
@@ -53,49 +40,40 @@ export default function ResultsToolbar({
         id: LAW_ACT_DICT_STATUSES_PARENT_ID,
         not_in_names: law_act_reject_statuses,
       }),
-    ]).subscribe(([debt_statuses_row, law_act_statuses_row]) => {
-      setDebtStatusesRow(debt_statuses_row);
-      setLawActStatusesRow(law_act_statuses_row);
+    ]).subscribe({
+      next: ([debt_statuses_row, law_act_statuses_row]) => {
+        setDebtStatusesRow(debt_statuses_row);
+        setLawActStatusesRow(law_act_statuses_row);
+        setIsLoading(false);
+      },
+      error: () => {
+        setIsLoading(false);
+      },
     });
   }, [debt_reject_statuses, law_act_reject_statuses]);
 
-  React.useEffect(() => {
+  const handleOpen = () => {
+    setOpen(true);
     getTablesData();
-  }, [getTablesData]);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    onClose();
+  };
 
   return (
     <>
       <GridToolbarContainer>
-        <Button onClick={() => setOpen(true)}>Статусы отказа</Button>
+        <Button variant="contained" color="success" onClick={handleOpen}>
+          Добавить статусы отказа
+        </Button>
+        <Button variant="contained" color="primary" onClick={handleOpen}>
+          Текущие статусы отказа
+        </Button>
       </GridToolbarContainer>
-      {open && (
-        <Dialog open={open} onClose={handleClose} fullWidth maxWidth="xl">
-          <DialogTitle>Текущие статусы отказа</DialogTitle>
-          <Divider />
-          <DialogContent>
-            <Grid container spacing={2}>
-              <Grid item xs={6}>
-                Статусы отказа по долгу
-                <DataGridPremium
-                  sx={{ height: '400px' }}
-                  rows={debt_statuses_row}
-                  columns={DictColumns}
-                  checkboxSelection
-                />
-              </Grid>
-              <Grid item xs={6}>
-                Статусы отказа по закону
-                <DataGridPremium
-                  checkboxSelection
-                  sx={{ height: '400px' }}
-                  rows={law_act_statuses_row}
-                  columns={DictColumns}
-                />
-              </Grid>
-            </Grid>
-          </DialogContent>
-        </Dialog>
-      )}
+
+      {open && <CurrectRejectStatusDialogs open={open} onClose={handleClose} />}
     </>
   );
 }
