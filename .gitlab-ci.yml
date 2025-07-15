@@ -69,3 +69,5 @@ build_job:
     - echo $HOST_NAME
     - sshpass -e scp -o stricthostkeychecking=no -r build/* $HOST_USER@$HOST_NAME:$PATH_UPLOAD
     - echo "build job completed"
+  only:
+    - tags
